@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".Payment.Proof_Of_Payment_Form">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        >
+        <ScrollView
+            android:id="@+id/sv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            >
+            <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="27dp"
+            android:layout_marginEnd="27dp">
+                <RelativeLayout
+                    android:id="@+id/proof_of_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/underline">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="Proof Of Payment"
+                        android:textColor="@color/textcolor"
+                        android:textSize="17sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_proof_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/proof_of_payment"
+                    android:layout_marginTop="20dp"
+                    >
+                    <RelativeLayout
+                        android:id="@+id/payment_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/spinner_round">
+
+                        <Spinner
+                            android:id="@+id/spinner_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:dropDownWidth="match_parent"
+                            android:popupBackground="@drawable/spinner_round" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignTop="@id/spinner_id"
+                            android:layout_alignEnd="@+id/spinner_id"
+                            android:layout_alignRight="@+id/spinner_id"
+                            android:layout_alignBottom="@+id/spinner_id"
+                            android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                            android:theme="@style/Spinner" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_mode"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_below="@+id/payment_id"
+                        android:background="@drawable/spinner_round">
+
+                        <Spinner
+                            android:id="@+id/payment_mode"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:dropDownWidth="match_parent"
+                            android:popupBackground="@drawable/spinner_round" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignTop="@id/payment_mode"
+                            android:layout_alignEnd="@+id/payment_mode"
+                            android:layout_alignRight="@+id/payment_mode"
+                            android:layout_alignBottom="@+id/payment_mode"
+                            android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                            android:theme="@style/Spinner" />
+                    </RelativeLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_txt_bank"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:hint="Bank *"
+                        android:theme="@style/TextLabel"
+                        android:layout_below="@id/rl_mode"
+                        app:boxStrokeColor="@color/box_stroke"
+                        app:boxStrokeWidth="1.75dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txt_bank"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:theme="@style/TextLabelEditeText" 
+                            android:maxLength="25"
+                            android:inputType="text"
+                        />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_txt_branch"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:hint="Branch Code *"
+                        android:theme="@style/TextLabel"
+                        android:layout_below="@id/layout_txt_bank"
+                        app:boxStrokeColor="@color/box_stroke"
+                        app:boxStrokeWidth="1.75dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txt_branch"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                             android:theme="@style/TextLabelEditeText" 
+                            android:inputType="number"
+                     />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_txt_transaction"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="20dp"
+                        android:hint="Transaction No *"
+                        android:theme="@style/TextLabel"
+                        android:layout_below="@id/layout_txt_branch"
+                        app:boxStrokeColor="@color/box_stroke"
+                        app:boxStrokeWidth="1.75dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txt_transaction"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:theme="@style/TextLabelEditeText" 
+                            android:maxLength="25"
+                            android:inputType="number"
+                          />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <TextView
+                        android:id="@+id/txt_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/layout_txt_transaction"
+                        android:layout_marginTop="15dp"
+                        android:text="Uploaded Documents"
+                        android:textSize="12sp"
+                        android:textColor="#96bb3c"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_below="@id/txt_view"
+                        android:layout_marginTop="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edit_round">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_upload_doc"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_btns"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:layout_below="@+id/rl_proof_payment"
+                    >
+                    <Button
+                        android:id="@+id/btn_upload"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@drawable/button_round"
+                        android:layout_marginTop="20dp"
+                        android:text="Upload Documents"
+                        android:stateListAnimator="@null"
+                        android:fontFamily="@font/open_sans"
+                        android:textSize="@dimen/button_text_size"
+                        android:textColor="#fff"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:textAllCaps="false"
+                        />
+                    <Button
+                        android:id="@+id/btn_finish"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@drawable/button_round"
+                        android:layout_marginTop="20dp"
+                        android:text="Save"
+                        android:fontFamily="@font/open_sans"
+                        android:textSize="@dimen/button_text_size"
+                        android:stateListAnimator="@null"
+                        android:textColor="#fff"
+                        android:layout_weight="1"
+                        android:textAllCaps="false"
+                        android:layout_marginBottom="30dp"
+                        android:layout_below="@+id/btn_upload"
+                        />
+                </RelativeLayout>
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@+id/rl_btns"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:text="© Haball | All rights reserved"-->
+<!--                    android:gravity="center"/>-->
+            </RelativeLayout>
+
+        </ScrollView>
+    </RelativeLayout>
+</RelativeLayout>

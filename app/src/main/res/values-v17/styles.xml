@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextLabelEditeText">
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="fontFamily">@font/open_sans</item>
+        <item name="android:textColor">@color/textcolor</item>
+    </style>
+</resources>

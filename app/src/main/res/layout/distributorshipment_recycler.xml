@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/main_layout_shipment_box_retailer"
+    android:paddingLeft="20dp"
+    android:paddingRight="5dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:background="@drawable/edit_text_squared"
+    android:layout_marginTop="20dp">
+
+    <LinearLayout
+        android:id="@+id/ll_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3">
+        <TextView
+            android:id="@+id/heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Ghulam Rabani &amp; Sons Traders &amp; Distributors"
+            android:textSize="@dimen/rv_box_heading_size"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textColor="@color/rv_box_color"
+            />
+        <ImageButton
+            android:id="@+id/menu_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5"
+            android:src="@drawable/ic_more_vert_black_24dp"
+            android:background="@null"
+            android:textSize="18sp"
+            android:textColor="#676a6c"
+            />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/shipment_no"
+        android:text="Shipment No: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_heading"
+        android:layout_marginTop="15dp"
+        android:paddingBottom="5dp"
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/rv_box_color"
+        android:textSize="@dimen/rv_box_text_size"
+       />
+    <TextView
+        android:id="@+id/shipment_no_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_heading"
+        android:layout_marginTop="15dp"
+        android:text="51247895354254780369"
+        android:layout_marginLeft="5dp"
+        android:paddingBottom="5dp"
+        android:layout_toRightOf="@+id/shipment_no"
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/rv_box_color"
+        android:textSize="@dimen/rv_box_text_size"
+        />
+
+<!--    <TextView-->
+<!--        android:id="@+id/delivery_date"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/shipment_no"-->
+<!--        android:text="Delivery Date: "-->
+<!--        android:paddingBottom="5dp"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_box_text_size"-->
+<!--        />-->
+<!--    <TextView-->
+<!--        android:id="@+id/tv_date"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/shipment_no_value"-->
+<!--        android:text="06-01-2020"-->
+<!--        android:paddingBottom="5dp"-->
+<!--        android:layout_toRightOf="@+id/delivery_date"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_box_text_size"-->
+<!--         />-->
+<!--    <TextView-->
+<!--        android:id="@+id/receiving_date"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/delivery_date"-->
+<!--        android:text="Receiving Date: "-->
+<!--        android:paddingBottom="5dp"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_box_text_size"-->
+<!--       />-->
+<!--    <TextView-->
+<!--        android:id="@+id/tv_recv_date"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/delivery_date"-->
+<!--        android:text="06-01-2020"-->
+<!--        android:paddingBottom="5dp"-->
+<!--        android:layout_marginLeft="5dp"-->
+<!--        android:layout_toRightOf="@+id/receiving_date"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_box_text_size"-->
+<!--         />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tv_quantity"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:paddingBottom="5dp"-->
+<!--        android:layout_below="@+id/receiving_date"-->
+<!--        android:text="Quantity: "-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_box_text_size"-->
+<!--        />-->
+<!--    <TextView-->
+<!--        android:id="@+id/tv_quantity_value"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:paddingBottom="5dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/tv_recv_date"-->
+<!--        android:text="100"-->
+<!--        android:layout_marginLeft="5dp"-->
+<!--        android:layout_toRightOf="@+id/tv_quantity"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_box_text_size"-->
+<!--        />-->
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:layout_below="@+id/shipment_no"
+        android:text="Status: "
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/rv_box_color"
+        android:textSize="@dimen/rv_box_text_size"
+       />
+    <TextView
+        android:id="@+id/tv_option"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:layout_below="@+id/shipment_no"
+        android:text="Received"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/tv_status"
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/rv_box_color"
+        android:textSize="@dimen/rv_box_text_size"
+        />
+
+
+</RelativeLayout>

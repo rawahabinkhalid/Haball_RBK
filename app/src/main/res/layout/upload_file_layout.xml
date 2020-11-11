@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingBottom="15dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginEnd="27dp">
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/btn_close"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:src="@drawable/ic_close_black_24dp" />-->
+
+
+
+            <LinearLayout
+                android:id="@+id/proof_of_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/underline">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="Upload File"
+                        android:textColor="@color/textcolor"
+                        android:textSize="17sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_proof_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/proof_of_payment"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/filename"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/relative_criticality"
+                        android:background="@drawable/edit_round"
+                        android:padding="10dp" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_mode"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/filename"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/edit_round">
+
+                        <Spinner
+                            android:id="@+id/spinner_upload_types"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:dropDownWidth="match_parent"
+                            android:popupBackground="@drawable/spinner_round" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignTop="@id/spinner_upload_types"
+                            android:layout_alignEnd="@+id/spinner_upload_types"
+                            android:layout_alignRight="@+id/spinner_upload_types"
+                            android:layout_alignBottom="@+id/spinner_upload_types"
+                            android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                            android:theme="@style/Spinner" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/choose_file"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/rl_mode"
+                        android:layout_marginTop="15dp"
+                        android:text="Accepted image formats: JPEG, PNG, BMP and GIF" />
+
+                    <Button
+                        android:id="@+id/btn_choose"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_below="@id/choose_file"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/button_round"
+                        android:fontFamily="@font/open_sans"
+                        android:text="Choose File"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/button_text_size" />
+
+
+                    <Button
+                        android:id="@+id/btn_attach"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_below="@id/btn_choose"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/button_round"
+                        android:fontFamily="@font/open_sans"
+                        android:text="Attach"
+                        android:layout_marginBottom="15dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/button_text_size" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+
+</LinearLayout>

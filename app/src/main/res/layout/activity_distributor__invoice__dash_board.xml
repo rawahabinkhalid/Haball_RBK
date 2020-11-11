@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".Invoice.Distributor_Invoice_DashBoard">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            app:tabMode="scrollable"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            app:tabIndicatorColor="#96bb3c"
+            app:tabSelectedTextColor="#96bb3c"
+            app:tabBackground="@drawable/custom_indicator"
+            app:tabTextAppearance="@style/CustomTextAppearanceTab"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tabs3"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </RelativeLayout>
+</RelativeLayout>

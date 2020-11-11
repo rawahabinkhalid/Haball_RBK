@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- menu group -->
+    <group android:id="@+id/group_delete">
+        <item
+            android:id="@+id/view_retailer_payment"
+            android:title="View" />
+        <item
+            android:id="@+id/edit_retailer_payment"
+            android:title="Edit" />
+        <item
+            android:id="@+id/delete_retailer_payment"
+            android:title="Delete" />
+        <item
+            android:id="@+id/pay_by_retailer"
+            android:title="Pay By PSID"/>
+
+    </group>
+</menu>

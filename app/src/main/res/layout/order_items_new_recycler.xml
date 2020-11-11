@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/edit_text_squared"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingTop="15dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="20dp"
+    tools:ignore="MissingDefaultResource">
+
+    <LinearLayout
+        android:id="@+id/ll_products"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3">
+
+        <ScrollView
+            android:id="@+id/SCROLLER_ID"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
+
+            <TextView
+                android:id="@+id/txt_products"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/open_sans_semibold"
+                android:text=""
+                android:textColor="@color/rv_box_color"
+                android:textSize="@dimen/rv_box_heading_size" />
+        </ScrollView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/product_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_products"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/open_sans"
+        android:text="Product Code: "
+        android:singleLine="false"
+        android:textColor="@color/rv_box_color"
+        android:textSize="@dimen/rv_order_view_box_text_size" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/product_code_value"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/ll_products"-->
+<!--        android:layout_marginLeft="5dp"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:layout_toRightOf="@+id/product_code"-->
+<!--        android:fontFamily="@font/open_sans_semibold"-->
+<!--        android:visibility="gone"-->
+<!--        android:text=""-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/price"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/product_code"-->
+<!--        android:layout_marginBottom="5dp"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:visibility="gone"-->
+<!--        android:text="Price: "-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size" />-->
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/price_value"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/product_code"-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_toRightOf="@id/price"-->
+<!--        android:fontFamily="@font/open_sans_semibold"-->
+<!--        android:text=""-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/separator_1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/product_code"-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_toRightOf="@id/price_value"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:text="   |   "-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/UOM"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/product_code"-->
+<!--        android:layout_marginBottom="5dp"-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_toRightOf="@id/separator_1"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:text="UOM: "-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/UOM_value"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/product_code"-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_toRightOf="@id/UOM"-->
+<!--        android:fontFamily="@font/open_sans_semibold"-->
+<!--        android:text=""-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/discount"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/price"-->
+<!--        android:layout_marginBottom="5dp"-->
+<!--        android:visibility="gone"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:text="Disc: "-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/discount_value"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/price"-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_toRightOf="@id/discount"-->
+<!--        android:fontFamily="@font/open_sans_semibold"-->
+<!--        android:text=""-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/separator_2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/price"-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_toRightOf="@id/discount_value"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:text="   |   "-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size" />-->
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/Quantity"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="20dp"-->
+<!--        android:layout_below="@+id/price"-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_toRightOf="@id/separator_2"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:text="Qty:\u00A0"-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/Quantity_value"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="20dp"-->
+<!--        android:layout_below="@+id/price"-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_toRightOf="@id/Quantity"-->
+<!--        android:fontFamily="@font/open_sans_semibold"-->
+<!--        android:text=""-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tv_taxValue"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/discount"-->
+<!--        android:visibility="gone"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:text="Tax: "-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tax_value"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/discount"-->
+<!--        android:layout_toRightOf="@id/tv_taxValue"-->
+<!--        android:fontFamily="@font/open_sans_semibold"-->
+<!--        android:text=""-->
+<!--        android:visibility="gone"-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/separator_3"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="20dp"-->
+<!--        android:layout_below="@+id/discount"-->
+<!--        android:layout_toRightOf="@id/tax_value"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:text="   |   "-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:visibility="gone"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/amount"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/discount"-->
+<!--        android:layout_toRightOf="@+id/separator_3"-->
+<!--        android:visibility="gone"-->
+<!--        android:fontFamily="@font/open_sans"-->
+
+<!--        android:text="Amount:\u00A0"-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/amount_value"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_below="@+id/discount"-->
+<!--        android:layout_toRightOf="@id/amount"-->
+<!--        android:layout_weight="1"-->
+<!--        android:ellipsize="none"-->
+<!--        android:fontFamily="@font/open_sans_semibold"-->
+<!--        android:maxLines="100"-->
+<!--        android:scrollHorizontally="false"-->
+<!--        android:singleLine="true"-->
+<!--        android:text=""-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size" />-->
+<!--    <TextView-->
+<!--        android:id="@+id/amount_new_line"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/tv_taxValue"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:text="Amount:\u00A0"-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size"-->
+<!--        android:visibility="gone" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/amount_new_line_value"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/tv_taxValue"-->
+<!--        android:layout_toRightOf="@id/amount_new_line"-->
+<!--        android:fontFamily="@font/open_sans_semibold"-->
+<!--        android:singleLine="true"-->
+<!--        android:text=""-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_order_view_box_text_size"-->
+<!--        android:visibility="gone" />-->
+</RelativeLayout>

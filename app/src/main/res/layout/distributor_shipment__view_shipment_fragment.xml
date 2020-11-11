@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:backgroundTint="#80FFFFFF"
+    android:backgroundTintMode="src_over"
+    tools:context=".Distributor.ui.shipments.main.Distributor_shipmentDetails">
+
+    <!--    <RelativeLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent">-->
+
+    <ScrollView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/ln_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="27dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="27dp"
+                android:orientation="vertical"
+                android:weightSum="8">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_company"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:hint="Company"
+                    android:textColorHint="#96bb3c"
+                    android:theme="@style/TextLabel">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/company"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:theme="@style/TextLabelEditeText" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_shipment_id"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:hint="Shipment ID"
+                    android:textColorHint="#96bb3c"
+                    android:theme="@style/TextLabel">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/shipment_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:theme="@style/TextLabelEditeText" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_shipment_created_date"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/open_sans"
+                    android:hint="Created Date"
+                    android:textColorHint="#96bb3c"
+                    android:theme="@style/TextLabel">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/shipment_created_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:theme="@style/TextLabelEditeText" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_shipment_recieving_date"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/open_sans"
+                    android:hint="Receiving Date"
+                    android:textColorHint="#96bb3c"
+                    android:theme="@style/TextLabel"
+                    android:visibility="gone">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/shipment_recieving_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:theme="@style/TextLabelEditeText" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_shipment_tv_dc_number"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/open_sans"
+                    android:hint="DC Number"
+                    android:textColorHint="#96bb3c"
+                    android:theme="@style/TextLabel"
+                    android:visibility="gone">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/shipment_tv_dc_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:fontFamily="@font/open_sans"
+                        android:theme="@style/TextLabelEditeText" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_shipment_tv_shstatus"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/open_sans"
+                    android:hint="Status"
+                    android:textColorHint="#96bb3c"
+                    android:theme="@style/TextLabel">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+
+                        android:id="@+id/shipment_tv_shstatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:enabled="false"
+                        android:fontFamily="@font/open_sans"
+                        android:theme="@style/TextLabelEditeText" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+
+            <!--                <RelativeLayout-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:orientation="vertical"-->
+            <!--                    android:layout_marginTop="10dp"-->
+            <!--                    android:layout_below="@+id/ln_btn">-->
+            <!--                    <TextView-->
+            <!--                        android:id="@+id/footer"-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:gravity="center"-->
+            <!--                        android:layout_marginBottom="10dp"-->
+            <!--                        android:layout_alignParentBottom="true"-->
+            <!--                        android:text="© Haball | All rights reserved" />-->
+            <!--                </RelativeLayout>-->
+
+
+            <LinearLayout
+                android:id="@+id/ln_txt_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:layout_below="@+id/ln_txt"
+                android:orientation="vertical"
+                android:weightSum="8">
+
+
+                <Button
+                    android:id="@+id/btn_receive"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginRight="27dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/button_round"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:stateListAnimator="@null"
+                    android:text="Receive"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/button_text_size"
+                    android:visibility="gone"
+                    app:elevation="0dp" />
+
+                <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginRight="27dp"
+                    android:background="@drawable/button_round"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:stateListAnimator="@null"
+                    android:text="Back"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/button_text_size"
+                    app:elevation="0dp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
+
+
+    <!--</RelativeLayout>-->

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".Payment.Consolidate_Fragment">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="27dp"
+            android:layout_marginEnd="27dp">
+
+            <RelativeLayout
+                android:id="@+id/tv_consolidate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/underline">
+
+                <TextView
+                    android:id="@+id/tv_proof_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="Consolidate Payments"
+                    android:textColor="@color/textcolor"
+                    android:textSize="17sp" />
+
+
+            </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/line_"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_below="@+id/tv_consolidate"
+        android:layout_marginTop="-2dp"
+        android:layout_toRightOf="@+id/tv_consolidate"
+        android:background="@drawable/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line_">
+
+        <RelativeLayout
+            android:id="@+id/spinner_container_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/spinner_container_main_inner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/spinner_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edit_text_squared">
+
+
+                    <Spinner
+                        android:id="@+id/spinner_conso"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:dropDownWidth="match_parent"
+                        android:popupBackground="@drawable/spinner_round" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignTop="@id/spinner_conso"
+                        android:layout_alignEnd="@+id/spinner_conso"
+                        android:layout_alignRight="@+id/spinner_conso"
+                        android:layout_alignBottom="@+id/spinner_conso"
+                        android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                        android:theme="@style/Spinner" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/spinner_container1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/spinner_container"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edit_text_squared"
+                    android:visibility="gone">
+
+                    <Spinner
+                        android:id="@+id/conso_spinner2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:dropDownWidth="match_parent"
+                        android:popupBackground="@drawable/spinner_round" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignTop="@id/conso_spinner2"
+                        android:layout_alignEnd="@+id/conso_spinner2"
+                        android:layout_alignRight="@+id/conso_spinner2"
+                        android:layout_alignBottom="@+id/conso_spinner2"
+                        android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                        android:theme="@style/Spinner" />
+
+                    <EditText
+                        android:id="@+id/conso_edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/edit_text_squared"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="20dp"
+                        android:paddingBottom="5dp" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/line_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinner_container_main_inner"
+             />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/spinner_container_main"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_consolidate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tv_shipment_no_data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:text="No Data Available"
+                android:textSize="@dimen/no_data_available_size" />
+
+        </RelativeLayout>
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/footer"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_alignParentBottom="true"-->
+        <!--                android:layout_marginBottom="10dp"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="© Haball | All rights reserved" />-->
+    </RelativeLayout>
+</RelativeLayout>
+</RelativeLayout>
+

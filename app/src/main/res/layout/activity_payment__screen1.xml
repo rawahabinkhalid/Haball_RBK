@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:clickable="true"
+    tools:context=".Payment.Payment_Amount">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="27dp"
+            android:layout_marginEnd="27dp">
+
+            <RelativeLayout
+                android:id="@+id/ln_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/underline">
+
+                <TextView
+                    android:id="@+id/tv_support"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="Payment"
+                    android:textColor="@color/textcolor"
+                    android:textSize="17sp" />
+            </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ln_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ln_txt"
+        android:layout_marginTop="20sp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_create"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/button_round"
+            android:gravity="center"
+            android:text="Next"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="@dimen/button_text_size" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ln_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ln_login"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/relative_Preffered_Contact"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/relative_criticality"
+            android:background="@drawable/edit_round">
+
+            <Spinner
+                android:id="@+id/spinner_company"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:dropDownWidth="match_parent"
+                android:background="@null"
+                android:popupBackground="@drawable/spinner_round" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@id/spinner_company"
+                android:layout_alignEnd="@+id/spinner_company"
+                android:layout_alignRight="@+id/spinner_company"
+                android:layout_alignBottom="@+id/spinner_company"
+                android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                android:theme="@style/Spinner" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@id/spinner_company"
+                android:layout_alignEnd="@+id/spinner_company"
+                android:layout_alignRight="@+id/spinner_company"
+                android:layout_alignBottom="@+id/spinner_company"
+                android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                android:theme="@style/Spinner" />
+        </RelativeLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_txt_amount"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/open_sans"
+            android:hint="Amount"
+            app:boxStrokeWidth="0.5dp"
+            android:theme="@style/TextLabel"
+            app:boxStrokeColor="@color/box_stroke"
+            app:boxBackgroundColor="#fff"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_amount"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:maxLength="9"
+                android:theme="@style/TextLabelEditeText"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+</RelativeLayout>
+</RelativeLayout>

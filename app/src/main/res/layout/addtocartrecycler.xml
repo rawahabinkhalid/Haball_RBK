@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/item_selection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_round"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="20dp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/txt_product"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="AC Card Battery Charger"
+            android:textColor="#96bb3c"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"
+            android:paddingLeft="15dp"
+            />
+        <TextView
+            android:id="@+id/txt_price"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Rs.12000.00"
+            android:textSize="14sp"
+            android:paddingLeft="15dp"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/add_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="20dp"
+        android:layout_below="@+id/item_selection"
+        android:background="@drawable/button_round">
+
+        <TextView
+            android:id="@+id/txt_product1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AC Card Battery Charger"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:paddingLeft="15dp"/>
+        <TextView
+            android:id="@+id/txt_price1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rs.12000.00"
+            android:layout_below="@+id/txt_product1"
+            android:paddingLeft="15dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="#fff"
+            android:textSize="14sp"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:weightSum="5"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_below="@+id/txt_price1">
+            <ImageButton
+                android:id="@+id/add_quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.75"
+                android:background="#fff"
+                android:src="@drawable/remove_black_24dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="21"
+                android:textSize="20sp"
+                android:textColor="#000"
+                android:layout_weight="1.5"
+                android:layout_marginLeft="10dp"
+                android:background="#fff"/>
+            <ImageButton
+                android:id="@+id/substract_quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1.75"
+                android:src="@drawable/ic_add_black_24dp"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/cart_add"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/txt_price1"
+            android:text="Add to Cart"
+            android:textColor="#454545"
+            android:textSize="12sp"
+            android:background="@drawable/white_button"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:textAllCaps="false"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

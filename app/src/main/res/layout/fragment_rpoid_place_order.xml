@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".Distributor.ui.retailer.RetailerPlaceOrder.RetailerPlaceOrder">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/select_retailer_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="27dp"
+            android:fontFamily="@font/open_sans"
+            android:text="Select Retailer"
+            android:textColor="@color/textcolor"
+            android:textSize="17sp" />
+
+        <RelativeLayout
+            android:id="@+id/spinner_container"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/select_retailer_heading"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="27dp"
+            android:background="@drawable/edit_text_squared">
+
+            <Spinner
+                android:id="@+id/spinner_conso"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:dropDownWidth="match_parent"
+                android:popupBackground="@drawable/spinner_round" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@id/spinner_conso"
+                android:layout_alignEnd="@+id/spinner_conso"
+                android:layout_alignRight="@+id/spinner_conso"
+                android:layout_alignBottom="@+id/spinner_conso"
+                android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                android:theme="@style/Spinner" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/spinner_retailer_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinner_container"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="27dp">
+
+            <TextView
+                android:id="@+id/retailer_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:text="Madina General Super Store"
+                android:textColor="@color/textcolor"
+                android:textSize="17sp" />
+
+            <!--            <com.google.android.material.textfield.TextInputLayout-->
+            <!--                android:id="@+id/layout_name"-->
+            <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+            <!--                android:layout_below="@+id/retailer_heading"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="55dp"-->
+            <!--                android:hint="Name"-->
+            <!--                android:fontFamily="@font/open_sans"-->
+            <!--                android:layout_marginTop="20dp"-->
+            <!--                android:theme="@style/TextLabel"-->
+            <!--                app:boxBackgroundColor="#fff"-->
+            <!--               >-->
+
+            <!--                <com.google.android.material.textfield.TextInputEditText-->
+            <!--                    android:id="@+id/txt_name"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:fontFamily="@font/open_sans"-->
+            <!--                    android:textColor="@color/textcolor"-->
+            <!--                    android:paddingTop="5dp"-->
+            <!--                    android:paddingBottom="5dp"-->
+            <!--                    />-->
+
+            <!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_mobile_no"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_below="@+id/retailer_heading"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/open_sans"
+                android:hint="Mobile No"
+                android:theme="@style/TextLabel">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_mobile_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:theme="@style/TextLabelEditeText" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_email_address"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_below="@+id/layout_mobile_no"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/open_sans"
+                android:hint="Email Address"
+                android:theme="@style/TextLabel">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_email_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:theme="@style/TextLabelEditeText" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_cnic_no"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_below="@+id/layout_email_address"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/open_sans"
+                android:hint="CNIC No"
+                android:theme="@style/TextLabel">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_cnic_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:theme="@style/TextLabelEditeText" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_txt_address"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@+id/layout_cnic_no"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/open_sans"
+                android:hint="Address"
+                android:inputType="textMultiLine"
+                android:theme="@style/TextLabel">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textMultiLine"
+                    android:paddingBottom="50dp"
+                    android:theme="@style/TextLabelEditeText"
+
+
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/layout_txt_address"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_round"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:stateListAnimator="@null"
+                android:text="Next"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="@dimen/button_text_size" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>
+

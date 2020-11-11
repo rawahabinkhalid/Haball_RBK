@@ -1,0 +1,32 @@
+<resources
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="appbar_padding">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="heading">12sp</dimen>
+    <dimen name="text_box">16sp</dimen>
+    <dimen name="mtrl_textinput_box_stroke_width_default" tools:override="true">1.75dp</dimen>
+    <dimen name="spinner_width">350dp</dimen>
+    <dimen name="paragraph_size">13sp</dimen>
+    <dimen name="rv_box_heading_size">17sp</dimen>
+    <dimen name="rv_box_text_size">13sp</dimen>
+    <dimen name="rv_order_view_box_text_size">13sp</dimen>
+    <dimen name="no_data_available_size">23sp</dimen>
+    <dimen name="button_text_size">11.6sp</dimen>
+    <dimen name="edit_text_box_size">13.6sp</dimen>
+    <dimen name="fragemnt_heading_size">17sp</dimen>
+    <dimen name="heading_size_retailer">24sp</dimen>
+    <dimen name="heading_size_distributor">24sp</dimen>
+    <dimen name="order_child_list_retailer">11sp</dimen>
+    <dimen name="payment_options_retailer">10sp</dimen>
+    <dimen name="payment_options_text_retailer">10sp</dimen>
+    <dimen name="retailer_button_size">45dp</dimen>
+    <dimen name="iconSize" >18dp</dimen>
+
+
+</resources>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff">
+
+    <RelativeLayout
+        android:id="@+id/rl_parentList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rl_orderName_retailer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/underline">
+
+            <LinearLayout
+                android:id="@+id/plus_icon_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="27dp"
+                android:layout_marginLeft="27dp"
+                android:padding="11.5dp">
+
+                <ImageView
+                    android:id="@+id/plus_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_black_24dp" />
+
+                <ImageView
+                    android:id="@+id/minus_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_remove_black_24dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/orderName_retailer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="27dp"
+                android:layout_marginRight="27dp"
+                android:layout_toEndOf="@+id/plus_icon_ll"
+                android:layout_toRightOf="@+id/plus_icon_ll"
+                android:fontFamily="@font/open_sans_semibold"
+                android:paddingTop="11.5dp"
+                android:paddingBottom="11.5dp"
+                android:text="Chinese"
+                android:textColor="#000000"
+                android:textSize="17sp" />
+
+        </RelativeLayout>
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/rl_orderName_retailer1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+        <RelativeLayout
+            android:id="@+id/layout_expandable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rl_orderName_retailer">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/subchlid_RV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:clickable="false"
+                android:duplicateParentState="true" />
+        </RelativeLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

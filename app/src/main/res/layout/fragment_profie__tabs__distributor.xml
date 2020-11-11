@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:background="#fff"
+            app:tabMode="scrollable"
+            app:tabBackground="@drawable/custom_indicator"
+            app:tabIndicatorColor="#96bb3c"
+            app:tabSelectedTextColor="#96bb3c"
+            app:tabTextAppearance="@style/CustomTextAppearanceTab" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager7"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tab7"
+            android:layout_marginTop="10dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

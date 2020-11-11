@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".Payment.Proof_Of_Payment_Form">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        >
+        <ScrollView
+            android:id="@+id/sv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            >
+            <RelativeLayout
+                android:id="@+id/rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/proof_of_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/underline"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Proof Of Payment"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="20sp"
+                        android:textColor="#96bb3c"
+                        android:background="@drawable/half_underline"
+
+                        />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_proof_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/proof_of_payment"
+                    android:layout_marginTop="15dp"
+                    >
+                    <RelativeLayout
+                        android:id="@+id/payment_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_below="@+id/relative_criticality"
+                        android:background="@drawable/edit_round"
+                        android:padding="10dp">
+
+                        <Spinner
+                            android:id="@+id/spinner_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:dropDownWidth="match_parent"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_mode"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/payment_id"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/edit_round"
+                        android:padding="10dp">
+
+                        <Spinner
+                            android:id="@+id/payment_mode"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:dropDownWidth="match_parent"/>
+                    </RelativeLayout>
+
+                    <EditText
+                        android:id="@+id/txt_bank"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_below="@id/rl_mode"
+                        android:textSize="14sp"
+                        android:background="@drawable/edit_round"
+                        android:hint="Bank*"
+                        android:inputType="text"
+                        />
+                    <EditText
+                        android:id="@+id/txt_branch"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="1"
+                        android:layout_below="@id/txt_bank"
+                        android:textSize="14sp"
+                        android:background="@drawable/edit_round"
+                        android:hint="Branch Code*"
+                        android:inputType="text"
+                        />
+                    <EditText
+                        android:id="@+id/txt_transaction"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@id/txt_branch"
+                        android:textSize="14sp"
+                        android:background="@drawable/edit_round"
+                        android:hint="Transaction No*"
+                        android:inputType="text"
+                        />
+                    <TextView
+                        android:id="@+id/txt_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_transaction"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Uploaded Documents"
+                        android:textSize="12sp"
+                        android:textColor="#96bb3c"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_below="@id/txt_view"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:text="No Files Uploaded"
+                        android:padding="10dp"
+                        android:background="@drawable/edit_round"
+                        >
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_proof_of_payments_form"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            />
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_btns"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_proof_payment"
+                    >
+                    <Button
+                        android:id="@+id/btn_upload"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/button_round"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="40dp"
+                        android:text="Upload Documents"
+                        android:textSize="14sp"
+                        android:textColor="#fff"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:textAllCaps="false"
+                        />
+                    <Button
+                        android:id="@+id/btn_finish"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/button_round"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="30dp"
+                        android:text="Finsih"
+                        android:textSize="14sp"
+                        android:textColor="#fff"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:textAllCaps="false"
+                        android:layout_below="@+id/btn_upload"
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/rl_btns">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="5dp"
+                        android:text="© Haball | All rights reserved"
+                        android:gravity="center"
+                        />
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+        </ScrollView>
+    </RelativeLayout>
+
+
+</RelativeLayout>

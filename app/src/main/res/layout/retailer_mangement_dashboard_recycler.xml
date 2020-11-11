@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_layout_retailer_box_retailer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/edit_text_squared"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
+    android:paddingRight="5dp"
+    android:paddingBottom="20dp">
+
+    <LinearLayout
+        android:id="@+id/ll_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3">
+        <TextView
+            android:id="@+id/retailer_heading_dashboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Ghulam Rabani &amp; Sons Traders &amp; Distributors"
+            android:textSize="@dimen/rv_box_heading_size"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textColor="@color/rv_box_color"
+            />
+        <ImageButton
+            android:id="@+id/mgretailer_menu_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5"
+            android:background="@null"
+            android:src="@drawable/ic_more_vert_black_24dp"
+            android:textColor="#676a6c"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/retailer_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_heading"
+        android:layout_marginTop="15dp"
+        android:text="Retailer Code:"
+        android:paddingBottom="5dp"
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/rv_box_color"
+        android:textSize="@dimen/rv_box_text_size" />
+
+    <TextView
+        android:id="@+id/retailer_code_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_heading"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/retailer_code"
+        android:text="512345678788977"
+        android:paddingBottom="5dp"
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/rv_box_color"
+        android:textSize="@dimen/rv_box_text_size"/>
+
+    <TextView
+        android:id="@+id/tv_retailerdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/retailer_code"
+        android:text="Created Date: "
+        android:paddingBottom="5dp"
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/rv_box_color"
+        android:textSize="@dimen/rv_box_text_size"/>
+
+
+    <TextView
+        android:id="@+id/tv_retailerdate_date_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/retailer_code_no"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/tv_retailerdate"
+        android:text="24/12/2019"
+        android:paddingBottom="5dp"
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/rv_box_color"
+        android:textSize="@dimen/rv_box_text_size" />
+
+    <TextView
+        android:id="@+id/dashborad_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_retailerdate"
+        android:text="Status: "
+        android:paddingBottom="5dp"
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/rv_box_color"
+        android:textSize="@dimen/rv_box_text_size" />
+
+    <TextView
+        android:id="@+id/retailer_status_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_retailerdate_date_no"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/dashborad_status"
+        android:text="Paid"
+        android:paddingBottom="5dp"
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/rv_box_color"
+        android:textSize="@dimen/rv_box_text_size"/>
+
+
+</RelativeLayout>

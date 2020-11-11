@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/edit_text_squared"
+    android:paddingLeft="20dp"
+    android:paddingTop="15dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="20dp"
+    tools:ignore="MissingDefaultResource">
+    <LinearLayout
+        android:id="@+id/ll_products"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5.3">
+
+        <TextView
+            android:id="@+id/list_txt_products_"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4.8"
+            android:fontFamily="@font/open_sans_semibold"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/rv_box_color"
+            android:textSize="@dimen/rv_box_heading_size" />
+
+        <TextView
+            android:id="@+id/btn_delete_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:fontFamily="@font/open_sans"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:maxLines="1"
+            android:paddingStart="8dp"
+            android:drawableLeft="@drawable/ic_delete_black_24dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/product_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_products"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/rv_box_color"
+        android:fontFamily="@font/open_sans"
+        android:text="Product Code:"
+        android:textSize="@dimen/rv_box_text_size" />
+
+    <TextView
+        android:id="@+id/list_product_code_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_products"
+        android:textColor="@color/rv_box_color"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/product_code"
+        android:text=""
+        android:fontFamily="@font/open_sans_semibold"
+        android:textSize="@dimen/rv_box_text_size" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/product_code"
+        android:textColor="@color/rv_box_color"
+        android:layout_marginBottom="5dp"
+        android:text="Price: "
+        android:fontFamily="@font/open_sans"
+        android:textSize="@dimen/rv_box_text_size" />
+
+    <TextView
+        android:id="@+id/list_price_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/product_code"
+        android:textColor="@color/rv_box_color"
+        android:layout_toRightOf="@id/price"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text=""
+        android:textSize="@dimen/rv_box_text_size" />
+
+    <TextView
+        android:id="@+id/separator_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/product_code"
+        android:textColor="@color/rv_box_color"
+        android:layout_toRightOf="@id/list_price_value"
+        android:text="   |   "
+        android:fontFamily="@font/open_sans"
+        android:textSize="@dimen/rv_box_text_size" />
+
+    <TextView
+        android:id="@+id/discount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/product_code"
+        android:textColor="@color/rv_box_color"
+        android:layout_toRightOf="@id/separator_1"
+        android:fontFamily="@font/open_sans"
+        android:text="Disc: "
+        android:textSize="@dimen/rv_box_text_size" />
+
+    <TextView
+        android:id="@+id/list_discount_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_semibold"
+        android:layout_below="@+id/product_code"
+        android:textColor="@color/rv_box_color"
+        android:layout_toRightOf="@id/discount"
+        android:text=""
+        android:textSize="@dimen/rv_box_text_size" />
+
+    <TextView
+        android:id="@+id/UOM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/price"
+        android:text="UOM: "
+        android:textColor="@color/rv_box_color"
+        android:fontFamily="@font/open_sans"
+        android:textSize="@dimen/rv_box_text_size" />
+
+    <TextView
+        android:id="@+id/list_UOM_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/price"
+        android:textColor="@color/rv_box_color"
+        android:layout_toRightOf="@id/UOM"
+        android:text=""
+        android:fontFamily="@font/open_sans_semibold"
+        android:textSize="@dimen/rv_box_text_size"/>
+
+    <TextView
+        android:id="@+id/separator_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/price"
+        android:textColor="@color/rv_box_color"
+        android:layout_toRightOf="@id/list_UOM_value"
+        android:text="   |   "
+        android:fontFamily="@font/open_sans"
+        android:textSize="@dimen/rv_box_text_size" />
+
+    <TextView
+        android:id="@+id/totalAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/rv_box_color"
+        android:gravity="center"
+        android:layout_below="@+id/price"
+        android:layout_toRightOf="@+id/separator_2"
+        android:stateListAnimator="@null"
+        android:text="Amount: "
+        android:textSize="@dimen/rv_box_text_size" />
+
+    <TextView
+        android:id="@+id/totalAmount_Rs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/totalAmount"
+        android:textColor="@color/rv_box_color"
+        android:layout_weight="1"
+        android:fontFamily="@font/open_sans_semibold"
+        android:gravity="center"
+        android:layout_below="@+id/price"
+        android:stateListAnimator="@null"
+        android:text="Rs. "
+        android:textSize="@dimen/rv_box_text_size" />
+
+    <TextView
+        android:id="@+id/totalAmount_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/totalAmount_Rs"
+        android:fontFamily="@font/open_sans_semibold"
+        android:layout_below="@+id/price"
+        android:textColor="@color/rv_box_color"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:stateListAnimator="@null"
+        android:text=""
+        android:textSize="@dimen/rv_box_text_size" />
+<!--    <TextView-->
+<!--        android:id="@+id/pack_size"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/price"-->
+<!--        android:layout_toRightOf="@id/separator_2"-->
+<!--        android:text="Pack Size: "-->
+<!--        android:textSize="16sp" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/list_pack_size_value"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/price"-->
+<!--        android:layout_toRightOf="@id/pack_size"-->
+<!--        android:text=""-->
+<!--        android:textSize="16sp"-->
+<!--        android:textStyle="bold" />-->
+
+    <LinearLayout
+        android:id="@+id/ln_registration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/UOM"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:id="@+id/rl_list_numberOfItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.25"
+            android:background="@drawable/edit_text_squared"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/list_numberOFitems"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:inputType="number"
+                android:textSize="@dimen/rv_box_text_size"
+                android:maxLength="9"
+                android:textColor="@color/textcolor"
+                android:padding="10dp" />
+        </RelativeLayout>
+
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/rl_totalAmount"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_weight="0.75"-->
+<!--            android:paddingLeft="15dp"-->
+<!--            android:gravity="center">-->
+
+<!--        </RelativeLayout>-->
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+        <group>
+            <item
+                android:id="@+id/pay_bay"
+                android:title="PSID"
+                />
+
+            <item
+                android:id="@+id/ePay"
+                android:title="ePay"/>
+
+            <item
+                android:id="@+id/item_mezaan_acc"
+                android:title="Mezaan Account"/>
+            <item
+                android:id="@+id/item_mezaan_smart"
+                android:title="Meezan Smart"/>
+
+        </group>
+    </menu>

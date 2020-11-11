@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="20dp"
+    android:paddingRight="5dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/edit_text_squared">
+    <LinearLayout
+        android:id="@+id/ll_products"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3">
+        <TextView
+            android:id="@+id/txt_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="001"
+            android:textSize="18sp"
+            android:layout_weight="0.5"
+            android:textStyle="bold"
+            android:textColor="#676a6c"
+            />
+        <TextView
+            android:id="@+id/txt_products"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="| National Mayo Garlic Sauce 20gx48 /C"
+            android:layout_toRightOf="@id/txt_count"
+            android:textSize="18sp"
+            android:layout_weight="0.5"
+            android:textStyle="bold"
+            android:textColor="#676a6c" />
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/unit_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_products"
+        android:layout_marginTop="30dp"
+        android:text="Unit Price:"
+        android:textSize="16sp"/>
+    <TextView
+        android:id="@+id/price_summary_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_products"
+        android:layout_marginTop="30dp"
+        android:text="371.84"
+        android:textSize="16sp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/unit_price"
+        android:textColor="#676a6c"
+        />
+
+    <TextView
+        android:id="@+id/discount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/unit_price"
+        android:text="Discount:"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/discount_summary_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/unit_price"
+        android:text="2.69 %"
+        android:layout_toRightOf="@id/discount"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/item_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/discount"
+        android:text="Amount:"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/Rs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/discount"
+        android:text=" Rs. "
+        android:layout_toRightOf="@id/item_amount"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/Rs_summary_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/discount"
+        android:text="1000000"
+        android:layout_toRightOf="@id/Rs"
+        android:textSize="16sp"/>
+
+
+    <TextView
+        android:id="@+id/show_quantity"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="14sp"
+        android:layout_below="@id/Rs"
+        android:background="@drawable/edit_round"
+        />
+
+    <Button
+        android:id="@+id/btn_remove"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:text="Remove"
+        android:layout_toRightOf="@id/show_quantity"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="#fff"
+        android:layout_below="@id/Rs"
+        android:background="@drawable/button_round"
+        />
+
+
+
+
+
+</RelativeLayout>

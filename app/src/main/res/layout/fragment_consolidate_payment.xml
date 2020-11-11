@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".Payment.PaymentLedger">
+
+    <TextView
+        android:id="@+id/tv_proof_payment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/half_underline"
+        android:paddingTop="5dp"
+        android:paddingBottom="10dp"
+        android:text="Payment Consolidation"
+        android:textColor="#96bb3c"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:id="@+id/line_"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_below="@+id/tv_proof_payment"
+        android:layout_marginTop="-2dp"
+        android:layout_marginRight="30dp"
+        android:layout_toRightOf="@+id/tv_proof_payment"
+        android:background="@drawable/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line_">
+
+        <RelativeLayout
+            android:id="@+id/spinner_container_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/spinner_container_main_inner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/spinner_containerMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/edit_text_squared">
+
+                    <Spinner
+                        android:id="@+id/spinner_criteria"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_shipment_no_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:text="No Data Available"
+            android:textSize="@dimen/no_data_available_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/spinner_container_main"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="40dp"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_payment_consolidate_payment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_weight="2.75" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="© Haball | All rights reserved" />
+    </RelativeLayout>
+</RelativeLayout>

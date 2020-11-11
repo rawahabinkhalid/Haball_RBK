@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_container_ret">
+
+    <LinearLayout
+        android:id="@+id/ln_my_network"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginLeft="27dp"
+        android:layout_marginRight="27dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/button_round"
+            android:text="Send Invite"
+            android:textColor="#fff"
+            android:fontFamily="@font/open_sans"
+            android:textAllCaps="false"
+
+            />
+
+        <RelativeLayout
+            android:id="@+id/relative_Preffered_Contact"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/relative_criticality"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_round">
+
+
+            <Spinner
+                android:id="@+id/spinner_dashboard_retailor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:dropDownWidth="match_parent"
+                android:popupBackground="@drawable/spinner_round"
+                android:theme="@style/Spinner"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ln_my_network"
+        android:layout_marginRight="27dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="27dp"
+        >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_sent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

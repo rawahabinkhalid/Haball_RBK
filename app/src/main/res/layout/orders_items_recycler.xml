@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="20dp"
+    android:layout_marginTop="15dp"
+    android:background="@drawable/edit_text_squared">
+    <LinearLayout
+        android:id="@+id/ll_products"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3">
+        <ScrollView
+            android:id="@+id/SCROLLER_ID"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scrollbars="vertical"
+            android:fillViewport="true">
+        <TextView
+            android:id="@+id/txt_products"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="National Mayo Garlic Sauce 20gx48 /C"
+            android:textSize="18sp"
+            android:layout_weight="0.5"
+            android:textStyle="bold"
+            android:textColor="#676a6c" />
+        </ScrollView>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/unit_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_products"
+        android:layout_marginTop="30dp"
+        android:text="Unit Price:"
+        android:textSize="16sp"/>
+    <TextView
+        android:id="@+id/unit_price_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_products"
+        android:layout_marginTop="30dp"
+        android:text="371.84"
+        android:textSize="16sp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/unit_price"
+        android:textColor="#676a6c"
+        />
+
+    <TextView
+        android:id="@+id/discount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/unit_price"
+        android:text="Disc:"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/discount_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/unit_price"
+        android:text="2.69 %"
+        android:layout_toRightOf="@id/discount"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:id="@+id/quantity"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:hint="Enter Quantity"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        android:inputType="number"
+        android:layout_below="@id/discount_price"
+        android:background="@drawable/edit_round"
+        />
+
+    <Button
+        android:id="@+id/btn_cart"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:text="Add to Cart"
+        android:layout_toRightOf="@id/quantity"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="#fff"
+        android:padding="10dp"
+        android:layout_below="@id/discount_price"
+        android:background="@drawable/button_grey_round"
+        />
+
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- menu group -->
+    <group android:id="@+id/group_retailor_view">
+        <item android:id="@+id/payment_request_edit"
+            android:title="View" />
+        <item android:id="@+id/payment_request_bank"
+            android:title="Edit" />
+        <item android:id="@+id/payment_request_download"
+            android:title="Delete" />
+        <item android:id="@+id/payment_request_ebay"
+            android:title="Pay By ">
+        <menu>
+            <item android:id="@+id/create_new"
+                android:title="Epay" />
+            <item android:id="@+id/open"
+                android:title="Paypal" />
+        </menu>
+        </item>
+
+
+    </group>
+</menu>

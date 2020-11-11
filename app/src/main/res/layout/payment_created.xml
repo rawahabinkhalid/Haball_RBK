@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="#fff"
+    android:paddingLeft="20dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp">
+    <ImageButton
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_close_black_24dp"
+        android:background="@android:color/transparent"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:id="@+id/tv_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Payment Created"
+        android:textColor="#96bb3c"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@+id/btn_close"
+        android:background="@drawable/border_set"
+        />
+    <TextView
+        android:id="@+id/tv_payment_created_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Payment ID."
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="12sp"
+        android:layout_below="@+id/tv_delete"/>
+    <TextView
+        android:id="@+id/tv_payment_created_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5124567890887"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tv_delete"
+        android:layout_toRightOf="@id/tv_payment_created_header"
+        android:textSize="12sp"
+        />
+
+    <TextView
+        android:id="@+id/tv_payment_created_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="has been created successfully"
+        android:layout_below="@+id/tv_delete"
+        android:layout_toRightOf="@id/tv_payment_created_id"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="12sp"
+        />
+
+
+</RelativeLayout>

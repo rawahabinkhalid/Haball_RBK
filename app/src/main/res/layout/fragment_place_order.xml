@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:background="#fff"
+     tools:context=".Retailor.ui.Place_Order.PlaceOrderFragment">
+
+     <LinearLayout
+         android:id="@+id/tv_order"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:weightSum="2"
+         android:layout_marginStart="27dp"
+         android:layout_marginEnd="27dp"
+         android:layout_marginTop="10dp"
+         android:background="@drawable/underline"
+         android:orientation="vertical">
+         <TextView
+
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Order"
+             android:paddingTop="5dp"
+             android:paddingBottom="10dp"
+             android:layout_marginTop="20dp"
+             android:textSize="20sp"
+             android:textColor="#96bb3c"
+             android:background="@drawable/half_underline"
+             />
+
+     </LinearLayout>
+
+
+
+     <Button
+         android:id="@+id/place_order_button"
+         android:layout_width="match_parent"
+         android:background="@drawable/button_round"
+         android:layout_height="45dp"
+         android:layout_marginStart="27dp"
+         android:layout_marginEnd="27dp"
+         android:layout_marginTop="20dp"
+         android:text="Place Order"
+         android:textSize="14sp"
+         android:fontFamily="@font/open_sans"
+         android:textColor="#fff"
+         android:gravity="center"
+         android:textAllCaps="false"
+         android:layout_below="@+id/tv_order"
+         />
+
+     <RelativeLayout
+         android:id="@+id/spinner_container"
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:layout_marginStart="27dp"
+         android:layout_marginEnd="27dp"
+         android:layout_marginTop="20dp"
+         android:background="@drawable/edit_text_squared"
+         android:layout_below="@+id/place_order_button">
+         <Spinner
+             android:id="@+id/spinner_criteria"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:popupBackground="@drawable/spinner_round"
+             android:theme="@style/Spinner"
+             android:dropDownWidth="match_parent"/>
+     </RelativeLayout>
+
+     <RelativeLayout
+         android:id="@+id/line_bottom"
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:layout_below="@+id/spinner_container"
+        />
+
+     <androidx.recyclerview.widget.RecyclerView
+         android:id="@+id/rv_order_ledger"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/line_bottom"
+         android:layout_marginRight="27dp"
+         android:layout_marginTop="5dp"
+         android:layout_marginLeft="27dp"/>
+
+ </RelativeLayout>

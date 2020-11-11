@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/edit_text_squared"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25">
+            <TextView
+                android:id="@+id/consolidate_invoice_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_heading"
+                android:text="Invoice No:"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/consolidate_invoice_no_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_heading"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/consolidate_invoice_view"
+                android:text="1002312324251524"
+                android:textColor="#676a6c"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_consolidate_amount_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/consolidate_invoice_view"
+                android:text="Amount:"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_Rs._amount_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/consolidate_invoice_no_view"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/tv_consolidate_amount_view"
+                android:text="Rs. "
+                android:textColor="#676a6c"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/consolidate_amount_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/consolidate_invoice_no_view"
+                android:layout_marginLeft="1dp"
+                android:layout_toRightOf="@+id/tv_Rs._amount_view"
+                android:text=" 600,000.00"
+                android:textColor="#676a6c"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/consolidate_status_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_consolidate_amount_view"
+                android:text="Status: "
+                android:textSize="14sp"
+                />
+            <TextView
+                android:id="@+id/consolidate_status_view_current"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/consolidate_amount_value"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/consolidate_status_view"
+                android:text="Paid"
+                android:textColor="#676a6c"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+        </RelativeLayout>
+        <ImageButton
+            android:id="@+id/consolidate_menu_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.75"
+            android:background="@null"
+            android:src="@drawable/ic_more_vert_black_24dp"
+            android:textColor="#676a6c"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</RelativeLayout>

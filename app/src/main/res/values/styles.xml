@@ -1,0 +1,192 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:itemBackground">#000000</item>
+
+    </style>
+
+    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">#fff</item>
+        <item name="boxStrokeWidth">2dp</item>
+    </style>
+
+    <style name="TextLabel" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">@color/green_color</item>
+        <item name="android:textColor">@color/textcolor</item>
+        <item name="colorAccent">@color/box_stroke</item>
+        <item name="colorControlNormal">@color/box_stroke</item>
+        <item name="colorControlActivated">@color/box_stroke</item>
+        <item name="colorError">#ff0000</item>
+        <item name="colorPrimary">@color/box_stroke</item>
+        <item name="boxStrokeWidth">1.75dp</item>
+        <item name="android:textSize">13.6sp</item>
+        <item name="boxStrokeColor">@color/box_stroke</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+    </style>
+
+    <style name="TextLabelSearchBox" parent="TextAppearance.AppCompat">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">#96bb3c</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">#676a6c</item>
+        <!--        <item name="android:textSize">20sp</item>-->
+        <item name="colorAccent">#C7C8CA</item>
+        <item name="colorControlNormal">#C7C8CA</item>
+        <item name="colorControlActivated">#96bb3c</item>
+        <item name="boxStrokeColor">#96bb3c</item>
+        <item name="colorPrimary">#96bb3c</item>
+        <item name="boxStrokeWidth">2.5dp</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+    </style>
+
+    <style name="ErrorTextAppearance" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">#ffff0000</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">#ffff0000</item>
+        <!--        <item name="android:textSize">20sp</item>-->
+        <item name="colorAccent">#ffff0000</item>
+        <item name="colorControlNormal">#ffff0000</item>
+        <item name="colorControlActivated">#ffff0000</item>
+        <item name="boxStrokeColor">#ffff0000</item>
+        <item name="colorPrimary">#ffff0000</item>
+        <item name="boxStrokeWidth">2.5dp</item>
+    </style>
+
+    <style name="TextLabelEditeText">
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="fontFamily">@font/open_sans</item>
+        <item name="android:textColor">@color/textcolor</item>
+        <item name="android:textSize">@dimen/edit_text_box_size</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">#96BA3C</item>
+
+        <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
+        <item name="android:textColorPrimaryInverse">#000
+        </item> <!-- header date, month color && calendar text highlight color -->
+        <item name="android:textColorSecondaryInverse">#000</item> <!-- header year color -->
+
+    </style>
+
+    <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker" tools:targetApi="lollipop">
+        <item name="android:headerBackground">#fff</item> <!-- header background color -->
+    </style>
+
+    <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
+        <!-- Customize your theme here. -->
+        <item name="android:textColor">#96bb3c</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">#fff</item>
+        <item name="boxStrokeWidth">2dp</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="CustomTextAppearanceTab" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <!--        <item name="paddingEnd">0dp</item>-->
+        <!--        <item name="paddingStart">0dp</item>-->
+        <!--        <item name="android:paddingLeft">0dp</item>-->
+        <!--        <item name="android:paddingRight">0dp</item>-->
+        <!--        <item name="android:paddingStart">0dp</item>-->
+        <!--        <item name="android:paddingEnd">0dp</item>-->
+        <!--        <item name="android:itemPadding">0dp</item>-->
+        <!--        <item name="tabPaddingStart">0dp</item>-->
+        <!--        <item name="tabPaddingEnd">0dp</item>-->
+        <!--        <item name="textStartPadding">0dp</item>-->
+        <!--        <item name="textEndPadding">0dp</item>-->
+        <!--        <item name="android:dividerPadding">50dp</item>-->
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+    </style>
+
+    <style name="NoActionBar" parent="Theme.AppCompat.Light">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme_My" parent="Theme.AppCompat.Light">
+        <!-- set the height of Action Bar . -->
+        <item name="actionBarSize">42dip</item>
+    </style>
+
+    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="TextAppearance44">
+        <item name="android:textColor">#FF0000</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Spinner" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+        <item name="android:textSize">13.6sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#6d6e72</item>
+        <item name="android:dropDownWidth">match_parent</item>
+        <item name="fontFamily">@font/open_sans</item>
+    </style>
+
+    <style name="DrawerItemText">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#4A4D51</item>
+        <item name="fontFamily">@font/open_sans</item>
+    </style>
+
+    <style name="theme_loader" parent="NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+
+    </style>
+    <!--    <style name="YOURSTYLE" parent="Widget.AppCompat.PopupMenu">-->
+    <!--        <item name="android:textColor">@color/rv_box_color</item>-->
+    <!--        <item name="android:dividerHeight">0dp</item>-->
+    <!--        <item name="android:itemPadding">0dp</item>-->
+    <!--        <item name="android:textSize">@dimen/rv_box_text_size</item>-->
+    <!--        <item name="android:dropDownWidth">wrap_content</item>-->
+    <!--&lt;!&ndash;        <item name="android:itemBackground">@android:color/holo_red_light</item>&ndash;&gt;-->
+    <!--    </style>-->
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+
+        <item name="android:dropDownListViewStyle">@style/PopupMenuListView</item>
+
+        <item name="android:textColor">@color/rv_box_color</item>
+        <item name="android:textSize">@dimen/rv_box_text_size</item>
+
+        <!-- Change Overflow Menu ListView Item Height & Property -->
+        <item name="android:listPreferredItemHeightSmall">40dp</item>
+        <item name="android:listPreferredItemPaddingLeft">5dp</item>
+        <item name="android:listPreferredItemPaddingRight">5dp</item>
+    </style>
+
+    <!-- Change Overflow Menu ListView Divider Property -->
+    <style name="PopupMenuListView" parent="@android:style/Widget.Holo.ListView.DropDown">
+        <item name="android:divider">#fff</item>
+        <item name="android:dividerHeight">0dp</item>
+    </style>
+
+    <style name="TextAppearance.ExpandedTitle"
+        parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">26sp</item>
+    </style>
+</resources>

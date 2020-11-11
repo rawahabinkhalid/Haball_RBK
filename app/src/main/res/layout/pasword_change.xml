@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:clickable="true">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:id="@+id/rl_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="27dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="27dp">
+
+            <TextView
+                android:id="@+id/txt_change1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_semibold"
+                android:text="Please use the following tips to set a new password"
+                android:textSize="@dimen/paragraph_size" />
+
+            <TextView
+                android:id="@+id/txt_change2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_change1"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/open_sans"
+                android:text="* Password must have at-least 6 characters."
+                android:textSize="@dimen/paragraph_size" />
+
+            <TextView
+                android:id="@+id/txt_change3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_change2"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/open_sans"
+                android:text="* Password must have at-least 1 lowercase, uppercase, numeric or special character."
+                android:textSize="@dimen/paragraph_size" />
+
+            <LinearLayout
+                android:id="@+id/ll_fields"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_change3"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_password"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:fontFamily="@font/open_sans"
+                    android:hint="Old Password"
+                    android:theme="@style/TextLabel"
+                    app:boxBackgroundColor="#fff"
+                    app:boxStrokeColor="@color/box_stroke"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="#A9A9A9">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txt_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="textPassword"
+                        android:theme="@style/TextLabelEditeText" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_fields1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_fields"
+                android:layout_marginTop="20dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_password1"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/open_sans"
+                    android:hint="New Password"
+                    android:theme="@style/TextLabel"
+                    app:boxBackgroundColor="#fff"
+                    app:boxStrokeColor="@color/box_stroke"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="#A9A9A9">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txt_newpassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableRight="@drawable/ic_edit_black_24dp"
+                        android:inputType="textPassword"
+                        android:theme="@style/TextLabelEditeText" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <!--        <LinearLayout-->
+            <!--            android:id="@+id/info_red_eye"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="55dp"-->
+            <!--            android:layout_marginTop="20dp"-->
+            <!--            android:layout_marginLeft="260dp"-->
+            <!--            android:layout_below="@+id/txt_header"-->
+
+            <!--           >-->
+            <!--          <TextView-->
+            <!--              android:paddingTop="5dp"-->
+            <!--              android:layout_width="match_parent"-->
+            <!--              android:layout_height="match_parent"-->
+            <!--              android:keepScreenOn="true"-->
+            <!--              android:drawableStart="@drawable/ic_info_black_24dp"-->
+            <!--              android:drawableLeft="@drawable/ic_info_black_24dp" />-->
+            <!--        </LinearLayout>-->
+
+            <LinearLayout
+                android:id="@+id/ll_fields3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_fields1">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_password3"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/open_sans"
+                    android:hint="Confirm Password"
+                    android:theme="@style/TextLabel"
+                    app:boxBackgroundColor="#fff"
+                    app:boxStrokeColor="@color/box_stroke"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="#A9A9A9">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txt_cfmpassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableRight="@drawable/ic_remove_red_eye_black_24dp"
+                        android:inputType="textPassword"
+                        android:theme="@style/TextLabelEditeText" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_fields4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_fields3"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:text="* On changing the password, you would be logged out of the account"
+                    android:textColor="#ff0000"
+                    android:textSize="13sp" />
+
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/ln_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_fields4"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/update_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/button_round"
+                    android:enabled="false"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Set Password"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/button_text_size" />
+
+                <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_below="@+id/update_password"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/button_background"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Back"
+                    android:layout_marginBottom="15dp"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/button_text_size" />
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

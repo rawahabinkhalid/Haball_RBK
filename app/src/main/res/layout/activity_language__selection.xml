@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/Theme.AppCompat.Light"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_logo"
+    tools:context=".Language_Selection.Language_Selection">
+
+
+    <LinearLayout
+        android:id="@+id/ln_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical"
+        android:weightSum="2"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:text="LANGUAGE SELECTION"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:paddingTop="20dp"
+            android:textColor="#96BA3C"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="20dp"
+            android:textSize="22sp"
+            android:textColor="#676a6c"
+            android:text="زبان منتخب کریں"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        >
+        <Button
+            android:id="@+id/rel_english"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="14sp"
+            android:stateListAnimator="@null"
+            android:text="English"
+            android:textColor="@android:color/white"
+            android:background="@drawable/button_round"
+            android:textAllCaps="false"
+            >
+
+
+
+        </Button>
+        <Button
+            android:id="@+id/rel_urdu"
+            android:layout_width="match_parent"
+            android:layout_below="@id/rel_english"
+            android:layout_height="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="30dp"
+            android:stateListAnimator="@null"
+            android:background="@drawable/button_round"
+            android:textSize="20sp"
+            android:text="اردو"
+            android:textColor="@android:color/white"
+            >
+
+        </Button>
+
+    </RelativeLayout>
+
+</RelativeLayout>

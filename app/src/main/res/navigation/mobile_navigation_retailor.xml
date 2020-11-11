@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_retailor"
+    app:startDestination="@+id/nav_home_retailor">
+
+    <fragment
+        android:id="@+id/nav_home_retailor"
+        android:name="com.haball.Retailor.ui.Dashboard.DashBoardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dash_board" />
+
+    <fragment
+        android:id="@+id/nav_myNetwork"
+        android:name="com.haball.Retailor.ui.Network.My_NetworkDashboard"
+        android:label="My Network"
+        tools:layout="@layout/fragment_my_network" />
+
+    <fragment
+        android:id="@+id/nav_place_order"
+        android:name="com.haball.Retailor.ui.Place_Order.PlaceOrderFragment"
+        android:label="Place Order"
+        tools:layout="@layout/fragment_place_order" />
+    <fragment
+        android:id="@+id/nav_support_retailor"
+        android:name="com.haball.Retailor.ui.Support.SupportFragment"
+        android:label="Payments"
+        tools:layout="@layout/fragment_support" />
+
+
+
+
+
+</navigation>

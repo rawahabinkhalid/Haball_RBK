@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".Payment.D_PaymentRequest">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="27dp"
+        android:layout_marginEnd="27dp">
+
+        <LinearLayout
+            android:id="@+id/tv_proof_paymentrequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/underline"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:fontFamily="@font/open_sans_semibold"
+                android:paddingTop="5dp"
+                android:paddingBottom="10dp"
+                android:text="Payment Request"
+                android:textSize="@dimen/fragemnt_heading_size" />
+
+        </LinearLayout>
+
+
+    <Button
+        android:id="@+id/create_payment"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tv_proof_paymentrequest"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_round"
+        android:gravity="center"
+        android:stateListAnimator="@null"
+        android:text="Create Payment"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:textSize="14sp" />
+
+    <RelativeLayout
+        android:id="@+id/spinner_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/create_payment"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/edit_text_squared">
+
+        <Spinner
+            android:id="@+id/spinner_conso"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:dropDownWidth="match_parent"
+          />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/spinner_container1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner_container"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/edit_text_squared">
+
+        <Spinner
+            android:id="@+id/conso_spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:dropDownWidth="@dimen/spinner_width"
+            />
+
+        <EditText
+            android:id="@+id/conso_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/edit_text_squared"
+            android:paddingLeft="20dp"
+            android:paddingTop="5dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="5dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/line_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@+id/spinner_container1"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/line_seperator" />
+
+    <LinearLayout
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line_bottom">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_payment_request"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             />
+    </LinearLayout>
+
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:gravity="center"-->
+<!--        android:text="© Haball | All rights reserved" />-->
+
+
+</RelativeLayout>
+
+
+</RelativeLayout>

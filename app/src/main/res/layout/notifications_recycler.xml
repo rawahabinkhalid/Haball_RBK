@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/edit_text_squared"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25">
+
+            <TextView
+                android:id="@+id/subject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/consolidate_invoice_no_view"
+                android:layout_toRightOf="@+id/tv_Rs._amount_view"
+                android:text=" Payment"
+                android:textSize="@dimen/rv_box_heading_size"
+                android:fontFamily="@font/open_sans_semibold"
+                android:textColor="@color/rv_box_color"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/notification_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/subject"
+                android:layout_marginTop="15dp"
+                android:text="Payment ID 23455677007070070707"
+                android:textSize="@dimen/rv_box_text_size"
+                android:fontFamily="@font/open_sans"
+                android:textColor="@color/rv_box_color"/>
+
+        </RelativeLayout>
+        <ImageButton
+            android:id="@+id/menu_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_more_vert_black_24dp"
+            android:background="@null"
+            android:layout_weight="2.75"
+            android:textSize="18sp"
+            android:layout_marginRight="10dp"
+            android:textColor="#000"/>
+    </LinearLayout>
+
+</RelativeLayout>

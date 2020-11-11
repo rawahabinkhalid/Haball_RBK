@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- menu group -->
+    <group android:id="@+id/group_delete">
+        <item android:id="@+id/view_payment"
+            android:title="View" />
+
+    </group>
+</menu>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+    <TextView
+        android:id="@+id/tv_consolidate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consolidate Payments"
+        android:paddingTop="5dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:textColor="#96bb3c"
+        android:layout_marginLeft="30dp"
+        android:background="@drawable/half_underline"/>
+
+    <RelativeLayout
+        android:id="@+id/line_"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginRight="30dp"
+        android:layout_below="@+id/tv_consolidate"
+        android:layout_toRightOf="@+id/tv_consolidate"
+        android:background="@drawable/line"
+        android:layout_marginTop="-2dp"/>
+
+    <RelativeLayout
+        android:id="@+id/spinner_container"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/edit_text_squared"
+        android:layout_below="@+id/line_">
+        <Spinner
+            android:id="@+id/spinner_consolidate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:dropDownWidth="match_parent"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/line_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@+id/spinner_container"
+        android:background="@drawable/line_seperator"
+        android:layout_marginTop="15dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_payment_consolidate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line_bottom"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="30dp"/>
+    <TextView
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="© Haball | All rights reserved" />
+</RelativeLayout>
