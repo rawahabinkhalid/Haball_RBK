@@ -66,6 +66,7 @@ public class RetailerViewOrderProductAdapter extends RecyclerView.Adapter<Retail
                 "100", "500000000", "0", "500000000", "Carton", "1000", "Carton"));
     }
 
+
     @NonNull
     @Override
     public RetailerViewOrderProductAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
