@@ -14,8 +14,8 @@
         <item
             android:id="@+id/pay_by_retailer"
             android:title="Pay By PSID"/>
-        <item
-            android:id="@+id/pay_by_jazz_retailer"
-            android:title="Pay By Jazz Cash"/>
+<!--        <item-->
+<!--            android:id="@+id/pay_by_jazz_retailer"-->
+<!--            android:title="Pay By Jazz Cash"/>-->
     </group>
 </menu>

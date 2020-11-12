@@ -128,24 +128,24 @@ public class RetailerPaymentAdapter extends RecyclerView.Adapter<RetailerPayment
                                         fragmentTransaction.commit();
 
                                         break;
-                                    case R.id.pay_by_jazz_retailer:
-                                        SharedPreferences JazzCash = ((FragmentActivity) context).getSharedPreferences("PaymentId",
-                                                Context.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor_JazzCash = JazzCash.edit();
-                                        editor_JazzCash.putString("PrePaidNumber", paymentsList.get(position).getInvoiceNumber());
-                                        editor_JazzCash.putString("PrePaidId", paymentsList.get(position).getRetailerInvoiceId());
-                                        editor_JazzCash.putString("CompanyName", paymentsList.get(position).getCompanyName());
-                                        editor_JazzCash.putString("Amount", paymentsList.get(position).getTotalPrice());
-                                        editor_JazzCash.putString("PaymentId", paymentsList.get(position).getRetailerInvoiceId());
-                                        editor_JazzCash.putString("InvoiceStatus", String.valueOf(paymentsList.get(position).getStatus()));
-                                        editor_JazzCash.putString("Type", "Invoice");
-                                        Log.i("InvoiceStatus_Adapter", String.valueOf(paymentsList.get(position).getStatus()));
-                                        editor_JazzCash.commit();
-                                        fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
-                                        fragmentTransaction.add(R.id.main_container_ret, new PaymentJazzCashApi()).addToBackStack("null");
-                                        fragmentTransaction.commit();
-
-                                        break;
+//                                    case R.id.pay_by_jazz_retailer:
+//                                        SharedPreferences JazzCash = ((FragmentActivity) context).getSharedPreferences("PaymentId",
+//                                                Context.MODE_PRIVATE);
+//                                        SharedPreferences.Editor editor_JazzCash = JazzCash.edit();
+//                                        editor_JazzCash.putString("PrePaidNumber", paymentsList.get(position).getInvoiceNumber());
+//                                        editor_JazzCash.putString("PrePaidId", paymentsList.get(position).getRetailerInvoiceId());
+//                                        editor_JazzCash.putString("CompanyName", paymentsList.get(position).getCompanyName());
+//                                        editor_JazzCash.putString("Amount", paymentsList.get(position).getTotalPrice());
+//                                        editor_JazzCash.putString("PaymentId", paymentsList.get(position).getRetailerInvoiceId());
+//                                        editor_JazzCash.putString("InvoiceStatus", String.valueOf(paymentsList.get(position).getStatus()));
+//                                        editor_JazzCash.putString("Type", "Invoice");
+//                                        Log.i("InvoiceStatus_Adapter", String.valueOf(paymentsList.get(position).getStatus()));
+//                                        editor_JazzCash.commit();
+//                                        fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+//                                        fragmentTransaction.add(R.id.main_container_ret, new PaymentJazzCashApi()).addToBackStack("null");
+//                                        fragmentTransaction.commit();
+//
+//                                        break;
                                     case R.id.pay_by_retailer:
 
 //                        setUnpaidPaymentMenu(position, view);
@@ -315,21 +315,21 @@ public class RetailerPaymentAdapter extends RecyclerView.Adapter<RetailerPayment
                         fragmentTransactionView.commit();
 
                         break;
-                    case R.id.pay_by_jazz_retailer:
-                        SharedPreferences JazzCash = ((FragmentActivity) context).getSharedPreferences("PaymentId",
-                                Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor_JazzCash = JazzCash.edit();
-                        editor_JazzCash.putString("PrePaidNumber", paymentsList.get(position).getInvoiceNumber());
-                        editor_JazzCash.putString("PrePaidId", paymentsList.get(position).getRetailerInvoiceId());
-                        editor_JazzCash.putString("CompanyName", paymentsList.get(position).getCompanyName());
-                        editor_JazzCash.putString("Amount", paymentsList.get(position).getTotalPrice());
-                        editor_JazzCash.putString("Type", "PrePayment");
-                        editor_JazzCash.apply();
-                        fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.add(R.id.main_container_ret, new PaymentJazzCashApi()).addToBackStack("null");
-                        fragmentTransaction.commit();
-
-                        break;
+//                    case R.id.pay_by_jazz_retailer:
+//                        SharedPreferences JazzCash = ((FragmentActivity) context).getSharedPreferences("PaymentId",
+//                                Context.MODE_PRIVATE);
+//                        SharedPreferences.Editor editor_JazzCash = JazzCash.edit();
+//                        editor_JazzCash.putString("PrePaidNumber", paymentsList.get(position).getInvoiceNumber());
+//                        editor_JazzCash.putString("PrePaidId", paymentsList.get(position).getRetailerInvoiceId());
+//                        editor_JazzCash.putString("CompanyName", paymentsList.get(position).getCompanyName());
+//                        editor_JazzCash.putString("Amount", paymentsList.get(position).getTotalPrice());
+//                        editor_JazzCash.putString("Type", "PrePayment");
+//                        editor_JazzCash.apply();
+//                        fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+//                        fragmentTransaction.add(R.id.main_container_ret, new PaymentJazzCashApi()).addToBackStack("null");
+//                        fragmentTransaction.commit();
+//
+//                        break;
 
                     case R.id.pay_by_retailer:
 //                        setUnpaidPaymentMenu(position, view);
