@@ -5,9 +5,12 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -182,22 +185,35 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
         final int finalPosition = position;
         Log.i("position", String.valueOf(finalPosition));
         holder.list_numberOFitems.setText(selectedProductsDataListQty.get(position));
-        holder.list_product_code_value.setText(selectedProductsDataList.get(position).getCode());
+//        holder.list_product_code_value.setText(selectedProductsDataList.get(position).getCode());
         holder.list_txt_products_.setText(selectedProductsDataList.get(position).getTitle());
-        final DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
-
-        if (selectedProductsDataList.get(position).getUnitPrice() != null) {
-            String yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getUnitPrice()));
-            holder.list_price_value.setText("Rs. " + yourFormattedString1);
-        }
-        String yourFormattedString2;
-        Log.i("getDiscountValue()", "'" + String.valueOf(selectedProductsDataList.get(position).getDiscountValue()) + "'");
-        if (selectedProductsDataList.get(position).getDiscountValue() != null)
-            yourFormattedString2 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getDiscountValue()));
-        else
-            yourFormattedString2 = formatter1.format(0);
-        holder.list_discount_value.setText("Rs. " + yourFormattedString2);
-        holder.list_UOM_value.setText(selectedProductsDataList.get(position).getUOMTitle());
+//        final DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
+//
+//        if (selectedProductsDataList.get(position).getUnitPrice() != null) {
+//            String yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getUnitPrice()));
+//            holder.list_price_value.setText("Rs. " + yourFormattedString1);
+//        }
+//        String yourFormattedString2;
+//        Log.i("getDiscountValue()", "'" + String.valueOf(selectedProductsDataList.get(position).getDiscountValue()) + "'");
+//        if (selectedProductsDataList.get(position).getDiscountValue() != null)
+//            yourFormattedString2 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getDiscountValue()));
+//        else
+//            yourFormattedString2 = formatter1.format(0);
+//        holder.list_discount_value.setText("Rs. " + yourFormattedString2);
+//        holder.list_UOM_value.setText(selectedProductsDataList.get(position).getUOMTitle());
+//
+//
+//        float totalamount = 0;
+//        String yourFormattedString3;
+//        if (!selectedProductsDataList.get(position).getUnitPrice().equals("") && !selectedProductsDataListQty.get(position).equals("")) {
+//            if (selectedProductsDataList.get(position).getDiscountValue() != null)
+//                totalamount = Float.parseFloat(selectedProductsDataListQty.get(position)) * (Float.parseFloat(selectedProductsDataList.get(position).getUnitPrice()) - Float.parseFloat(selectedProductsDataList.get(position).getDiscountValue()));
+//            else
+//                totalamount = Float.parseFloat(selectedProductsDataListQty.get(position)) * Float.parseFloat(selectedProductsDataList.get(position).getUnitPrice());
+//        }
+//
+//        yourFormattedString3 = formatter1.format(totalamount);
+//        holder.totalAmount_value.setText(yourFormattedString3);
 
 
         float totalamount = 0;
@@ -209,8 +225,54 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                 totalamount = Float.parseFloat(selectedProductsDataListQty.get(position)) * Float.parseFloat(selectedProductsDataList.get(position).getUnitPrice());
         }
 
+        holder.product_code.setText("Product Code:\u00A0");
+        SpannableString ss1 = new SpannableString(selectedProductsDataList.get(position).getCode());
+        ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+        holder.product_code.append(ss1);
+
+        holder.product_code.append("\n");
+
+        holder.product_code.append("Price:\u00A0");
+
+        DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
+        String yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getUnitPrice()));
+
+        ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
+        ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+        holder.product_code.append(ss1);
+
+        formatter1 = new DecimalFormat("#,###,##0.00");
+
+
+        if (selectedProductsDataList.get(position).getDiscountAmount() != null && !selectedProductsDataList.get(position).getDiscountAmount().equals("0") && !selectedProductsDataList.get(position).getDiscountAmount().equals("") && !selectedProductsDataList.get(position).getDiscountAmount().equals("null")) {
+            holder.product_code.append("\u00A0| ");
+
+            holder.product_code.append("Disc:\u00A0");
+
+            yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getDiscountAmount()));
+
+            ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
+            ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+            holder.product_code.append(ss1);
+        }
+
+        if (selectedProductsDataList.get(position).getPackSize() != null && !selectedProductsDataList.get(position).getPackSize().equals("null")) {
+            holder.product_code.append("\u00A0| ");
+
+            holder.product_code.append("Pack Size:\u00A0");
+            String temp_uom = selectedProductsDataList.get(position).getPackSize().replaceAll(" ", "\u00A0");
+            ss1 = new SpannableString(temp_uom);
+            ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+            holder.product_code.append(ss1);
+        }
+
         yourFormattedString3 = formatter1.format(totalamount);
-        holder.totalAmount_value.setText(yourFormattedString3);
+        holder.product_code.append("\u00A0| ");
+
+        holder.product_code.append("Amount:\u00A0");
+        ss1 = new SpannableString(yourFormattedString3);
+        ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+        holder.product_code.append(ss1);
 
         holder.list_numberOFitems.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -283,6 +345,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
             }
         });
 
+        final DecimalFormat finalFormatter = formatter1;
         holder.list_numberOFitems.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -348,8 +411,57 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                                 totalamount = Float.parseFloat(str_quantity) * Float.parseFloat(selectedProductsDataList.get(position).getUnitPrice());
                         }
 
+                        yourFormattedString3 = finalFormatter.format(totalamount);
+
+
+                        holder.product_code.setText("Product Code:\u00A0");
+                        SpannableString ss1 = new SpannableString(selectedProductsDataList.get(position).getCode());
+                        ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+                        holder.product_code.append(ss1);
+
+                        holder.product_code.append("\n");
+
+                        holder.product_code.append("Price:\u00A0");
+
+                        DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
+                        String yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getUnitPrice()));
+
+                        ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
+                        ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+                        holder.product_code.append(ss1);
+
+                        formatter1 = new DecimalFormat("#,###,##0.00");
+
+
+                        if (selectedProductsDataList.get(position).getDiscountAmount() != null && !selectedProductsDataList.get(position).getDiscountAmount().equals("0") && !selectedProductsDataList.get(position).getDiscountAmount().equals("") && !selectedProductsDataList.get(position).getDiscountAmount().equals("null")) {
+                            holder.product_code.append("\u00A0| ");
+
+                            holder.product_code.append("Disc:\u00A0");
+
+                            yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getDiscountAmount()));
+
+                            ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
+                            ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+                            holder.product_code.append(ss1);
+                        }
+
+                        if (selectedProductsDataList.get(position).getPackSize() != null && !selectedProductsDataList.get(position).getPackSize().equals("null")) {
+                            holder.product_code.append("\u00A0| ");
+
+                            holder.product_code.append("Pack Size:\u00A0");
+                            String temp_uom = selectedProductsDataList.get(position).getPackSize().replaceAll(" ", "\u00A0");
+                            ss1 = new SpannableString(temp_uom);
+                            ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+                            holder.product_code.append(ss1);
+                        }
+
                         yourFormattedString3 = formatter1.format(totalamount);
-                        holder.totalAmount_value.setText(yourFormattedString3);
+                        holder.product_code.append("\u00A0| ");
+
+                        holder.product_code.append("Amount:\u00A0");
+                        ss1 = new SpannableString(yourFormattedString3);
+                        ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+                        holder.product_code.append(ss1);
                     } else {
                         float totalamount = 0;
                         String yourFormattedString3;
@@ -360,8 +472,56 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                                 totalamount = 0 * Float.parseFloat(selectedProductsDataList.get(position).getUnitPrice());
                         }
 
+                        yourFormattedString3 = finalFormatter.format(totalamount);
+
+                        holder.product_code.setText("Product Code:\u00A0");
+                        SpannableString ss1 = new SpannableString(selectedProductsDataList.get(position).getCode());
+                        ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+                        holder.product_code.append(ss1);
+
+                        holder.product_code.append("\n");
+
+                        holder.product_code.append("Price:\u00A0");
+
+                        DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
+                        String yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getUnitPrice()));
+
+                        ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
+                        ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+                        holder.product_code.append(ss1);
+
+                        formatter1 = new DecimalFormat("#,###,##0.00");
+
+
+                        if (selectedProductsDataList.get(position).getDiscountAmount() != null && !selectedProductsDataList.get(position).getDiscountAmount().equals("0") && !selectedProductsDataList.get(position).getDiscountAmount().equals("") && !selectedProductsDataList.get(position).getDiscountAmount().equals("null")) {
+                            holder.product_code.append("\u00A0| ");
+
+                            holder.product_code.append("Disc:\u00A0");
+
+                            yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getDiscountAmount()));
+
+                            ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
+                            ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+                            holder.product_code.append(ss1);
+                        }
+
+                        if (selectedProductsDataList.get(position).getPackSize() != null && !selectedProductsDataList.get(position).getPackSize().equals("null")) {
+                            holder.product_code.append("\u00A0| ");
+
+                            holder.product_code.append("Pack Size:\u00A0");
+                            String temp_uom = selectedProductsDataList.get(position).getPackSize().replaceAll(" ", "\u00A0");
+                            ss1 = new SpannableString(temp_uom);
+                            ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+                            holder.product_code.append(ss1);
+                        }
+
                         yourFormattedString3 = formatter1.format(totalamount);
-                        holder.totalAmount_value.setText(yourFormattedString3);
+                        holder.product_code.append("\u00A0| ");
+
+                        holder.product_code.append("Amount:\u00A0");
+                        ss1 = new SpannableString(yourFormattedString3);
+                        ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+                        holder.product_code.append(ss1);
                     }
 
                     if (String.valueOf(s).equals("")) {
@@ -652,7 +812,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
             Log.i("debugOrder_seldata_nnul", String.valueOf(selectedProductsDataList));
             int foundIndex = -1;
             for (int i = 0; i < selectedProductsDataList.size(); i++) {
-                if (selectedProductsDataList.get(i).getTitle().equals(String.valueOf(holder.list_txt_products_.getText())) && selectedProductsDataList.get(i).getCode().equals(String.valueOf(holder.list_product_code_value.getText()))) {
+                if (selectedProductsDataList.get(i).getTitle().equals(String.valueOf(holder.list_txt_products_.getText()))) {
                     foundIndex = i;
                     break;
                 }

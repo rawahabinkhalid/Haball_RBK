@@ -2,8 +2,11 @@ package com.haball.Distributor.ui.orders.OrdersTabsNew.Adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.text.Editable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -146,23 +149,66 @@ public class ParentList_Adapter_DistOrder extends ExpandableRecyclerAdapter<Orde
         }
 
 
-        OrderChildList_VH_DistOrder.discount.setText("Pack Size: ");
-        OrderChildList_VH_DistOrder.UOM.setText("Disc: ");
-
+//        OrderChildList_VH_DistOrder.discount.setText("Pack Size: ");
+//        OrderChildList_VH_DistOrder.UOM.setText("Disc: ");
+//
         OrderChildList_VH_DistOrder.list_txt_products.setText(OrderChildlist_Model_DistOrder.getTitle());
-        OrderChildList_VH_DistOrder.list_product_code_value.setText(OrderChildlist_Model_DistOrder.getCode());
+//        OrderChildList_VH_DistOrder.list_product_code_value.setText(OrderChildlist_Model_DistOrder.getCode());
+//        DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
+//        if (OrderChildlist_Model_DistOrder.getUnitPrice() != null) {
+//            String yourFormattedString1 = formatter1.format(Double.parseDouble(OrderChildlist_Model_DistOrder.getUnitPrice()));
+//            OrderChildList_VH_DistOrder.list_price_value.setText("Rs. " + yourFormattedString1);
+//        }
+//        String yourFormattedString2;
+//        if (OrderChildlist_Model_DistOrder.getDiscountValue() != null)
+//            yourFormattedString2 = formatter1.format(Double.parseDouble(OrderChildlist_Model_DistOrder.getDiscountValue()));
+//        else
+//            yourFormattedString2 = formatter1.format(0);
+//        OrderChildList_VH_DistOrder.list_UOM_value.setText("Rs. " + yourFormattedString2);
+//        OrderChildList_VH_DistOrder.list_discount_value.setText(OrderChildlist_Model_DistOrder.getPackSize());
+
+
+        OrderChildList_VH_DistOrder.product_code.setText("Product Code:\u00A0");
+        SpannableString ss1 = new SpannableString(OrderChildlist_Model_DistOrder.getCode());
+        ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+        OrderChildList_VH_DistOrder.product_code.append(ss1);
+
+        OrderChildList_VH_DistOrder.product_code.append("\n");
+
+        OrderChildList_VH_DistOrder.product_code.append("Price:\u00A0");
+
         DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
-        if (OrderChildlist_Model_DistOrder.getUnitPrice() != null) {
-            String yourFormattedString1 = formatter1.format(Double.parseDouble(OrderChildlist_Model_DistOrder.getUnitPrice()));
-            OrderChildList_VH_DistOrder.list_price_value.setText("Rs. " + yourFormattedString1);
+        String yourFormattedString1 = formatter1.format(Double.parseDouble(OrderChildlist_Model_DistOrder.getUnitPrice()));
+
+        ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
+        ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+        OrderChildList_VH_DistOrder.product_code.append(ss1);
+
+
+
+        if (OrderChildlist_Model_DistOrder.getDiscountValue() != null && !OrderChildlist_Model_DistOrder.getDiscountValue().equals("0") && !OrderChildlist_Model_DistOrder.getDiscountValue().equals("") && !OrderChildlist_Model_DistOrder.getDiscountValue().equals("null")) {
+            OrderChildList_VH_DistOrder.product_code.append("\u00A0| ");
+
+            OrderChildList_VH_DistOrder.product_code.append("Disc:\u00A0");
+
+            formatter1 = new DecimalFormat("#,###,##0.00");
+            yourFormattedString1 = formatter1.format(Double.parseDouble(OrderChildlist_Model_DistOrder.getDiscountAmount()));
+
+            ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
+            ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+            OrderChildList_VH_DistOrder.product_code.append(ss1);
         }
-        String yourFormattedString2;
-        if (OrderChildlist_Model_DistOrder.getDiscountValue() != null)
-            yourFormattedString2 = formatter1.format(Double.parseDouble(OrderChildlist_Model_DistOrder.getDiscountValue()));
-        else
-            yourFormattedString2 = formatter1.format(0);
-        OrderChildList_VH_DistOrder.list_UOM_value.setText("Rs. " + yourFormattedString2);
-        OrderChildList_VH_DistOrder.list_discount_value.setText(OrderChildlist_Model_DistOrder.getPackSize());
+
+        if (OrderChildlist_Model_DistOrder.getPackSize() != null && !OrderChildlist_Model_DistOrder.getPackSize().equals("null")) {
+            OrderChildList_VH_DistOrder.product_code.append("\u00A0| ");
+
+            OrderChildList_VH_DistOrder.product_code.append("Pack Size:\u00A0");
+            String temp_uom = OrderChildlist_Model_DistOrder.getPackSize().replaceAll(" ", "\u00A0");
+            ss1 = new SpannableString(temp_uom);
+            ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+            OrderChildList_VH_DistOrder.product_code.append(ss1);
+        }
+
         OrderChildList_VH_DistOrder.list_numberOFitems.setText("");
         TextWatcher textWatcher = new TextWatcher() {
             @Override
@@ -208,7 +254,7 @@ public class ParentList_Adapter_DistOrder extends ExpandableRecyclerAdapter<Orde
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (finalTotalChildInThisParent == (i + 1)) {
-                    Toast.makeText(context, pos + " - " + i, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, pos + " - " + i, Toast.LENGTH_SHORT).show();
 
                     Log.i("order_place_debug8", "done clicked on last child");
                     InputMethodManager imm = (InputMethodManager) ((FragmentActivity) context).getSystemService(Context.INPUT_METHOD_SERVICE);

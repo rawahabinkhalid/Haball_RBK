@@ -3,8 +3,11 @@ package com.haball.Distributor.ui.retailer.RetailerPlaceOrder.ui.main.Adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.text.Editable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -147,21 +150,63 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
         Log.i("totalChildInThisParent", String.valueOf(totalChildInThisParent));
 
         orderChildList_vh.list_txt_products.setText(orderChildlist_model.getTitle());
-        orderChildList_vh.list_product_code_value.setText(orderChildlist_model.getProductCode());
+//        orderChildList_vh.list_product_code_value.setText(orderChildlist_model.getProductCode());
+//        DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
+//        if (orderChildlist_model.getProductUnitPrice() != null) {
+//            String yourFormattedString1 = formatter1.format(Double.parseDouble(orderChildlist_model.getProductUnitPrice()));
+//            orderChildList_vh.list_price_value.setText("Rs. " + yourFormattedString1);
+//        }
+//        String yourFormattedString2;
+//        if (orderChildlist_model.getDiscountAmount() != null)
+//            yourFormattedString2 = formatter1.format(Double.parseDouble(orderChildlist_model.getDiscountAmount()));
+//        else
+//            yourFormattedString2 = formatter1.format(0);
+//        orderChildList_vh.list_discount_value.setText("Rs. " + yourFormattedString2);
+////        if (orderChildlist_model.getPackSize() != null)
+////            orderChildList_vh.list_pack_size_value.setText(orderChildlist_model.getPackSize());
+//        orderChildList_vh.list_UOM_value.setText(orderChildlist_model.getUnitOFMeasure());
+
+
+        orderChildList_vh.product_code.setText("Product Code:\u00A0");
+        SpannableString ss1 = new SpannableString(orderChildlist_model.getProductCode());
+        ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+        orderChildList_vh.product_code.append(ss1);
+
+        orderChildList_vh.product_code.append("\n");
+
+        orderChildList_vh.product_code.append("Price:\u00A0");
+
         DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
-        if (orderChildlist_model.getProductUnitPrice() != null) {
-            String yourFormattedString1 = formatter1.format(Double.parseDouble(orderChildlist_model.getProductUnitPrice()));
-            orderChildList_vh.list_price_value.setText("Rs. " + yourFormattedString1);
+        String yourFormattedString1 = formatter1.format(Double.parseDouble(orderChildlist_model.getProductUnitPrice()));
+
+        ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
+        ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+        orderChildList_vh.product_code.append(ss1);
+
+
+        if (orderChildlist_model.getUnitOFMeasure() != null && !orderChildlist_model.getUnitOFMeasure().equals("null")) {
+            orderChildList_vh.product_code.append("\u00A0| ");
+
+            orderChildList_vh.product_code.append("UOM:\u00A0");
+            String temp_uom = orderChildlist_model.getUnitOFMeasure().replaceAll(" ", "\u00A0");
+            ss1 = new SpannableString(temp_uom);
+            ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+            orderChildList_vh.product_code.append(ss1);
         }
-        String yourFormattedString2;
-        if (orderChildlist_model.getDiscountAmount() != null)
-            yourFormattedString2 = formatter1.format(Double.parseDouble(orderChildlist_model.getDiscountAmount()));
-        else
-            yourFormattedString2 = formatter1.format(0);
-        orderChildList_vh.list_discount_value.setText("Rs. " + yourFormattedString2);
-//        if (orderChildlist_model.getPackSize() != null)
-//            orderChildList_vh.list_pack_size_value.setText(orderChildlist_model.getPackSize());
-        orderChildList_vh.list_UOM_value.setText(orderChildlist_model.getUnitOFMeasure());
+
+        if (orderChildlist_model.getDiscountAmount() != null && !orderChildlist_model.getDiscountAmount().equals("0") && !orderChildlist_model.getDiscountAmount().equals("") && !orderChildlist_model.getDiscountAmount().equals("null")) {
+            orderChildList_vh.product_code.append("\u00A0| ");
+
+            orderChildList_vh.product_code.append("Disc:\u00A0");
+
+            formatter1 = new DecimalFormat("#,###,##0.00");
+            yourFormattedString1 = formatter1.format(Double.parseDouble(orderChildlist_model.getDiscountAmount()));
+
+            ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
+            ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+            orderChildList_vh.product_code.append(ss1);
+        }
+
         orderChildList_vh.list_numberOFitems.setText("");
         orderChildList_vh.list_numberOFitems.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -240,11 +285,11 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
 //        orderChildList_vh.list_numberOFitems.setText("");
         if (selectedProductsDataList != null && selectedProductsQuantityList != null) {
             if (selectedProductsDataList.size() > 0 && selectedProductsQuantityList.size() > 0) {
-                Log.i("debugOrderQty1_found0", String.valueOf(i));
-                Log.i("debugOrderQty1_found1", String.valueOf(orderChildlist_model.getProductCode()));
-                Log.i("debugOrderQty1_found2", String.valueOf(orderChildList_vh.list_product_code_value.getText()));
-                Log.i("debugOrderQty1_found3", String.valueOf(orderChildlist_model.getTitle()));
-                Log.i("debugOrderQty1_found4", String.valueOf(orderChildList_vh.list_txt_products.getText()));
+//                Log.i("debugOrderQty1_found0", String.valueOf(i));
+//                Log.i("debugOrderQty1_found1", String.valueOf(orderChildlist_model.getProductCode()));
+//                Log.i("debugOrderQty1_found2", String.valueOf(orderChildList_vh.list_product_code_value.getText()));
+//                Log.i("debugOrderQty1_found3", String.valueOf(orderChildlist_model.getTitle()));
+//                Log.i("debugOrderQty1_found4", String.valueOf(orderChildList_vh.list_txt_products.getText()));
                 setQuantity(orderChildList_vh, orderChildlist_model, i);
             }
         }
