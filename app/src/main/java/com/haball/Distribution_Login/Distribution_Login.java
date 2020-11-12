@@ -463,10 +463,21 @@ public class Distribution_Login extends AppCompatActivity {
                     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // loader.hideLoader();
+                        loader.hideLoader();
+                        new CustomToast().showToast(Distribution_Login.this, "Invalid Credentials");
                         error.printStackTrace();
-                        new HaballError().printErrorMessage(Distribution_Login.this, error);
-                        new ProcessingError().showError(Distribution_Login.this);
+                        layout_username.setBoxStrokeColor(getResources().getColor(R.color.error_stroke_color));
+                        layout_username.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.error_stroke_color)));
+                        et_username.setTextColor(getResources().getColor(R.color.error_stroke_color));
+
+                        layout_password.setBoxStrokeColor(getResources().getColor(R.color.error_stroke_color));
+                        layout_password.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.error_stroke_color)));
+                        layout_password.setPasswordVisibilityToggleTintList(ColorStateList.valueOf(getResources().getColor(R.color.error_stroke_color)));
+                        et_password.setTextColor(getResources().getColor(R.color.error_stroke_color));
+                        // loader.hideLoader();
+//                        error.printStackTrace();
+//                        new HaballError().printErrorMessage(Distribution_Login.this, error);
+//                        new ProcessingError().showError(Distribution_Login.this);
 //                Toast.makeText(Distribution_Login.this,error.toString(),Toast.LENGTH_LONG).show();
                         //printErrorMessage(error);
                     }
@@ -492,7 +503,7 @@ public class Distribution_Login extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onErrorResponse(VolleyError error) {
-                // loader.hideLoader();
+                 loader.hideLoader();
                 error.printStackTrace();
                 new HaballError().printErrorMessage(Distribution_Login.this, error);
                 new ProcessingError().showError(Distribution_Login.this);

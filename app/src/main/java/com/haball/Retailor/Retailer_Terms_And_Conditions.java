@@ -573,10 +573,8 @@ public class Retailer_Terms_And_Conditions extends Fragment {
 
         webView.loadData(String.format(htmlText, (myData + myData1 + myData2)), "text/html", "utf-8");
 
-
         return root;
     }
-
 
     @Override
     public void onResume() {

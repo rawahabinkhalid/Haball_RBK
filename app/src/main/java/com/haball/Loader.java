@@ -45,18 +45,21 @@ public class Loader {
 //        if(fbDialogue.isShowing())
 //            fbDialogue.dismiss();
         fbDialogue.show();
+        try {
+            new CountDownTimer(50000, 1000) {
 
-        new CountDownTimer(50000, 1000) {
+                public void onTick(long millisUntilFinished) {
+                }
 
-            public void onTick(long millisUntilFinished) {
-            }
+                public void onFinish() {
+                    Log.i("mContext_hide", String.valueOf(mContext));
+                    fbDialogue.dismiss();
 
-            public void onFinish() {
-                Log.i("mContext_hide", String.valueOf(mContext));
-                fbDialogue.dismiss();
+                }
+            }.start();
+        } catch (IllegalArgumentException ignored) {
 
-            }
-        }.start();
+        }
     }
 
     public void hideLoader() {
