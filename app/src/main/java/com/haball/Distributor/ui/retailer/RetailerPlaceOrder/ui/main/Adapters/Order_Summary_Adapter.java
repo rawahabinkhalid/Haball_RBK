@@ -303,7 +303,7 @@ public class Order_Summary_Adapter extends RecyclerView.Adapter<Order_Summary_Ad
         ss1 = new SpannableString(yourFormattedString3);
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
         holder.product_code.append(ss1);
-        total_amount.setText(ss1);
+//        total_amount.setText(ss1);
 
         holder.list_numberOFitems.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -527,6 +527,8 @@ public class Order_Summary_Adapter extends RecyclerView.Adapter<Order_Summary_Ad
                         ss1 = new SpannableString(yourFormattedString3);
                         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
                         holder.product_code.append(ss1);
+                        total_amount.setText(String.format(yourFormattedString3));
+
                     }
 
 

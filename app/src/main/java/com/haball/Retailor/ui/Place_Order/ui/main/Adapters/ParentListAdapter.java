@@ -289,7 +289,7 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
     private void setQuantity(OrderChildList_VH orderChildList_vh, OrderChildlist_Model orderChildlist_model, int pos) {
         if (selectedProductsQuantityList != null && selectedProductsDataList != null) {
             for (int j = 0; j < selectedProductsDataList.size(); j++) {
-                if (orderChildList_vh.list_txt_products.getText().equals(String.valueOf(selectedProductsDataList.get(j).getTitle())) && orderChildList_vh.list_product_code_value.getText().equals(selectedProductsDataList.get(j).getProductCode())) {
+                if (orderChildList_vh.list_txt_products.getText().equals(String.valueOf(selectedProductsDataList.get(j).getTitle())) ) {
                     if (!selectedProductsQuantityList.get(j).equals("0") && !selectedProductsQuantityList.get(j).equals(""))
                         orderChildList_vh.list_numberOFitems.setText(selectedProductsQuantityList.get(j));
                 }
@@ -301,7 +301,7 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
         if (selectedProductsDataList != null) {
             int foundIndex = -1;
             for (int i = 0; i < selectedProductsDataList.size(); i++) {
-                if (selectedProductsDataList.get(i).getTitle().equals(orderChildlist_model.getTitle()) && selectedProductsDataList.get(i).getProductCode().equals(orderChildlist_model.getProductCode())) {
+                if (selectedProductsDataList.get(i).getTitle().equals(orderChildlist_model.getTitle()) ) {
                     foundIndex = i;
                     break;
                 }

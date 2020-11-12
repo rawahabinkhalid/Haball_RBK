@@ -275,7 +275,7 @@ public class ParentList_Adapter_DistOrder extends ExpandableRecyclerAdapter<Orde
     private void setQuantity(OrderChildList_VH_DistOrder OrderChildList_VH_DistOrder, OrderChildlist_Model_DistOrder OrderChildlist_Model_DistOrder, int pos) {
         if (selectedProductsQuantityList != null && selectedProductsDataList != null) {
             for (int j = 0; j < selectedProductsDataList.size(); j++) {
-                if (OrderChildList_VH_DistOrder.list_txt_products.getText().equals(String.valueOf(selectedProductsDataList.get(j).getTitle())) && OrderChildList_VH_DistOrder.list_product_code_value.getText().equals(selectedProductsDataList.get(j).getCode())) {
+                if (OrderChildList_VH_DistOrder.list_txt_products.getText().equals(String.valueOf(selectedProductsDataList.get(j).getTitle())) ) {
                     if (!selectedProductsQuantityList.get(j).equals("0") && !selectedProductsQuantityList.get(j).equals(""))
                         OrderChildList_VH_DistOrder.list_numberOFitems.setText(selectedProductsQuantityList.get(j));
                 }
@@ -287,7 +287,7 @@ public class ParentList_Adapter_DistOrder extends ExpandableRecyclerAdapter<Orde
         if (selectedProductsDataList != null) {
             int foundIndex = -1;
             for (int i = 0; i < selectedProductsDataList.size(); i++) {
-                if (selectedProductsDataList.get(i).getTitle().equals(OrderChildlist_Model_DistOrder.getTitle()) && selectedProductsDataList.get(i).getCode().equals(OrderChildlist_Model_DistOrder.getCode())) {
+                if (selectedProductsDataList.get(i).getTitle().equals(OrderChildlist_Model_DistOrder.getTitle()) ) {
                     foundIndex = i;
                     break;
                 }
