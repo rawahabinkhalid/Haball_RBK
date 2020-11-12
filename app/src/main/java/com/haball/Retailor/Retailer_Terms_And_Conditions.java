@@ -576,7 +576,6 @@ public class Retailer_Terms_And_Conditions extends Fragment {
         return root;
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
