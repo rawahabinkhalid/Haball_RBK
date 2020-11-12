@@ -617,19 +617,29 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView list_txt_products_, list_product_code_value, list_price_value, list_discount_value, list_UOM_value, totalAmount_value;
+        public TextView product_code, list_txt_products_, list_product_code_value, list_price_value, list_discount_value, list_UOM_value, totalAmount_value;
         public EditText list_numberOFitems;
         public TextView btn_delete_item;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+//            list_txt_products_ = itemView.findViewById(R.id.list_txt_products_);
+//            list_product_code_value = itemView.findViewById(R.id.list_product_code_value);
+//            list_price_value = itemView.findViewById(R.id.list_price_value);
+//            list_discount_value = itemView.findViewById(R.id.list_discount_value);
+//            list_UOM_value = itemView.findViewById(R.id.list_UOM_value);
+//            list_numberOFitems = itemView.findViewById(R.id.list_numberOFitems);
+//            totalAmount_value = itemView.findViewById(R.id.totalAmount_value);
+//            btn_delete_item = itemView.findViewById(R.id.btn_delete_item);
+            product_code = itemView.findViewById(R.id.product_code);
             list_txt_products_ = itemView.findViewById(R.id.list_txt_products_);
-            list_product_code_value = itemView.findViewById(R.id.list_product_code_value);
-            list_price_value = itemView.findViewById(R.id.list_price_value);
-            list_discount_value = itemView.findViewById(R.id.list_discount_value);
-            list_UOM_value = itemView.findViewById(R.id.list_UOM_value);
+//            list_product_code_value = itemView.findViewById(R.id.list_product_code_value);
+//            list_price_value = itemView.findViewById(R.id.list_price_value);
+//            list_discount_value = itemView.findViewById(R.id.list_discount_value);
+//            list_UOM_value = itemView.findViewById(R.id.list_UOM_value);
+////            list_pack_size_value = itemView.findViewById(R.id.list_pack_size_value);
             list_numberOFitems = itemView.findViewById(R.id.list_numberOFitems);
-            totalAmount_value = itemView.findViewById(R.id.totalAmount_value);
+//            totalAmount_value = itemView.findViewById(R.id.totalAmount_value);
             btn_delete_item = itemView.findViewById(R.id.btn_delete_item);
 
         }

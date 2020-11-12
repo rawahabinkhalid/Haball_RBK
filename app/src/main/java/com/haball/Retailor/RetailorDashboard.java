@@ -557,65 +557,65 @@ public class RetailorDashboard extends AppCompatActivity {
 //        }
         super.onStop();
     }
-
-    @Override
-    protected void onDestroy() {
-//        Log.i("DebugState", "in destroy");
 //
-//        logoutOnDestroy();
-        super.onDestroy();
-
-//        Log.i("Destroyed", "destroyed");
-    }
-
-    private void logoutOnDestroy() {
-        Log.i("Destroyed1", "destroyed");
-//        new SSL_HandShake().handleSSLHandshake();
-        BooleanRequest sr = new BooleanRequest(Request.Method.DELETE, URL_Logout, null, new Response.Listener<Boolean>() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onResponse(Boolean result) {
-//                loader.hideLoader();
-                Log.i("Destroyed12", "destroyed");
-
-                Log.i("Logout", "Logout Activity");
-                SharedPreferences login_token = getSharedPreferences("LoginToken",
-                        Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = login_token.edit();
-                editor.remove("Login_Token");
-                editor.remove("User_Type");
-                editor.remove("Retailer_Id");
-                editor.remove("username");
-                editor.remove("CompanyName");
-                editor.remove("UserId");
-                editor.commit();
-
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-//                loader.hideLoader();
-                error.printStackTrace();
-//                new ProcessingError().showError(RetailorDashboard.this);
-            }
-        }) {
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("Authorization", "bearer " + Token);
-                params.put("Content-Type", "application/json");
-
-                return params;
-            }
-        };
-        sr.setRetryPolicy(new DefaultRetryPolicy(
-                15000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        Volley.newRequestQueue(RetailorDashboard.this).add(sr);
-    }
+//    @Override
+//    protected void onDestroy() {
+////        Log.i("DebugState", "in destroy");
+////
+////        logoutOnDestroy();
+//        super.onDestroy();
+//
+////        Log.i("Destroyed", "destroyed");
+//    }
+//
+//    private void logoutOnDestroy() {
+//        Log.i("Destroyed1", "destroyed");
+////        new SSL_HandShake().handleSSLHandshake();
+//        BooleanRequest sr = new BooleanRequest(Request.Method.DELETE, URL_Logout, null, new Response.Listener<Boolean>() {
+//            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+//            @Override
+//            public void onResponse(Boolean result) {
+////                loader.hideLoader();
+//                Log.i("Destroyed12", "destroyed");
+//
+//                Log.i("Logout", "Logout Activity");
+//                SharedPreferences login_token = getSharedPreferences("LoginToken",
+//                        Context.MODE_PRIVATE);
+//                SharedPreferences.Editor editor = login_token.edit();
+//                editor.remove("Login_Token");
+//                editor.remove("User_Type");
+//                editor.remove("Retailer_Id");
+//                editor.remove("username");
+//                editor.remove("CompanyName");
+//                editor.remove("UserId");
+//                editor.commit();
+//
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+////                loader.hideLoader();
+//                error.printStackTrace();
+////                new ProcessingError().showError(RetailorDashboard.this);
+//            }
+//        }) {
+//
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("Authorization", "bearer " + Token);
+//                params.put("Content-Type", "application/json");
+//
+//                return params;
+//            }
+//        };
+//        sr.setRetryPolicy(new DefaultRetryPolicy(
+//                15000,
+//                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+//        Volley.newRequestQueue(RetailorDashboard.this).add(sr);
+//    }
 
     @Override
     public void onBackPressed() {

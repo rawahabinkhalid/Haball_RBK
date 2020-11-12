@@ -56,14 +56,14 @@ public class RetailerViewOrderProductAdapter extends RecyclerView.Adapter<Retail
 
     public RetailerViewOrderProductAdapter(Context context, List<RetailerViewOrderProductModel> ordersList) {
         this.context = context;
-//        this.OrdersList = ordersList;
-        OrdersList = new ArrayList<>();
-        OrdersList.add(new RetailerViewOrderProductModel("Product ID", "00990090", "Veg Biryani Masala VG - 300 Box",
-                "100", "50000", "0", "50000", "Carton", "1000", "Carton Big Ultra"));
-        OrdersList.add(new RetailerViewOrderProductModel("Product ID", "00990090", "Veg Biryani Masala VG - 300 Box",
-                "100", "50000", "0", "50000", "Carton", "1000", "Carton"));
-        OrdersList.add(new RetailerViewOrderProductModel("Product ID", "00990090", "Veg Biryani Masala VG - 300 Box",
-                "100", "500000000", "0", "500000000", "Carton", "1000", "Carton"));
+        this.OrdersList = ordersList;
+//        OrdersList = new ArrayList<>();
+//        OrdersList.add(new RetailerViewOrderProductModel("Product ID", "00990090", "Veg Biryani Masala VG - 300 Box",
+//                "100", "50000", "0", "50000", "Carton", "1000", "Carton Big Ultra"));
+//        OrdersList.add(new RetailerViewOrderProductModel("Product ID", "00990090", "Veg Biryani Masala VG - 300 Box",
+//                "100", "50000", "0", "50000", "Carton", "1000", "Carton"));
+//        OrdersList.add(new RetailerViewOrderProductModel("Product ID", "00990090", "Veg Biryani Masala VG - 300 Box",
+//                "100", "500000000", "0", "500000000", "Carton", "1000", "Carton"));
     }
 
 
@@ -97,7 +97,7 @@ public class RetailerViewOrderProductAdapter extends RecyclerView.Adapter<Retail
 
 
         if (OrdersList.get(position).getUOMTitle() != null && !OrdersList.get(position).getUOMTitle().equals("null")) {
-            holder.product_code.append("\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0|       ");
+            holder.product_code.append("\u00A0| ");
 
             holder.product_code.append("UOM:\u00A0");
             String temp_uom = OrdersList.get(position).getUOMTitle().replaceAll(" ", "\u00A0");
@@ -107,7 +107,7 @@ public class RetailerViewOrderProductAdapter extends RecyclerView.Adapter<Retail
         }
 
         if (!OrdersList.get(position).getDiscount().equals("0") && !OrdersList.get(position).getDiscount().equals("") && !OrdersList.get(position).getDiscount().equals("null")) {
-            holder.product_code.append("\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0|       ");
+            holder.product_code.append("\u00A0| ");
 
             holder.product_code.append("Disc:\u00A0");
 
@@ -119,7 +119,7 @@ public class RetailerViewOrderProductAdapter extends RecyclerView.Adapter<Retail
             holder.product_code.append(ss1);
 
         }
-        holder.product_code.append("\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0|       ");
+        holder.product_code.append("\u00A0| ");
 
         holder.product_code.append("Qty:\u00A0");
 
@@ -127,7 +127,7 @@ public class RetailerViewOrderProductAdapter extends RecyclerView.Adapter<Retail
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
         holder.product_code.append(ss1);
 
-        holder.product_code.append("      |       ");
+        holder.product_code.append("\u00A0| ");
 
         if (!OrdersList.get(position).getTaxValue().equals("0") && !OrdersList.get(position).getTaxValue().equals("") && !OrdersList.get(position).getTaxValue().equals("null")) {
 
@@ -140,7 +140,7 @@ public class RetailerViewOrderProductAdapter extends RecyclerView.Adapter<Retail
             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
             holder.product_code.append(ss1);
 
-            holder.product_code.append("      |       ");
+            holder.product_code.append("\u00A0| ");
         }
         holder.product_code.append("Amount:\u00A0");
 
@@ -152,65 +152,6 @@ public class RetailerViewOrderProductAdapter extends RecyclerView.Adapter<Retail
         ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
         holder.product_code.append(ss1);
-    }
-
-    private int getHeight(String text, TextView textView) {
-        Rect bounds = new Rect();
-        Paint textPaint = textView.getPaint();
-        textPaint.getTextBounds(text, 0, text.length(), bounds);
-        int height = bounds.height();
-        int width = bounds.width();
-        return height;
-
-    }
-
-    public static int getHeightOfMultiLineText(String text, int textSize, int maxWidth) {
-        TextPaint paint = new TextPaint();
-        paint.setTextSize(textSize);
-        int index = 0;
-        int lineCount = 0;
-        while (index < text.length()) {
-            index += paint.breakText(text, index, text.length(), true, maxWidth, null);
-            lineCount++;
-        }
-
-        Rect bounds = new Rect();
-        paint.getTextBounds("Yy", 0, 2, bounds);
-        // obtain space between lines
-        double lineSpacing = Math.max(0, ((lineCount - 1) * bounds.height() * 0.25));
-
-        return (int) Math.floor(lineSpacing + lineCount * bounds.height());
-    }
-
-
-    public static boolean isTextViewEllipsized(final TextView textView) {
-        // Check if the supplied TextView is not null
-        if (textView == null) {
-            return false;
-        }
-
-        // Check if ellipsizing the text is enabled
-        final TextUtils.TruncateAt truncateAt = textView.getEllipsize();
-        if (truncateAt == null || TextUtils.TruncateAt.END.equals(truncateAt)) {
-            return false;
-        }
-
-        // Retrieve the layout in which the text is rendered
-        final Layout layout = textView.getLayout();
-        if (layout == null) {
-            return false;
-        }
-
-        // Iterate all lines to search for ellipsized text
-        for (int line = 0; line < layout.getLineCount(); ++line) {
-
-            // Check if characters have been ellipsized away within this line of text
-            if (layout.getEllipsisCount(line) > 0) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     @Override
