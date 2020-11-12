@@ -66,6 +66,104 @@ public class RetailerViewOrderProductAdapter extends RecyclerView.Adapter<Retail
             holder.txt_products.setText(OrdersList.get(position).getProductTitle());
         else
             holder.txt_products.setText(OrdersList.get(position).getProductName());
+//        holder.product_code.setText("Product Code:\u00A0");
+//        SpannableString ss1 = new SpannableString(OrdersList.get(position).getProductCode());
+//        ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+//        holder.product_code.append(ss1);
+//
+//        holder.product_code.append("\n");
+//
+//        holder.product_code.append("Price:\u00A0");
+//
+//        DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
+//        String yourFormattedString1;
+//        if (OrdersList.get(position).getProductUnitPrice() != null)
+//            yourFormattedString1 = formatter1.format(Double.parseDouble(OrdersList.get(position).getProductUnitPrice()));
+//        else
+//            yourFormattedString1 = formatter1.format(Double.parseDouble(OrdersList.get(position).getUnitPrice()));
+//
+//        ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
+//        ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+//        holder.product_code.append(ss1);
+//        if (OrdersList.get(position).getUnitOFMeasure() != null && !OrdersList.get(position).getUnitOFMeasure().equals("null")) {
+//            holder.product_code.append("            ");
+//            holder.product_code.append("            ");
+//
+//            holder.product_code.append("UOM:\u00A0");
+//
+//            ss1 = new SpannableString(OrdersList.get(position).getUnitOFMeasure());
+//            ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+//
+//            holder.product_code.append(ss1);
+//        }
+//
+//        if (!OrdersList.get(position).getDiscount().equals("0") && !OrdersList.get(position).getDiscount().equals("") && !OrdersList.get(position).getDiscount().equals("null")) {
+//            holder.product_code.append("            ");
+//
+//            holder.product_code.append("Disc:\u00A0");
+//
+//            formatter1 = new DecimalFormat("#,###,##0.00");
+//            yourFormattedString1 = formatter1.format(Double.parseDouble(OrdersList.get(position).getDiscount()));
+//
+//            ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
+//            ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+//            holder.product_code.append(ss1);
+//
+//        }
+//        holder.product_code.append("            ");
+//        holder.product_code.append("            ");
+//
+//        holder.product_code.append("Qty:\u00A0");
+//
+//        if (OrdersList.get(position).getOrderedQty() != null)
+//            ss1 = new SpannableString(OrdersList.get(position).getOrderedQty());
+//        else
+//            ss1 = new SpannableString(OrdersList.get(position).getOrderQty());
+//        ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+//        holder.product_code.append(ss1);
+//
+//        holder.product_code.append("            ");
+//        holder.product_code.append("            ");
+//
+//        if (!OrdersList.get(position).getTaxValue().equals("0") && !OrdersList.get(position).getTaxValue().equals("") && !OrdersList.get(position).getTaxValue().equals("null")) {
+//
+//            holder.product_code.append("Tax:\u00A0");
+//
+//            formatter1 = new DecimalFormat("#,###,##0.00");
+//            yourFormattedString1 = formatter1.format(Double.parseDouble(OrdersList.get(position).getTaxValue()));
+//
+//            ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
+//            ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+//            holder.product_code.append(ss1);
+//
+//            holder.product_code.append("            ");
+//            holder.product_code.append("            ");
+//        }
+//
+//        holder.product_code.append("Amount:\u00A0");
+//
+//        formatter1 = new DecimalFormat("#,###,##0.00");
+//        double totalAmount = 0;
+//        if (OrdersList.get(position).getTotalamount() != null)
+//            totalAmount = Double.parseDouble(OrdersList.get(position).getTotalamount());
+//        else
+//            totalAmount = Double.parseDouble(OrdersList.get(position).getTotalPrice());
+////        if (!OrdersList.get(position).getDiscount().equals("0") && !OrdersList.get(position).getDiscount().equals("") && !OrdersList.get(position).getDiscount().equals("null")) {
+////
+////            double discount = Double.parseDouble(OrdersList.get(position).getDiscount());
+////            totalAmount -= discount;
+////
+////        }
+//
+//        yourFormattedString1 = formatter1.format(totalAmount);
+//
+//        ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
+//        ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+//        holder.product_code.append(ss1);
+
+
+//        holder.txt_products.setText(OrdersList.get(position).getProductName());
+
         holder.product_code.setText("Product Code:\u00A0");
         SpannableString ss1 = new SpannableString(OrdersList.get(position).getProductCode());
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -85,20 +183,20 @@ public class RetailerViewOrderProductAdapter extends RecyclerView.Adapter<Retail
         ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
         holder.product_code.append(ss1);
+
+
         if (OrdersList.get(position).getUnitOFMeasure() != null && !OrdersList.get(position).getUnitOFMeasure().equals("null")) {
-            holder.product_code.append("            ");
-            holder.product_code.append("            ");
+            holder.product_code.append("\u00A0| ");
 
             holder.product_code.append("UOM:\u00A0");
-
-            ss1 = new SpannableString(OrdersList.get(position).getUnitOFMeasure());
+            String temp_uom = OrdersList.get(position).getUnitOFMeasure().replaceAll(" ", "\u00A0");
+            ss1 = new SpannableString(temp_uom);
             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
-
             holder.product_code.append(ss1);
         }
 
         if (!OrdersList.get(position).getDiscount().equals("0") && !OrdersList.get(position).getDiscount().equals("") && !OrdersList.get(position).getDiscount().equals("null")) {
-            holder.product_code.append("            ");
+            holder.product_code.append("\u00A0| ");
 
             holder.product_code.append("Disc:\u00A0");
 
@@ -110,11 +208,11 @@ public class RetailerViewOrderProductAdapter extends RecyclerView.Adapter<Retail
             holder.product_code.append(ss1);
 
         }
-        holder.product_code.append("            ");
-        holder.product_code.append("            ");
+        holder.product_code.append("\u00A0| ");
 
         holder.product_code.append("Qty:\u00A0");
 
+//        ss1 = new SpannableString(OrdersList.get(position).getOrderedQty());
         if (OrdersList.get(position).getOrderedQty() != null)
             ss1 = new SpannableString(OrdersList.get(position).getOrderedQty());
         else
@@ -122,10 +220,9 @@ public class RetailerViewOrderProductAdapter extends RecyclerView.Adapter<Retail
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
         holder.product_code.append(ss1);
 
-        holder.product_code.append("            ");
-        holder.product_code.append("            ");
+        holder.product_code.append("\u00A0| ");
 
-        if (!OrdersList.get(position).getTaxValue().equals("0") && !OrdersList.get(position).getTaxValue().equals("") && !OrdersList.get(position).getTaxValue().equals("null")) {
+        if (OrdersList.get(position).getTaxValue() != null && !OrdersList.get(position).getTaxValue().equals("0") && !OrdersList.get(position).getTaxValue().equals("") && !OrdersList.get(position).getTaxValue().equals("null")) {
 
             holder.product_code.append("Tax:\u00A0");
 
@@ -136,24 +233,16 @@ public class RetailerViewOrderProductAdapter extends RecyclerView.Adapter<Retail
             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
             holder.product_code.append(ss1);
 
-            holder.product_code.append("            ");
-            holder.product_code.append("            ");
+            holder.product_code.append("\u00A0| ");
         }
-
         holder.product_code.append("Amount:\u00A0");
 
         formatter1 = new DecimalFormat("#,###,##0.00");
-        double totalAmount = 0;
+        double totalAmount;
         if (OrdersList.get(position).getTotalamount() != null)
             totalAmount = Double.parseDouble(OrdersList.get(position).getTotalamount());
         else
             totalAmount = Double.parseDouble(OrdersList.get(position).getTotalPrice());
-//        if (!OrdersList.get(position).getDiscount().equals("0") && !OrdersList.get(position).getDiscount().equals("") && !OrdersList.get(position).getDiscount().equals("null")) {
-//
-//            double discount = Double.parseDouble(OrdersList.get(position).getDiscount());
-//            totalAmount -= discount;
-//
-//        }
 
         yourFormattedString1 = formatter1.format(totalAmount);
 
