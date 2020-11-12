@@ -264,13 +264,13 @@ public class PlaceholderFragment extends Fragment {
                         if (event.getAction() == MotionEvent.ACTION_UP) {
                             if (event.getRawX() >= (R_Address.getRight() - R_Address.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
                                 // your action here
-                                R_Address.setInputType(InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE);
+                               // R_Address.setInputType(InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE);
                                 R_Address.setFocusable(true);
                                 R_Address.setFocusableInTouchMode(true);
                                 R_Address.requestFocus();
+                                R_Address.setSelection(R_Address.getText().length());
                                 InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-                                R_Address.setSelection(R_Address.getText().length());
 //                                btn_save_password.setEnabled(true);
 //                                btn_save_password.setBackground(getResources().getDrawable(R.drawable.button_background));
                                 changed = true;

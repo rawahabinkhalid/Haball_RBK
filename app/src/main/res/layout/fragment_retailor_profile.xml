@@ -173,9 +173,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:drawableRight="@drawable/ic_edit_black_24dp"
-                    android:inputType="textMultiLine|textCapSentences"
-                    android:paddingBottom="50dp"
+                    android:gravity="top|left"
+                    android:inputType="textMultiLine"
                     android:theme="@style/TextLabelEditeText" />
+
 
             </com.google.android.material.textfield.TextInputLayout>
 
