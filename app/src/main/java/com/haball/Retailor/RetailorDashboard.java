@@ -116,7 +116,7 @@ public class RetailorDashboard extends AppCompatActivity {
     private TextView tv_username, tv_user_company, footer_item_1;
     //    private TextView tv_username, tv_user_company;
     boolean doubleBackToExitPressedOnce = false;
-//    private Socket iSocket;
+    private Socket iSocket;
     private static final String URL = "http://175.107.203.97:4014/";
     private String UserId;
     private JSONArray userRights;
@@ -131,18 +131,18 @@ public class RetailorDashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retailor_dashboard);
 
-//        new SSL_HandShake().handleSSLHandshake();
+        new SSL_HandShake().handleSSLHandshake();
 
-//        IO.Options opts = new IO.Options();
-////            opts.query = "userId=" + UserId;
-//        try {
-//            iSocket = IO.socket(URL, opts);
-//        } catch (URISyntaxException e) {
-//            e.printStackTrace();
-//        }
-//        iSocket.connect();
+        IO.Options opts = new IO.Options();
+//            opts.query = "userId=" + UserId;
+        try {
+            iSocket = IO.socket(URL, opts);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        iSocket.connect();
 
-//        new MyAsyncTask().execute();
+        new MyAsyncTask().execute();
 
 //        getNotificationCount();
 
@@ -647,131 +647,131 @@ public class RetailorDashboard extends AppCompatActivity {
 //            }
         }
     }
-//
-//    private class MyAsyncTask extends AsyncTask<Void, Void, Void> {
-//        @Override
-//        protected Void doInBackground(Void... params) {
-//            try {
-//                Thread.sleep(1000);
-//                getNotificationCount();
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            return null;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Void result) {
-//            new MyAsyncTask().execute();
-//        }
-//
-//
-//        private void getNotificationCount() {
-////            iSocket.emit("userId", UserId);
-//
-//            if (iSocket.connected()) {
-//                iSocket.emit("userId", UserId);
-//                iSocket.on("userId" + UserId, new Emitter.Listener() {
-//                    @Override
-//                    public void call(final Object... args) {
-//                        runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                JSONObject data = (JSONObject) args[0];
-////                                Log.i("notificationTest", "String.valueOf(args)");
-////                                Log.i("Notification_found", String.valueOf(data));
-//                                try {
-////                                    Log.i("notificationTest", String.valueOf(data.get("UnSeenCount")));
-////                                    Toast.makeText(RetailorDashboard.this, String.valueOf(data.get("UnSeenCount")), Toast.LENGTH_SHORT).show();
-//                                    Gson gson = new Gson();
-//                                    Type type = new TypeToken<List<Retailer_Notification_Model>>() {
-//                                    }.getType();
-//
-//                                    notification = Integer.parseInt(String.valueOf(data.get("UnSeenCount")));
-//                                    NotificationList = gson.fromJson(String.valueOf(data.getJSONArray("data")), type);
-//                                    int i = 0;
-//                                    for (i = 0; i < NotificationList.size(); i++) {
-//                                        if (NotificationList.get(i).getSeen().equals("0"))
-//                                            break;
-//                                    }
-//
-//                                    if (notification != 0) {
-//                                        notification_icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_notifications_black_24dp));
-//                                        if (UnReadNotifications != 0 && UnReadNotifications != notification) {
-//                                            String CHANNEL_ID = getString(R.string.default_notification_channel_id);
-//                                            createNotificationChannel();
-//
-//
-//                                            Intent intent = new Intent(RetailorDashboard.this, RetailerLogin.class);
-//                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                            PendingIntent pendingIntent = PendingIntent.getActivity(RetailorDashboard.this, 0 /* Request code */, intent,
-//                                                    PendingIntent.FLAG_ONE_SHOT);
-//
-//                                            String channelId = getString(R.string.default_notification_channel_id);
-//                                            Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-//                                            NotificationCompat.Builder notificationBuilder =
-//                                                    new NotificationCompat.Builder(RetailorDashboard.this, channelId)
-//                                                            .setSmallIcon(R.mipmap.ic_launcher_round)
-//                                                            .setContentTitle(NotificationList.get(i).getSubject())
-//                                                            .setContentText(NotificationList.get(i).getAlertMessage())
-//                                                            .setAutoCancel(true)
-//                                                            .setSound(defaultSoundUri)
-//                                                            .setStyle(new NotificationCompat.BigTextStyle()
-//                                                                    .bigText(NotificationList.get(i).getAlertMessage()))
-//                                                            .setContentIntent(pendingIntent);
-//
-//                                            NotificationManager notificationManager =
-//                                                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//
-//                                            // Since android Oreo notification channel is needed.
-//                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                                                NotificationChannel channel = new NotificationChannel(channelId,
-//                                                        "Channel human readable title",
-//                                                        NotificationManager.IMPORTANCE_DEFAULT);
-//                                                notificationManager.createNotificationChannel(channel);
-//                                            }
-//
-//                                            notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
-//
-//
-//                                            Log.i("Notification_found", "new notification");
-//                                        }
-//                                        UnReadNotifications = notification;
-//                                    } else {
-//                                        notification_icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_no_notifications_black_24dp));
-//                                    }
-//                                } catch (
-//                                        JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-//                            }
-//                        });
-//                    }
-//                });
-//
-//            }
-//
-//
-//        }
-//
-//    }
-//
-//    private void createNotificationChannel() {
-//        // Create the NotificationChannel, but only on API 26+ because
-//        // the NotificationChannel class is new and not in the support library
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            CharSequence name = "Notification_Haball_Retailer";
-//            String description = "Notification_Haball_Retailer";
-//            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-//            String CHANNEL_ID = getString(R.string.default_notification_channel_id);
-//            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-//            channel.setDescription(description);
-//            // Register the channel with the system; you can't change the importance
-//            // or other notification behaviors after this
-//            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-//            notificationManager.createNotificationChannel(channel);
-//        }
-//    }
+
+    private class MyAsyncTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                Thread.sleep(1000);
+                getNotificationCount();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            new MyAsyncTask().execute();
+        }
+
+
+        private void getNotificationCount() {
+//            iSocket.emit("userId", UserId);
+
+            if (iSocket.connected()) {
+                iSocket.emit("userId", UserId);
+                iSocket.on("userId" + UserId, new Emitter.Listener() {
+                    @Override
+                    public void call(final Object... args) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                JSONObject data = (JSONObject) args[0];
+//                                Log.i("notificationTest", "String.valueOf(args)");
+//                                Log.i("Notification_found", String.valueOf(data));
+                                try {
+//                                    Log.i("notificationTest", String.valueOf(data.get("UnSeenCount")));
+//                                    Toast.makeText(RetailorDashboard.this, String.valueOf(data.get("UnSeenCount")), Toast.LENGTH_SHORT).show();
+                                    Gson gson = new Gson();
+                                    Type type = new TypeToken<List<Retailer_Notification_Model>>() {
+                                    }.getType();
+
+                                    notification = Integer.parseInt(String.valueOf(data.get("UnSeenCount")));
+                                    NotificationList = gson.fromJson(String.valueOf(data.getJSONArray("data")), type);
+                                    int i = 0;
+                                    for (i = 0; i < NotificationList.size(); i++) {
+                                        if (NotificationList.get(i).getSeen().equals("0"))
+                                            break;
+                                    }
+
+                                    if (notification != 0) {
+                                        notification_icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_notifications_black_24dp));
+                                        if (UnReadNotifications != 0 && UnReadNotifications != notification) {
+                                            String CHANNEL_ID = getString(R.string.default_notification_channel_id);
+                                            createNotificationChannel();
+
+
+                                            Intent intent = new Intent(RetailorDashboard.this, RetailerLogin.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                            PendingIntent pendingIntent = PendingIntent.getActivity(RetailorDashboard.this, 0 /* Request code */, intent,
+                                                    PendingIntent.FLAG_ONE_SHOT);
+
+                                            String channelId = getString(R.string.default_notification_channel_id);
+                                            Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                                            NotificationCompat.Builder notificationBuilder =
+                                                    new NotificationCompat.Builder(RetailorDashboard.this, channelId)
+                                                            .setSmallIcon(R.mipmap.ic_launcher_round)
+                                                            .setContentTitle(NotificationList.get(i).getSubject())
+                                                            .setContentText(NotificationList.get(i).getAlertMessage())
+                                                            .setAutoCancel(true)
+                                                            .setSound(defaultSoundUri)
+                                                            .setStyle(new NotificationCompat.BigTextStyle()
+                                                                    .bigText(NotificationList.get(i).getAlertMessage()))
+                                                            .setContentIntent(pendingIntent);
+
+                                            NotificationManager notificationManager =
+                                                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+                                            // Since android Oreo notification channel is needed.
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                NotificationChannel channel = new NotificationChannel(channelId,
+                                                        "Channel human readable title",
+                                                        NotificationManager.IMPORTANCE_DEFAULT);
+                                                notificationManager.createNotificationChannel(channel);
+                                            }
+
+                                            notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+
+
+                                            Log.i("Notification_found", "new notification");
+                                        }
+                                        UnReadNotifications = notification;
+                                    } else {
+                                        notification_icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_no_notifications_black_24dp));
+                                    }
+                                } catch (
+                                        JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                    }
+                });
+
+            }
+
+
+        }
+
+    }
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Notification_Haball_Retailer";
+            String description = "Notification_Haball_Retailer";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            String CHANNEL_ID = getString(R.string.default_notification_channel_id);
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
 //
 //    private class MyAsyncTaskForMenu extends AsyncTask<Void, Void, Void> {
 //        @Override

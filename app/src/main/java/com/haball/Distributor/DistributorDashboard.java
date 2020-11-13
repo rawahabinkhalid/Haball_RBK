@@ -136,7 +136,7 @@ public class DistributorDashboard extends AppCompatActivity {
             }
         });
 
-//        getNotificationCount();
+        getNotificationCount();
 
         tv_username.setText("Hi, " + Name);
         tv_user_company.setText(companyname);
@@ -163,7 +163,7 @@ public class DistributorDashboard extends AppCompatActivity {
 //        drawer.setScrimColor(Color.parseColor("#33000000"));
         drawer.setScrimColor(getResources().getColor(android.R.color.transparent));
 
-//        new MyAsyncTask().execute();
+        new MyAsyncTask().execute();
 
         boolean Support = false;
         boolean Retailer_Management_Retailers = false;
@@ -619,63 +619,63 @@ public class DistributorDashboard extends AppCompatActivity {
         navigationExpandableListView.expandGroup(1);
 
     }
-//
-//    private void getNotificationCount() {
-//        if (!URL_Notification.contains("/" + ID))
-//            URL_Notification = URL_Notification + ID;
-//        Log.i("URL_NOTIFICATION", URL_Notification);
-//
-//        JsonObjectRequest sr = new JsonObjectRequest(Request.Method.GET, URL_Notification, null, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject result) {
-//                try {
-//
-//                    int count = Integer.parseInt(String.valueOf(result.get("count")));
-//                    Log.i("DistributorDashboard", String.valueOf(count));
-//                    if (count == 0) {
-//                        notification_icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_no_notifications_black_24dp));
-//                    } else {
-//                        notification_icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_notifications_black_24dp));
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-////                printErrorMessage(error);
-//                error.printStackTrace();
-//                new HaballError().printErrorMessage(DistributorDashboard.this, error);
-//                new ProcessingError().showError(DistributorDashboard.this);
-//            }
-//        }) {
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                Map<String, String> params = new HashMap<String, String>();
-//                params.put("Authorization", "bearer " + Token);
-//                return params;
-//            }
-//        };
-//        sr.setRetryPolicy(new RetryPolicy() {
-//            @Override
-//            public int getCurrentTimeout() {
-//                return 50000;
-//            }
-//
-//            @Override
-//            public int getCurrentRetryCount() {
-//                return 1000;
-//            }
-//
-//            @Override
-//            public void retry(VolleyError error) throws VolleyError {
-//
-//            }
-//        });
-//        Volley.newRequestQueue(DistributorDashboard.this).add(sr);
-//    }
-//
+
+    private void getNotificationCount() {
+        if (!URL_Notification.contains("/" + ID))
+            URL_Notification = URL_Notification + ID;
+        Log.i("URL_NOTIFICATION", URL_Notification);
+
+        JsonObjectRequest sr = new JsonObjectRequest(Request.Method.GET, URL_Notification, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject result) {
+                try {
+
+                    int count = Integer.parseInt(String.valueOf(result.get("count")));
+                    Log.i("DistributorDashboard", String.valueOf(count));
+                    if (count == 0) {
+                        notification_icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_no_notifications_black_24dp));
+                    } else {
+                        notification_icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_notifications_black_24dp));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+//                printErrorMessage(error);
+                error.printStackTrace();
+                new HaballError().printErrorMessage(DistributorDashboard.this, error);
+                new ProcessingError().showError(DistributorDashboard.this);
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Authorization", "bearer " + Token);
+                return params;
+            }
+        };
+        sr.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 1000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
+        Volley.newRequestQueue(DistributorDashboard.this).add(sr);
+    }
+
 //    private void logoutUser() {
 //
 //        final AlertDialog alertDialog = new AlertDialog.Builder(DistributorDashboard.this).create();
@@ -720,24 +720,24 @@ public class DistributorDashboard extends AppCompatActivity {
 //        alertDialog.show();
 //    }
 
-//
-//    public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
-//        @Override
-//        protected Void doInBackground(Void... params) {
-//            try {
-//                Thread.sleep(2500);
-//                getNotificationCount();
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            return null;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Void result) {
-//            new MyAsyncTask().execute();
-//        }
-//    }
+
+    public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                Thread.sleep(2500);
+                getNotificationCount();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            new MyAsyncTask().execute();
+        }
+    }
 
 //    @Override
 //    public void onBackPressed() {
