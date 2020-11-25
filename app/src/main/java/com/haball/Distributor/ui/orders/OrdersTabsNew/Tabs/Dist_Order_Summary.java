@@ -1028,53 +1028,53 @@ public class Dist_Order_Summary extends Fragment {
 //        fragmentTransaction.add(R.id.main_container, new Distributor());
 //        fragmentTransaction.commit();
     }
-
-    private class MyAsyncTask extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... params) {
-            while (getContext() != null) {
-//                Log.i("async", "in async");
-                SharedPreferences selectedProducts = getContext().getSharedPreferences("selectedProducts_distributor",
-                        Context.MODE_PRIVATE);
-                object_string = selectedProducts.getString("selected_products", "");
-                Gson gson = new Gson();
-                Type type = new TypeToken<List<OrderChildlist_Model_DistOrder>>() {
-                }.getType();
-                temp_list = gson.fromJson(object_string, type);
-                object_stringqty = selectedProducts.getString("selected_products_qty", "");
-//                Log.i("qty_async", object_stringqty);
-                Type typestr = new TypeToken<List<String>>() {
-                }.getType();
-                temp_listqty = gson.fromJson(object_stringqty, typestr);
-                if (!object_stringqty.equals("")) {
-                    if (selectedProductsQuantityList != null) {
-                        if (temp_listqty != selectedProductsQuantityList) {
-                            selectedProductsQuantityList = temp_listqty;
-                            break;
-                        }
-                    }
-//                    break;
-                }
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            if (getContext() != null) {
-//                Log.i("async", "in async else");
-                qtyChanged();
-                new MyAsyncTask().execute();
-            }
-//            mAdapter1 = new OrdersItemsAdapter(getContext(), ProductsDataList);
-//            itemsSelect_Rv.setAdapter(mAdapter1);
-
-//            ParentListAdapter adapter = new ParentListAdapter(getActivity(), initData());
-//            adapter.setParentClickableViewAnimationDefaultDuration();
-//            adapter.setParentAndIconExpandOnClick(true);
-//            recyclerView.setAdapter(adapter);
-        }
-    }
+//
+//    private class MyAsyncTask extends AsyncTask<Void, Void, Void> {
+//        @Override
+//        protected Void doInBackground(Void... params) {
+//            while (getContext() != null) {
+////                Log.i("async", "in async");
+//                SharedPreferences selectedProducts = getContext().getSharedPreferences("selectedProducts_distributor",
+//                        Context.MODE_PRIVATE);
+//                object_string = selectedProducts.getString("selected_products", "");
+//                Gson gson = new Gson();
+//                Type type = new TypeToken<List<OrderChildlist_Model_DistOrder>>() {
+//                }.getType();
+//                temp_list = gson.fromJson(object_string, type);
+//                object_stringqty = selectedProducts.getString("selected_products_qty", "");
+////                Log.i("qty_async", object_stringqty);
+//                Type typestr = new TypeToken<List<String>>() {
+//                }.getType();
+//                temp_listqty = gson.fromJson(object_stringqty, typestr);
+//                if (!object_stringqty.equals("")) {
+//                    if (selectedProductsQuantityList != null) {
+//                        if (temp_listqty != selectedProductsQuantityList) {
+//                            selectedProductsQuantityList = temp_listqty;
+//                            break;
+//                        }
+//                    }
+////                    break;
+//                }
+//            }
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void result) {
+//            if (getContext() != null) {
+////                Log.i("async", "in async else");
+//                qtyChanged();
+//                new MyAsyncTask().execute();
+//            }
+////            mAdapter1 = new OrdersItemsAdapter(getContext(), ProductsDataList);
+////            itemsSelect_Rv.setAdapter(mAdapter1);
+//
+////            ParentListAdapter adapter = new ParentListAdapter(getActivity(), initData());
+////            adapter.setParentClickableViewAnimationDefaultDuration();
+////            adapter.setParentAndIconExpandOnClick(true);
+////            recyclerView.setAdapter(adapter);
+//        }
+//    }
 
     private void qtyChanged() {
         SharedPreferences selectedProducts = getContext().getSharedPreferences("selectedProducts_distributor",

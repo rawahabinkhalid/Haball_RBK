@@ -30,6 +30,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -123,6 +124,16 @@ public class Retailer_Order_Summary extends Fragment {
 //        SharedPreferences.Editor editorDraft = selectedDraft.edit();
 //        editorDraft.putString("fromDraft", "");
 //        editorDraft.apply();
+        final NonSwipeableViewPager viewPager = getActivity().findViewById(R.id.view_pager_rpoid);
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
+        {
+            @Override
+            public void onGlobalLayout()
+            {
+                viewPager.setCurrentItem(1, false);
+            }
+        });
+        viewPager.setCurrentItem(1);
 
         btn_add_product = view.findViewById(R.id.btn_add_product);
 

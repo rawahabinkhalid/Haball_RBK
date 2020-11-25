@@ -256,6 +256,16 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
             holder.product_code.append(ss1);
         }
 
+        if (selectedProductsDataList.get(position).getUOMTitle() != null && !selectedProductsDataList.get(position).getUOMTitle().equals("null")) {
+            holder.product_code.append("\u00A0| ");
+
+            holder.product_code.append("UOM:\u00A0");
+            String temp_uom = selectedProductsDataList.get(position).getUOMTitle().replaceAll(" ", "\u00A0");
+            ss1 = new SpannableString(temp_uom);
+            ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+            holder.product_code.append(ss1);
+        }
+
         if (selectedProductsDataList.get(position).getPackSize() != null && !selectedProductsDataList.get(position).getPackSize().equals("null")) {
             holder.product_code.append("\u00A0| ");
 

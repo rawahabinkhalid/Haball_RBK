@@ -278,7 +278,7 @@ public class PlaceholderFragment extends Fragment {
 
 //        SectionsPagerAdapter sectionsPagerAdapter = null;
 //                if (InvoiceStatus.equals("Invoiced") || InvoiceStatus.equals("Paid") || InvoiceStatus.equals("Pending") || InvoiceStatus.equals("Cancelled") || ReferenceNumber.equals("null")) {
-
+//                Toast.makeText(getContext(), InvoiceStatus, Toast.LENGTH_LONG).show();
                 rootView = inflater.inflate(R.layout.fragment_retailer_payment_tab, container, false);
                 layout_txt_companName = rootView.findViewById(R.id.layout_txt_companName);
                 layout_txt_paymentID = rootView.findViewById(R.id.layout_txt_paymentID);
@@ -305,7 +305,14 @@ public class PlaceholderFragment extends Fragment {
                 txt_amount = rootView.findViewById(R.id.txt_amount);
                 txt_transaction_charges = rootView.findViewById(R.id.txt_transaction_charges);
                 txt_total_amount = rootView.findViewById(R.id.txt_total_amount);
-
+                if (InvoiceStatus.equals("Pending") || InvoiceStatus.equals("Cancelled")) {
+                    layout_transaction_date.setVisibility(View.GONE);
+                    layout_txt_bank.setVisibility(View.GONE);
+                    layout_txt_authorization_id.setVisibility(View.GONE);
+                    layout_txt_settlement_id.setVisibility(View.GONE);
+                    layout_txt_transaction_charges.setVisibility(View.GONE);
+                    layout_txt_total_amount.setVisibility(View.GONE);
+                }
 
                 new TextField().changeColor(getContext(), layout_txt_companName, txt_companyName);
                 new TextField().changeColor(getContext(), layout_txt_paymentID, txt_paymentID);
@@ -952,12 +959,30 @@ public class PlaceholderFragment extends Fragment {
             layout.setVisibility(View.VISIBLE);
             editText.setText(value);
         }
+
+        if (InvoiceStatus.equals("Pending") || InvoiceStatus.equals("Cancelled")) {
+            layout_transaction_date.setVisibility(View.GONE);
+            layout_txt_bank.setVisibility(View.GONE);
+            layout_txt_authorization_id.setVisibility(View.GONE);
+            layout_txt_settlement_id.setVisibility(View.GONE);
+            layout_txt_transaction_charges.setVisibility(View.GONE);
+            layout_txt_total_amount.setVisibility(View.GONE);
+        }
     }
 
     private void setTextAndShowDate(TextInputLayout layout, TextInputEditText editText, String value) {
         if (!value.equals("null")) {
             layout.setVisibility(View.VISIBLE);
             editText.setText(value.split("T")[0]);
+        }
+
+        if (InvoiceStatus.equals("Pending") || InvoiceStatus.equals("Cancelled")) {
+            layout_transaction_date.setVisibility(View.GONE);
+            layout_txt_bank.setVisibility(View.GONE);
+            layout_txt_authorization_id.setVisibility(View.GONE);
+            layout_txt_settlement_id.setVisibility(View.GONE);
+            layout_txt_transaction_charges.setVisibility(View.GONE);
+            layout_txt_total_amount.setVisibility(View.GONE);
         }
     }
 

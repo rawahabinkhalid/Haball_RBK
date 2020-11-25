@@ -291,8 +291,8 @@ public class PlaceholderFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = (Objects.requireNonNull(getActivity())).getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.add(R.id.main_container_ret, new Retailer_OrderPlace_retailer_dashboarad());
-                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.add(R.id.main_container_ret, new Retailer_OrderPlace_retailer_dashboarad()).addToBackStack("tag");
+//                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
             }

@@ -163,7 +163,7 @@ public class DistributorDashboard extends AppCompatActivity {
 //        drawer.setScrimColor(Color.parseColor("#33000000"));
         drawer.setScrimColor(getResources().getColor(android.R.color.transparent));
 
-        new MyAsyncTask().execute();
+//        new MyAsyncTask().execute();
 
         boolean Support = false;
         boolean Retailer_Management_Retailers = false;
@@ -720,24 +720,24 @@ public class DistributorDashboard extends AppCompatActivity {
 //        alertDialog.show();
 //    }
 
-
-    public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                Thread.sleep(2500);
-                getNotificationCount();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            new MyAsyncTask().execute();
-        }
-    }
+//
+//    public class MyAsyncTask extends AsyncTask<Void, Void, Void> {
+//        @Override
+//        protected Void doInBackground(Void... params) {
+//            try {
+//                Thread.sleep(2500);
+//                getNotificationCount();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void result) {
+//            new MyAsyncTask().execute();
+//        }
+//    }
 
 //    @Override
 //    public void onBackPressed() {

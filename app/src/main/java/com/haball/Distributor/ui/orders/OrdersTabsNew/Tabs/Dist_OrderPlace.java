@@ -999,8 +999,10 @@ public class Dist_OrderPlace extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(JSONArray result) {
+                loader.showLoader();
                 Log.i("result", String.valueOf(result));
                 for (int i = 0; i < result.length(); i++) {
+                    loader.showLoader();
                     Gson gson = new Gson();
                     Type type = new TypeToken<List<OrderParentlist_Model_DistOrder>>() {
                     }.getType();
@@ -1019,6 +1021,7 @@ public class Dist_OrderPlace extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+//                    loader.hideLoader();
 
                 }
 //                arrayAdapterSpinnerConso.notifyDataSetChanged();
@@ -1030,10 +1033,12 @@ public class Dist_OrderPlace extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+//                loader.hideLoader();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                loader.hideLoader();
                 new HaballError().printErrorMessage(getContext(), error);
                 new ProcessingError().showError(getContext());
 
@@ -1164,6 +1169,7 @@ public class Dist_OrderPlace extends Fragment {
     }
 
     private void getProductsFromCategory() throws JSONException {
+        loader.showLoader();
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
@@ -1188,7 +1194,7 @@ public class Dist_OrderPlace extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(JSONArray result) {
-                loader.hideLoader();
+                loader.showLoader();
                 Log.i("resultLength", String.valueOf(result.length()));
                 Log.i("result", String.valueOf(result));
 
@@ -1225,6 +1231,7 @@ public class Dist_OrderPlace extends Fragment {
 //                    adapter.setParentAndIconExpandOnClick(false);
 //                    recyclerView.addItemDecoration(new MyDividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL, 30));
                 recyclerView.setAdapter(adapter);
+//                loader.hideLoader();
 
                 if (spinner_container_main.getVisibility() == View.GONE) {
 
@@ -1239,6 +1246,7 @@ public class Dist_OrderPlace extends Fragment {
                     spinner_container_main.clearAnimation();
                     spinner_container_main.startAnimation(animate1);
                 }
+                loader.hideLoader();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -1301,6 +1309,7 @@ public class Dist_OrderPlace extends Fragment {
                 Log.i("resultLength", String.valueOf(result.length()));
                 Log.i("result", String.valueOf(result));
                 for (int i = 0; i < result.length(); i++) {
+                    loader.showLoader();
                     Gson gson = new Gson();
                     Type type = new TypeToken<List<OrderChildlist_Model_DistOrder>>() {
                     }.getType();
@@ -1313,6 +1322,7 @@ public class Dist_OrderPlace extends Fragment {
                             productList.add(tempModel);
 //                        boolean found = false;
                             for (int j = 0; j < temp_titles.size(); j++) {
+//                                loader.showLoader();
                                 if (temp_titles.get(j).getID().equals(tempModel.getCategoryId())) {
 //                                Categories.put(tempModel.getTitle(), tempModel.getID());
 //                                totalCategoryTitle.add(tempModel.getTitle());
@@ -1320,6 +1330,7 @@ public class Dist_OrderPlace extends Fragment {
                                         titles.add(temp_titles.get(j));
 //                                found = true;
                                 }
+//                                loader.hideLoader();
                             }
 
 //                        if (!found) {
@@ -1335,6 +1346,7 @@ public class Dist_OrderPlace extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                    loader.hideLoader();
                 }
                 Log.i("productList", String.valueOf(productList));
 //                Log.i("titles123", String.valueOf(titles));

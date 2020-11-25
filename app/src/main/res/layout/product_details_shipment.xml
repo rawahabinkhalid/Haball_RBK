@@ -42,131 +42,131 @@
         android:textColor="@color/rv_box_color"
         android:textSize="@dimen/rv_box_text_size" />
 
-    <TextView
-        android:id="@+id/list_product_code_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ll_products"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="15dp"
-        android:layout_toRightOf="@+id/product_code"
-        android:fontFamily="@font/open_sans_semibold"
-        android:text=""
-        android:textColor="@color/rv_box_color"
-        android:textSize="@dimen/rv_box_text_size" />
+<!--    <TextView-->
+<!--        android:id="@+id/list_product_code_value"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/ll_products"-->
+<!--        android:layout_marginLeft="5dp"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:layout_toRightOf="@+id/product_code"-->
+<!--        android:fontFamily="@font/open_sans_semibold"-->
+<!--        android:text=""-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_box_text_size" />-->
 
-    <TextView
-        android:id="@+id/prod_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/product_code"
-        android:layout_marginBottom="5dp"
-        android:fontFamily="@font/open_sans"
-        android:text="Prod Date: "
-        android:textColor="@color/rv_box_color"
-        android:textSize="@dimen/rv_box_text_size" />
+<!--    <TextView-->
+<!--        android:id="@+id/prod_date"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/product_code"-->
+<!--        android:layout_marginBottom="5dp"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:text="Prod Date: "-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_box_text_size" />-->
 
-    <TextView
-        android:id="@+id/list_prod_date_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/product_code"
-        android:layout_toRightOf="@id/prod_date"
-        android:fontFamily="@font/open_sans_semibold"
-        android:text=""
-        android:textColor="@color/rv_box_color"
-        android:textSize="@dimen/rv_box_text_size" />
+<!--    <TextView-->
+<!--        android:id="@+id/list_prod_date_value"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/product_code"-->
+<!--        android:layout_toRightOf="@id/prod_date"-->
+<!--        android:fontFamily="@font/open_sans_semibold"-->
+<!--        android:text=""-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_box_text_size" />-->
 
-    <TextView
-        android:id="@+id/separator_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/product_code"
-        android:layout_toRightOf="@id/list_prod_date_value"
-        android:fontFamily="@font/open_sans"
-        android:text="   |   "
-        android:textColor="@color/rv_box_color"
-        android:textSize="@dimen/rv_box_text_size" />
+<!--    <TextView-->
+<!--        android:id="@+id/separator_1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/product_code"-->
+<!--        android:layout_toRightOf="@id/list_prod_date_value"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:text="   |   "-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_box_text_size" />-->
 
-    <TextView
-        android:id="@+id/exp_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/prod_date"
-        android:fontFamily="@font/open_sans"
-        android:text="Exp Date: "
-        android:textColor="@color/rv_box_color"
-        android:textSize="@dimen/rv_box_text_size" />
+<!--    <TextView-->
+<!--        android:id="@+id/exp_date"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/prod_date"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:text="Exp Date: "-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_box_text_size" />-->
 
-    <TextView
-        android:id="@+id/list_exp_date_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/prod_date"
-        android:layout_toRightOf="@id/exp_date"
-        android:fontFamily="@font/open_sans_semibold"
-        android:text=""
-        android:textColor="@color/rv_box_color"
-        android:textSize="@dimen/rv_box_text_size" />
+<!--    <TextView-->
+<!--        android:id="@+id/list_exp_date_value"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/prod_date"-->
+<!--        android:layout_toRightOf="@id/exp_date"-->
+<!--        android:fontFamily="@font/open_sans_semibold"-->
+<!--        android:text=""-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_box_text_size" />-->
 
-    <TextView
-        android:id="@+id/batch_no"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/product_code"
-        android:layout_toRightOf="@id/separator_1"
-        android:fontFamily="@font/open_sans"
-        android:text="Batch No: "
-        android:textColor="@color/rv_box_color"
-        android:textSize="@dimen/rv_box_text_size" />
+<!--    <TextView-->
+<!--        android:id="@+id/batch_no"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/product_code"-->
+<!--        android:layout_toRightOf="@id/separator_1"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:text="Batch No: "-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_box_text_size" />-->
 
-    <TextView
-        android:id="@+id/list_batch_no_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/product_code"
-        android:layout_toRightOf="@id/batch_no"
-        android:fontFamily="@font/open_sans_semibold"
-        android:text=""
-        android:textColor="@color/rv_box_color"
-        android:textSize="@dimen/rv_box_text_size" />
+<!--    <TextView-->
+<!--        android:id="@+id/list_batch_no_value"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/product_code"-->
+<!--        android:layout_toRightOf="@id/batch_no"-->
+<!--        android:fontFamily="@font/open_sans_semibold"-->
+<!--        android:text=""-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_box_text_size" />-->
 
-    <TextView
-        android:id="@+id/separator_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/prod_date"
-        android:layout_toRightOf="@id/list_exp_date_value"
-        android:fontFamily="@font/open_sans"
-        android:text="   |   "
-        android:textColor="@color/rv_box_color"
-        android:textSize="@dimen/rv_box_text_size" />
+<!--    <TextView-->
+<!--        android:id="@+id/separator_2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/prod_date"-->
+<!--        android:layout_toRightOf="@id/list_exp_date_value"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:text="   |   "-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_box_text_size" />-->
 
-    <TextView
-        android:id="@+id/shipped_qty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/prod_date"
-        android:layout_toRightOf="@+id/separator_2"
-        android:fontFamily="@font/open_sans"
-        android:gravity="center"
-        android:stateListAnimator="@null"
-        android:text="Shipped Qty: "
-        android:textColor="@color/rv_box_color"
-        android:textSize="@dimen/rv_box_text_size" />
+<!--    <TextView-->
+<!--        android:id="@+id/shipped_qty"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/prod_date"-->
+<!--        android:layout_toRightOf="@+id/separator_2"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:gravity="center"-->
+<!--        android:stateListAnimator="@null"-->
+<!--        android:text="Shipped Qty: "-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_box_text_size" />-->
 
-    <TextView
-        android:id="@+id/shipped_qty_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/prod_date"
-        android:layout_toRightOf="@id/shipped_qty"
-        android:fontFamily="@font/open_sans_semibold"
-        android:gravity="center"
-        android:stateListAnimator="@null"
-        android:text=""
-        android:textColor="@color/rv_box_color"
-        android:textSize="@dimen/rv_box_text_size" />
+<!--    <TextView-->
+<!--        android:id="@+id/shipped_qty_value"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/prod_date"-->
+<!--        android:layout_toRightOf="@id/shipped_qty"-->
+<!--        android:fontFamily="@font/open_sans_semibold"-->
+<!--        android:gravity="center"-->
+<!--        android:stateListAnimator="@null"-->
+<!--        android:text=""-->
+<!--        android:textColor="@color/rv_box_color"-->
+<!--        android:textSize="@dimen/rv_box_text_size" />-->
     <!--    <TextView-->
     <!--        android:id="@+id/pack_size"-->
     <!--        android:layout_width="wrap_content"-->

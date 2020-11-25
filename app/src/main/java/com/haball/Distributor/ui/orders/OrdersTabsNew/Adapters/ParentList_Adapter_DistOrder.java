@@ -199,6 +199,16 @@ public class ParentList_Adapter_DistOrder extends ExpandableRecyclerAdapter<Orde
             OrderChildList_VH_DistOrder.product_code.append(ss1);
         }
 
+        if (OrderChildlist_Model_DistOrder.getUOMTitle() != null && !OrderChildlist_Model_DistOrder.getUOMTitle().equals("null")) {
+            OrderChildList_VH_DistOrder.product_code.append("\u00A0| ");
+
+            OrderChildList_VH_DistOrder.product_code.append("UOM:\u00A0");
+            String temp_uom = OrderChildlist_Model_DistOrder.getUOMTitle().replaceAll(" ", "\u00A0");
+            ss1 = new SpannableString(temp_uom);
+            ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
+            OrderChildList_VH_DistOrder.product_code.append(ss1);
+        }
+
         if (OrderChildlist_Model_DistOrder.getPackSize() != null && !OrderChildlist_Model_DistOrder.getPackSize().equals("null")) {
             OrderChildList_VH_DistOrder.product_code.append("\u00A0| ");
 
