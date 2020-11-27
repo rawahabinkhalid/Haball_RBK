@@ -131,6 +131,13 @@ public class RetailorDashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retailor_dashboard);
 
+        SharedPreferences sharedPreferences = this.getSharedPreferences("LoginToken",
+                Context.MODE_PRIVATE);
+        username = sharedPreferences.getString("Name", "");
+        companyname = sharedPreferences.getString("CompanyName", "");
+        Token = sharedPreferences.getString("Login_Token", "");
+        UserId = sharedPreferences.getString("UserId", "");
+
         new SSL_HandShake().handleSSLHandshake();
 
         IO.Options opts = new IO.Options();
@@ -140,42 +147,129 @@ public class RetailorDashboard extends AppCompatActivity {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+
+        iSocket.on("userId" + UserId, new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        JSONObject data = (JSONObject) args[0];
+//                                Log.i("notificationTest", "String.valueOf(args)");
+//                                Log.i("Notification_found", String.valueOf(data));
+                        try {
+//                                    Log.i("notificationTest", String.valueOf(data.get("UnSeenCount")));
+//                                    Toast.makeText(RetailorDashboard.this, String.valueOf(data.get("UnSeenCount")), Toast.LENGTH_SHORT).show();
+                            Gson gson = new Gson();
+                            Type type = new TypeToken<List<Retailer_Notification_Model>>() {
+                            }.getType();
+
+                            notification = Integer.parseInt(String.valueOf(data.get("UnSeenCount")));
+                            NotificationList = gson.fromJson(String.valueOf(data.getJSONArray("data")), type);
+                            int i = 0;
+                            for (i = 0; i < NotificationList.size(); i++) {
+                                if (NotificationList.get(i).getSeen().equals("0"))
+                                    break;
+                            }
+
+                            if (notification != 0) {
+                                notification_icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_notifications_black_24dp));
+                                if (UnReadNotifications != 0 && UnReadNotifications != notification) {
+                                    String CHANNEL_ID = getString(R.string.default_notification_channel_id);
+                                    createNotificationChannel();
+
+
+                                    Intent intent = new Intent(RetailorDashboard.this, RetailerLogin.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    PendingIntent pendingIntent = PendingIntent.getActivity(RetailorDashboard.this, 0 /* Request code */, intent,
+                                            PendingIntent.FLAG_ONE_SHOT);
+
+                                    String channelId = getString(R.string.default_notification_channel_id);
+                                    Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                                    NotificationCompat.Builder notificationBuilder =
+                                            new NotificationCompat.Builder(RetailorDashboard.this, channelId)
+                                                    .setSmallIcon(R.mipmap.ic_launcher_round)
+                                                    .setContentTitle(NotificationList.get(i).getSubject())
+                                                    .setContentText(NotificationList.get(i).getAlertMessage())
+                                                    .setAutoCancel(true)
+                                                    .setSound(defaultSoundUri)
+                                                    .setStyle(new NotificationCompat.BigTextStyle()
+                                                            .bigText(NotificationList.get(i).getAlertMessage()))
+                                                    .setContentIntent(pendingIntent);
+
+                                    NotificationManager notificationManager =
+                                            (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+                                    // Since android Oreo notification channel is needed.
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                        NotificationChannel channel = new NotificationChannel(channelId,
+                                                "Channel human readable title",
+                                                NotificationManager.IMPORTANCE_DEFAULT);
+                                        notificationManager.createNotificationChannel(channel);
+                                    }
+
+                                    notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+
+
+                                    Log.i("Notification_found", "new notification");
+                                }
+                                UnReadNotifications = notification;
+                            } else {
+                                notification_icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_no_notifications_black_24dp));
+                            }
+                        } catch (
+                                JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
+
+
         iSocket.connect();
 
-        new MyAsyncTask().execute();
+//        new MyAsyncTask().execute();
 
 //        getNotificationCount();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
-        drawer = findViewById(R.id.drawer_layout_retailor);
+
+        drawer =
+
+                findViewById(R.id.drawer_layout_retailor);
+
         notification_icon = (ImageView) toolbar.findViewById(R.id.notification_icon_retailer);
         tv_username = toolbar.findViewById(R.id.tv_username);
         tv_user_company = toolbar.findViewById(R.id.tv_user_company);
 
 
-        drawer = findViewById(R.id.drawer_layout_retailor);
+        drawer =
+
+                findViewById(R.id.drawer_layout_retailor);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
 //        drawer.setScrimColor(Color.parseColor("#33000000"));
-        drawer.setScrimColor(getResources().getColor(android.R.color.transparent));
+        drawer.setScrimColor(
+
+                getResources().
+
+                        getColor(android.R.color.transparent));
 
         toggle.syncState();
         toggle.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
 
         drawer.setDrawerListener(toggle);
-        SharedPreferences sharedPreferences = this.getSharedPreferences("LoginToken",
-                Context.MODE_PRIVATE);
-        username = sharedPreferences.getString("Name", "");
-        companyname = sharedPreferences.getString("CompanyName", "");
-        Token = sharedPreferences.getString("Login_Token", "");
-        UserId = sharedPreferences.getString("UserId", "");
+
         try {
             userRights = new JSONArray(sharedPreferences.getString("UserRights", ""));
             Log.i("userRights", String.valueOf(userRights));
-        } catch (JSONException e) {
+        } catch (
+                JSONException e) {
             e.printStackTrace();
         }
 
@@ -204,7 +298,8 @@ public class RetailorDashboard extends AppCompatActivity {
 //        Payment_View = true;
 //
 
-        for (int i = 0; i < userRights.length(); i++) {
+        for (
+                int i = 0; i < userRights.length(); i++) {
             try {
                 JSONObject userRightsData = new JSONObject(String.valueOf(userRights.get(i)));
                 if (userRightsData.get("Title").equals("Distributor Preferences")) {
@@ -306,8 +401,13 @@ public class RetailorDashboard extends AppCompatActivity {
         tv_username.setText("Hi, " + username);
         tv_user_company.setText(companyname);
 
-        navigationExpandableListView = findViewById(R.id.expandable_navigation);
-        footer_item_1 = findViewById(R.id.footer_item_1);
+        navigationExpandableListView =
+
+                findViewById(R.id.expandable_navigation);
+
+        footer_item_1 =
+
+                findViewById(R.id.footer_item_1);
         footer_item_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -321,64 +421,80 @@ public class RetailorDashboard extends AppCompatActivity {
         });
         navigationExpandableListView.init(this);
         if (Payment_View || Order_View)
-            navigationExpandableListView.addHeaderModel(new HeaderModel("Dashboard"));
+            navigationExpandableListView.addHeaderModel(new
+
+                    HeaderModel("Dashboard"));
         if (Kyc_add_update)
-            navigationExpandableListView.addHeaderModel(new HeaderModel("My Network"));
+            navigationExpandableListView.addHeaderModel(new
+
+                    HeaderModel("My Network"));
         if (Order_Add_Update)
-            navigationExpandableListView.addHeaderModel(new HeaderModel("Place Order"));
+            navigationExpandableListView.addHeaderModel(new
+
+                    HeaderModel("Place Order"));
         if (Payment_Add_Update)
-            navigationExpandableListView.addHeaderModel(new HeaderModel("Make Payment"));
+            navigationExpandableListView.addHeaderModel(new
+
+                    HeaderModel("Make Payment"));
         if (Retailer_Profile)
-            navigationExpandableListView.addHeaderModel(new HeaderModel("Profile"));
-        navigationExpandableListView.addHeaderModel(new HeaderModel("Support"));
-        navigationExpandableListView.addHeaderModel(new HeaderModel("Logout"));
+            navigationExpandableListView.addHeaderModel(new
+
+                    HeaderModel("Profile"));
+        navigationExpandableListView.addHeaderModel(new
+
+                HeaderModel("Support"));
+        navigationExpandableListView.addHeaderModel(new
+
+                HeaderModel("Logout"));
 //                .addHeaderModel(new HeaderModel("\n\n\n\nTerms And Conditions"))
         navigationExpandableListView.build()
-                .addOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-                    @Override
-                    public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                        navigationExpandableListView.setSelected(groupPosition);
-                        Log.i("groupPosition", String.valueOf(groupPosition));
+                .
+
+                        addOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+                            @Override
+                            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                                navigationExpandableListView.setSelected(groupPosition);
+                                Log.i("groupPosition", String.valueOf(groupPosition));
 
 
-                        SharedPreferences retailerInfo = getSharedPreferences("Menu_Retailer",
-                                Context.MODE_PRIVATE);
-                        SharedPreferences.Editor retailerInfo_editor = retailerInfo.edit();
-                        retailerInfo_editor.putString("groupPosition", String.valueOf(groupPosition));
-                        retailerInfo_editor.apply();
+                                SharedPreferences retailerInfo = getSharedPreferences("Menu_Retailer",
+                                        Context.MODE_PRIVATE);
+                                SharedPreferences.Editor retailerInfo_editor = retailerInfo.edit();
+                                retailerInfo_editor.putString("groupPosition", String.valueOf(groupPosition));
+                                retailerInfo_editor.apply();
 
 
-                        if (NavList.contains("Dashboard") && NavList.indexOf("Dashboard") == id) {
+                                if (NavList.contains("Dashboard") && NavList.indexOf("Dashboard") == id) {
 //                        if (id == 0) {
-                            Log.i("Dashboard", "Dashboard Activity");
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.add(R.id.main_container_ret, new Dashboard_Tabs());
-                            fragmentTransaction.commit();
+                                    Log.i("Dashboard", "Dashboard Activity");
+                                    fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                                    fragmentTransaction.add(R.id.main_container_ret, new Dashboard_Tabs());
+                                    fragmentTransaction.commit();
 
-                            drawer.closeDrawer(GravityCompat.START);
-                        } else if (NavList.contains("My Network") && NavList.indexOf("My Network") == id) {
+                                    drawer.closeDrawer(GravityCompat.START);
+                                } else if (NavList.contains("My Network") && NavList.indexOf("My Network") == id) {
 //                        } else if (id == 1) {
 
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                                    fragmentTransaction = getSupportFragmentManager().beginTransaction();
 //                            fragmentTransaction.add(R.id.main_container_ret, new My_NetworkDashboard());
-                            fragmentTransaction.add(R.id.main_container_ret, new My_Network_Fragment()).addToBackStack("tag");
-                            fragmentTransaction.commit();
-                            drawer.closeDrawer(GravityCompat.START);
-                            Log.i("My Network", "My Network Activity");
+                                    fragmentTransaction.add(R.id.main_container_ret, new My_Network_Fragment()).addToBackStack("tag");
+                                    fragmentTransaction.commit();
+                                    drawer.closeDrawer(GravityCompat.START);
+                                    Log.i("My Network", "My Network Activity");
 
-                            drawer.closeDrawer(GravityCompat.START);
-                        } else if (NavList.contains("Place Order") && NavList.indexOf("Place Order") == id) {
-                            SharedPreferences selectedProducts = getSharedPreferences("selectedProducts_retailer_own",
-                                    Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = selectedProducts.edit();
-                            editor.putString("selected_products", "");
-                            editor.putString("selected_products_qty", "");
-                            editor.apply();
-                            SharedPreferences selectedDraft = getSharedPreferences("FromDraft",
-                                    Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editorDraft = selectedDraft.edit();
-                            editorDraft.putString("fromDraft", "");
-                            editorDraft.apply();
+                                    drawer.closeDrawer(GravityCompat.START);
+                                } else if (NavList.contains("Place Order") && NavList.indexOf("Place Order") == id) {
+                                    SharedPreferences selectedProducts = getSharedPreferences("selectedProducts_retailer_own",
+                                            Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = selectedProducts.edit();
+                                    editor.putString("selected_products", "");
+                                    editor.putString("selected_products_qty", "");
+                                    editor.apply();
+                                    SharedPreferences selectedDraft = getSharedPreferences("FromDraft",
+                                            Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editorDraft = selectedDraft.edit();
+                                    editorDraft.putString("fromDraft", "");
+                                    editorDraft.apply();
 
 //                        } else if (id == 2) {
 //                            Log.i("Place Order", "Place Order Activity");
@@ -386,41 +502,41 @@ public class RetailorDashboard extends AppCompatActivity {
 //                            fragmentTransaction.add(R.id.main_container_ret, new PlaceOrderFragment());
 //                            fragmentTransaction.commit();
 //                            drawer.closeDrawer(GravityCompat.START);
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.replace(R.id.main_container_ret, new Retailer_Place_Order()).addToBackStack("tag");
-                            fragmentTransaction.commit();
-                            drawer.closeDrawer(GravityCompat.START);
+                                    fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                                    fragmentTransaction.replace(R.id.main_container_ret, new Retailer_Place_Order()).addToBackStack("tag");
+                                    fragmentTransaction.commit();
+                                    drawer.closeDrawer(GravityCompat.START);
 
-                        } else if (NavList.contains("Make Payment") && NavList.indexOf("Make Payment") == id) {
+                                } else if (NavList.contains("Make Payment") && NavList.indexOf("Make Payment") == id) {
 //                        } else if (id == 3) {
-                            Log.i("Make Payment", "Make Payment Activity");
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.add(R.id.main_container_ret, new CreatePaymentRequestFragment()).addToBackStack("tag1");
-                            fragmentTransaction.commit();
-                            drawer.closeDrawer(GravityCompat.START);
+                                    Log.i("Make Payment", "Make Payment Activity");
+                                    fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                                    fragmentTransaction.add(R.id.main_container_ret, new CreatePaymentRequestFragment()).addToBackStack("tag1");
+                                    fragmentTransaction.commit();
+                                    drawer.closeDrawer(GravityCompat.START);
 
-                        } else if (NavList.contains("Profile") && NavList.indexOf("Profile") == id) {
+                                } else if (NavList.contains("Profile") && NavList.indexOf("Profile") == id) {
 //                        } else if (id == 4) {
-                            Log.i("Profile", "Profile Activity");
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.add(R.id.main_container_ret, new Profile_Tabs()).addToBackStack("tag");
-                            fragmentTransaction.commit();
-                            drawer.closeDrawer(GravityCompat.START);
-                        } else if (NavList.contains("Support") && NavList.indexOf("Support") == id) {
+                                    Log.i("Profile", "Profile Activity");
+                                    fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                                    fragmentTransaction.add(R.id.main_container_ret, new Profile_Tabs()).addToBackStack("tag");
+                                    fragmentTransaction.commit();
+                                    drawer.closeDrawer(GravityCompat.START);
+                                } else if (NavList.contains("Support") && NavList.indexOf("Support") == id) {
 //                        } else if (id == 5) {
-                            Log.i("Support", "Support Activity");
-                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.add(R.id.main_container_ret, new SupportFragment()).addToBackStack("tag");
-                            fragmentTransaction.commit();
-                            drawer.closeDrawer(GravityCompat.START);
-                        } else if (NavList.contains("Logout") && NavList.indexOf("Logout") == id) {
-                            logoutUser();
-                            drawer.closeDrawer(GravityCompat.START);
-                        }
+                                    Log.i("Support", "Support Activity");
+                                    fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                                    fragmentTransaction.add(R.id.main_container_ret, new SupportFragment()).addToBackStack("tag");
+                                    fragmentTransaction.commit();
+                                    drawer.closeDrawer(GravityCompat.START);
+                                } else if (NavList.contains("Logout") && NavList.indexOf("Logout") == id) {
+                                    logoutUser();
+                                    drawer.closeDrawer(GravityCompat.START);
+                                }
 
-                        return false;
-                    }
-                });
+                                return false;
+                            }
+                        });
 
         navigationExpandableListView.setSelected(0);
 
@@ -557,6 +673,30 @@ public class RetailorDashboard extends AppCompatActivity {
 //        }
         super.onStop();
     }
+
+//
+//    private Emitter.Listener onNewMessage = new Emitter.Listener() {
+//        @Override
+//        public void call(final Object... args) {
+//            runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    JSONObject data = (JSONObject) args[0];
+//                    String username;
+//                    String message;
+//                    try {
+//                        username = data.getString("username");
+//                        message = data.getString("message");
+//                    } catch (JSONException e) {
+//                        return;
+//                    }
+//
+//                    // add the message to view
+//                    addMessage(username, message);
+//                }
+//            });
+//        }
+//    };
 //
 //    @Override
 //    protected void onDestroy() {
@@ -647,114 +787,114 @@ public class RetailorDashboard extends AppCompatActivity {
 //            }
         }
     }
-
-    private class MyAsyncTask extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                Thread.sleep(1000);
-                getNotificationCount();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            new MyAsyncTask().execute();
-        }
-
-
-        private void getNotificationCount() {
-//            iSocket.emit("userId", UserId);
-
-            if (iSocket.connected()) {
-                iSocket.emit("userId", UserId);
-                iSocket.on("userId" + UserId, new Emitter.Listener() {
-                    @Override
-                    public void call(final Object... args) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                JSONObject data = (JSONObject) args[0];
-//                                Log.i("notificationTest", "String.valueOf(args)");
-//                                Log.i("Notification_found", String.valueOf(data));
-                                try {
-//                                    Log.i("notificationTest", String.valueOf(data.get("UnSeenCount")));
-//                                    Toast.makeText(RetailorDashboard.this, String.valueOf(data.get("UnSeenCount")), Toast.LENGTH_SHORT).show();
-                                    Gson gson = new Gson();
-                                    Type type = new TypeToken<List<Retailer_Notification_Model>>() {
-                                    }.getType();
-
-                                    notification = Integer.parseInt(String.valueOf(data.get("UnSeenCount")));
-                                    NotificationList = gson.fromJson(String.valueOf(data.getJSONArray("data")), type);
-                                    int i = 0;
-                                    for (i = 0; i < NotificationList.size(); i++) {
-                                        if (NotificationList.get(i).getSeen().equals("0"))
-                                            break;
-                                    }
-
-                                    if (notification != 0) {
-                                        notification_icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_notifications_black_24dp));
-                                        if (UnReadNotifications != 0 && UnReadNotifications != notification) {
-                                            String CHANNEL_ID = getString(R.string.default_notification_channel_id);
-                                            createNotificationChannel();
-
-
-                                            Intent intent = new Intent(RetailorDashboard.this, RetailerLogin.class);
-                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                            PendingIntent pendingIntent = PendingIntent.getActivity(RetailorDashboard.this, 0 /* Request code */, intent,
-                                                    PendingIntent.FLAG_ONE_SHOT);
-
-                                            String channelId = getString(R.string.default_notification_channel_id);
-                                            Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                                            NotificationCompat.Builder notificationBuilder =
-                                                    new NotificationCompat.Builder(RetailorDashboard.this, channelId)
-                                                            .setSmallIcon(R.mipmap.ic_launcher_round)
-                                                            .setContentTitle(NotificationList.get(i).getSubject())
-                                                            .setContentText(NotificationList.get(i).getAlertMessage())
-                                                            .setAutoCancel(true)
-                                                            .setSound(defaultSoundUri)
-                                                            .setStyle(new NotificationCompat.BigTextStyle()
-                                                                    .bigText(NotificationList.get(i).getAlertMessage()))
-                                                            .setContentIntent(pendingIntent);
-
-                                            NotificationManager notificationManager =
-                                                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-                                            // Since android Oreo notification channel is needed.
-                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                NotificationChannel channel = new NotificationChannel(channelId,
-                                                        "Channel human readable title",
-                                                        NotificationManager.IMPORTANCE_DEFAULT);
-                                                notificationManager.createNotificationChannel(channel);
-                                            }
-
-                                            notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
-
-
-                                            Log.i("Notification_found", "new notification");
-                                        }
-                                        UnReadNotifications = notification;
-                                    } else {
-                                        notification_icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_no_notifications_black_24dp));
-                                    }
-                                } catch (
-                                        JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
-                    }
-                });
-
-            }
-
-
-        }
-
-    }
+//
+//    private class MyAsyncTask extends AsyncTask<Void, Void, Void> {
+//        @Override
+//        protected Void doInBackground(Void... params) {
+//            try {
+//                Thread.sleep(1000);
+//                getNotificationCount();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void result) {
+//            new MyAsyncTask().execute();
+//        }
+//
+//
+//        private void getNotificationCount() {
+////            iSocket.emit("userId", UserId);
+//
+//            if (iSocket.connected()) {
+//                iSocket.emit("userId", UserId);
+//                iSocket.on("userId" + UserId, new Emitter.Listener() {
+//                    @Override
+//                    public void call(final Object... args) {
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                JSONObject data = (JSONObject) args[0];
+////                                Log.i("notificationTest", "String.valueOf(args)");
+////                                Log.i("Notification_found", String.valueOf(data));
+//                                try {
+////                                    Log.i("notificationTest", String.valueOf(data.get("UnSeenCount")));
+////                                    Toast.makeText(RetailorDashboard.this, String.valueOf(data.get("UnSeenCount")), Toast.LENGTH_SHORT).show();
+//                                    Gson gson = new Gson();
+//                                    Type type = new TypeToken<List<Retailer_Notification_Model>>() {
+//                                    }.getType();
+//
+//                                    notification = Integer.parseInt(String.valueOf(data.get("UnSeenCount")));
+//                                    NotificationList = gson.fromJson(String.valueOf(data.getJSONArray("data")), type);
+//                                    int i = 0;
+//                                    for (i = 0; i < NotificationList.size(); i++) {
+//                                        if (NotificationList.get(i).getSeen().equals("0"))
+//                                            break;
+//                                    }
+//
+//                                    if (notification != 0) {
+//                                        notification_icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_notifications_black_24dp));
+//                                        if (UnReadNotifications != 0 && UnReadNotifications != notification) {
+//                                            String CHANNEL_ID = getString(R.string.default_notification_channel_id);
+//                                            createNotificationChannel();
+//
+//
+//                                            Intent intent = new Intent(RetailorDashboard.this, RetailerLogin.class);
+//                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                            PendingIntent pendingIntent = PendingIntent.getActivity(RetailorDashboard.this, 0 /* Request code */, intent,
+//                                                    PendingIntent.FLAG_ONE_SHOT);
+//
+//                                            String channelId = getString(R.string.default_notification_channel_id);
+//                                            Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//                                            NotificationCompat.Builder notificationBuilder =
+//                                                    new NotificationCompat.Builder(RetailorDashboard.this, channelId)
+//                                                            .setSmallIcon(R.mipmap.ic_launcher_round)
+//                                                            .setContentTitle(NotificationList.get(i).getSubject())
+//                                                            .setContentText(NotificationList.get(i).getAlertMessage())
+//                                                            .setAutoCancel(true)
+//                                                            .setSound(defaultSoundUri)
+//                                                            .setStyle(new NotificationCompat.BigTextStyle()
+//                                                                    .bigText(NotificationList.get(i).getAlertMessage()))
+//                                                            .setContentIntent(pendingIntent);
+//
+//                                            NotificationManager notificationManager =
+//                                                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//
+//                                            // Since android Oreo notification channel is needed.
+//                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                                                NotificationChannel channel = new NotificationChannel(channelId,
+//                                                        "Channel human readable title",
+//                                                        NotificationManager.IMPORTANCE_DEFAULT);
+//                                                notificationManager.createNotificationChannel(channel);
+//                                            }
+//
+//                                            notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+//
+//
+//                                            Log.i("Notification_found", "new notification");
+//                                        }
+//                                        UnReadNotifications = notification;
+//                                    } else {
+//                                        notification_icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_no_notifications_black_24dp));
+//                                    }
+//                                } catch (
+//                                        JSONException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        });
+//                    }
+//                });
+//
+//            }
+//
+//
+//        }
+//
+//    }
 
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because

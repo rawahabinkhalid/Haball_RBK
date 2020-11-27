@@ -101,74 +101,74 @@ public class Notification_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         //     return inflater.inflate(R.layout.fragment_blank, container, false);
-//        new SSL_HandShake().handleSSLHandshake();
-////        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
-//        IO.Options opts = new IO.Options();
-////            opts.query = "userId=" + UserId;
-//        try {
-//            iSocket = IO.socket(URL, opts);
-//        } catch (URISyntaxException e) {
-//            e.printStackTrace();
-//        }
-//        loader = new Loader(getContext());
+        new SSL_HandShake().handleSSLHandshake();
+//        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
+        IO.Options opts = new IO.Options();
+//            opts.query = "userId=" + UserId;
+        try {
+            iSocket = IO.socket(URL, opts);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        loader = new Loader(getContext());
         View root = inflater.inflate(R.layout.notification_fragment, container, false);
-//        SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
-//                Context.MODE_PRIVATE);
-//        UserId = sharedPreferences.getString("UserId", "");
-//        Token = sharedPreferences.getString("Login_Token", "");
-//        tv_notification_no_data = root.findViewById(R.id.tv_notification_no_data);
-//        tv_notification_no_data.setVisibility(View.VISIBLE);
-//        recyclerView = root.findViewById(R.id.rv_notification_retailor);
-//        recyclerView.setHasFixedSize(true);
-//        layoutManager = new LinearLayoutManager(root.getContext());
-//        recyclerView.setLayoutManager(layoutManager);
-//        tv_notification_no_data.setVisibility(View.GONE);
-////        NotificationAdapter = new Notification_Adapter(getContext(), "Payment", "Payment ID 345697977970 has been approved successfully");
-////        recyclerView.setAdapter(NotificationAdapter);
-//        getNotifications();
-////        try {
-////            fetchNotification();
-////        } catch (JSONException e) {
-////            e.printStackTrace();
-////        }
-//
-//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-//                super.onScrollStateChanged(recyclerView, newState);
-//            }
-//
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                super.onScrolled(recyclerView, dx, dy);
-//                LinearLayoutManager layoutManager = LinearLayoutManager.class.cast(recyclerView.getLayoutManager());
-//                if (isLastItemDisplaying(recyclerView)) {
-//
-//                    int visibleItemCount = layoutManager.getChildCount();
-//                    int totalItemCount = layoutManager.getItemCount();
-//                    int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
-//                    if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount && firstVisibleItemPosition >= 0) {
-//                        if (totalPages != 0 && pageNumber < totalPages) {
-////                            Toast.makeText(getContext(), pageNumber + " - " + totalPages, Toast.LENGTH_LONG).show();
-////                        btn_load_more.setVisibility(View.VISIBLE);
-//                            pageNumber++;
-//                            try {
-//                                performPaginationNotification();
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-////            }
-//        });
-//
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
+                Context.MODE_PRIVATE);
+        UserId = sharedPreferences.getString("UserId", "");
+        Token = sharedPreferences.getString("Login_Token", "");
+        tv_notification_no_data = root.findViewById(R.id.tv_notification_no_data);
+        tv_notification_no_data.setVisibility(View.VISIBLE);
+        recyclerView = root.findViewById(R.id.rv_notification_retailor);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(root.getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        tv_notification_no_data.setVisibility(View.GONE);
+//        NotificationAdapter = new Notification_Adapter(getContext(), "Payment", "Payment ID 345697977970 has been approved successfully");
+//        recyclerView.setAdapter(NotificationAdapter);
+        getNotifications();
 //        try {
-//            markSeenApi();
+//            fetchNotification();
 //        } catch (JSONException e) {
 //            e.printStackTrace();
 //        }
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                LinearLayoutManager layoutManager = LinearLayoutManager.class.cast(recyclerView.getLayoutManager());
+                if (isLastItemDisplaying(recyclerView)) {
+
+                    int visibleItemCount = layoutManager.getChildCount();
+                    int totalItemCount = layoutManager.getItemCount();
+                    int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
+                    if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount && firstVisibleItemPosition >= 0) {
+                        if (totalPages != 0 && pageNumber < totalPages) {
+//                            Toast.makeText(getContext(), pageNumber + " - " + totalPages, Toast.LENGTH_LONG).show();
+//                        btn_load_more.setVisibility(View.VISIBLE);
+                            pageNumber++;
+                            try {
+                                performPaginationNotification();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            }
+//            }
+        });
+
+        try {
+            markSeenApi();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         return root;
     }
 
