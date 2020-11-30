@@ -28,6 +28,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.haball.Distributor.ui.orders.OrdersTabsNew.ExpandableRecyclerAdapter;
 import com.haball.Distributor.ui.orders.OrdersTabsNew.Order_PlaceOrder;
+import com.haball.Loader;
 import com.haball.R;
 import com.haball.Retailor.ui.Place_Order.Retailer_Place_Order;
 import com.haball.Retailor.ui.Place_Order.ui.main.Models.OrderChildlist_Model;
@@ -56,7 +57,7 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
     private double Quantity = 0;
     private List<OrderChildlist_Model> productList = new ArrayList<>();
 
-    public ParentListAdapter(Context context, List<OrderParentlist_Model> parentItemList, RelativeLayout filter_layout, Button btn_checkout, List<OrderChildlist_Model> productList) {
+    public ParentListAdapter(Context context, List<OrderParentlist_Model> parentItemList, RelativeLayout filter_layout, Button btn_checkout, List<OrderChildlist_Model> productList, Loader loader) {
         super(parentItemList);
         inflater = LayoutInflater.from(context);
         this.context = context;
@@ -64,6 +65,7 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
         this.filter_layout = filter_layout;
         this.btn_checkout = btn_checkout;
         this.productList = productList;
+        loader.hideLoader();
 
 
         SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts_retailer_own",
@@ -145,8 +147,9 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
 
         int totalChildInThisParent = 0;
         for (int iter = 0; iter < productList.size(); iter++) {
-            if (productList.get(iter).getProductCategoryId().equals(orderChildlist_model.getProductCategoryId()))
-                totalChildInThisParent++;
+            if (orderChildlist_model.getProductCategoryId() != null && productList.get(iter).getProductCategoryId() != null)
+                if (productList.get(iter).getProductCategoryId().equals(orderChildlist_model.getProductCategoryId()))
+                    totalChildInThisParent++;
         }
         Log.i("totalChildInThisParent", String.valueOf(totalChildInThisParent));
 //
@@ -289,7 +292,7 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
     private void setQuantity(OrderChildList_VH orderChildList_vh, OrderChildlist_Model orderChildlist_model, int pos) {
         if (selectedProductsQuantityList != null && selectedProductsDataList != null) {
             for (int j = 0; j < selectedProductsDataList.size(); j++) {
-                if (orderChildList_vh.list_txt_products.getText().equals(String.valueOf(selectedProductsDataList.get(j).getTitle())) ) {
+                if (orderChildList_vh.list_txt_products.getText().equals(String.valueOf(selectedProductsDataList.get(j).getTitle()))) {
                     if (!selectedProductsQuantityList.get(j).equals("0") && !selectedProductsQuantityList.get(j).equals(""))
                         orderChildList_vh.list_numberOFitems.setText(selectedProductsQuantityList.get(j));
                 }
@@ -301,7 +304,7 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
         if (selectedProductsDataList != null) {
             int foundIndex = -1;
             for (int i = 0; i < selectedProductsDataList.size(); i++) {
-                if (selectedProductsDataList.get(i).getTitle().equals(orderChildlist_model.getTitle()) ) {
+                if (selectedProductsDataList.get(i).getTitle().equals(orderChildlist_model.getTitle())) {
                     foundIndex = i;
                     break;
                 }

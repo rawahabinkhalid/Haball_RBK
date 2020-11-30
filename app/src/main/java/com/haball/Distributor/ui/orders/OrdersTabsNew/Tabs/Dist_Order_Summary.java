@@ -705,33 +705,49 @@ public class Dist_Order_Summary extends Fragment {
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
+                                    Gson gson = new Gson();
+                                    Type type = new TypeToken<List<OrderChildlist_Model_DistOrder>>() {
+                                    }.getType();
+                                    Type typeQty = new TypeToken<List<String>>() {
+                                    }.getType();
+                                    selectedProductsDataList = gson.fromJson(object_string, type);
+                                    selectedProductsQuantityList = gson.fromJson(object_stringqty, typeQty);
+
+                                    boolean changed = false;
+                                    for(int i = 0; i < selectedProductsDataList.size(); i++) {
+                                        if(!selectedProductsDataList.get(i).getCode().equals(selectedProductsDataList_temp.get(i).getCode()) || !selectedProductsQuantityList.get(i).equals(selectedProductsQuantityList_temp.get(i)))
+                                            changed = true;
+                                    }
+
+
                                     loader.hideLoader();
                                     Log.i("back_key_debug", "back from fragment 1");
-                                    SharedPreferences selectedProductsSP = getContext().getSharedPreferences("fromDraft",
+                                    SharedPreferences selectedProductsSP = getContext().getSharedPreferences("FromDraft_Temp",
                                             Context.MODE_PRIVATE);
                                     if (!selectedProductsSP.getString("fromDraft", "").equals("draft")) {
-                                        if (selectedProductsDataList != selectedProductsDataList_temp || selectedProductsQuantityList != selectedProductsQuantityList_temp) {
-                                            showDiscardDialog();
-                                        } else {
-                                            SharedPreferences orderCheckout1 = getContext().getSharedPreferences("FromDraft_Temp",
-                                                    Context.MODE_PRIVATE);
-                                            SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
-                                            orderCheckout_editor1.putString("fromDraft", "");
-                                            orderCheckout_editor1.apply();
-
-                                            SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
-                                                    Context.MODE_PRIVATE);
-                                            SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
-                                            editorOrderTabsFromDraft.putString("TabNo", "0");
-                                            editorOrderTabsFromDraft.apply();
-                                            fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                                            fragmentTransaction.add(R.id.main_container, new HomeFragment()).addToBackStack("tag");
-                                            fragmentTransaction.commit();
-                                        }
+//                                        if (selectedProductsDataList != selectedProductsDataList_temp || selectedProductsQuantityList != selectedProductsQuantityList_temp) {
+                                        showDiscardDialog();
+//                                        } else {
+//                                            SharedPreferences orderCheckout1 = getContext().getSharedPreferences("FromDraft_Temp",
+//                                                    Context.MODE_PRIVATE);
+//                                            SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
+//                                            orderCheckout_editor1.putString("fromDraft", "");
+//                                            orderCheckout_editor1.apply();
+//
+//                                            SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
+//                                                    Context.MODE_PRIVATE);
+//                                            SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
+//                                            editorOrderTabsFromDraft.putString("TabNo", "0");
+//                                            editorOrderTabsFromDraft.apply();
+//                                            fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                                            fragmentTransaction.add(R.id.main_container, new HomeFragment()).addToBackStack("tag");
+//                                            fragmentTransaction.commit();
+//                                        }
 //                        showDiscardDialog();
 //                        return true;
                                     } else {
-                                        if (selectedProductsDataList != selectedProductsDataList_temp || selectedProductsQuantityList != selectedProductsQuantityList_temp) {
+                                        if (changed) {
+//                                        if (selectedProductsDataList != selectedProductsDataList_temp || selectedProductsQuantityList != selectedProductsQuantityList_temp) {
                                             showDiscardDialog();
                                         } else {
                                             SharedPreferences orderCheckout1 = getContext().getSharedPreferences("FromDraft_Temp",

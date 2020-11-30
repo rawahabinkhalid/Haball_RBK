@@ -74,17 +74,17 @@ public class FragmentNotification extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.activity_notification, container, false);
-//        mcontext = getContext();
-//
-//        loader = new Loader(mcontext);
-//        recyclerView = root.findViewById(R.id.rv_notification);
-//
-//        recyclerView.setHasFixedSize(true);
-//        layoutManager = new LinearLayoutManager(root.getContext());
-//        recyclerView.setLayoutManager(layoutManager);
-//
-//        fetchNotificationForItemCount();
-//        setNotificationStatus();
+        mcontext = getContext();
+
+        loader = new Loader(mcontext);
+        recyclerView = root.findViewById(R.id.rv_notification);
+
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(root.getContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+        fetchNotificationForItemCount();
+        setNotificationStatus();
 
 
 //
@@ -118,6 +118,7 @@ public class FragmentNotification extends Fragment {
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.GET, URL_NOTIFICATION, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
+                Log.i("URL_NOTIFICATION", String.valueOf(result));
                 loader.hideLoader();
 
                 try {

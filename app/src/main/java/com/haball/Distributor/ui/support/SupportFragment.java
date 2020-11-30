@@ -187,6 +187,7 @@ public class SupportFragment extends Fragment implements DatePickerDialog.OnDate
         conso_edittext.setVisibility(View.GONE);
         consolidate_felter.add("Select Criteria");
 //        consolidate_felter.add("Contact Name");
+        consolidate_felter.add("Ticket ID");
         consolidate_felter.add("Issue Type");
         consolidate_felter.add("Status");
         consolidate_felter.add("Date");
@@ -256,7 +257,11 @@ public class SupportFragment extends Fragment implements DatePickerDialog.OnDate
 
                     spinner2.setSelection(0);
                     conso_edittext.setText("");
-                    if (Filter_selected.equals("Contact Name")) {
+                    if (Filter_selected.equals("Ticket ID")) {
+                        search_bar.setHint("Search by " + Filter_selected);
+                        Filter_selected = "TicketNumber";
+                        conso_edittext.setVisibility(View.VISIBLE);
+                    } else if (Filter_selected.equals("Contact Name")) {
                         search_bar.setHint("Search by " + Filter_selected);
                         Filter_selected = "CompanyName";
                         conso_edittext.setVisibility(View.VISIBLE);

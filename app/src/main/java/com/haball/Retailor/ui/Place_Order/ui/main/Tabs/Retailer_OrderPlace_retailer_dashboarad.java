@@ -148,11 +148,9 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
         loader = new Loader(getContext());
 
         final NonSwipeableViewPager viewPager = ((FragmentActivity) getContext()).findViewById(R.id.view_pager_rpoid);
-        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
-        {
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
-            public void onGlobalLayout()
-            {
+            public void onGlobalLayout() {
                 viewPager.setCurrentItem(0, false);
             }
         });
@@ -984,7 +982,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                         }
                     }
 
-                    final ParentListAdapter adapter = new ParentListAdapter(getActivity(), initData(), spinner_container_main, btn_checkout, productList);
+                    final ParentListAdapter adapter = new ParentListAdapter(getActivity(), initData(), spinner_container_main, btn_checkout, productList, loader);
                     adapter.setExpandCollapseListener(new ExpandableRecyclerAdapter.ExpandCollapseListener() {
                         @UiThread
                         @Override
@@ -1080,7 +1078,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(JSONObject resultMain) {
-                loader.hideLoader();
+                loader.showLoader();
                 JSONArray resultFilter = null;
                 JSONArray result = null;
                 JSONArray resultProduct = null;
@@ -1101,31 +1099,37 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                 }.getType();
                 try {
                     for (int j = 0; j < ((JSONArray) result).length(); j++) {
+                        loader.showLoader();
                         OrderParentlist_Model tempModel = gson.fromJson(((JSONArray) result).get(j).toString(), OrderParentlist_Model.class);
                         int countOfProduct = 0;
-                        for (int k = 0; k < ((JSONArray) resultProduct).length(); k++) {
-                            OrderChildlist_Model tempModelProduct = gson.fromJson(((JSONArray) resultProduct).get(k).toString(), OrderChildlist_Model.class);
-                            if (tempModel.getCategoryId().equals(tempModelProduct.getProductCategoryId()))
-                                countOfProduct++;
-                        }
+                        if (resultProduct.length() < 180)
+                            for (int k = 0; k < ((JSONArray) resultProduct).length(); k++) {
+                                loader.showLoader();
+                                OrderChildlist_Model tempModelProduct = gson.fromJson(((JSONArray) resultProduct).get(k).toString(), OrderChildlist_Model.class);
+                                if (tempModel.getCategoryId().equals(tempModelProduct.getProductCategoryId()))
+                                    countOfProduct++;
+                            }
 
-                        if (countOfProduct > 0)
+                        if (resultProduct.length() > 180 || countOfProduct > 0)
                             titles.add(tempModel);
                     }
 
                     for (int j = 0; j < ((JSONArray) resultFilter).length(); j++) {
+                        loader.showLoader();
                         OrderParentlist_Model tempModel = gson.fromJson(((JSONArray) resultFilter).get(j).toString(), OrderParentlist_Model.class);
                         int countOfProduct = 0;
-                        for (int k = 0; k < titles.size(); k++) {
-                            OrderParentlist_Model tempModelProduct = titles.get(k);
+                        if (resultProduct.length() < 180)
+                            for (int k = 0; k < titles.size(); k++) {
+                                loader.showLoader();
+                                OrderParentlist_Model tempModelProduct = titles.get(k);
 //                            Log.i("tempModelProduct", tempModel.getCategoryId() + " - " + tempModelProduct.getParentId());
-                            if (tempModel.getCategoryId().equals(tempModelProduct.getParentId())) {
+                                if (tempModel.getCategoryId().equals(tempModelProduct.getParentId())) {
 //                                Log.i("tempModelProduct", "found: " + tempModel.getCategoryId() + " - " + tempModelProduct.getParentId());
-                                countOfProduct++;
+                                    countOfProduct++;
+                                }
                             }
-                        }
 
-                        if (countOfProduct > 0) {
+                        if (resultProduct.length() > 180 || countOfProduct > 0) {
                             Categories.put(tempModel.getTitle(), tempModel.getCategoryId());
                             totalCategoryTitle.add(tempModel.getTitle());
                         }
@@ -1168,6 +1172,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                 temp_titles = titles;
 
                 Log.i("titles", String.valueOf(titles));
+                loader.showLoader();
 
                 try {
                     Gson gsonChild = new Gson();
@@ -1193,7 +1198,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                     }
 
 
-                    final ParentListAdapter adapter = new ParentListAdapter(getActivity(), initData(), spinner_container_main, btn_checkout, productList);
+                    final ParentListAdapter adapter = new ParentListAdapter(getActivity(), initData(), spinner_container_main, btn_checkout, productList, loader);
                     adapter.setExpandCollapseListener(new ExpandableRecyclerAdapter.ExpandCollapseListener() {
                         @UiThread
                         @Override
@@ -1280,7 +1285,8 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(JSONObject resultMain) {
-                loader.hideLoader();
+//                loader.hideLoader();
+
 
                 JSONArray resultFilter = null;
                 JSONArray result = null;
@@ -1334,7 +1340,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                         }
                     }
 
-                    final ParentListAdapter adapter = new ParentListAdapter(getActivity(), initData(), spinner_container_main, btn_checkout, productList);
+                    final ParentListAdapter adapter = new ParentListAdapter(getActivity(), initData(), spinner_container_main, btn_checkout, productList, loader);
                     adapter.setExpandCollapseListener(new ExpandableRecyclerAdapter.ExpandCollapseListener() {
                         @UiThread
                         @Override

@@ -192,7 +192,7 @@ public class ParentList_Adapter_DistOrder extends ExpandableRecyclerAdapter<Orde
             OrderChildList_VH_DistOrder.product_code.append("Disc:\u00A0");
 
             formatter1 = new DecimalFormat("#,###,##0.00");
-            yourFormattedString1 = formatter1.format(Double.parseDouble(OrderChildlist_Model_DistOrder.getDiscountAmount()));
+            yourFormattedString1 = formatter1.format(Double.parseDouble(OrderChildlist_Model_DistOrder.getDiscountValue()));
 
             ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);

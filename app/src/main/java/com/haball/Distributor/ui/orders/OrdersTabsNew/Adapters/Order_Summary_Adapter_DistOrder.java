@@ -18,13 +18,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.gson.reflect.TypeToken;
 import com.haball.Distributor.ui.home.HomeFragment;
 import com.haball.Distributor.ui.orders.OrdersTabsNew.Models.OrderChildlist_Model_DistOrder;
+import com.haball.Distributor.ui.orders.OrdersTabsNew.Order_PlaceOrder;
 import com.haball.Distributor.ui.orders.OrdersTabsNew.Tabs.Dist_OrderPlace;
 import com.haball.Loader;
 import com.haball.NonSwipeableViewPager;
@@ -37,6 +40,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -297,54 +301,74 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                                 @Override
                                 public void run() {
                                     loader.hideLoader();
-                                    Log.i("back_key_debug", "back from fragment 1");
-                                    SharedPreferences selectedProductsSP = context.getSharedPreferences("fromDraft",
-                                            Context.MODE_PRIVATE);
-//                                    if (!selectedProductsSP.getString("fromDraft", "").equals("draft")) {
-                                    Log.i("debug_back_pressed", String.valueOf(selectedProductsDataList));
-                                    Log.i("debug_back_pressed", String.valueOf(selectedProductsDataList_temp));
-                                    Log.i("debug_back_pressed", String.valueOf(Quantity_temp));
-                                    Log.i("debug_back_pressed", String.valueOf(Quantity));
-                                    if (selectedProductsDataList != selectedProductsDataList_temp || Quantity != Quantity_temp) {
-                                        showDiscardDialog();
-                                    } else {
-                                        SharedPreferences orderCheckout1 = context.getSharedPreferences("FromDraft_Temp",
-                                                Context.MODE_PRIVATE);
-                                        SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
-                                        orderCheckout_editor1.putString("fromDraft", "");
-                                        orderCheckout_editor1.apply();
+//                                    SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts_distributor",
+//                                            Context.MODE_PRIVATE);
+//                                    Gson gson = new Gson();
+//                                    String object_string = selectedProducts.getString("selected_products", "");
+//                                    String object_stringqty = selectedProducts.getString("selected_products_qty", "");
+//
+//                                    Type type = new TypeToken<List<OrderChildlist_Model_DistOrder>>() {
+//                                    }.getType();
+//                                    Type typeQty = new TypeToken<List<String>>() {
+//                                    }.getType();
+//                                    selectedProductsDataList = gson.fromJson(object_string, type);
+//                                    selectedProductsDataListQty = gson.fromJson(object_stringqty, typeQty);
 
-                                        SharedPreferences tabsFromDraft = context.getSharedPreferences("OrderTabsFromDraft",
-                                                Context.MODE_PRIVATE);
-                                        SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
-                                        editorOrderTabsFromDraft.putString("TabNo", "1");
-                                        editorOrderTabsFromDraft.apply();
-                                        FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
-                                        fragmentTransaction.add(R.id.main_container, new HomeFragment()).addToBackStack("tag");
-                                        fragmentTransaction.commit();
+                                    boolean changed = false;
+                                    for(int i = 0; i < selectedProductsDataList.size(); i++) {
+                                        Log.i("Debug_back_quantity", selectedProductsDataListQty.get(i));
+                                        Log.i("Debug_back_quantity1", selectedProductsDataListQty_temp.get(i));
+                                        if(!selectedProductsDataList.get(i).getCode().equals(selectedProductsDataList_temp.get(i).getCode()) || !selectedProductsDataListQty.get(i).equals(selectedProductsDataListQty_temp.get(i)))
+                                            changed = true;
                                     }
-//                        showDiscardDialog();
-//                        return true;
-//                                    } else {
-//                                        if (selectedProductsDataList != selectedProductsDataList_temp && selectedProductsDataListQty != selectedProductsDataListQty_temp) {
-//                                            showDiscardDialog();
+
+
+                                    loader.hideLoader();
+                                    Log.i("back_key_debug", "back from fragment 1");
+                                    SharedPreferences selectedProductsSP = context.getSharedPreferences("FromDraft_Temp",
+                                            Context.MODE_PRIVATE);
+                                    if (!selectedProductsSP.getString("fromDraft", "").equals("draft")) {
+//                                        if (selectedProductsDataList != selectedProductsDataList_temp || selectedProductsQuantityList != selectedProductsQuantityList_temp) {
+                                        showDiscardDialog();
 //                                        } else {
-//                                            SharedPreferences orderCheckout1 = context.getSharedPreferences("FromDraft_Temp",
+//                                            SharedPreferences orderCheckout1 = getContext().getSharedPreferences("FromDraft_Temp",
 //                                                    Context.MODE_PRIVATE);
 //                                            SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
 //                                            orderCheckout_editor1.putString("fromDraft", "");
 //                                            orderCheckout_editor1.apply();
 //
-//                                            SharedPreferences tabsFromDraft = context.getSharedPreferences("OrderTabsFromDraft",
+//                                            SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
 //                                                    Context.MODE_PRIVATE);
 //                                            SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
 //                                            editorOrderTabsFromDraft.putString("TabNo", "0");
 //                                            editorOrderTabsFromDraft.apply();
-//                                            FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+//                                            fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
 //                                            fragmentTransaction.add(R.id.main_container, new HomeFragment()).addToBackStack("tag");
 //                                            fragmentTransaction.commit();
 //                                        }
-//                                    }
+//                        showDiscardDialog();
+//                        return true;
+                                    } else {
+                                        if (changed) {
+//                                        if (selectedProductsDataList != selectedProductsDataList_temp || selectedProductsQuantityList != selectedProductsQuantityList_temp) {
+                                            showDiscardDialog();
+                                        } else {
+                                            SharedPreferences orderCheckout1 = context.getSharedPreferences("FromDraft_Temp",
+                                                    Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
+                                            orderCheckout_editor1.putString("fromDraft", "");
+                                            orderCheckout_editor1.apply();
+
+                                            SharedPreferences tabsFromDraft = context.getSharedPreferences("OrderTabsFromDraft",
+                                                    Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
+                                            editorOrderTabsFromDraft.putString("TabNo", "0");
+                                            editorOrderTabsFromDraft.apply();
+                                            FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+                                            fragmentTransaction.add(R.id.main_container, new HomeFragment()).addToBackStack("tag");
+                                            fragmentTransaction.commit();
+                                        }
+                                    }
                                 }
                             }, 3000);
                         }

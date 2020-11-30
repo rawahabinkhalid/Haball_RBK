@@ -108,7 +108,7 @@ public class PlaceholderFragment extends Fragment {
     private TextInputEditText txt_companyName, txt_paymentID, txt_created_date, txt_confirm, txt_bank, txt_authorization_id, txt_settlement_id, txt_status, txt_amount, txt_transaction_charges, txt_total_amount;
 
 
-    private TextView discount_amount, total_amount ,tv_shipment_no_data;
+    private TextView discount_amount, total_amount, tv_shipment_no_data;
     private RecyclerView product_rv_shipment;
 
     private RecyclerView.Adapter productShipmentDetailsAdapter;
@@ -670,10 +670,9 @@ public class PlaceholderFragment extends Fragment {
 
                     productShipmentDetailsAdapter = new ProductDetailsAdapter(getContext(), productShipmentList);
                     product_rv_shipment.setAdapter(productShipmentDetailsAdapter);
-                    if (productShipmentList.size() != 0){
+                    if (productShipmentList.size() != 0) {
                         tv_shipment_no_data.setVisibility(View.GONE);
-                    }
-                    else
+                    } else
                         tv_shipment_no_data.setVisibility(View.VISIBLE);
 
                 } catch (Exception e) {
@@ -841,14 +840,21 @@ public class PlaceholderFragment extends Fragment {
             public void onResponse(JSONObject response) {
                 if (response.has("Invoice"))
                     try {
+
+
                         Log.i("responseInvoice", String.valueOf(response.getJSONObject("Invoice")));
                         Gson gson = new Gson();
                         Distributor_InvoiceModel invoiceModel = gson.fromJson(String.valueOf(response.getJSONObject("Invoice")), Distributor_InvoiceModel.class);
                         txt_paymentID.setText(invoiceModel.getInvoiceNumber());
                         txt_companyName.setText(response.getJSONObject("deliveryCorp").getString("CompanyName"));
                         txt_created_date.setText(invoiceModel.getCreatedDate().split("T")[0]);
-                        txt_amount.setText("Rs. "+invoiceModel.getPaidAmount());
-                        txt_total_amount.setText("Rs. "+invoiceModel.getTotalPrice());
+
+                        DecimalFormat formatter1 = new DecimalFormat("#,###,###.00");
+                        String yourFormattedString1_paidamount = formatter1.format(Double.parseDouble(invoiceModel.getPaidAmount()));
+                        String yourFormattedString1_totalprice = formatter1.format(Double.parseDouble(invoiceModel.getTotalPrice()));
+
+                        txt_amount.setText("Rs. " + yourFormattedString1_paidamount);
+                        txt_total_amount.setText("Rs. " + yourFormattedString1_totalprice);
 //                        tv_status.setText(invoiceModel.getStatus());
                         if (invoiceModel.getStatus().equals("0")) {
                             txt_status.setText("Pending");

@@ -299,6 +299,11 @@ public class RetailerLogin extends AppCompatActivity {
             }
         });
 
+
+        et_username.setText("kamran.khan@mailinator.com");
+        et_password.setText("@dmin123");
+        checkFieldsForEmptyValues();
+
     }
 
     private void nullifySharedPreference() {

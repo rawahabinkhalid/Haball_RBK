@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,7 @@ import com.haball.Distributor.StatusKVP;
 import com.haball.Distributor.ui.home.HomeFragment;
 import com.haball.Distributor.ui.payments.CreatePaymentRequestFragment;
 import com.haball.Distributor.ui.retailer.Payment.RetailerPaymentDashboard;
+import com.haball.Distributor.ui.retailer.RetailerOrder.RetailerOrderDashboard;
 import com.haball.Distributor.ui.retailer.RetailerOrder.RetailerOrdersAdapter.RetailerViewOrderProductAdapter;
 import com.haball.Distributor.ui.retailer.RetailerOrder.RetailerOrdersModel.RetailerViewOrderProductModel;
 import com.haball.Distributor.ui.retailer.ViewInvoiceReceipt;
@@ -132,6 +134,7 @@ public class PlaceholderFragment extends Fragment {
     //    private String DistributorId;
     // private TextInputLayout layout_txt_created_date, layout_transaction_date, layout_txt_bank, layout_txt_authorization_id, layout_txt_settlement_id, layout_txt_status, layout_txt_amount, layout_txt_transaction_charges, layout_txt_total_amount;
     private RelativeLayout rl_jazz_cash;
+    private View view_root;
 
     public static PlaceholderFragment newInstance(int index) {
         PlaceholderFragment fragment = new PlaceholderFragment();
@@ -176,6 +179,7 @@ public class PlaceholderFragment extends Fragment {
         switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
             case 2: {
                 rootView = inflater.inflate(R.layout.fragment_retailer_orders_tab, container, false);
+                view_root = rootView;
 
                 layout_txt_orderID = rootView.findViewById(R.id.layout_txt_orderID);
                 layout_txt_order_company = rootView.findViewById(R.id.layout_txt_order_company);
@@ -229,6 +233,7 @@ public class PlaceholderFragment extends Fragment {
             }
             case 3: {
                 rootView = inflater.inflate(R.layout.fragment_retailer_orders_details_tab, container, false);
+                view_root = rootView;
                 rv_fragment_retailer_order_details = rootView.findViewById(R.id.rv_fragment_retailer_order_details);
                 total_amount = rootView.findViewById(R.id.total_amount);
                 rv_fragment_retailer_order_details.setHasFixedSize(true);
@@ -280,6 +285,7 @@ public class PlaceholderFragment extends Fragment {
 //                if (InvoiceStatus.equals("Invoiced") || InvoiceStatus.equals("Paid") || InvoiceStatus.equals("Pending") || InvoiceStatus.equals("Cancelled") || ReferenceNumber.equals("null")) {
 //                Toast.makeText(getContext(), InvoiceStatus, Toast.LENGTH_LONG).show();
                 rootView = inflater.inflate(R.layout.fragment_retailer_payment_tab, container, false);
+                view_root = rootView;
                 layout_txt_companName = rootView.findViewById(R.id.layout_txt_companName);
                 layout_txt_paymentID = rootView.findViewById(R.id.layout_txt_paymentID);
                 layout_txt_created_date = rootView.findViewById(R.id.layout_txt_created_date);
@@ -619,6 +625,28 @@ public class PlaceholderFragment extends Fragment {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(getContext()).add(stringRequest);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (view_root != null) {
+            view_root.setFocusableInTouchMode(true);
+            view_root.requestFocus();
+            view_root.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                        FragmentTransaction fragmentTransaction = ((FragmentActivity) getContext()).getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.add(R.id.main_container, new RetailerPaymentDashboard());
+                        fragmentTransaction.commit();
+                    }
+                    return false;
+                }
+            });
+        }
 
     }
 

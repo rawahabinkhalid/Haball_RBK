@@ -1201,12 +1201,32 @@ public class PlaceholderFragment extends Fragment {
             layout.setVisibility(View.VISIBLE);
             editText.setText(value);
         }
+
+
+        if (InvoiceStatus.equals("0") || InvoiceStatus.equals("Pending") || InvoiceStatus.equals("Cancelled")) {
+            layout_transaction_date.setVisibility(View.GONE);
+            layout_txt_bank.setVisibility(View.GONE);
+            layout_txt_authorization_id.setVisibility(View.GONE);
+            layout_txt_settlement_id.setVisibility(View.GONE);
+            layout_txt_transaction_charges.setVisibility(View.GONE);
+            layout_txt_total_amount.setVisibility(View.GONE);
+        }
     }
 
     private void setTextAndShowDate(TextInputLayout layout, TextInputEditText editText, String value) {
         if (!value.equals("null")) {
             layout.setVisibility(View.VISIBLE);
             editText.setText(value.split("T")[0]);
+        }
+
+
+        if (InvoiceStatus.equals("0") || InvoiceStatus.equals("Pending") || equals("Cancelled")) {
+            layout_transaction_date.setVisibility(View.GONE);
+            layout_txt_bank.setVisibility(View.GONE);
+            layout_txt_authorization_id.setVisibility(View.GONE);
+            layout_txt_settlement_id.setVisibility(View.GONE);
+            layout_txt_transaction_charges.setVisibility(View.GONE);
+            layout_txt_total_amount.setVisibility(View.GONE);
         }
     }
 

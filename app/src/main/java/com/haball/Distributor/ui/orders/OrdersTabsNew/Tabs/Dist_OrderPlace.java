@@ -212,6 +212,11 @@ public class Dist_OrderPlace extends Fragment {
             editor.apply();
         }
 
+        SharedPreferences orderCheckout1Draft = getContext().getSharedPreferences("FromDraft_Temp",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor orderCheckout_editor1Draft = orderCheckout1Draft.edit();
+        orderCheckout_editor1Draft.putString("fromDraft", "");
+        orderCheckout_editor1Draft.apply();
 //        fetchDashboardData();
         loader = new Loader(getContext());
 //
@@ -926,10 +931,8 @@ public class Dist_OrderPlace extends Fragment {
                     Gson gson = new Gson();
                     object_stringqty = selectedProducts.getString("selected_products_qty", "");
                     object_string = selectedProducts.getString("selected_products", "");
-                    Type type = new TypeToken<List<OrderChildlist_Model_DistOrder>>() {
-                    }.getType();
-                    Type typeString = new TypeToken<List<String>>() {
-                    }.getType();
+                    Type type = new TypeToken<List<OrderChildlist_Model_DistOrder>>() {}.getType();
+                    Type typeString = new TypeToken<List<String>>() {}.getType();
                     if (!object_string.equals("") && !object_stringqty.equals("")) {
                         selectedProductsDataList = gson.fromJson(object_string, type);
                         selectedProductsQuantityList = gson.fromJson(object_stringqty, typeString);
@@ -1301,7 +1304,7 @@ public class Dist_OrderPlace extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(JSONArray result) {
-                loader.hideLoader();
+                loader.showLoader();
                 productList = new ArrayList<>();
                 List<OrderParentlist_Model_DistOrder> temp12_titles = titles;
 //                temp_titles = titles;
@@ -1346,7 +1349,6 @@ public class Dist_OrderPlace extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    loader.hideLoader();
                 }
                 Log.i("productList", String.valueOf(productList));
 //                Log.i("titles123", String.valueOf(titles));
@@ -1393,6 +1395,7 @@ public class Dist_OrderPlace extends Fragment {
                     spinner_container_main.clearAnimation();
                     spinner_container_main.startAnimation(animate1);
                 }
+                loader.hideLoader();
             }
         }, new Response.ErrorListener() {
             @Override

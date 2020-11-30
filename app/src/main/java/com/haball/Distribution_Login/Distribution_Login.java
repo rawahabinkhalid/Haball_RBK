@@ -102,10 +102,6 @@ public class Distribution_Login extends AppCompatActivity {
         layout_username = findViewById(R.id.layout_username);
         layout_password = findViewById(R.id.layout_password);
 
-//        et_username.setText("remotenfl");
-//        et_password.setText("@dmin1234");
-
-
         loader = new Loader(Distribution_Login.this);
 
         nullifySharedPreference();
@@ -240,6 +236,12 @@ public class Distribution_Login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        et_username.setText("Shahid1149");
+        et_password.setText("@dmin1234");
+        checkFieldsForEmptyValues();
+
     }
 
     private void nullifySharedPreference() {

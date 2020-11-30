@@ -45,14 +45,14 @@ public class ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAd
 //        holder.list_exp_date_value.setText(product_list.get(position).getExpiryDate());
         holder.list_txt_products_.setText(product_list.get(position).getProductName());
 
-        holder.product_code.setText("Product Code:\u00A0");
+        holder.product_code.setText("Product\u00A0Code:\u00A0");
         SpannableString ss1 = new SpannableString(product_list.get(position).getProductCode());
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
         holder.product_code.append(ss1);
 
         holder.product_code.append("\n");
 
-        holder.product_code.append("Prod Date:\u00A0");
+        holder.product_code.append("Prod\u00A0Date:\u00A0");
 
         ss1 = new SpannableString(product_list.get(position).getProductionDate());
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -61,14 +61,14 @@ public class ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAd
 
         holder.product_code.append("\u00A0| ");
 
-        holder.product_code.append("Batch No:\u00A0");
+        holder.product_code.append("Batch\u00A0No:\u00A0");
         ss1 = new SpannableString(product_list.get(position).getBatchNumber());
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
         holder.product_code.append(ss1);
 
         holder.product_code.append("\u00A0| ");
 
-        holder.product_code.append("Exp Date:\u00A0");
+        holder.product_code.append("Exp\u00A0Date:\u00A0");
 
         ss1 = new SpannableString(product_list.get(position).getExpiryDate());
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -77,7 +77,7 @@ public class ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAd
 
         holder.product_code.append("\u00A0| ");
 
-        holder.product_code.append("Shipped Qty:\u00A0");
+        holder.product_code.append("Shipped\u00A0Qty:\u00A0");
 
         ss1 = new SpannableString(product_list.get(position).getDeliveredQty());
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
