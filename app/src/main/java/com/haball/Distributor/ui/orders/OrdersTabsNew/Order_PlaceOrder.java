@@ -46,6 +46,13 @@ public class Order_PlaceOrder extends Fragment {
         final TabLayout tabs = root.findViewById(R.id.tabs5);
         tabs.setupWithViewPager(viewPager);
 
+        final SharedPreferences orderCheckout_SP = getContext().getSharedPreferences("orderCheckout_discard",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor orderCheckout_editor_discard = orderCheckout_SP.edit();
+        orderCheckout_editor_discard.putString("orderCheckout", "");
+        orderCheckout_editor_discard.apply();
+
+
         SharedPreferences selectedProductsSP = getContext().getSharedPreferences("FromDraft",
                 Context.MODE_PRIVATE);
         if (selectedProductsSP.getString("fromDraft", "").equals("draft")) {

@@ -1,5 +1,6 @@
 package com.haball.Distributor.ui.orders.OrdersTabsNew.Adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -8,12 +9,15 @@ import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.style.StyleSpan;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -21,8 +25,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.haball.Distributor.ui.home.HomeFragment;
 import com.haball.Distributor.ui.orders.OrdersTabsNew.ExpandableRecyclerAdapter;
 import com.haball.Distributor.ui.orders.OrdersTabsNew.Models.OrderChildlist_Model_DistOrder;
 import com.haball.Distributor.ui.orders.OrdersTabsNew.Models.OrderParentlist_Model_DistOrder;
@@ -249,10 +255,63 @@ public class ParentList_Adapter_DistOrder extends ExpandableRecyclerAdapter<Orde
                 Log.i("order_place_debug", String.valueOf(keyCode));
                 Log.i("order_place_debug123123", String.valueOf(KeyEvent.KEYCODE_BACK));
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.add(R.id.main_container, new Order_PlaceOrder()).addToBackStack("null");
-                    fragmentTransaction.commit();
-                    return true;
+//                    FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+//                    fragmentTransaction.add(R.id.main_container, new Order_PlaceOrder()).addToBackStack("null");
+//                    fragmentTransaction.commit();
+// handle back button's click listener
+//                    Toast.makeText(getActivity(), "Back press", Toast.LENGTH_SHORT).show();
+//
+//                    if (selectedProductsDataList == null || selectedProductsDataList.size() == 0) {
+                    SharedPreferences orderCheckout = context.getSharedPreferences("orderCheckout",
+                            Context.MODE_PRIVATE);
+                    String orderCheckedOutStr = orderCheckout.getString("orderCheckout", "");
+                    Log.i("back_debug", orderCheckedOutStr + "'''");
+                    Log.i("back_debug123", String.valueOf(selectedProductsDataList.size()));
+
+                    List<OrderChildlist_Model_DistOrder> selectedProductsDataList = new ArrayList<>();
+                    List<String> selectedProductsQuantityList = new ArrayList<>();
+
+                    SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts_distributor",
+                            Context.MODE_PRIVATE);
+                    Gson gson = new Gson();
+                    object_stringqty = selectedProducts.getString("selected_products_qty", "");
+                    object_string = selectedProducts.getString("selected_products", "");
+                    Type type = new TypeToken<List<OrderChildlist_Model_DistOrder>>() {}.getType();
+                    Type typeString = new TypeToken<List<String>>() {}.getType();
+                    if (!object_string.equals("") && !object_stringqty.equals("")) {
+                        selectedProductsDataList = gson.fromJson(object_string, type);
+                        selectedProductsQuantityList = gson.fromJson(object_stringqty, typeString);
+                    }
+
+                    if (selectedProductsDataList != null && selectedProductsDataList.size() > 0 && (!orderCheckedOutStr.equals(""))) {
+//                    if (selectedProductsDataList != null && selectedProductsDataList.size() > 0 && (orderCheckedOut.equals("orderCheckout") || orderCheckedOut.equals("orderCheckout123"))) {
+                        showDiscardDialog();
+                        return true;
+                    } else {
+                        InputMethodManager imm = (InputMethodManager) ((FragmentActivity) context).getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(OrderChildList_VH_DistOrder.list_numberOFitems.getWindowToken(), 0);
+
+//
+                        FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+//                        fragmentTransaction.add(R.id.main_container, new Dist_OrderPlace()).addToBackStack("null");
+                        fragmentTransaction.add(R.id.main_container, new Order_PlaceOrder()).addToBackStack("null");
+                        fragmentTransaction.commit();
+                        return true;
+//                    } else {
+//                        showDiscardDialog();
+//                        return true;
+                    }
+//                    SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
+//                            Context.MODE_PRIVATE);
+//                    SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
+//                    editorOrderTabsFromDraft.putString("TabNo", "0");
+//                    editorOrderTabsFromDraft.apply();
+//
+//                    Intent login_intent = new Intent(((FragmentActivity) getContext()), RetailorDashboard.class);
+//                    ((FragmentActivity) getContext()).startActivity(login_intent);
+//                    ((FragmentActivity) getContext()).finish();
+
+//                    return true;
                 }
 
                 return false;
@@ -281,6 +340,69 @@ public class ParentList_Adapter_DistOrder extends ExpandableRecyclerAdapter<Orde
         }
 
     }
+
+
+    private void showDiscardDialog() {
+        Log.i("CreatePayment", "In Dialog");
+        final FragmentManager fm = ((FragmentActivity) context).getSupportFragmentManager();
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        LayoutInflater inflater = LayoutInflater.from(context);
+        final View view_popup = inflater.inflate(R.layout.discard_changes, null);
+        TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
+        tv_discard_txt.setText("Are you sure, you want to leave this page? Your changes will be discarded.");
+        alertDialog.setView(view_popup);
+        alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
+        WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
+        layoutParams.y = 200;
+        layoutParams.x = -70;// top margin
+        alertDialog.getWindow().setAttributes(layoutParams);
+        Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
+        btn_discard.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.i("CreatePayment", "Button Clicked");
+                alertDialog.dismiss();
+                SharedPreferences tabsFromDraft = context.getSharedPreferences("OrderTabsFromDraft",
+                        Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
+                editorOrderTabsFromDraft.putString("TabNo", "0");
+                editorOrderTabsFromDraft.apply();
+
+                SharedPreferences orderCheckout = context.getSharedPreferences("orderCheckout",
+                        Context.MODE_PRIVATE);
+                SharedPreferences.Editor orderCheckout_editor = orderCheckout.edit();
+                orderCheckout_editor.putString("orderCheckout", "");
+                orderCheckout_editor.apply();
+
+                InputMethodManager imm = (InputMethodManager) ((FragmentActivity) context).getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view_popup.getWindowToken(), 0);
+
+                FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+//                        fragmentTransaction.add(R.id.main_container, new Dist_OrderPlace()).addToBackStack("null");
+                fragmentTransaction.add(R.id.main_container, new HomeFragment()).addToBackStack("null");
+                fragmentTransaction.commit();
+
+
+//                Intent login_intent = new Intent(((FragmentActivity) getContext()), DistributorDashboard.class);
+//                ((FragmentActivity) getContext()).startActivity(login_intent);
+//                ((FragmentActivity) getContext()).finish();
+
+//                fm.popBackStack();
+            }
+        });
+
+        ImageButton img_email = (ImageButton) view_popup.findViewById(R.id.btn_close);
+        img_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+
+            }
+        });
+
+        alertDialog.show();
+    }
+
 
     private void setQuantity(OrderChildList_VH_DistOrder OrderChildList_VH_DistOrder, OrderChildlist_Model_DistOrder OrderChildlist_Model_DistOrder, int pos) {
         if (selectedProductsQuantityList != null && selectedProductsDataList != null) {

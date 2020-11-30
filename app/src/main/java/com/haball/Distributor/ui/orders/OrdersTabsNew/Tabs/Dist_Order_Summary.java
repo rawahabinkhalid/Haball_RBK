@@ -123,6 +123,13 @@ public class Dist_Order_Summary extends Fragment {
         SharedPreferences.Editor editor1 = add_more_product.edit();
         editor1.putString("add_more_product", "");
         editor1.apply();
+
+        final SharedPreferences orderCheckout_SP = getContext().getSharedPreferences("orderCheckout_discard",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor orderCheckout_editor = orderCheckout_SP.edit();
+        orderCheckout_editor.putString("orderCheckout", "orderCheckout");
+        orderCheckout_editor.apply();
+
 //        SharedPreferences tabsFromDraft = getContext().getSharedPreferences("currentBalance",
 //                Context.MODE_PRIVATE);
 //        current_balance = tabsFromDraft.getString("current_balance" ,"");
@@ -715,8 +722,12 @@ public class Dist_Order_Summary extends Fragment {
 
                                     boolean changed = false;
                                     for(int i = 0; i < selectedProductsDataList.size(); i++) {
-                                        if(!selectedProductsDataList.get(i).getCode().equals(selectedProductsDataList_temp.get(i).getCode()) || !selectedProductsQuantityList.get(i).equals(selectedProductsQuantityList_temp.get(i)))
-                                            changed = true;
+                                        try {
+                                            if (!selectedProductsDataList.get(i).getCode().equals(selectedProductsDataList_temp.get(i).getCode()) || !selectedProductsQuantityList.get(i).equals(selectedProductsQuantityList_temp.get(i)))
+                                                changed = true;
+                                        } catch (IndexOutOfBoundsException ex) {
+
+                                        }
                                     }
 
 

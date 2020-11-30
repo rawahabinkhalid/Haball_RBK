@@ -58,8 +58,10 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
     private double Quantity = 0, Quantity_temp = 0;
     private TextView total_amount;
     private TextView discount_amount;
+    private boolean changed = false;
 
     public Order_Summary_Adapter_DistOrder(FragmentActivity activity, Context context, List<OrderChildlist_Model_DistOrder> selectedProductsDataList, List<String> selectedProductsDataListQty, Button btn_confirm, Button btn_draft, TextView total_amount, TextView discount_amount) {
+        changed = false;
         Log.i("debug_back_pressed", "String.valueOf(selectedProductsDataList)");
         this.context = context;
         this.activity = activity;
@@ -301,29 +303,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                                 @Override
                                 public void run() {
                                     loader.hideLoader();
-//                                    SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts_distributor",
-//                                            Context.MODE_PRIVATE);
-//                                    Gson gson = new Gson();
-//                                    String object_string = selectedProducts.getString("selected_products", "");
-//                                    String object_stringqty = selectedProducts.getString("selected_products_qty", "");
-//
-//                                    Type type = new TypeToken<List<OrderChildlist_Model_DistOrder>>() {
-//                                    }.getType();
-//                                    Type typeQty = new TypeToken<List<String>>() {
-//                                    }.getType();
-//                                    selectedProductsDataList = gson.fromJson(object_string, type);
-//                                    selectedProductsDataListQty = gson.fromJson(object_stringqty, typeQty);
 
-                                    boolean changed = false;
-                                    for(int i = 0; i < selectedProductsDataList.size(); i++) {
-                                        Log.i("Debug_back_quantity", selectedProductsDataListQty.get(i));
-                                        Log.i("Debug_back_quantity1", selectedProductsDataListQty_temp.get(i));
-                                        if(!selectedProductsDataList.get(i).getCode().equals(selectedProductsDataList_temp.get(i).getCode()) || !selectedProductsDataListQty.get(i).equals(selectedProductsDataListQty_temp.get(i)))
-                                            changed = true;
-                                    }
-
-
-                                    loader.hideLoader();
                                     Log.i("back_key_debug", "back from fragment 1");
                                     SharedPreferences selectedProductsSP = context.getSharedPreferences("FromDraft_Temp",
                                             Context.MODE_PRIVATE);
@@ -393,6 +373,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
             @Override
             public void afterTextChanged(Editable s) {
                 if (holder.list_numberOFitems.hasFocus()) {
+                    changed = true;
                     String str_quantity = String.valueOf(s);
                     if (!String.valueOf(s).equals("") && Integer.parseInt(String.valueOf(s)) == 0) {
                         str_quantity = "0";
@@ -594,6 +575,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
         holder.btn_delete_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                changed = true;
 
                 final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                 LayoutInflater inflater = LayoutInflater.from(context);

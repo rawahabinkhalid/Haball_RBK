@@ -255,6 +255,14 @@ public class Dist_OrderPlace extends Fragment {
                     selectedProductsQuantityList_temp = gson.fromJson(object_stringqty, typeString);
                 }
 
+                Log.i("debug_order_back_pres", String.valueOf(selectedProductsDataList_temp));
+                Log.i("debug_order_back_pres", String.valueOf(selectedProductsDataList_temp.size()));
+                Log.i("debug_order_back_pres", String.valueOf(orderCheckedOutStr));
+
+                final SharedPreferences orderCheckout_SP = getContext().getSharedPreferences("orderCheckout_discard",
+                        Context.MODE_PRIVATE);
+                orderCheckedOutStr = orderCheckout_SP.getString("orderCheckout", "");
+
                 if (selectedProductsDataList_temp != null && selectedProductsDataList_temp.size() > 0 && (!orderCheckedOutStr.equals(""))) {
                     showDiscardDialog();
                 } else {
