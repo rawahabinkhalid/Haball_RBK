@@ -262,7 +262,7 @@ public class ParentList_Adapter_DistOrder extends ExpandableRecyclerAdapter<Orde
 //                    Toast.makeText(getActivity(), "Back press", Toast.LENGTH_SHORT).show();
 //
 //                    if (selectedProductsDataList == null || selectedProductsDataList.size() == 0) {
-                    SharedPreferences orderCheckout = context.getSharedPreferences("orderCheckout",
+                    SharedPreferences orderCheckout = context.getSharedPreferences("orderCheckout_discard",
                             Context.MODE_PRIVATE);
                     String orderCheckedOutStr = orderCheckout.getString("orderCheckout", "");
                     Log.i("back_debug", orderCheckedOutStr + "'''");

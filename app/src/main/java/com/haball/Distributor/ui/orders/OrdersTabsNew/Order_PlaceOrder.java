@@ -95,6 +95,12 @@ public class Order_PlaceOrder extends Fragment {
             orderCheckout_editor1_temp.apply();
 
         } else {
+            SharedPreferences orderCheckout1Draft = getContext().getSharedPreferences("FromDraft_Temp",
+                    Context.MODE_PRIVATE);
+            SharedPreferences.Editor orderCheckout_editor1Draft = orderCheckout1Draft.edit();
+            orderCheckout_editor1Draft.putString("fromDraft", "");
+            orderCheckout_editor1Draft.apply();
+
             SharedPreferences orderCheckout = getContext().getSharedPreferences("orderCheckout",
                     Context.MODE_PRIVATE);
             SharedPreferences.Editor orderCheckout_editor = orderCheckout.edit();

@@ -157,11 +157,9 @@ public class Dist_OrderPlace extends Fragment {
 
 
         final NonSwipeableViewPager viewPager = ((FragmentActivity) getContext()).findViewById(R.id.view_pager5);
-        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
-        {
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
-            public void onGlobalLayout()
-            {
+            public void onGlobalLayout() {
                 viewPager.setCurrentItem(0, false);
             }
         });
@@ -212,11 +210,6 @@ public class Dist_OrderPlace extends Fragment {
             editor.apply();
         }
 
-        SharedPreferences orderCheckout1Draft = getContext().getSharedPreferences("FromDraft_Temp",
-                Context.MODE_PRIVATE);
-        SharedPreferences.Editor orderCheckout_editor1Draft = orderCheckout1Draft.edit();
-        orderCheckout_editor1Draft.putString("fromDraft", "");
-        orderCheckout_editor1Draft.apply();
 //        fetchDashboardData();
         loader = new Loader(getContext());
 //
@@ -229,7 +222,7 @@ public class Dist_OrderPlace extends Fragment {
 //
 //            }
 //        });
-        ((FragmentActivity) getContext()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN |     WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        ((FragmentActivity) getContext()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         close_order_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -587,7 +580,7 @@ public class Dist_OrderPlace extends Fragment {
         et_test.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                ((FragmentActivity) getContext()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN |     WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+                ((FragmentActivity) getContext()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
                 if (!hasFocus) {
                     if (spinner_container_main.getVisibility() == View.GONE) {
 
@@ -768,11 +761,9 @@ public class Dist_OrderPlace extends Fragment {
                                     editor.apply();
 //                            Toast.makeText(getContext(), "Total Amount: " + grossAmount, Toast.LENGTH_SHORT).show();
                                     grossAmount = 0;
-                                    viewPager.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
-                                    {
+                                    viewPager.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                                         @Override
-                                        public void onGlobalLayout()
-                                        {
+                                        public void onGlobalLayout() {
                                             viewPager.setCurrentItem(1, false);
                                         }
                                     });
@@ -834,6 +825,7 @@ public class Dist_OrderPlace extends Fragment {
         return view;
 
     }
+
     private void onKeyboardVisibilityChanged(boolean opened) {
         Log.i("order_debugKey_OpenClos", "keyboard " + opened);
         if (!opened) {
@@ -925,7 +917,7 @@ public class Dist_OrderPlace extends Fragment {
 //                    Toast.makeText(getActivity(), "Back press", Toast.LENGTH_SHORT).show();
 //
 //                    if (selectedProductsDataList == null || selectedProductsDataList.size() == 0) {
-                    SharedPreferences orderCheckout = getContext().getSharedPreferences("orderCheckout",
+                    SharedPreferences orderCheckout = getContext().getSharedPreferences("orderCheckout_discard",
                             Context.MODE_PRIVATE);
                     String orderCheckedOutStr = orderCheckout.getString("orderCheckout", "");
                     Log.i("back_debug", orderCheckedOutStr + "'''");
@@ -939,14 +931,18 @@ public class Dist_OrderPlace extends Fragment {
                     Gson gson = new Gson();
                     object_stringqty = selectedProducts.getString("selected_products_qty", "");
                     object_string = selectedProducts.getString("selected_products", "");
-                    Type type = new TypeToken<List<OrderChildlist_Model_DistOrder>>() {}.getType();
-                    Type typeString = new TypeToken<List<String>>() {}.getType();
+                    Type type = new TypeToken<List<OrderChildlist_Model_DistOrder>>() {
+                    }.getType();
+                    Type typeString = new TypeToken<List<String>>() {
+                    }.getType();
                     if (!object_string.equals("") && !object_stringqty.equals("")) {
                         selectedProductsDataList = gson.fromJson(object_string, type);
                         selectedProductsQuantityList = gson.fromJson(object_stringqty, typeString);
                     }
+                    SharedPreferences selectedProductsSP = getContext().getSharedPreferences("FromDraft_Temp",
+                            Context.MODE_PRIVATE);
 
-                    if (selectedProductsDataList != null && selectedProductsDataList.size() > 0 && (!orderCheckedOutStr.equals(""))) {
+                    if (selectedProductsDataList != null && selectedProductsDataList.size() > 0 && (!orderCheckedOutStr.equals("")) && (!selectedProductsSP.getString("fromDraft", "").equals("draft"))) {
 //                    if (selectedProductsDataList != null && selectedProductsDataList.size() > 0 && (orderCheckedOut.equals("orderCheckout") || orderCheckedOut.equals("orderCheckout123"))) {
                         showDiscardDialog();
                         return true;

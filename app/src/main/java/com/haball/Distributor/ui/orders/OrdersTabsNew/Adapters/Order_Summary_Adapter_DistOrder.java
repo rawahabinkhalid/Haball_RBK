@@ -374,6 +374,12 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
             public void afterTextChanged(Editable s) {
                 if (holder.list_numberOFitems.hasFocus()) {
                     changed = true;
+                    SharedPreferences orderCheckout1 = context.getSharedPreferences("FromDraft_Temp",
+                            Context.MODE_PRIVATE);
+                    SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
+                    orderCheckout_editor1.putString("fromDraft", "");
+                    orderCheckout_editor1.apply();
+
                     String str_quantity = String.valueOf(s);
                     if (!String.valueOf(s).equals("") && Integer.parseInt(String.valueOf(s)) == 0) {
                         str_quantity = "0";
@@ -576,6 +582,11 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
             @Override
             public void onClick(View v) {
                 changed = true;
+                SharedPreferences orderCheckout1 = context.getSharedPreferences("FromDraft_Temp",
+                        Context.MODE_PRIVATE);
+                SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
+                orderCheckout_editor1.putString("fromDraft", "");
+                orderCheckout_editor1.apply();
 
                 final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                 LayoutInflater inflater = LayoutInflater.from(context);
