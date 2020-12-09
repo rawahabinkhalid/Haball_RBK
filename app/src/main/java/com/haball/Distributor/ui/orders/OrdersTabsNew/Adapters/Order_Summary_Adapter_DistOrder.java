@@ -73,6 +73,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
         this.discount_amount = discount_amount;
 
         for (int iter = 0; iter < this.selectedProductsDataList.size(); iter++) {
+            Log.i("haball_quantity_check", this.selectedProductsDataListQty.get(iter) + "'");
             if (this.selectedProductsDataListQty.get(iter).equals("0") || this.selectedProductsDataListQty.get(iter).equals("")) {
                 this.selectedProductsDataListQty.set(iter, "0");
 
@@ -189,6 +190,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
     @Override
     public void onBindViewHolder(@NonNull final Order_Summary_Adapter_DistOrder.ViewHolder holder, final int position) {
         final int finalPosition = position;
+//        if (!selectedProductsDataListQty.get(position).equals("0") && !selectedProductsDataListQty.get(position).equals("")) {
         Log.i("position", String.valueOf(finalPosition));
         holder.list_numberOFitems.setText(selectedProductsDataListQty.get(position));
 //        holder.list_product_code_value.setText(selectedProductsDataList.get(position).getCode());
@@ -250,12 +252,12 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
         formatter1 = new DecimalFormat("#,###,##0.00");
 
 
-        if (selectedProductsDataList.get(position).getDiscountAmount() != null && !selectedProductsDataList.get(position).getDiscountAmount().equals("0") && !selectedProductsDataList.get(position).getDiscountAmount().equals("") && !selectedProductsDataList.get(position).getDiscountAmount().equals("null")) {
+        if (selectedProductsDataList.get(position).getDiscountValue() != null && !selectedProductsDataList.get(position).getDiscountValue().equals("0") && !selectedProductsDataList.get(position).getDiscountValue().equals("") && !selectedProductsDataList.get(position).getDiscountValue().equals("null")) {
             holder.product_code.append("\u00A0| ");
 
             holder.product_code.append("Disc:\u00A0");
 
-            yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getDiscountAmount()));
+            yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getDiscountValue()));
 
             ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -332,12 +334,12 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                                         if (changed) {
 //                                        if (selectedProductsDataList != selectedProductsDataList_temp || selectedProductsQuantityList != selectedProductsQuantityList_temp) {
                                             showDiscardDialog();
-                                        } else {
                                             SharedPreferences orderCheckout1 = context.getSharedPreferences("FromDraft_Temp",
                                                     Context.MODE_PRIVATE);
                                             SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
-                                            orderCheckout_editor1.putString("fromDraft", "");
+                                            orderCheckout_editor1.putString("fromDraftChanged", "changed");
                                             orderCheckout_editor1.apply();
+                                        } else {
 
                                             SharedPreferences tabsFromDraft = context.getSharedPreferences("OrderTabsFromDraft",
                                                     Context.MODE_PRIVATE);
@@ -377,7 +379,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                     SharedPreferences orderCheckout1 = context.getSharedPreferences("FromDraft_Temp",
                             Context.MODE_PRIVATE);
                     SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
-                    orderCheckout_editor1.putString("fromDraft", "");
+                    orderCheckout_editor1.putString("fromDraftChanged", "changed");
                     orderCheckout_editor1.apply();
 
                     String str_quantity = String.valueOf(s);
@@ -454,12 +456,12 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                         formatter1 = new DecimalFormat("#,###,##0.00");
 
 
-                        if (selectedProductsDataList.get(position).getDiscountAmount() != null && !selectedProductsDataList.get(position).getDiscountAmount().equals("0") && !selectedProductsDataList.get(position).getDiscountAmount().equals("") && !selectedProductsDataList.get(position).getDiscountAmount().equals("null")) {
+                        if (selectedProductsDataList.get(position).getDiscountValue() != null && !selectedProductsDataList.get(position).getDiscountValue().equals("0") && !selectedProductsDataList.get(position).getDiscountValue().equals("") && !selectedProductsDataList.get(position).getDiscountValue().equals("null")) {
                             holder.product_code.append("\u00A0| ");
 
                             holder.product_code.append("Disc:\u00A0");
 
-                            yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getDiscountAmount()));
+                            yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getDiscountValue()));
 
                             ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
                             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -524,12 +526,12 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                         formatter1 = new DecimalFormat("#,###,##0.00");
 
 
-                        if (selectedProductsDataList.get(position).getDiscountAmount() != null && !selectedProductsDataList.get(position).getDiscountAmount().equals("0") && !selectedProductsDataList.get(position).getDiscountAmount().equals("") && !selectedProductsDataList.get(position).getDiscountAmount().equals("null")) {
+                        if (selectedProductsDataList.get(position).getDiscountValue() != null && !selectedProductsDataList.get(position).getDiscountValue().equals("0") && !selectedProductsDataList.get(position).getDiscountValue().equals("") && !selectedProductsDataList.get(position).getDiscountValue().equals("null")) {
                             holder.product_code.append("\u00A0| ");
 
                             holder.product_code.append("Disc:\u00A0");
 
-                            yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getDiscountAmount()));
+                            yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getDiscountValue()));
 
                             ss1 = new SpannableString("Rs.\u00A0" + yourFormattedString1);
                             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -585,7 +587,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                 SharedPreferences orderCheckout1 = context.getSharedPreferences("FromDraft_Temp",
                         Context.MODE_PRIVATE);
                 SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
-                orderCheckout_editor1.putString("fromDraft", "");
+                orderCheckout_editor1.putString("fromDraftChanged", "changed");
                 orderCheckout_editor1.apply();
 
                 final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
@@ -624,6 +626,26 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                 alertDialog.show();
             }
         });
+//        } else {
+////            selectedProductsDataList.remove(finalPosition);
+////            selectedProductsDataListQty.remove(finalPosition);
+//////            notifyItemRemoved(finalPosition);
+//////            notifyItemRangeChanged(finalPosition, selectedProductsDataList.size());
+////
+////            Gson gson = new Gson();
+////            String json = gson.toJson(selectedProductsDataList);
+////            String jsonqty = gson.toJson(selectedProductsDataListQty);
+////            Log.i("jsonqty", jsonqty);
+////            Log.i("json", json);
+////
+////            SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts_distributor",
+////                    Context.MODE_PRIVATE);
+////            SharedPreferences.Editor editor = selectedProducts.edit();
+////            editor.putString("selected_products", json);
+////            editor.putString("selected_products_qty", jsonqty);
+////            editor.apply();
+//
+//        }
     }
 
     private void deleteProduct(@NonNull final Order_Summary_Adapter_DistOrder.ViewHolder holder, final int finalPosition) {

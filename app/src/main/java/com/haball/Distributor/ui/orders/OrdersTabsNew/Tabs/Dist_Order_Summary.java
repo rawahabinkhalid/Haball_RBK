@@ -351,6 +351,14 @@ public class Dist_Order_Summary extends Fragment {
                 selectedProductsDataList.remove(i);
             }
         }
+        String json = gson.toJson(selectedProductsDataList);
+        String jsonqty = gson.toJson(selectedProductsQuantityList);
+        SharedPreferences selectedProducts_1 = getContext().getSharedPreferences("selectedProducts_distributor",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = selectedProducts_1.edit();
+        editor.putString("selected_products", json);
+        editor.putString("selected_products_qty", jsonqty);
+        editor.apply();
 
         recyclerView1 = view.findViewById(R.id.rv_orders_summary);
         recyclerView1.setHasFixedSize(false);
@@ -761,11 +769,11 @@ public class Dist_Order_Summary extends Fragment {
 //                                        if (selectedProductsDataList != selectedProductsDataList_temp || selectedProductsQuantityList != selectedProductsQuantityList_temp) {
                                             showDiscardDialog();
                                         } else {
-                                            SharedPreferences orderCheckout1 = getContext().getSharedPreferences("FromDraft_Temp",
-                                                    Context.MODE_PRIVATE);
-                                            SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
-                                            orderCheckout_editor1.putString("fromDraft", "");
-                                            orderCheckout_editor1.apply();
+//                                            SharedPreferences orderCheckout1 = getContext().getSharedPreferences("FromDraft_Temp",
+//                                                    Context.MODE_PRIVATE);
+//                                            SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
+//                                            orderCheckout_editor1.putString("fromDraft", "");
+//                                            orderCheckout_editor1.apply();
 
                                             SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
                                                     Context.MODE_PRIVATE);

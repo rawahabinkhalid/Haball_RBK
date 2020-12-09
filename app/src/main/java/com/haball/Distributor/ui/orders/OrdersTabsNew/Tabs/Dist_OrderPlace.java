@@ -256,17 +256,37 @@ public class Dist_OrderPlace extends Fragment {
                         Context.MODE_PRIVATE);
                 orderCheckedOutStr = orderCheckout_SP.getString("orderCheckout", "");
 
-                if (selectedProductsDataList_temp != null && selectedProductsDataList_temp.size() > 0 && (!orderCheckedOutStr.equals(""))) {
-                    showDiscardDialog();
-                } else {
+                SharedPreferences selectedProductsSP = getContext().getSharedPreferences("FromDraft_Temp",
+                        Context.MODE_PRIVATE);
+                int quantity = 0;
+                if (selectedProductsQuantityList_temp != null && selectedProductsQuantityList_temp.size() > 0)
+                    for (int i = 0; i < selectedProductsQuantityList_temp.size(); i++) {
+                        quantity += Integer.parseInt(selectedProductsQuantityList_temp.get(i));
+                    }
+                executeBackStackFlow(selectedProductsSP, orderCheckedOutStr, quantity, selectedProductsDataList_temp, selectedProductsQuantityList_temp);
 
-                    InputMethodManager imm = (InputMethodManager) (getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(myview.getWindowToken(), 0);
-
-                    fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.add(R.id.main_container, new Order_PlaceOrder()).addToBackStack("null");
-                    fragmentTransaction.commit();
-                }
+//
+////                if (selectedProductsDataList_temp != null && selectedProductsDataList_temp.size() > 0 && (!orderCheckedOutStr.equals(""))) {
+////                    showDiscardDialog();
+//                if (selectedProductsDataList_temp != null && selectedProductsDataList_temp.size() > 0 && quantity > 0 && (!orderCheckedOutStr.equals("") || (selectedProductsSP.getString("fromDraft", "").equals("draft")) && selectedProductsSP.getString("fromDraftChanged", "").equals("changed"))) {
+////                    if (selectedProductsDataList != null && selectedProductsDataList.size() > 0 && (orderCheckedOut.equals("orderCheckout") || orderCheckedOut.equals("orderCheckout123"))) {
+//                    showDiscardDialog();
+//                } else if ((selectedProductsDataList_temp == null || selectedProductsDataList_temp.size() == 0 || quantity == 0) && (selectedProductsSP.getString("fromDraft", "").equals("draft"))) {
+////                    if (selectedProductsDataList != null && selectedProductsDataList.size() > 0 && (orderCheckedOut.equals("orderCheckout") || orderCheckedOut.equals("orderCheckout123"))) {
+//                    showDiscardDialog();
+//                } else {
+//
+//                    InputMethodManager imm = (InputMethodManager) (getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
+//                    imm.hideSoftInputFromWindow(myview.getWindowToken(), 0);
+//
+//                    fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+////                    fragmentTransaction.add(R.id.main_container, new HomeFragment()).addToBackStack("null");
+//                    if (!selectedProductsSP.getString("fromDraft", "").equals("draft"))
+//                        fragmentTransaction.add(R.id.main_container, new Order_PlaceOrder()).addToBackStack("null");
+//                    else
+//                        fragmentTransaction.add(R.id.main_container, new HomeFragment()).addToBackStack("null");
+//                    fragmentTransaction.commit();
+//                }
             }
         });
 
@@ -751,6 +771,23 @@ public class Dist_OrderPlace extends Fragment {
                                     for (int i = 0; i < selectedProductsDataList.size(); i++) {
 //                                Log.i("unit price", selectedProductsDataList.get(i).getProductUnitPrice());
 //                                Log.i("qty", selectedProductsQuantityList.get(i));
+                                        if (selectedProductsQuantityList.get(i).equals("") || Integer.parseInt(selectedProductsQuantityList.get(i)) == 0) {
+                                            selectedProductsDataList.remove(i);
+                                            selectedProductsQuantityList.remove(i);
+
+                                            String json = gson.toJson(selectedProductsDataList);
+                                            String jsonqty = gson.toJson(selectedProductsQuantityList);
+                                            Log.i("jsonqty", jsonqty);
+                                            Log.i("json", json);
+
+                                            SharedPreferences selectedProducts_zero = getContext().getSharedPreferences("selectedProducts_distributor",
+                                                    Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = selectedProducts_zero.edit();
+                                            editor.putString("selected_products", json);
+                                            editor.putString("selected_products_qty", jsonqty);
+                                            editor.apply();
+                                        }
+
                                         if (!selectedProductsDataList.get(i).getUnitPrice().equals("") && !selectedProductsQuantityList.get(i).equals(""))
                                             grossAmount += Float.parseFloat(selectedProductsDataList.get(i).getUnitPrice()) * Float.parseFloat(selectedProductsQuantityList.get(i));
                                     }
@@ -920,8 +957,6 @@ public class Dist_OrderPlace extends Fragment {
                     SharedPreferences orderCheckout = getContext().getSharedPreferences("orderCheckout_discard",
                             Context.MODE_PRIVATE);
                     String orderCheckedOutStr = orderCheckout.getString("orderCheckout", "");
-                    Log.i("back_debug", orderCheckedOutStr + "'''");
-                    Log.i("back_debug123", String.valueOf(selectedProductsDataList.size()));
 
                     List<OrderChildlist_Model_DistOrder> selectedProductsDataList = new ArrayList<>();
                     List<String> selectedProductsQuantityList = new ArrayList<>();
@@ -941,39 +976,114 @@ public class Dist_OrderPlace extends Fragment {
                     }
                     SharedPreferences selectedProductsSP = getContext().getSharedPreferences("FromDraft_Temp",
                             Context.MODE_PRIVATE);
+                    int quantity = 0;
+                    if (selectedProductsQuantityList != null && selectedProductsQuantityList.size() > 0)
+                        for (int i = 0; i < selectedProductsQuantityList.size(); i++) {
+                            quantity += Integer.parseInt(selectedProductsQuantityList.get(i));
+                        }
 
-                    if (selectedProductsDataList != null && selectedProductsDataList.size() > 0 && (!orderCheckedOutStr.equals("")) && (!selectedProductsSP.getString("fromDraft", "").equals("draft"))) {
-//                    if (selectedProductsDataList != null && selectedProductsDataList.size() > 0 && (orderCheckedOut.equals("orderCheckout") || orderCheckedOut.equals("orderCheckout123"))) {
-                        showDiscardDialog();
-                        return true;
-                    } else {
-                        InputMethodManager imm = (InputMethodManager) (getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(myview.getWindowToken(), 0);
 
+//                    Log.i("back_debug", orderCheckedOutStr + "'''1");
+//                    Log.i("back_debug123", String.valueOf(selectedProductsDataList.size()) + "'''2");
+//                    Log.i("back_debug123", String.valueOf(quantity) + "'''3");
+//                    Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "") + "'''4"));
+//                    Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "") + "'''5"));
 //
-                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                        fragmentTransaction.add(R.id.main_container, new Dist_OrderPlace()).addToBackStack("null");
-                        fragmentTransaction.add(R.id.main_container, new Order_PlaceOrder()).addToBackStack("null");
-                        fragmentTransaction.commit();
-                        return true;
-//                    } else {
+//                    Log.i("back_debug123", String.valueOf(selectedProductsDataList.size() > 0) + "'''12");
+//                    Log.i("back_debug123", String.valueOf(quantity > 0) + "'''13");
+//                    Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "").equals("draft") + "'''14"));
+//                    Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "").equals("changed") + "'''15"));
+
+                    return executeBackStackFlow(selectedProductsSP, orderCheckedOutStr, quantity, selectedProductsDataList, selectedProductsQuantityList);
+////                if (selectedProductsDataList_temp != null && selectedProductsDataList_temp.size() > 0 && (!orderCheckedOutStr.equals(""))) {
+////                    showDiscardDialog();
+//                    if (selectedProductsDataList != null && selectedProductsDataList.size() > 0 && quantity > 0 && (!orderCheckedOutStr.equals("") || (selectedProductsSP.getString("fromDraft", "").equals("draft")) && selectedProductsSP.getString("fromDraftChanged", "").equals("changed"))) {
+////                    if (selectedProductsDataList != null && selectedProductsDataList.size() > 0 && quantity > 0 && (!orderCheckedOutStr.equals("")) || (selectedProductsSP.getString("fromDraft", "").equals("draft"))) {
+////                    if (selectedProductsDataList != null && selectedProductsDataList.size() > 0 && quantity > 0 && (!orderCheckedOutStr.equals("")) && (!selectedProductsSP.getString("fromDraft", "").equals("draft"))) {
+////                    if (selectedProductsDataList != null && selectedProductsDataList.size() > 0 && (orderCheckedOut.equals("orderCheckout") || orderCheckedOut.equals("orderCheckout123"))) {
 //                        showDiscardDialog();
 //                        return true;
-                    }
-//                    SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
-//                            Context.MODE_PRIVATE);
-//                    SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
-//                    editorOrderTabsFromDraft.putString("TabNo", "0");
-//                    editorOrderTabsFromDraft.apply();
+//                    } else if ((selectedProductsDataList == null || selectedProductsDataList.size() == 0 || quantity == 0) && (selectedProductsSP.getString("fromDraft", "").equals("draft"))) {
 //
-//                    Intent login_intent = new Intent(((FragmentActivity) getContext()), RetailorDashboard.class);
-//                    ((FragmentActivity) getContext()).startActivity(login_intent);
-//                    ((FragmentActivity) getContext()).finish();
+////                    if (selectedProductsDataList != null && selectedProductsDataList.size() > 0 && (!orderCheckedOutStr.equals("")) && (!selectedProductsSP.getString("fromDraft", "").equals("draft"))) {
+//////                    if (selectedProductsDataList != null && selectedProductsDataList.size() > 0 && (orderCheckedOut.equals("orderCheckout") || orderCheckedOut.equals("orderCheckout123"))) {
+////                        showDiscardDialog();
+////                        return true;
+////                    } else if ((selectedProductsDataList == null || selectedProductsDataList.size() == 0) && (selectedProductsSP.getString("fromDraft", "").equals("draft"))) {
+//////                    if (selectedProductsDataList != null && selectedProductsDataList.size() > 0 && (orderCheckedOut.equals("orderCheckout") || orderCheckedOut.equals("orderCheckout123"))) {
+//                        showDiscardDialog();
+//                        return true;
+//                    } else {
+//                        InputMethodManager imm = (InputMethodManager) (getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
+//                        imm.hideSoftInputFromWindow(myview.getWindowToken(), 0);
+//
+////
+//                        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                        if (!selectedProductsSP.getString("fromDraft", "").equals("draft"))
+//                            fragmentTransaction.add(R.id.main_container, new Order_PlaceOrder()).addToBackStack("null");
+//                        else
+//                            fragmentTransaction.add(R.id.main_container, new HomeFragment()).addToBackStack("null");
+//                        fragmentTransaction.commit();
+//                        return true;
+////                    } else {
+////                        showDiscardDialog();
+////                        return true;
+//                    }
+////                    SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
+////                            Context.MODE_PRIVATE);
+////                    SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
+////                    editorOrderTabsFromDraft.putString("TabNo", "0");
+////                    editorOrderTabsFromDraft.apply();
+////
+////                    Intent login_intent = new Intent(((FragmentActivity) getContext()), RetailorDashboard.class);
+////                    ((FragmentActivity) getContext()).startActivity(login_intent);
+////                    ((FragmentActivity) getContext()).finish();
                 }
                 return false;
             }
         });
 
+    }
+
+    private boolean executeBackStackFlow(SharedPreferences selectedProductsSP, String orderCheckedOutStr, int quantity, List<OrderChildlist_Model_DistOrder> selectedProductsDataList, List<String> selectedProductsQuantityList) {
+        Log.i("back_debug", orderCheckedOutStr + "'''1");
+        Log.i("back_debug123", String.valueOf(selectedProductsDataList.size()) + "'''2");
+        Log.i("back_debug123", String.valueOf(quantity) + "'''3");
+        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "") + "'''4"));
+        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "") + "'''5"));
+
+        Log.i("back_debug123", String.valueOf(!orderCheckedOutStr.equals("")) + "'''11");
+        Log.i("back_debug123", String.valueOf(selectedProductsDataList.size() > 0) + "'''12");
+        Log.i("back_debug123", String.valueOf(quantity > 0) + "'''13");
+        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "").equals("draft") + "'''14"));
+        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "").equals("changed") + "'''15"));
+
+
+        if (selectedProductsSP.getString("fromDraft", "").equals("draft")) {
+            Log.i("back_debug", "in draft flow" + "'''1");
+            //draft flow
+            if (selectedProductsSP.getString("fromDraftChanged", "").equals("changed")) {
+                showDiscardDialog();
+                return true;
+            } else {
+                fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.main_container, new HomeFragment()).addToBackStack("null");
+                fragmentTransaction.commit();
+                return true;
+            }
+        } else {
+            Log.i("back_debug", "in place order flow" + "'''1");
+            // place order flow
+            if (quantity > 0 && (!orderCheckedOutStr.equals(""))) {
+                showDiscardDialog();
+                return true;
+            } else {
+                fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.main_container, new Order_PlaceOrder()).addToBackStack("null");
+                fragmentTransaction.commit();
+                return true;
+            }
+        }
     }
 
     private void getProductCategory() throws JSONException {

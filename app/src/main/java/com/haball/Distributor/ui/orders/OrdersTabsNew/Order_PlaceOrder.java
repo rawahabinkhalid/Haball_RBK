@@ -52,6 +52,12 @@ public class Order_PlaceOrder extends Fragment {
         orderCheckout_editor_discard.putString("orderCheckout", "");
         orderCheckout_editor_discard.apply();
 
+        SharedPreferences orderCheckout1_change = getContext().getSharedPreferences("FromDraft_Temp",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor orderCheckout_change_editor1 = orderCheckout1_change.edit();
+        orderCheckout_change_editor1.putString("fromDraftChanged", "");
+        orderCheckout_change_editor1.apply();
+
 
         SharedPreferences selectedProductsSP = getContext().getSharedPreferences("FromDraft",
                 Context.MODE_PRIVATE);
