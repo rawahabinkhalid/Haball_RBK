@@ -737,6 +737,13 @@ public class Dist_Order_Summary extends Fragment {
 
                                         }
                                     }
+                                    if(!changed) {
+                                        SharedPreferences selectedProductsSP = getContext().getSharedPreferences("FromDraft_Temp",
+                                                Context.MODE_PRIVATE);
+                                        if (selectedProductsSP.getString("fromDraftChanged", "").equals("changed")) {
+                                            changed = true;
+                                        }
+                                    }
 
 
                                     loader.hideLoader();

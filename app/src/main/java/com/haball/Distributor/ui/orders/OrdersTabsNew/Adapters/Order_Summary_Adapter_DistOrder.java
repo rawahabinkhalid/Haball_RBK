@@ -583,12 +583,6 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
         holder.btn_delete_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changed = true;
-                SharedPreferences orderCheckout1 = context.getSharedPreferences("FromDraft_Temp",
-                        Context.MODE_PRIVATE);
-                SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
-                orderCheckout_editor1.putString("fromDraftChanged", "changed");
-                orderCheckout_editor1.apply();
 
                 final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                 LayoutInflater inflater = LayoutInflater.from(context);
@@ -649,6 +643,13 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
     }
 
     private void deleteProduct(@NonNull final Order_Summary_Adapter_DistOrder.ViewHolder holder, final int finalPosition) {
+        changed = true;
+        SharedPreferences orderCheckout1 = context.getSharedPreferences("FromDraft_Temp",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
+        orderCheckout_editor1.putString("fromDraftChanged", "changed");
+        orderCheckout_editor1.apply();
+
         if (selectedProductsDataList.size() > 1) {
 
             selectedProductsDataListQty.set(finalPosition, "0");
