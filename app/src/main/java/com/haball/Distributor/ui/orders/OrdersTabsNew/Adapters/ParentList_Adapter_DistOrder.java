@@ -14,6 +14,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -34,6 +35,7 @@ import com.haball.Distributor.ui.orders.OrdersTabsNew.Models.OrderChildlist_Mode
 import com.haball.Distributor.ui.orders.OrdersTabsNew.Models.OrderParentlist_Model_DistOrder;
 import com.haball.Distributor.ui.orders.OrdersTabsNew.Order_PlaceOrder;
 import com.haball.Distributor.ui.orders.OrdersTabsNew.Tabs.Dist_OrderPlace;
+import com.haball.NonSwipeableViewPager;
 import com.haball.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -143,6 +145,16 @@ public class ParentList_Adapter_DistOrder extends ExpandableRecyclerAdapter<Orde
 
     @Override
     public void onBindChildViewHolder(@NonNull final OrderChildList_VH_DistOrder OrderChildList_VH_DistOrder, final int pos, final int i, @NonNull OrderChildlist_Model_DistOrder o) {
+        final NonSwipeableViewPager viewPager = ((FragmentActivity) context).findViewById(R.id.view_pager5);
+        OrderChildList_VH_DistOrder.product_code.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                viewPager.setCurrentItem(0, false);
+            }
+        });
+        viewPager.setCurrentItem(0);
+
+
         OrderChildlist_Model_DistOrder OrderChildlist_Model_DistOrder = (OrderChildlist_Model_DistOrder) o;
         final OrderChildList_VH_DistOrder temp_orderChildList_vh = OrderChildList_VH_DistOrder;
         final int temp_i = i;
@@ -449,17 +461,17 @@ public class ParentList_Adapter_DistOrder extends ExpandableRecyclerAdapter<Orde
     }
 
     private boolean executeBackStackFlow(SharedPreferences selectedProductsSP, String orderCheckedOutStr, int quantity, List<OrderChildlist_Model_DistOrder> selectedProductsDataList, List<String> selectedProductsQuantityList) {
-        Log.i("back_debug", orderCheckedOutStr + "'''1");
-        Log.i("back_debug123", String.valueOf(selectedProductsDataList.size()) + "'''2");
-        Log.i("back_debug123", String.valueOf(quantity) + "'''3");
-        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "") + "'''4"));
-        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "") + "'''5"));
-
-        Log.i("back_debug123", String.valueOf(!orderCheckedOutStr.equals("")) + "'''11");
-        Log.i("back_debug123", String.valueOf(selectedProductsDataList.size() > 0) + "'''12");
-        Log.i("back_debug123", String.valueOf(quantity > 0) + "'''13");
-        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "").equals("draft") + "'''14"));
-        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "").equals("changed") + "'''15"));
+//        Log.i("back_debug", orderCheckedOutStr + "'''1");
+//        Log.i("back_debug123", String.valueOf(selectedProductsDataList.size()) + "'''2");
+//        Log.i("back_debug123", String.valueOf(quantity) + "'''3");
+//        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "") + "'''4"));
+//        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "") + "'''5"));
+//
+//        Log.i("back_debug123", String.valueOf(!orderCheckedOutStr.equals("")) + "'''11");
+//        Log.i("back_debug123", String.valueOf(selectedProductsDataList.size() > 0) + "'''12");
+//        Log.i("back_debug123", String.valueOf(quantity > 0) + "'''13");
+//        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "").equals("draft") + "'''14"));
+//        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "").equals("changed") + "'''15"));
 
         FragmentTransaction fragmentTransaction;
         if (selectedProductsSP.getString("fromDraft", "").equals("draft")) {
@@ -475,7 +487,7 @@ public class ParentList_Adapter_DistOrder extends ExpandableRecyclerAdapter<Orde
             }
         } else {
             // place order flow
-            if (quantity > 0 && (!orderCheckedOutStr.equals(""))) {
+            if (((!orderCheckedOutStr.equals("")))) {
                 showDiscardDialog();
                 return true;
             } else {

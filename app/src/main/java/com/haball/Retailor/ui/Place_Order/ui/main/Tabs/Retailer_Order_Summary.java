@@ -50,6 +50,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.haball.Distributor.ui.home.HomeFragment;
+import com.haball.Distributor.ui.orders.OrdersTabsNew.Models.OrderChildlist_Model_DistOrder;
 import com.haball.HaballError;
 import com.haball.Loader;
 import com.haball.NonSwipeableViewPager;
@@ -87,6 +89,10 @@ public class Retailer_Order_Summary extends Fragment {
     private RecyclerView recyclerView1;
     private List<OrderChildlist_Model> selectedProductsDataList = new ArrayList<>();
     private List<String> selectedProductsQuantityList = new ArrayList<>();
+
+    private List<OrderChildlist_Model> selectedProductsDataList_temp = new ArrayList<>();
+    private List<String> selectedProductsQuantityList_temp = new ArrayList<>();
+
     private String object_string, object_stringqty, Token, DistributorId, CompanyId;
     private String URL_CONFIRM_ORDERS = "http://175.107.203.97:4014/api/Orders/saveOrder";
     //    private String URL_SAVE_TEMPLATE = "https://175.107.203.97:4013/api/ordertemplate/save";
@@ -99,6 +105,7 @@ public class Retailer_Order_Summary extends Fragment {
     private ViewPager viewpager;
     private List<OrderChildlist_Model> temp_list = new ArrayList<>();
     private List<String> temp_listqty = new ArrayList<>();
+    private Loader loader;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -125,15 +132,19 @@ public class Retailer_Order_Summary extends Fragment {
 //        editorDraft.putString("fromDraft", "");
 //        editorDraft.apply();
         final NonSwipeableViewPager viewPager = getActivity().findViewById(R.id.view_pager_rpoid);
-        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
-        {
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
-            public void onGlobalLayout()
-            {
+            public void onGlobalLayout() {
                 viewPager.setCurrentItem(1, false);
             }
         });
         viewPager.setCurrentItem(1);
+
+        final SharedPreferences orderCheckout_SP = getContext().getSharedPreferences("orderCheckout_discard",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor orderCheckout_editor = orderCheckout_SP.edit();
+        orderCheckout_editor.putString("orderCheckout", "orderCheckout");
+        orderCheckout_editor.apply();
 
         btn_add_product = view.findViewById(R.id.btn_add_product);
 
@@ -142,7 +153,7 @@ public class Retailer_Order_Summary extends Fragment {
         InputMethodManager imm = (InputMethodManager) (getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
-        final Loader loader = new Loader(getContext());
+        loader = new Loader(getContext());
 
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
@@ -317,6 +328,27 @@ public class Retailer_Order_Summary extends Fragment {
         }.getType();
         selectedProductsDataList = gson.fromJson(object_string, type);
         selectedProductsQuantityList = gson.fromJson(object_stringqty, typeQty);
+
+        selectedProductsDataList_temp = selectedProductsDataList;
+        selectedProductsQuantityList_temp = selectedProductsQuantityList;
+
+        for (int i = 0; i < selectedProductsDataList.size(); i++) {
+            if (selectedProductsQuantityList.get(i).equals("")) {
+                selectedProductsQuantityList.remove(i);
+                selectedProductsDataList.remove(i);
+            } else if (Integer.parseInt(selectedProductsQuantityList.get(i)) <= 0) {
+                selectedProductsQuantityList.remove(i);
+                selectedProductsDataList.remove(i);
+            }
+        }
+        String json = gson.toJson(selectedProductsDataList);
+        String jsonqty = gson.toJson(selectedProductsQuantityList);
+        SharedPreferences selectedProducts_1 = getContext().getSharedPreferences("selectedProducts_retailer_own",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = selectedProducts_1.edit();
+        editor.putString("selected_products", json);
+        editor.putString("selected_products_qty", jsonqty);
+        editor.apply();
 
 
         recyclerView1 = view.findViewById(R.id.rv_orders_summary);
@@ -517,11 +549,11 @@ public class Retailer_Order_Summary extends Fragment {
                     SharedPreferences.Editor editor = grossamount.edit();
                     editor.clear();
                     editor.apply();
-                    SharedPreferences selectedProducts_distributor = getContext().getSharedPreferences("selectedProducts_distributor",
+                    SharedPreferences selectedProducts_retailer_own = getContext().getSharedPreferences("selectedProducts_retailer_own",
                             Context.MODE_PRIVATE);
-                    SharedPreferences.Editor selectedProducts_distributor_editor = selectedProducts_distributor.edit();
-                    selectedProducts_distributor_editor.clear();
-                    selectedProducts_distributor_editor.apply();
+                    SharedPreferences.Editor selectedProducts_retailer_own_editor = selectedProducts_retailer_own.edit();
+                    selectedProducts_retailer_own_editor.clear();
+                    selectedProducts_retailer_own_editor.apply();
 
 //                    Toast.makeText(getContext(), "Order Request ID " + result.get("OrderNumber") + " has been saved as draft successfully.", Toast.LENGTH_LONG).show();
 //                    Intent login_intent = new Intent(getActivity(), RetailorDashboard.class);
@@ -722,8 +754,92 @@ public class Retailer_Order_Summary extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    showDiscardDialog();
+                    loader.showLoader();
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Gson gson = new Gson();
+                                    Type type = new TypeToken<List<OrderChildlist_Model>>() {
+                                    }.getType();
+                                    Type typeQty = new TypeToken<List<String>>() {
+                                    }.getType();
+                                    selectedProductsDataList = gson.fromJson(object_string, type);
+                                    selectedProductsQuantityList = gson.fromJson(object_stringqty, typeQty);
+
+                                    boolean changed = false;
+                                    for (int i = 0; i < selectedProductsDataList.size(); i++) {
+                                        try {
+                                            if (!selectedProductsDataList.get(i).getProductCode().equals(selectedProductsDataList_temp.get(i).getProductCode()) || !selectedProductsQuantityList.get(i).equals(selectedProductsQuantityList_temp.get(i)))
+                                                changed = true;
+                                        } catch (IndexOutOfBoundsException ex) {
+
+                                        }
+                                    }
+                                    if (!changed) {
+                                        SharedPreferences selectedProductsSP = getContext().getSharedPreferences("FromDraft_Temp",
+                                                Context.MODE_PRIVATE);
+                                        if (selectedProductsSP.getString("fromDraftChanged", "").equals("changed")) {
+                                            changed = true;
+                                        }
+                                    }
+
+
+                                    loader.hideLoader();
+                                    Log.i("back_key_debug", "back from fragment 1");
+                                    SharedPreferences selectedProductsSP = getContext().getSharedPreferences("FromDraft_Temp",
+                                            Context.MODE_PRIVATE);
+                                    if (!selectedProductsSP.getString("fromDraft", "").equals("draft")) {
+//                                        if (selectedProductsDataList != selectedProductsDataList_temp || selectedProductsQuantityList != selectedProductsQuantityList_temp) {
+                                        showDiscardDialog();
+//                                        } else {
+//                                            SharedPreferences orderCheckout1 = getContext().getSharedPreferences("FromDraft_Temp",
+//                                                    Context.MODE_PRIVATE);
+//                                            SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
+//                                            orderCheckout_editor1.putString("fromDraft", "");
+//                                            orderCheckout_editor1.apply();
+//
+//                                            SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
+//                                                    Context.MODE_PRIVATE);
+//                                            SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
+//                                            editorOrderTabsFromDraft.putString("TabNo", "0");
+//                                            editorOrderTabsFromDraft.apply();
+//                                            fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                                            fragmentTransaction.add(R.id.main_container, new HomeFragment()).addToBackStack("tag");
+//                                            fragmentTransaction.commit();
+//                                        }
+//                        showDiscardDialog();
+//                        return true;
+                                    } else {
+                                        if (changed) {
+//                                        if (selectedProductsDataList != selectedProductsDataList_temp || selectedProductsQuantityList != selectedProductsQuantityList_temp) {
+                                            showDiscardDialog();
+                                        } else {
+//                                            SharedPreferences orderCheckout1 = getContext().getSharedPreferences("FromDraft_Temp",
+//                                                    Context.MODE_PRIVATE);
+//                                            SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
+//                                            orderCheckout_editor1.putString("fromDraft", "");
+//                                            orderCheckout_editor1.apply();
+
+                                            SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
+                                                    Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
+                                            editorOrderTabsFromDraft.putString("TabNo", "0");
+                                            editorOrderTabsFromDraft.apply();
+
+                                            Intent login_intent = new Intent(((FragmentActivity) getContext()), RetailorDashboard.class);
+                                            ((FragmentActivity) getContext()).startActivity(login_intent);
+                                            ((FragmentActivity) getContext()).finish();
+                                        }
+                                    }
+                                }
+                            }, 3000);
+                        }
+                    });
                     return true;
+
                 }
                 return false;
             }

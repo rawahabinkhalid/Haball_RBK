@@ -17,6 +17,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -189,6 +190,15 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
 
     @Override
     public void onBindViewHolder(@NonNull final Order_Summary_Adapter_DistOrder.ViewHolder holder, final int position) {
+        final NonSwipeableViewPager viewPager = ((FragmentActivity) context).findViewById(R.id.view_pager5);
+        holder.product_code.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                viewPager.setCurrentItem(1, false);
+            }
+        });
+        viewPager.setCurrentItem(1);
+
         final int finalPosition = position;
 //        if (!selectedProductsDataListQty.get(position).equals("0") && !selectedProductsDataListQty.get(position).equals("")) {
         Log.i("position", String.valueOf(finalPosition));

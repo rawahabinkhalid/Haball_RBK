@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
@@ -18,6 +19,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,9 +29,11 @@ import android.widget.Toast;
 
 import com.haball.Distributor.DistributorDashboard;
 import com.haball.Distributor.ui.home.HomeFragment;
+import com.haball.Distributor.ui.orders.OrdersTabsNew.Adapters.OrderChildList_VH_DistOrder;
 import com.haball.Distributor.ui.retailer.RetailerOrder.RetailerOrderDashboard;
 import com.haball.Distributor.ui.retailer.RetailerPlaceOrder.ui.main.Models.OrderChildlist_Model;
 import com.haball.Distributor.ui.retailer.RetailerPlaceOrder.ui.main.Tabs.OrderPlace_retailer_dashboarad;
+import com.haball.Loader;
 import com.haball.NonSwipeableViewPager;
 import com.haball.R;
 import com.google.gson.Gson;
@@ -48,8 +52,8 @@ public class Order_Summary_Adapter extends RecyclerView.Adapter<Order_Summary_Ad
 
     private Context context;
     private FragmentActivity activity;
-    private List<OrderChildlist_Model> selectedProductsDataList;
-    private List<String> selectedProductsDataListQty;
+    private List<OrderChildlist_Model> selectedProductsDataList, selectedProductsDataList_temp;
+    private List<String> selectedProductsDataListQty, selectedProductsDataListQty_temp;
     private float grossAmount = 0;
     private float discAmount = 0;
     //    private String before = "", after = "";
@@ -58,6 +62,7 @@ public class Order_Summary_Adapter extends RecyclerView.Adapter<Order_Summary_Ad
     private double Quantity = 0;
     private TextView total_amount;
     private TextView discount_amount;
+    private boolean changed = false;
 
     public Order_Summary_Adapter(FragmentActivity activity, Context context, List<OrderChildlist_Model> selectedProductsDataList, List<String> selectedProductsDataListQty, Button btn_confirm, Button btn_draft, TextView total_amount, TextView discount_amount) {
         this.context = context;
@@ -183,7 +188,14 @@ public class Order_Summary_Adapter extends RecyclerView.Adapter<Order_Summary_Ad
         } else {
             disableCheckoutButton();
         }
+
+        this.selectedProductsDataList_temp = this.selectedProductsDataList;
+        this.selectedProductsDataListQty_temp = this.selectedProductsDataListQty;
+
+
         Log.i("selectedProducts", String.valueOf(this.selectedProductsDataList));
+        Log.i("debug_back_pressed", String.valueOf(this.selectedProductsDataList_temp));
+        Log.i("debug_back_pressed", String.valueOf(this.selectedProductsDataListQty_temp));
     }
 
     private void enableCheckoutButton() {
@@ -207,6 +219,16 @@ public class Order_Summary_Adapter extends RecyclerView.Adapter<Order_Summary_Ad
 
     @Override
     public void onBindViewHolder(@NonNull final Order_Summary_Adapter.ViewHolder holder, final int position) {
+        final NonSwipeableViewPager viewPager = ((FragmentActivity) context).findViewById(R.id.view_pager_rpoid);
+        holder.product_code.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                viewPager.setCurrentItem(1, false);
+            }
+        });
+        viewPager.setCurrentItem(1);
+
+
         final int finalPosition = position;
         Log.i("position", String.valueOf(finalPosition));
         holder.list_numberOFitems.setText(selectedProductsDataListQty.get(position));
@@ -304,12 +326,81 @@ public class Order_Summary_Adapter extends RecyclerView.Adapter<Order_Summary_Ad
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
         holder.product_code.append(ss1);
 //        total_amount.setText(ss1);
+//
+//        holder.list_numberOFitems.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+//                    showDiscardDialog();
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
 
         holder.list_numberOFitems.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    showDiscardDialog();
+                    final Loader loader = new Loader(context);
+                    loader.showLoader();
+                    ((FragmentActivity) context).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    loader.hideLoader();
+
+                                    Log.i("back_key_debug", "back from fragment 1");
+                                    SharedPreferences selectedProductsSP = context.getSharedPreferences("FromDraft_Temp",
+                                            Context.MODE_PRIVATE);
+                                    if (!selectedProductsSP.getString("fromDraft", "").equals("draft")) {
+//                                        if (selectedProductsDataList != selectedProductsDataList_temp || selectedProductsQuantityList != selectedProductsQuantityList_temp) {
+                                        showDiscardDialog();
+//                                        } else {
+//                                            SharedPreferences orderCheckout1 = getContext().getSharedPreferences("FromDraft_Temp",
+//                                                    Context.MODE_PRIVATE);
+//                                            SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
+//                                            orderCheckout_editor1.putString("fromDraft", "");
+//                                            orderCheckout_editor1.apply();
+//
+//                                            SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
+//                                                    Context.MODE_PRIVATE);
+//                                            SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
+//                                            editorOrderTabsFromDraft.putString("TabNo", "0");
+//                                            editorOrderTabsFromDraft.apply();
+//                                            fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                                            fragmentTransaction.add(R.id.main_container, new HomeFragment()).addToBackStack("tag");
+//                                            fragmentTransaction.commit();
+//                                        }
+//                        showDiscardDialog();
+//                        return true;
+                                    } else {
+                                        if (changed) {
+//                                        if (selectedProductsDataList != selectedProductsDataList_temp || selectedProductsQuantityList != selectedProductsQuantityList_temp) {
+                                            showDiscardDialog();
+                                            SharedPreferences orderCheckout1 = context.getSharedPreferences("FromDraft_Temp",
+                                                    Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
+                                            orderCheckout_editor1.putString("fromDraftChanged", "changed");
+                                            orderCheckout_editor1.apply();
+                                        } else {
+
+                                            SharedPreferences tabsFromDraft = context.getSharedPreferences("OrderTabsFromDraft",
+                                                    Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
+                                            editorOrderTabsFromDraft.putString("TabNo", "0");
+                                            editorOrderTabsFromDraft.apply();
+                                            FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+                                            fragmentTransaction.add(R.id.main_container, new RetailerOrderDashboard()).addToBackStack("tag");
+                                            fragmentTransaction.commit();
+                                        }
+                                    }
+                                }
+                            }, 3000);
+                        }
+                    });
                     return true;
                 }
                 return false;
@@ -331,6 +422,12 @@ public class Order_Summary_Adapter extends RecyclerView.Adapter<Order_Summary_Ad
             @Override
             public void afterTextChanged(Editable s) {
                 if (holder.list_numberOFitems.hasFocus()) {
+                    changed = true;
+                    SharedPreferences orderCheckout1 = context.getSharedPreferences("FromDraft_Temp",
+                            Context.MODE_PRIVATE);
+                    SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
+                    orderCheckout_editor1.putString("fromDraftChanged", "changed");
+                    orderCheckout_editor1.apply();
                     Log.i("list_numberOFitems", String.valueOf(holder.list_numberOFitems.getText()));
 //                after = String.valueOf(s);
 ////                if (String.valueOf(s).equals("0")) {
@@ -411,6 +508,12 @@ public class Order_Summary_Adapter extends RecyclerView.Adapter<Order_Summary_Ad
                         float totalamount = 0;
                         String yourFormattedString3;
                         if (!selectedProductsDataList.get(position).getProductUnitPrice().equals("")) {
+                            Log.i("debug_summary", str_quantity);
+                            Log.i("debug_summary", String.valueOf(selectedProductsDataList.get(position).getProductUnitPrice()));
+                            Log.i("debug_summary", String.valueOf(selectedProductsDataList.get(position).getDiscountAmount()));
+                            Log.i("debug_summary", String.valueOf(Float.parseFloat(str_quantity)));
+                            Log.i("debug_summary", String.valueOf(Float.parseFloat(selectedProductsDataList.get(position).getProductUnitPrice())));
+                            Log.i("debug_summary", String.valueOf(Float.parseFloat(selectedProductsDataList.get(position).getDiscountAmount())));
                             if (selectedProductsDataList.get(position).getDiscountAmount() != null)
                                 totalamount = Float.parseFloat(str_quantity) * (Float.parseFloat(selectedProductsDataList.get(position).getProductUnitPrice()) - Float.parseFloat(selectedProductsDataList.get(position).getDiscountAmount()));
                             else
@@ -600,6 +703,13 @@ public class Order_Summary_Adapter extends RecyclerView.Adapter<Order_Summary_Ad
     }
 
     private void deleteProduct(@NonNull final Order_Summary_Adapter.ViewHolder holder, final int finalPosition) {
+        changed = true;
+        SharedPreferences orderCheckout1 = context.getSharedPreferences("FromDraft_Temp",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
+        orderCheckout_editor1.putString("fromDraftChanged", "changed");
+        orderCheckout_editor1.apply();
+
         if (selectedProductsDataList.size() > 1) {
 
             selectedProductsDataListQty.set(finalPosition, "0");

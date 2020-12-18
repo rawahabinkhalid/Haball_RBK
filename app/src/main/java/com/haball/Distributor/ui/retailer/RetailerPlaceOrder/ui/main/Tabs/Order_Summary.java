@@ -46,6 +46,8 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.haball.Distributor.ui.home.HomeFragment;
+import com.haball.Distributor.ui.orders.OrdersTabsNew.Models.OrderChildlist_Model_DistOrder;
 import com.haball.Distributor.ui.retailer.RetailerOrder.RetailerOrderDashboard;
 import com.haball.Distributor.ui.retailer.RetailerPlaceOrder.ui.main.Adapters.Order_Summary_Adapter;
 import com.haball.Distributor.ui.retailer.RetailerPlaceOrder.ui.main.Models.OrderChildlist_Model;
@@ -83,6 +85,8 @@ public class Order_Summary extends Fragment {
     private RecyclerView recyclerView1;
     private List<OrderChildlist_Model> selectedProductsDataList = new ArrayList<>();
     private List<String> selectedProductsQuantityList = new ArrayList<>();
+    private List<OrderChildlist_Model> selectedProductsDataList_temp = new ArrayList<>();
+    private List<String> selectedProductsQuantityList_temp = new ArrayList<>();
     private String object_string, object_stringqty, Token;
     private String URL_CONFIRM_ORDERS = "https://175.107.203.97:4013/api/retailerorder/save";
     //    private String URL_SAVE_TEMPLATE = "https://175.107.203.97:4013/api/ordertemplate/save";
@@ -316,6 +320,9 @@ public class Order_Summary extends Fragment {
         }.getType();
         selectedProductsDataList = gson.fromJson(object_string, type);
         selectedProductsQuantityList = gson.fromJson(object_stringqty, typeQty);
+
+        selectedProductsDataList_temp = selectedProductsDataList;
+        selectedProductsQuantityList_temp = selectedProductsQuantityList;
 
         recyclerView1 = view.findViewById(R.id.rv_orders_summary);
         recyclerView1.setHasFixedSize(false);
@@ -765,10 +772,98 @@ public class Order_Summary extends Fragment {
         getView().setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+//                    showDiscardDialog();
+//                    return true;
+//                }
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    showDiscardDialog();
+                    loader.showLoader();
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Gson gson = new Gson();
+                                    Type type = new TypeToken<List<OrderChildlist_Model>>() {
+                                    }.getType();
+                                    Type typeQty = new TypeToken<List<String>>() {
+                                    }.getType();
+                                    selectedProductsDataList = gson.fromJson(object_string, type);
+                                    selectedProductsQuantityList = gson.fromJson(object_stringqty, typeQty);
+
+                                    boolean changed = false;
+                                    for(int i = 0; i < selectedProductsDataList.size(); i++) {
+                                        try {
+                                            if (!selectedProductsDataList.get(i).getProductCode().equals(selectedProductsDataList_temp.get(i).getProductCode()) || !selectedProductsQuantityList.get(i).equals(selectedProductsQuantityList_temp.get(i)))
+                                                changed = true;
+                                        } catch (IndexOutOfBoundsException ex) {
+
+                                        }
+                                    }
+                                    if(!changed) {
+                                        SharedPreferences selectedProductsSP = getContext().getSharedPreferences("FromDraft_Temp",
+                                                Context.MODE_PRIVATE);
+                                        if (selectedProductsSP.getString("fromDraftChanged", "").equals("changed")) {
+                                            changed = true;
+                                        }
+                                    }
+
+
+                                    loader.hideLoader();
+                                    Log.i("back_key_debug", "back from fragment 1");
+                                    SharedPreferences selectedProductsSP = getContext().getSharedPreferences("FromDraft_Temp",
+                                            Context.MODE_PRIVATE);
+                                    if (!selectedProductsSP.getString("fromDraft", "").equals("draft")) {
+//                                        if (selectedProductsDataList != selectedProductsDataList_temp || selectedProductsQuantityList != selectedProductsQuantityList_temp) {
+                                        showDiscardDialog();
+//                                        } else {
+//                                            SharedPreferences orderCheckout1 = getContext().getSharedPreferences("FromDraft_Temp",
+//                                                    Context.MODE_PRIVATE);
+//                                            SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
+//                                            orderCheckout_editor1.putString("fromDraft", "");
+//                                            orderCheckout_editor1.apply();
+//
+//                                            SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
+//                                                    Context.MODE_PRIVATE);
+//                                            SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
+//                                            editorOrderTabsFromDraft.putString("TabNo", "0");
+//                                            editorOrderTabsFromDraft.apply();
+//                                            fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                                            fragmentTransaction.add(R.id.main_container, new HomeFragment()).addToBackStack("tag");
+//                                            fragmentTransaction.commit();
+//                                        }
+//                        showDiscardDialog();
+//                        return true;
+                                    } else {
+                                        if (changed) {
+//                                        if (selectedProductsDataList != selectedProductsDataList_temp || selectedProductsQuantityList != selectedProductsQuantityList_temp) {
+                                            showDiscardDialog();
+                                        } else {
+//                                            SharedPreferences orderCheckout1 = getContext().getSharedPreferences("FromDraft_Temp",
+//                                                    Context.MODE_PRIVATE);
+//                                            SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
+//                                            orderCheckout_editor1.putString("fromDraft", "");
+//                                            orderCheckout_editor1.apply();
+
+                                            SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
+                                                    Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
+                                            editorOrderTabsFromDraft.putString("TabNo", "0");
+                                            editorOrderTabsFromDraft.apply();
+                                            fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                            fragmentTransaction.add(R.id.main_container, new RetailerOrderDashboard()).addToBackStack("tag");
+                                            fragmentTransaction.commit();
+                                        }
+                                    }
+                                }
+                            }, 3000);
+                        }
+                    });
                     return true;
+
                 }
+
                 return false;
             }
         });

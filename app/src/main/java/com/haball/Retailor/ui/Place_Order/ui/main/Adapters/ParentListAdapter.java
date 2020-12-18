@@ -1,7 +1,9 @@
 package com.haball.Retailor.ui.Place_Order.ui.main.Adapters;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.text.Editable;
@@ -9,27 +11,35 @@ import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.style.StyleSpan;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.haball.Distributor.ui.home.HomeFragment;
 import com.haball.Distributor.ui.orders.OrdersTabsNew.ExpandableRecyclerAdapter;
 import com.haball.Distributor.ui.orders.OrdersTabsNew.Order_PlaceOrder;
 import com.haball.Loader;
+import com.haball.NonSwipeableViewPager;
 import com.haball.R;
+import com.haball.Retailor.RetailorDashboard;
 import com.haball.Retailor.ui.Place_Order.Retailer_Place_Order;
 import com.haball.Retailor.ui.Place_Order.ui.main.Models.OrderChildlist_Model;
 import com.haball.Retailor.ui.Place_Order.ui.main.Models.OrderParentlist_Model;
@@ -137,7 +147,16 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
 
     @Override
     public void onBindChildViewHolder(@NonNull final OrderChildList_VH orderChildList_vh, int pos, final int i, @NonNull OrderChildlist_Model o) {
-//    public void onBindChildViewHolder(OrderChildList_VH orderChildList_vh, int pos, int i, OrderChildlist_Model o) {
+        final NonSwipeableViewPager viewPager = ((FragmentActivity) context).findViewById(R.id.view_pager_rpoid);
+        orderChildList_vh.product_code.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                viewPager.setCurrentItem(0, false);
+            }
+        });
+        viewPager.setCurrentItem(0);
+
+        //    public void onBindChildViewHolder(OrderChildList_VH orderChildList_vh, int pos, int i, OrderChildlist_Model o) {
 
 //        Log.i("debugOrder_o", String.valueOf(o));
         OrderChildlist_Model orderChildlist_model = (OrderChildlist_Model) o;
@@ -232,6 +251,12 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
 
             @Override
             public void afterTextChanged(Editable s) {
+                SharedPreferences orderCheckout1 = context.getSharedPreferences("FromDraft_Temp",
+                        Context.MODE_PRIVATE);
+                SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
+                orderCheckout_editor1.putString("fromDraftChanged", "changed");
+                orderCheckout_editor1.apply();
+
                 if (orderChildList_vh.list_numberOFitems.hasFocus()) {
                     String str_quantity = String.valueOf(s);
                     if (String.valueOf(s).equals(""))
@@ -253,11 +278,47 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
                 Log.i("order_place_debug", String.valueOf(keyCode));
                 Log.i("order_place_debug123123", String.valueOf(KeyEvent.KEYCODE_BACK));
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
-//                        fragmentTransaction.add(R.id.main_container, new Dist_OrderPlace()).addToBackStack("null");
-                    fragmentTransaction.add(R.id.main_container_ret, new Retailer_Place_Order()).addToBackStack("null");
-                    fragmentTransaction.commit();
-                    return true;
+//                    FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+////                        fragmentTransaction.add(R.id.main_container, new Dist_OrderPlace()).addToBackStack("null");
+//                    fragmentTransaction.add(R.id.main_container_ret, new Retailer_Place_Order()).addToBackStack("null");
+//                    fragmentTransaction.commit();
+//                    return true;
+
+                    SharedPreferences orderCheckout = context.getSharedPreferences("orderCheckout_discard",
+                            Context.MODE_PRIVATE);
+                    String orderCheckedOutStr = orderCheckout.getString("orderCheckout", "");
+                    Log.i("back_debug", orderCheckedOutStr + "'''");
+                    Log.i("back_debug123", String.valueOf(selectedProductsDataList.size()));
+
+                    List<OrderChildlist_Model> selectedProductsDataList = new ArrayList<>();
+                    List<String> selectedProductsQuantityList = new ArrayList<>();
+
+                    SharedPreferences selectedProductsSP = context.getSharedPreferences("FromDraft_Temp",
+                            Context.MODE_PRIVATE);
+
+                    SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts_retailer_own",
+                            Context.MODE_PRIVATE);
+                    Gson gson = new Gson();
+                    object_stringqty = selectedProducts.getString("selected_products_qty", "");
+                    object_string = selectedProducts.getString("selected_products", "");
+                    Type type = new TypeToken<List<OrderChildlist_Model>>() {
+                    }.getType();
+                    Type typeString = new TypeToken<List<String>>() {
+                    }.getType();
+                    if (!object_string.equals("") && !object_stringqty.equals("")) {
+                        selectedProductsDataList = gson.fromJson(object_string, type);
+                        selectedProductsQuantityList = gson.fromJson(object_stringqty, typeString);
+                    }
+
+
+                    int quantity = 0;
+                    if (selectedProductsQuantityList != null && selectedProductsQuantityList.size() > 0)
+                        for (int i = 0; i < selectedProductsQuantityList.size(); i++) {
+                            quantity += Integer.parseInt(selectedProductsQuantityList.get(i));
+                        }
+
+                    return executeBackStackFlow(selectedProductsSP, orderCheckedOutStr, quantity, selectedProductsDataList, selectedProductsQuantityList);
+
                 }
 //                Log.i("order_place_debug", String.valueOf(KeyCode));
 
@@ -287,6 +348,111 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
         }
 
 //        orderChildList_vh.list_numberOFitems.removeTextChangedListener(textWatcher);    }
+    }
+
+    private boolean executeBackStackFlow(SharedPreferences selectedProductsSP, String orderCheckedOutStr, int quantity, List<OrderChildlist_Model> selectedProductsDataList, List<String> selectedProductsQuantityList) {
+        Log.i("back_debug", orderCheckedOutStr + "'''1");
+        Log.i("back_debug123", String.valueOf(selectedProductsDataList.size()) + "'''2");
+        Log.i("back_debug123", String.valueOf(quantity) + "'''3");
+        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "") + "'''4"));
+        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "") + "'''5"));
+
+        Log.i("back_debug123", String.valueOf(!orderCheckedOutStr.equals("")) + "'''11");
+        Log.i("back_debug123", String.valueOf(selectedProductsDataList.size() > 0) + "'''12");
+        Log.i("back_debug123", String.valueOf(quantity > 0) + "'''13");
+        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "").equals("draft") + "'''14"));
+        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "").equals("changed") + "'''15"));
+
+        FragmentTransaction fragmentTransaction;
+        if (selectedProductsSP.getString("fromDraft", "").equals("draft")) {
+            //draft flow
+            if (selectedProductsSP.getString("fromDraftChanged", "").equals("changed")) {
+                showDiscardDialog();
+                return true;
+            } else {
+//                fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+//                fragmentTransaction.add(R.id.main_container, new HomeFragment()).addToBackStack("null");
+//                fragmentTransaction.commit();
+                Intent login_intent = new Intent(((FragmentActivity) context), RetailorDashboard.class);
+                ((FragmentActivity) context).startActivity(login_intent);
+                ((FragmentActivity) context).finish();
+                return true;
+            }
+        } else {
+            // place order flow
+            if (((!orderCheckedOutStr.equals("")))) {
+                showDiscardDialog();
+                return true;
+            } else {
+//                fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+//                fragmentTransaction.add(R.id.main_container_ret, new Retailer_Place_Order()).addToBackStack("null");
+//                fragmentTransaction.commit();
+                fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_container_ret, new Retailer_Place_Order()).addToBackStack("tag");
+                fragmentTransaction.commit();
+                return true;
+            }
+        }
+    }
+
+    private void showDiscardDialog() {
+        Log.i("CreatePayment", "In Dialog");
+        final FragmentManager fm = ((FragmentActivity) context).getSupportFragmentManager();
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        LayoutInflater inflater = LayoutInflater.from(context);
+        final View view_popup = inflater.inflate(R.layout.discard_changes, null);
+        TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
+        tv_discard_txt.setText("Are you sure, you want to leave this page? Your changes will be discarded.");
+        alertDialog.setView(view_popup);
+        alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
+        WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
+        layoutParams.y = 200;
+        layoutParams.x = -70;// top margin
+        alertDialog.getWindow().setAttributes(layoutParams);
+        Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
+        btn_discard.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.i("CreatePayment", "Button Clicked");
+                alertDialog.dismiss();
+                SharedPreferences tabsFromDraft = context.getSharedPreferences("OrderTabsFromDraft",
+                        Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
+                editorOrderTabsFromDraft.putString("TabNo", "0");
+                editorOrderTabsFromDraft.apply();
+
+                SharedPreferences orderCheckout = context.getSharedPreferences("orderCheckout",
+                        Context.MODE_PRIVATE);
+                SharedPreferences.Editor orderCheckout_editor = orderCheckout.edit();
+                orderCheckout_editor.putString("orderCheckout", "");
+                orderCheckout_editor.apply();
+
+                InputMethodManager imm = (InputMethodManager) ((FragmentActivity) context).getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view_popup.getWindowToken(), 0);
+
+                Intent login_intent = new Intent(((FragmentActivity) context), RetailorDashboard.class);
+                ((FragmentActivity) context).startActivity(login_intent);
+                ((FragmentActivity) context).finish();
+
+
+//                Intent login_intent = new Intent(((FragmentActivity) getContext()), DistributorDashboard.class);
+//                ((FragmentActivity) getContext()).startActivity(login_intent);
+//                ((FragmentActivity) getContext()).finish();
+
+//                fm.popBackStack();
+            }
+        });
+
+        ImageButton img_email = (ImageButton) view_popup.findViewById(R.id.btn_close);
+        img_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+
+            }
+        });
+
+        alertDialog.show();
     }
 
     private void setQuantity(OrderChildList_VH orderChildList_vh, OrderChildlist_Model orderChildlist_model, int pos) {

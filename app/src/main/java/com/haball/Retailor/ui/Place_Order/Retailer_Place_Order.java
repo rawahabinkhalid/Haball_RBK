@@ -61,12 +61,24 @@ public class Retailer_Place_Order extends Fragment {
             });
         }
 
-        SharedPreferences orderCheckout = getContext().getSharedPreferences("orderCheckout",
+        SharedPreferences orderCheckoutCh = getContext().getSharedPreferences("orderCheckout",
                 Context.MODE_PRIVATE);
-        SharedPreferences.Editor orderCheckout_editor = orderCheckout.edit();
-        orderCheckout_editor.putString("orderCheckout", "");
-        orderCheckout_editor.apply();
+        SharedPreferences.Editor orderCheckoutCh_editor = orderCheckoutCh.edit();
+        orderCheckoutCh_editor.putString("orderCheckout", "");
+        orderCheckoutCh_editor.apply();
 
+        final SharedPreferences orderCheckout_SP = getContext().getSharedPreferences("orderCheckout_discard",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor orderCheckout_editor_discard = orderCheckout_SP.edit();
+        orderCheckout_editor_discard.putString("orderCheckout", "");
+        orderCheckout_editor_discard.apply();
+
+
+        SharedPreferences orderCheckout1_change = getContext().getSharedPreferences("FromDraft_Temp",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor orderCheckout_change_editor1 = orderCheckout1_change.edit();
+        orderCheckout_change_editor1.putString("fromDraftChanged", "");
+        orderCheckout_change_editor1.apply();
 
         SharedPreferences selectedProductsSP = getContext().getSharedPreferences("FromDraft",
                 Context.MODE_PRIVATE);
@@ -91,19 +103,45 @@ public class Retailer_Place_Order extends Fragment {
                     }, 3000);
                 }
             });
-            SharedPreferences orderCheckout1 = getContext().getSharedPreferences("FromDraft",
+
+            SharedPreferences orderCheckout1 = getContext().getSharedPreferences("FromDraft_Temp",
                     Context.MODE_PRIVATE);
             SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
-            orderCheckout_editor1.putString("fromDraft", "");
+            orderCheckout_editor1.putString("fromDraft", "draft");
             orderCheckout_editor1.apply();
 
+            SharedPreferences orderCheckout1_temp = getContext().getSharedPreferences("FromDraft",
+                    Context.MODE_PRIVATE);
+            SharedPreferences.Editor orderCheckout_editor1_temp = orderCheckout1_temp.edit();
+            orderCheckout_editor1_temp.putString("fromDraft", "");
+            orderCheckout_editor1_temp.apply();
+
         } else {
+
+            SharedPreferences orderCheckout1Draft = getContext().getSharedPreferences("FromDraft_Temp",
+                    Context.MODE_PRIVATE);
+            SharedPreferences.Editor orderCheckout_editor1Draft = orderCheckout1Draft.edit();
+            orderCheckout_editor1Draft.putString("fromDraft", "");
+            orderCheckout_editor1Draft.apply();
+
+            SharedPreferences orderCheckout = getContext().getSharedPreferences("orderCheckout",
+                    Context.MODE_PRIVATE);
+            SharedPreferences.Editor orderCheckout_editor = orderCheckout.edit();
+            orderCheckout_editor.putString("orderCheckout", "");
+            orderCheckout_editor.apply();
+
             SharedPreferences selectedProducts = getContext().getSharedPreferences("selectedProducts_retailer_own",
                     Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = selectedProducts.edit();
             editor.putString("selected_products", "");
             editor.putString("selected_products_qty", "");
             editor.apply();
+
+            SharedPreferences orderCheckout1 = getContext().getSharedPreferences("FromDraft_Temp",
+                    Context.MODE_PRIVATE);
+            SharedPreferences.Editor orderCheckout_editor1 = orderCheckout1.edit();
+            orderCheckout_editor1.putString("fromDraft", "");
+            orderCheckout_editor1.apply();
 
 
             SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("DealerInfo",

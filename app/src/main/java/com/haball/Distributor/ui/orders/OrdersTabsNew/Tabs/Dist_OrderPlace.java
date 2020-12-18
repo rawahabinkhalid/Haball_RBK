@@ -1074,7 +1074,8 @@ public class Dist_OrderPlace extends Fragment {
         } else {
             Log.i("back_debug", "in place order flow" + "'''1");
             // place order flow
-            if (quantity > 0 && (!orderCheckedOutStr.equals(""))) {
+            if (((!orderCheckedOutStr.equals("")))) {
+//            if (quantity > 0 && (!orderCheckedOutStr.equals(""))) {
                 showDiscardDialog();
                 return true;
             } else {
