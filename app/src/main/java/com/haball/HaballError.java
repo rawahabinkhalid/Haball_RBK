@@ -35,6 +35,7 @@ import java.net.SocketTimeoutException;
 import java.util.Iterator;
 
 public class HaballError {
+
     public void printErrorMessage(Context context, VolleyError error) {
         error.printStackTrace();
         if (context != null) {
