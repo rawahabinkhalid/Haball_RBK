@@ -44,9 +44,9 @@ public class TextField {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                Log.i("textchanged", "aftertextchanged");
-                Log.i("textchanged", String.valueOf(editable));
-                Log.i("textchanged", String.valueOf(textInputEditText.getText()));
+                // Log.i("textchanged", "aftertextchanged");
+                // Log.i("textchanged", String.valueOf(editable));
+                // Log.i("textchanged", String.valueOf(textInputEditText.getText()));
                 if (textInputLayout.getDefaultHintTextColor() != ColorStateList.valueOf(context.getResources().getColor(R.color.error_stroke_color))) {
                     if (!myhasFocus && textInputEditText.getText().toString().trim().equals("")) {
                         textInputLayout.setDefaultHintTextColor(ColorStateList.valueOf(context.getResources().getColor(R.color.edit_text_hint_color)));

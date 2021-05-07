@@ -254,21 +254,21 @@ public class Dist_Order_Summary extends Fragment {
 //                selectedProductsQuantityList = gson.fromJson(object_stringqty, typeString);
 //                        if (selectedProductsDataList.size() > 0) {
 //                            for (int i = 0; i < selectedProductsDataList.size(); i++) {
-//                                Log.i("unit price", selectedProductsDataList.get(i).getProductUnitPrice());
-//                                Log.i("qty", selectedProductsQuantityList.get(i));
+//                                // Log.i("unit price", selectedProductsDataList.get(i).getProductUnitPrice());
+//                                // Log.i("qty", selectedProductsQuantityList.get(i));
 //                                if (!selectedProductsDataList.get(i).getProductUnitPrice().equals("") && !selectedProductsQuantityList.get(i).equals(""))
 //                                    grossAmount += Float.parseFloat(selectedProductsDataList.get(i).getProductUnitPrice()) * Float.parseFloat(selectedProductsQuantityList.get(i));
 //                            }
                                 float grossAmount = 0;
                                 if (selectedProductsDataList == null) {
-                                    Log.i("debugOrder_ListIsNull", "selected product list is null");
+                                    // Log.i("debugOrder_ListIsNull", "selected product list is null");
                                     SharedPreferences selectedProducts = getContext().getSharedPreferences("selectedProducts_distributor",
                                             Context.MODE_PRIVATE);
                                     Gson gson = new Gson();
                                     object_string = selectedProducts.getString("selected_products", "");
                                     object_stringqty = selectedProducts.getString("selected_products_qty", "");
-                                    Log.i("object_string", object_string);
-                                    Log.i("object_stringqty", object_stringqty);
+                                    // Log.i("object_string", object_string);
+                                    // Log.i("object_stringqty", object_stringqty);
                                     Type type = new TypeToken<List<OrderChildlist_Model_DistOrder>>() {
                                     }.getType();
                                     Type typeQty = new TypeToken<List<String>>() {
@@ -278,8 +278,8 @@ public class Dist_Order_Summary extends Fragment {
                                 }
                                 if (selectedProductsDataList.size() > 0) {
                                     for (int i = 0; i < selectedProductsDataList.size(); i++) {
-//                        Log.i("unit price", selectedProductsDataList.get(i).getProductUnitPrice());
-//                        Log.i("qty", selectedProductsQuantityList.get(i));
+//                        // Log.i("unit price", selectedProductsDataList.get(i).getProductUnitPrice());
+//                        // Log.i("qty", selectedProductsQuantityList.get(i));
                                         if (!selectedProductsDataList.get(i).getUnitPrice().equals("") && !selectedProductsQuantityList.get(i).equals(""))
                                             grossAmount += Float.parseFloat(selectedProductsDataList.get(i).getUnitPrice()) * Float.parseFloat(selectedProductsQuantityList.get(i));
                                     }
@@ -330,8 +330,8 @@ public class Dist_Order_Summary extends Fragment {
         Gson gson = new Gson();
         object_string = selectedProducts.getString("selected_products", "");
         object_stringqty = selectedProducts.getString("selected_products_qty", "");
-//        Log.i("object_string", object_string);
-//        Log.i("object_stringqty", object_stringqty);
+//        // Log.i("object_string", object_string);
+//        // Log.i("object_stringqty", object_stringqty);
         Type type = new TypeToken<List<OrderChildlist_Model_DistOrder>>() {
         }.getType();
         Type typeQty = new TypeToken<List<String>>() {
@@ -369,7 +369,7 @@ public class Dist_Order_Summary extends Fragment {
         recyclerView1.setAdapter(mAdapter1);
         recyclerView1.setNestedScrollingEnabled(false);
 
-        Log.i("aaaaaa", String.valueOf(mAdapter1));
+        // Log.i("aaaaaa", String.valueOf(mAdapter1));
 
         return view;
 
@@ -423,7 +423,7 @@ public class Dist_Order_Summary extends Fragment {
                 jsonArray.put(obj);
             }
         }
-        Log.i("Array", String.valueOf(jsonArray));
+        // Log.i("Array", String.valueOf(jsonArray));
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("DiscountAmount", 0);
@@ -456,15 +456,15 @@ public class Dist_Order_Summary extends Fragment {
         jsonObject.put("PaymentTermId", 1);
         jsonObject.put("DistributorDealerCode", DealerCode);
 
-        Log.i("summary_debug", String.valueOf(jsonObject));
+        // Log.i("summary_debug", String.valueOf(jsonObject));
 
         loader.showLoader();
-        Log.i("jsonObject", String.valueOf(jsonObject));
+        // Log.i("jsonObject", String.valueOf(jsonObject));
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_CONFIRM_ORDERS, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(final JSONObject result) {
                 loader.hideLoader();
-                Log.i("RESPONSE ORDER .. ", result.toString());
+                // Log.i("RESPONSE ORDER .. ", result.toString());
 
                 final Dialog fbDialogue = new Dialog(getActivity());
                 //fbDialogue.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
@@ -641,7 +641,7 @@ public class Dist_Order_Summary extends Fragment {
                 jsonArray.put(obj);
             }
         }
-        Log.i("Array", String.valueOf(jsonArray));
+        // Log.i("Array", String.valueOf(jsonArray));
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("DistributorId", DistributorId);
@@ -651,12 +651,12 @@ public class Dist_Order_Summary extends Fragment {
         jsonObject.put("OrderTemplateDetails", jsonArray);
         loader.showLoader();
 
-        Log.i("jsonObject", String.valueOf(jsonObject));
+        // Log.i("jsonObject", String.valueOf(jsonObject));
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_SAVE_TEMPLATE, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(final JSONObject result) {
                 loader.hideLoader();
-                Log.i("RESPONSE ORDER .. ", result.toString());
+                // Log.i("RESPONSE ORDER .. ", result.toString());
                 SharedPreferences grossamount = getContext().getSharedPreferences("grossamount",
                         Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = grossamount.edit();
@@ -711,7 +711,7 @@ public class Dist_Order_Summary extends Fragment {
         getView().setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                Log.i("keyback_debug", String.valueOf(keyCode));
+                // Log.i("keyback_debug", String.valueOf(keyCode));
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
                     loader.showLoader();
                     getActivity().runOnUiThread(new Runnable() {
@@ -747,7 +747,7 @@ public class Dist_Order_Summary extends Fragment {
 
 
                                     loader.hideLoader();
-                                    Log.i("back_key_debug", "back from fragment 1");
+                                    // Log.i("back_key_debug", "back from fragment 1");
                                     SharedPreferences selectedProductsSP = getContext().getSharedPreferences("FromDraft_Temp",
                                             Context.MODE_PRIVATE);
                                     if (!selectedProductsSP.getString("fromDraft", "").equals("draft")) {
@@ -805,7 +805,7 @@ public class Dist_Order_Summary extends Fragment {
     }
 
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
         final FragmentManager fm = getActivity().getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
@@ -822,7 +822,7 @@ public class Dist_Order_Summary extends Fragment {
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
                 SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
                         Context.MODE_PRIVATE);
@@ -848,7 +848,7 @@ public class Dist_Order_Summary extends Fragment {
 
             }
         });
-
+        if(!alertDialog.isShowing())
         alertDialog.show();
     }
 
@@ -894,7 +894,7 @@ public class Dist_Order_Summary extends Fragment {
                 jsonArray.put(obj);
             }
         }
-        Log.i("Array", String.valueOf(jsonArray));
+        // Log.i("Array", String.valueOf(jsonArray));
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("DiscountAmount", 0);
@@ -925,12 +925,12 @@ public class Dist_Order_Summary extends Fragment {
         jsonObject.put("BillingPostCode", "00000");
         loader.showLoader();
 
-        Log.i("jsonObject", String.valueOf(jsonObject));
+        // Log.i("jsonObject", String.valueOf(jsonObject));
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_SAVE_DRAFT, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(final JSONObject result) {
                 loader.hideLoader();
-                Log.i("RESPONSE ORDER .. ", result.toString());
+                // Log.i("RESPONSE ORDER .. ", result.toString());
                 SharedPreferences grossamount = getContext().getSharedPreferences("grossamount",
                         Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = grossamount.edit();
@@ -1075,7 +1075,7 @@ public class Dist_Order_Summary extends Fragment {
 //        @Override
 //        protected Void doInBackground(Void... params) {
 //            while (getContext() != null) {
-////                Log.i("async", "in async");
+////                // Log.i("async", "in async");
 //                SharedPreferences selectedProducts = getContext().getSharedPreferences("selectedProducts_distributor",
 //                        Context.MODE_PRIVATE);
 //                object_string = selectedProducts.getString("selected_products", "");
@@ -1084,7 +1084,7 @@ public class Dist_Order_Summary extends Fragment {
 //                }.getType();
 //                temp_list = gson.fromJson(object_string, type);
 //                object_stringqty = selectedProducts.getString("selected_products_qty", "");
-////                Log.i("qty_async", object_stringqty);
+////                // Log.i("qty_async", object_stringqty);
 //                Type typestr = new TypeToken<List<String>>() {
 //                }.getType();
 //                temp_listqty = gson.fromJson(object_stringqty, typestr);
@@ -1104,7 +1104,7 @@ public class Dist_Order_Summary extends Fragment {
 //        @Override
 //        protected void onPostExecute(Void result) {
 //            if (getContext() != null) {
-////                Log.i("async", "in async else");
+////                // Log.i("async", "in async else");
 //                qtyChanged();
 //                new MyAsyncTask().execute();
 //            }
@@ -1124,8 +1124,8 @@ public class Dist_Order_Summary extends Fragment {
         Gson gson = new Gson();
         object_string = selectedProducts.getString("selected_products", "");
         object_stringqty = selectedProducts.getString("selected_products_qty", "");
-//        Log.i("object_string", object_string);
-//        Log.i("object_stringqty", object_stringqty);
+//        // Log.i("object_string", object_string);
+//        // Log.i("object_stringqty", object_stringqty);
         Type type = new TypeToken<List<OrderChildlist_Model_DistOrder>>() {
         }.getType();
         Type typeQty = new TypeToken<List<String>>() {
@@ -1171,9 +1171,9 @@ public class Dist_Order_Summary extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();

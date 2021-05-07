@@ -247,7 +247,7 @@ public class ProfileFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("Distributor_Id ", DistributorId);
+        // Log.i("Distributor_Id ", DistributorId);
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("ID", DistributorId);
@@ -303,14 +303,14 @@ public class ProfileFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId1 ", DistributorId);
+        // Log.i("DistributorId1 ", DistributorId);
         PROFILE_URL = PROFILE_URL + DistributorId;
-        Log.i("Token1", Token);
+        // Log.i("Token1", Token);
 
         StringRequest sr = new StringRequest(Request.Method.GET, PROFILE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String result) {
-                Log.i("aaaaa", result);
+                // Log.i("aaaaa", result);
                 try {
                     if (result != null && !result.equals("")) {
                         Gson gson = new Gson();
@@ -384,7 +384,7 @@ public class ProfileFragment extends Fragment {
             SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
                     MODE_PRIVATE);
             Token = sharedPreferences.getString("Login_Token", "");
-            Log.i("Login_Token", Token);
+            // Log.i("Login_Token", Token);
             SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                     MODE_PRIVATE);
             ID = sharedPreferences1.getString("ID", "");
@@ -402,12 +402,12 @@ public class ProfileFragment extends Fragment {
             //        map.put("NewPassword1", "Force@123");
             map.put("ID", ID);
             map.put("Username", Username);
-            Log.i("Map", map.toString());
+            // Log.i("Map", map.toString());
             JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, ChangePass_URL, map, new Response.Listener<JSONObject>() {
                 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                 @Override
                 public void onResponse(JSONObject result) {
-                    Log.i("response", String.valueOf(result));
+                    // Log.i("response", String.valueOf(result));
                     try {
                         if (result.has("message")) {
                             Toast.makeText(getActivity(), result.get("message").toString(), Toast.LENGTH_SHORT).show();
@@ -433,7 +433,7 @@ public class ProfileFragment extends Fragment {
                         Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
 
                     }
-                    //                Log.e("RESPONSE", result.toString());
+                    //                // Log.e("RESPONSE", result.toString());
                     //                Toast.makeText(Distribution_Login.this,result.toString(),Toast.LENGTH_LONG).show();
                 }
             }, new Response.ErrorListener() {
@@ -521,9 +521,9 @@ public class ProfileFragment extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();

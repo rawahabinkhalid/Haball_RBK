@@ -109,8 +109,8 @@ public class My_Network_Fragment extends Fragment {
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
         DistributorId = sharedPreferences.getString("Distributor_Id", "");
-        Log.i("netword_token", Token);
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("netword_token", Token);
+        // Log.i("DistributorId ", DistributorId);
 
         JSONObject map = new JSONObject();
         try {
@@ -130,7 +130,7 @@ public class My_Network_Fragment extends Fragment {
             public void onResponse(JSONArray result) {
                 loader.hideLoader();
                 //                    JSONArray jsonArray = new JSONArray(result);
-                Log.i("results_network", String.valueOf(result));
+                // Log.i("results_network", String.valueOf(result));
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<Netwok_Model>>() {
                 }.getType();
@@ -141,7 +141,7 @@ public class My_Network_Fragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.i("OrdersList", String.valueOf(MyNetworkList));
+                // Log.i("OrdersList", String.valueOf(MyNetworkList));
                 networkAdapter = new Fragment_My_Network_Adapter(getContext(), MyNetworkList);
                 rv_network.setAdapter(networkAdapter);
 //                if (MyNetworkList.size() != 0) {

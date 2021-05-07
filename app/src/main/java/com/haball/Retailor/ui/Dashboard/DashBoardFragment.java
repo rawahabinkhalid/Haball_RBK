@@ -196,7 +196,7 @@ public class DashBoardFragment extends Fragment {
 //                }
 //                else{
 //                    Filter_selected_value = String.valueOf(i-1);
-//                    Log.i("Filter_selected_value",Filter_selected_value);
+//                    // Log.i("Filter_selected_value",Filter_selected_value);
 //                    try {
 //                        fetchFilteredRetailerPayments();
 //                    } catch (JSONException e) {
@@ -218,8 +218,8 @@ public class DashBoardFragment extends Fragment {
 //        edt_payment_ret.addTextChangedListener(new TextWatcher() {
 //
 //            public void afterTextChanged(Editable s) {
-//                Log.i("text1", "check");
-//                Log.i("text", String.valueOf(s));
+//                // Log.i("text1", "check");
+//                // Log.i("text", String.valueOf(s));
 //                Filter_selected_value = String.valueOf(s);
 //                try {
 //                    fetchFilteredRetailerPayments();
@@ -257,7 +257,7 @@ public class DashBoardFragment extends Fragment {
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
         JSONObject jsonObject = new JSONObject();
 //        jsonObject.put("CompanyName", null);
 //        jsonObject.put("CreateDateFrom", null);
@@ -323,21 +323,21 @@ public class DashBoardFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
 
         JSONObject map = new JSONObject();
 
         map.put("TotalRecords", 10);
         map.put("PageNumber", 0);
         map.put(Filter_selected, Filter_selected_value);
-        Log.i("Mapsssss", String.valueOf(map));
+        // Log.i("Mapsssss", String.valueOf(map));
         new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
-                Log.i("retailerPayment", result.toString());
+                // Log.i("retailerPayment", result.toString());
 
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<RetailerPaymentModel>>() {
@@ -394,9 +394,9 @@ public class DashBoardFragment extends Fragment {
     //             try {
     //                 String message = "";
     //                 String responseBody = new String(error.networkResponse.data, "utf-8");
-    //                 Log.i("responseBody", responseBody);
+    //                 // Log.i("responseBody", responseBody);
     //                 JSONObject data = new JSONObject(responseBody);
-    //                 Log.i("data", String.valueOf(data));
+    //                 // Log.i("data", String.valueOf(data));
     //                 Iterator<String> keys = data.keys();
     //                 while (keys.hasNext()) {
     //                     String key = keys.next();

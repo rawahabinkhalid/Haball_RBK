@@ -179,7 +179,7 @@ public class PlaceholderFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.i("sentDatalist", String.valueOf(MyReceiveList));
+                // Log.i("sentDatalist", String.valueOf(MyReceiveList));
                 recieveAdapter = new Fragment_Recieved_Adapter(getContext(), MyReceiveList);
                 rv_receive.setAdapter(recieveAdapter);
 //                if (MySentList.size() != 0) {
@@ -244,7 +244,7 @@ public class PlaceholderFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.i("sentDatalist", String.valueOf(MySentList));
+                // Log.i("sentDatalist", String.valueOf(MySentList));
                 sentadapter = new Fragment_Sent_Adapter(getContext(), MySentList);
                 rv_sent.setAdapter(sentadapter);
 //                if (MySentList.size() != 0) {
@@ -284,8 +284,8 @@ public class PlaceholderFragment extends Fragment {
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
         DistributorId = sharedPreferences.getString("Distributor_Id", "");
-        Log.i("netword_token", Token);
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("netword_token", Token);
+        // Log.i("DistributorId ", DistributorId);
 
         JSONObject map = new JSONObject();
         map.put("TotalRecords", 10);
@@ -301,7 +301,7 @@ public class PlaceholderFragment extends Fragment {
             public void onResponse(JSONArray result) {
 //                loader.hideLoader();
                 //                    JSONArray jsonArray = new JSONArray(result);
-                Log.i("results_network", String.valueOf(result));
+                // Log.i("results_network", String.valueOf(result));
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<Netwok_Model>>() {
                 }.getType();
@@ -312,7 +312,7 @@ public class PlaceholderFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.i("OrdersList", String.valueOf(MyNetworkList));
+                // Log.i("OrdersList", String.valueOf(MyNetworkList));
                 networkAdapter = new Fragment_My_Network_Adapter(getContext(), MyNetworkList);
                 rv_network.setAdapter(networkAdapter);
 //                if (MyNetworkList.size() != 0) {
@@ -346,6 +346,6 @@ public class PlaceholderFragment extends Fragment {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(getContext()).add(sr);
 
-        //Log.i("aaaaaa", String.valueOf(mAdapter));
+        //// Log.i("aaaaaa", String.valueOf(mAdapter));
     }
 }

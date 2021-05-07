@@ -102,10 +102,7 @@ public class Order_Summary extends Fragment {
 //                pageViewModel = ViewModelProviders.of(getActivity()).get(PageViewModel.class);
 //                int index = 0;
 //                pageViewModel.setIndex(index);
-                SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("CompanyId",
-                        Context.MODE_PRIVATE);
-                viewpager = getActivity().findViewById(R.id.view_pager5);
-                viewpager.setCurrentItem(0);
+
 
 
                 FragmentTransaction fragmentTransaction = (getActivity()).getSupportFragmentManager().beginTransaction();
@@ -142,8 +139,8 @@ public class Order_Summary extends Fragment {
         Gson gson = new Gson();
         object_string = selectedProducts.getString("selected_products", "");
         object_stringqty = selectedProducts.getString("selected_products_qty", "");
-        Log.i("object_string", object_string);
-        Log.i("object_stringqty", object_stringqty);
+        // Log.i("object_string", object_string);
+        // Log.i("object_stringqty", object_stringqty);
         Type type = new TypeToken<List<OrderItemsModel>>() {
         }.getType();
         Type typeQty = new TypeToken<List<String>>() {
@@ -172,7 +169,7 @@ public class Order_Summary extends Fragment {
         recyclerView1.setAdapter(mAdapter1);
         recyclerView1.setNestedScrollingEnabled(false);
 
-        Log.i("aaaaaa", String.valueOf(mAdapter1));
+        // Log.i("aaaaaa", String.valueOf(mAdapter1));
 
         return view;
 
@@ -209,7 +206,7 @@ public class Order_Summary extends Fragment {
             obj.put("TotalPrice", temp);
             jsonArray.put(obj);
         }
-        Log.i("Array", String.valueOf(jsonArray));
+        // Log.i("Array", String.valueOf(jsonArray));
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("ID", 0);
@@ -225,12 +222,12 @@ public class Order_Summary extends Fragment {
         jsonObject.put("TransportTypeId", 1);
         jsonObject.put("BillingAddressId", 569);
         loader.showLoader();
-        Log.i("jsonObject", String.valueOf(jsonObject));
+        // Log.i("jsonObject", String.valueOf(jsonObject));
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_CONFIRM_ORDERS, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(final JSONObject result) {
                 loader.hideLoader();
-                Log.i("RESPONSE ORDER .. ", result.toString());
+                // Log.i("RESPONSE ORDER .. ", result.toString());
                 try {
                     Toast.makeText(getContext(), "Order Request ID " + result.get("OrderNumber") + " has been submitted successfully and sent for approval.", Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
@@ -279,9 +276,9 @@ public class Order_Summary extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();

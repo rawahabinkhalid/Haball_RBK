@@ -36,13 +36,13 @@ public class Dismiss_Notification {
         loader = new Loader(context);
 //        loader.showLoader();
         URL_NOTIFICATION = URL_NOTIFICATION + id;
-        Log.i("NOTIFICATION_DISMISS", URL_NOTIFICATION);
+        // Log.i("NOTIFICATION_DISMISS", URL_NOTIFICATION);
 
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_NOTIFICATION, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
 //                loader.hideLoader();
-                Log.i("DISMISSED ", result.toString());
+                // Log.i("DISMISSED ", result.toString());
 
             }
         }, new Response.ErrorListener() {

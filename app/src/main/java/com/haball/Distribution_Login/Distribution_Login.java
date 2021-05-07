@@ -238,8 +238,8 @@ public class Distribution_Login extends AppCompatActivity {
         });
 
 
-        et_username.setText("Shahid1149");
-        et_password.setText("@dmin1234");
+//        et_username.setText("Shahid1149");
+//        et_password.setText("@dmin1234");
         checkFieldsForEmptyValues();
 
     }
@@ -284,12 +284,12 @@ public class Distribution_Login extends AppCompatActivity {
 
         new SSL_HandShake().handleSSLHandshake();
 
-        Log.i("map", String.valueOf(map));
+        // Log.i("map", String.valueOf(map));
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL, map, new Response.Listener<JSONObject>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(final JSONObject result) {
-                Log.i("result_", String.valueOf(result));
+                // Log.i("result_", String.valueOf(result));
 //                loader.hideLoader();
 
                 JSONObject map1 = new JSONObject();
@@ -311,18 +311,18 @@ public class Distribution_Login extends AppCompatActivity {
                     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onResponse(JSONObject resultDashboard) {
-                        Log.i("result_", String.valueOf(resultDashboard));
+                        // Log.i("result_", String.valueOf(resultDashboard));
                         loader.hideLoader();
                         try {
                             if (!result.get("access_token").toString().isEmpty()) {
                                 token = result.get("access_token").toString();
                                 JSONObject userAccount = new JSONObject(String.valueOf(result.get("UserAccount")));
-                                Log.i("user account => ", userAccount.get("DistributorID").toString());
+                                // Log.i("user account => ", userAccount.get("DistributorID").toString());
                                 JSONObject termsAndConditionObj = userAccount.getJSONObject("IsTermAndConditionAccepted");
                                 // int arr = ((int[]) termsAndConditionObj.get("data"))[0];
                                 JSONArray arr = (JSONArray) termsAndConditionObj.get("data");
                                 final String IsTermAndConditionAccepted = String.valueOf(arr.get(0));
-                                Log.i("abc", IsTermAndConditionAccepted);
+                                // Log.i("abc", IsTermAndConditionAccepted);
                                 //final String UpdatePassword = userAccount.get("UpdatePassword").toString();
                                 String userRights = userAccount.get("UserRights").toString();
                                 final String DistributorId = userAccount.get("DistributorID").toString();
@@ -400,7 +400,7 @@ public class Distribution_Login extends AppCompatActivity {
 //                                editorCompany.putString("email", EmailAddress);
 //                                editorCompany.putString("phone_number", Mobile);
 //                                editorCompany.apply();
-//                               // Log.i("UpdatePassword", UpdatePassword);
+//                               // // Log.i("UpdatePassword", UpdatePassword);
 //                                if (IsTermAndConditionAccepted.equals("0")) {
 //                                    Intent login_intent = new Intent(Distribution_Login.this, TermsAndConditionsFragment.class);
 //                                    startActivity(login_intent);
@@ -498,7 +498,7 @@ public class Distribution_Login extends AppCompatActivity {
                         DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                         DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                 Volley.newRequestQueue(Distribution_Login.this).add(sr);
-//                Log.e("RESPONSE", result.toString());
+//                // Log.e("RESPONSE", result.toString());
 //                Toast.makeText(Distribution_Login.this,result.toString(),Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {

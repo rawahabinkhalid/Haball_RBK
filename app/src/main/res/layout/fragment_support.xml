@@ -37,7 +37,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp">
 
@@ -135,7 +134,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/spinner_container"
-                        android:visibility="gone">
+                        android:visibility="visible">
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/search_bar"

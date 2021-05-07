@@ -88,12 +88,12 @@ public class Orders_Items_Fragment extends Fragment {
     }
 
     private boolean enableCheckout() {
-        Log.i("checkout", "in checkout");
+        // Log.i("checkout", "in checkout");
         SharedPreferences selectedProducts = getContext().getSharedPreferences("selectedProducts",
                 Context.MODE_PRIVATE);
         Gson gson = new Gson();
         object_string = selectedProducts.getString("selected_products", "");
-        Log.i("object_string", object_string);
+        // Log.i("object_string", object_string);
         Type type = new TypeToken<List<OrderItemsModel>>() {
         }.getType();
         if (!object_string.equals(""))
@@ -119,8 +119,8 @@ public class Orders_Items_Fragment extends Fragment {
                         selectedProductsQuantityList = gson.fromJson(object_stringqty, typeString);
                         if (selectedProductsDataList.size() > 0) {
                             for (int i = 0; i < selectedProductsDataList.size(); i++) {
-                                Log.i("unit price", selectedProductsDataList.get(i).getUnitPrice());
-                                Log.i("qty", selectedProductsQuantityList.get(i));
+                                // Log.i("unit price", selectedProductsDataList.get(i).getUnitPrice());
+                                // Log.i("qty", selectedProductsQuantityList.get(i));
                                 if (!selectedProductsDataList.get(i).getUnitPrice().equals("") && !selectedProductsQuantityList.get(i).equals(""))
                                     grossAmount += Float.parseFloat(selectedProductsDataList.get(i).getUnitPrice()) * Float.parseFloat(selectedProductsQuantityList.get(i));
                             }
@@ -158,27 +158,27 @@ public class Orders_Items_Fragment extends Fragment {
                 Context.MODE_PRIVATE);
         CompanyId = sharedPreferences2.getString("CompanyId", "");
 
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
         PRODUCTS_CATEGORY_URL = PRODUCTS_CATEGORY_URL + CompanyId;
         MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.GET, PRODUCTS_CATEGORY_URL, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(final JSONArray result) {
 //                loader.hideLoader();
-                Log.i("CATEGORY DATA .. ", result.toString());
+                // Log.i("CATEGORY DATA .. ", result.toString());
                 for (i = 0; i < result.length(); i++) {
                     try {
                         JSONObject obj = result.getJSONObject(i);
                         string_id = String.valueOf(obj.get("ID"));
                         PRODUCTS_URL = PRODUCTS_URL + obj.get("ID") + "/" + CompanyId;
-                        Log.i("PRODUCTS_URL", PRODUCTS_URL);
+                        // Log.i("PRODUCTS_URL", PRODUCTS_URL);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     MyJsonArrayRequest sr1 = new MyJsonArrayRequest(Request.Method.GET, PRODUCTS_URL, null, new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray resultProduct) {
-                            Log.i("PRODUCTS DATA .. ", resultProduct.toString());
+                            // Log.i("PRODUCTS DATA .. ", resultProduct.toString());
                             Gson gson = new Gson();
                             Type type = new TypeToken<List<OrderItemsModel>>() {
                             }.getType();
@@ -260,9 +260,9 @@ public class Orders_Items_Fragment extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();

@@ -218,9 +218,9 @@ public class ProfileFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         RetailerId = sharedPreferences1.getString("Retailer_Id", "");
-        Log.i("RetailerId ", RetailerId);
+        // Log.i("RetailerId ", RetailerId);
         PROFILE_URL = PROFILE_URL + RetailerId;
-        Log.i("Token Retailer ", Token);
+        // Log.i("Token Retailer ", Token);
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("ID", 1);
@@ -272,7 +272,7 @@ public class ProfileFragment extends Fragment {
             SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
                     Context.MODE_PRIVATE);
             Token = sharedPreferences.getString("Login_Token", "");
-            Log.i("Login_Token", Token);
+            // Log.i("Login_Token", Token);
             SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                     Context.MODE_PRIVATE);
             ID = sharedPreferences1.getString("ID", "");
@@ -287,14 +287,14 @@ public class ProfileFragment extends Fragment {
             map.put("NewPassword1", txt_cfmpassword.getText().toString());
             map.put("ID", ID);
             map.put("Username", username);
-            Log.i("Map", map.toString());
+            // Log.i("Map", map.toString());
             new SSL_HandShake().handleSSLHandshake();
 //            final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
             JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, ChangePass_URL, map, new Response.Listener<JSONObject>() {
                 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                 @Override
                 public void onResponse(JSONObject result) {
-                    Log.i("response", String.valueOf(result));
+                    // Log.i("response", String.valueOf(result));
                     try {
                         if (result.has("message")) {
                             Toast.makeText(getActivity(), result.get("message").toString(), Toast.LENGTH_SHORT).show();
@@ -392,16 +392,16 @@ public class ProfileFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         RetailerId = sharedPreferences1.getString("Retailer_Id", "");
-        Log.i("RetailerId ", RetailerId);
+        // Log.i("RetailerId ", RetailerId);
         PROFILE_URL = PROFILE_URL + RetailerId;
-        Log.i("Token Retailer ", Token);
+        // Log.i("Token Retailer ", Token);
             new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.GET, PROFILE_URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
                 try {
-                    Log.i("aaaaa", String.valueOf(result));
+                    // Log.i("aaaaa", String.valueOf(result));
                     CompanyName = result.getString("CompanyName");
                     Rfirstname.setText(result.getString("Name"));
                     Remail.setText(result.getString("Email"));
@@ -477,9 +477,9 @@ public class ProfileFragment extends Fragment {
     //             try {
     //                 String message = "";
     //                 String responseBody = new String(error.networkResponse.data, "utf-8");
-    //                 Log.i("responseBody", responseBody);
+    //                 // Log.i("responseBody", responseBody);
     //                 JSONObject data = new JSONObject(responseBody);
-    //                 Log.i("data", String.valueOf(data));
+    //                 // Log.i("data", String.valueOf(data));
     //                 Iterator<String> keys = data.keys();
     //                 while (keys.hasNext()) {
     //                     String key = keys.next();

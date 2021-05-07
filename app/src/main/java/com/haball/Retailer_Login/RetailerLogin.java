@@ -140,8 +140,8 @@ public class RetailerLogin extends AppCompatActivity {
             IsTermAndConditionAccepted = sharedPreferences.getString("IsTermAndConditionAccepted", "");
         if (!sharedPreferences.getString("UpdatePassword", "").equals(""))
             UpdatePassword = sharedPreferences.getString("UpdatePassword", "");
-        Log.i("Token Splash", Token);
-        Log.i("User Type", sharedPreferences.getString("User_Type", ""));
+        // Log.i("Token Splash", Token);
+        // Log.i("User Type", sharedPreferences.getString("User_Type", ""));
 //
 //        if (!Token.equals("")) {
 //            Intent intent = new Intent(RetailerLogin.this, RetailorDashboard.class);
@@ -300,8 +300,8 @@ public class RetailerLogin extends AppCompatActivity {
         });
 
 
-        et_username.setText("kamran.khan@mailinator.com");
-        et_password.setText("@dmin123");
+//        et_username.setText("kamran.khan@mailinator.com");
+//        et_password.setText("@dmin123");
         checkFieldsForEmptyValues();
 
     }
@@ -358,7 +358,7 @@ public class RetailerLogin extends AppCompatActivity {
         map.put("Username", et_username.getText().toString());
         map.put("Password", et_password.getText().toString());
         map.put("grant_type", "password");
-
+        // Log.i("map", String.valueOf(map));
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(RetailerLogin.this);
         new SSL_HandShake().handleSSLHandshake();
 
@@ -367,17 +367,19 @@ public class RetailerLogin extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject result) {
 //                loader.hideLoader();
+                // Log.i("result_ret", String.valueOf(result));
+
                 try {
                     if (!result.get("access_token").toString().isEmpty()) {
                         token = result.get("access_token").toString();
                         StatusKVP statusKVP = new StatusKVP(RetailerLogin.this, token);
                         JSONObject userAccount = new JSONObject(String.valueOf(result.get("UserAccount")));
 //                        userRight = new JSONArray(String.valueOf(userAccount.getJSONArray("UserRights")));
-//                        Log.i("userRight", String.valueOf(userRight));
+//                        // Log.i("userRight", String.valueOf(userRight));
                         final String IsTermAndConditionAccepted = userAccount.get("IsTermAndConditionAccepted").toString();
                         final String UpdatePassword = userAccount.get("UpdatePassword").toString();
                         String userRights = userAccount.get("UserRights").toString();
-                        Log.i("user account => ", userAccount.get("RetailerID").toString());
+                        // Log.i("user account => ", userAccount.get("RetailerID").toString());
                         final String RetailerId = userAccount.get("RetailerID").toString();
                         final String RetailerCode = userAccount.get("RetailerCode").toString();
                         String username = userAccount.get("Username").toString();
@@ -430,7 +432,7 @@ public class RetailerLogin extends AppCompatActivity {
                                     editorCompany.putString("phone_number", Mobile);
                                     editorCompany.putString("cnic", String.valueOf(result1.getString("CNIC")));
                                     editorCompany.apply();
-                                    Log.i("UpdatePassword", UpdatePassword);
+                                    // Log.i("UpdatePassword", UpdatePassword);
                                     if (IsTermAndConditionAccepted.equals("0")) {
                                         Intent login_intent = new Intent(RetailerLogin.this, Retailer_TermsAndConditionsFragment.class);
                                         startActivity(login_intent);
@@ -456,6 +458,8 @@ public class RetailerLogin extends AppCompatActivity {
                             public void onErrorResponse(VolleyError error) {
                                 loader.hideLoader();
                                 error.printStackTrace();
+                                Toast.makeText(RetailerLogin.this, "error"+error, Toast.LENGTH_SHORT).show();
+                               
                                 new HaballError().printErrorMessage(RetailerLogin.this, error);
                                 new ProcessingError().showError(RetailerLogin.this);
                                 //Toast.makeText(RetailerLogin.this,error.toString(),Toast.LENGTH_LONG).show();
@@ -497,6 +501,7 @@ public class RetailerLogin extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 loader.hideLoader();
                 error.printStackTrace();
+
                 new HaballError().printErrorMessage(RetailerLogin.this, error);
                 new ProcessingError().showError(RetailerLogin.this);
                 //Toast.makeText(RetailerLogin.this,error.toString(),Toast.LENGTH_LONG).show();

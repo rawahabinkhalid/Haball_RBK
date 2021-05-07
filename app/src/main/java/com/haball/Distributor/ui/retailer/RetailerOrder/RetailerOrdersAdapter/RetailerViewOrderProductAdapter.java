@@ -263,7 +263,7 @@ public class RetailerViewOrderProductAdapter extends RecyclerView.Adapter<Retail
 //        SharedPreferences sharedPreferences1 = context.getSharedPreferences("OrderId",
 //                Context.MODE_PRIVATE);
 //        String InvoiceStatus = sharedPreferences1.getString("InvoiceStatus", "null");
-//        Log.i("InvoiceStatus", InvoiceStatus);
+//        // Log.i("InvoiceStatus", InvoiceStatus);
 //
 //
 //        holder.product_code_value.setText(OrdersList.get(position).getProductCode());

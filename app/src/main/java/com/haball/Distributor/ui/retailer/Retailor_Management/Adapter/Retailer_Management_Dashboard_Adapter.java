@@ -57,7 +57,7 @@ public class Retailer_Management_Dashboard_Adapter extends RecyclerView.Adapter<
         if (retailerList.size() == 3 || retailerList.size() == 4) {
             if (position == (retailerList.size() - 1)) {
                 //        if (position == 2) {
-                Log.i("DebugSupportFilter_In", retailerList.get(position).getRetailerCode());
+                // Log.i("DebugSupportFilter_In", retailerList.get(position).getRetailerCode());
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.WRAP_CONTENT,
                         RelativeLayout.LayoutParams.WRAP_CONTENT

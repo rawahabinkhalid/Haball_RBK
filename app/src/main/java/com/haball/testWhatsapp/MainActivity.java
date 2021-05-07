@@ -384,8 +384,8 @@ public class MainActivity extends AppCompatActivity {
 //        arrayAdapterPaymentsFilter.notifyDataSetChanged();
 //        spinner_consolidate.setAdapter(arrayAdapterPaymentsFilter);
 //
-//        Log.i("aaaa1111", String.valueOf(consolidate_felter));
-//        Log.i("ffffffff", String.valueOf(Filter_selected));
+//        // Log.i("aaaa1111", String.valueOf(consolidate_felter));
+//        // Log.i("ffffffff", String.valueOf(Filter_selected));
 //        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 //            @Override
 //            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -446,8 +446,8 @@ public class MainActivity extends AppCompatActivity {
 ////        conso_edittext.addTextChangedListener(new TextWatcher() {
 ////
 ////            public void afterTextChanged(final Editable s) {
-////                Log.i("text1", "check");
-////                Log.i("text", String.valueOf(s));
+////                // Log.i("text1", "check");
+////                // Log.i("text", String.valueOf(s));
 //////                Filter_selected_value = String.valueOf(s);
 //////                if (!Filter_selected_value.equals("")) {
 //////
@@ -544,10 +544,10 @@ public class MainActivity extends AppCompatActivity {
 ////                    y = dy;
 ////                    if (dy <= -5) {
 ////                        scrollEvent.add("ScrollDown");
-//////                            Log.i("scrolling", "Scroll Down");
+//////                            // Log.i("scrolling", "Scroll Down");
 ////                    } else if (dy > 5) {
 ////                        scrollEvent.add("ScrollUp");
-//////                            Log.i("scrolling", "Scroll Up");
+//////                            // Log.i("scrolling", "Scroll Up");
 ////                    }
 ////                    String scroll = getScrollEvent();
 ////
@@ -673,7 +673,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7IlVzZXJJZCI6NDI5LCJVc2VybmFtZSI6IjQ1MzQ1MzQ1MzM0IiwiVXNlclR5cGVJZCI6MSwiaXN2ZXJpZmllZCI6MSwiSXNUZXJtQW5kQ29uZGl0aW9uQWNjZXB0ZWQiOjEsIk5hbWUiOiJGYXJtYW4gQWxpIiwiUmV0YWlsZXJFbWFpbCI6ImZhcm1hbi5hbGlAbWFpbGluYXRvci5jb20iLCJSZXRhaWxlcklEIjo0NDgsIkNvbXBhbnlOYW1lIjoiRmFybWFuICYgU29ucyAmIERpc3RyaWJ1dG9ycyAmIFRyYWRlcnMiLCJSZXRhaWxlckNvZGUiOiIyMDIwNjQ0OCIsIlJldGFpbGVyTW9iaWxlIjoiNDUzNC01MzQ1MzM0IiwiVXNlclN0YXR1cyI6MSwiU2VsZlNpZ25VcCI6MCwiVXBkYXRlUGFzc3dvcmQiOjEsIkNvbm5lY3RlZFdpdGhEaXN0cmlidXRvciI6MCwiVXNlclJpZ2h0cyI6W3siUmlnaHRJZCI6MSwiUm9sZUlkIjoxfSx7IlJpZ2h0SWQiOjIsIlJvbGVJZCI6MX0seyJSaWdodElkIjozLCJSb2xlSWQiOjF9LHsiUmlnaHRJZCI6NSwiUm9sZUlkIjoxfSx7IlJpZ2h0SWQiOjYsIlJvbGVJZCI6MX0seyJSaWdodElkIjo3LCJSb2xlSWQiOjF9LHsiUmlnaHRJZCI6OCwiUm9sZUlkIjoxfSx7IlJpZ2h0SWQiOjEwLCJSb2xlSWQiOjF9LHsiUmlnaHRJZCI6MTEsIlJvbGVJZCI6MX0seyJSaWdodElkIjoxMiwiUm9sZUlkIjoxfSx7IlJpZ2h0SWQiOjEzLCJSb2xlSWQiOjF9LHsiUmlnaHRJZCI6OTd9XX0sImlhdCI6MTU5MzE0OTQ0NywiZXhwIjoxNTkzNDQ5NDQ3fQ.aSdCsUuG57witiZZBQw7FqatnMaTEWtsFS7lxa67KvQ";
-        Log.i("Token  ", Token);
+        // Log.i("Token  ", Token);
 
         JSONObject map = new JSONObject();
         map.put("TotalRecords", 10);
@@ -685,12 +685,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
                 loader.hideLoader();
-                try {
-                    Log.i("onResponse => SUPPORT ", "" + response.get(0).toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-//
+//                try {
+//                    // Log.i("onResponse => SUPPORT ", "" + response.get(0).toString());
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+////
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<SupportDashboardRetailerModel>>() {
                 }.getType();
@@ -758,7 +758,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7IlVzZXJJZCI6NDI5LCJVc2VybmFtZSI6IjQ1MzQ1MzQ1MzM0IiwiVXNlclR5cGVJZCI6MSwiaXN2ZXJpZmllZCI6MSwiSXNUZXJtQW5kQ29uZGl0aW9uQWNjZXB0ZWQiOjEsIk5hbWUiOiJGYXJtYW4gQWxpIiwiUmV0YWlsZXJFbWFpbCI6ImZhcm1hbi5hbGlAbWFpbGluYXRvci5jb20iLCJSZXRhaWxlcklEIjo0NDgsIkNvbXBhbnlOYW1lIjoiRmFybWFuICYgU29ucyAmIERpc3RyaWJ1dG9ycyAmIFRyYWRlcnMiLCJSZXRhaWxlckNvZGUiOiIyMDIwNjQ0OCIsIlJldGFpbGVyTW9iaWxlIjoiNDUzNC01MzQ1MzM0IiwiVXNlclN0YXR1cyI6MSwiU2VsZlNpZ25VcCI6MCwiVXBkYXRlUGFzc3dvcmQiOjEsIkNvbm5lY3RlZFdpdGhEaXN0cmlidXRvciI6MCwiVXNlclJpZ2h0cyI6W3siUmlnaHRJZCI6MSwiUm9sZUlkIjoxfSx7IlJpZ2h0SWQiOjIsIlJvbGVJZCI6MX0seyJSaWdodElkIjozLCJSb2xlSWQiOjF9LHsiUmlnaHRJZCI6NSwiUm9sZUlkIjoxfSx7IlJpZ2h0SWQiOjYsIlJvbGVJZCI6MX0seyJSaWdodElkIjo3LCJSb2xlSWQiOjF9LHsiUmlnaHRJZCI6OCwiUm9sZUlkIjoxfSx7IlJpZ2h0SWQiOjEwLCJSb2xlSWQiOjF9LHsiUmlnaHRJZCI6MTEsIlJvbGVJZCI6MX0seyJSaWdodElkIjoxMiwiUm9sZUlkIjoxfSx7IlJpZ2h0SWQiOjEzLCJSb2xlSWQiOjF9LHsiUmlnaHRJZCI6OTd9XX0sImlhdCI6MTU5MzE0OTQ0NywiZXhwIjoxNTkzNDQ5NDQ3fQ.aSdCsUuG57witiZZBQw7FqatnMaTEWtsFS7lxa67KvQ";
-        Log.i("Token  ", Token);
+        // Log.i("Token  ", Token);
 
         JSONObject map = new JSONObject();
         map.put("TotalRecords", 10);
@@ -771,7 +771,7 @@ public class MainActivity extends AppCompatActivity {
             loader.showLoader();
             map.put(Filter_selected, Filter_selected_value);
         }
-        Log.i("map_SSSS", String.valueOf(map));
+        // Log.i("map_SSSS", String.valueOf(map));
         new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(MainActivity.this);
 
@@ -779,7 +779,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
                 loader.hideLoader();
-                Log.i("response_support ", String.valueOf(response));
+                // Log.i("response_support ", String.valueOf(response));
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<SupportDashboardRetailerModel>>() {
                 }.getType();
@@ -859,9 +859,9 @@ public class MainActivity extends AppCompatActivity {
     //             try {
     //                 String message = "";
     //                 String responseBody = new String(error.networkResponse.data, "utf-8");
-    //                 Log.i("responseBody", responseBody);
+    //                 // Log.i("responseBody", responseBody);
     //                 JSONObject data = new JSONObject(responseBody);
-    //                 Log.i("data", String.valueOf(data));
+    //                 // Log.i("data", String.valueOf(data));
     //                 Iterator<String> keys = data.keys();
     //                 while (keys.hasNext()) {
     //                     String key = keys.next();
@@ -881,7 +881,7 @@ public class MainActivity extends AppCompatActivity {
     private void updateDisplay(String date_type) {
         if (date_type.equals("first date")) {
             fromDate = year1 + "-" + String.format("%02d", (month1 + 1)) + "-" + String.format("%02d", date1) + "T00:00:00.000Z";
-            Log.i("fromDate", fromDate);
+            // Log.i("fromDate", fromDate);
 
             first_date.setText(new StringBuilder()
                     .append(String.format("%02d", date1)).append("/").append(String.format("%02d", (month1 + 1))).append("/").append(year1));
@@ -919,7 +919,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-//        Log.i("distinct", scroll);
+//        // Log.i("distinct", scroll);
         return scroll;
     }
 

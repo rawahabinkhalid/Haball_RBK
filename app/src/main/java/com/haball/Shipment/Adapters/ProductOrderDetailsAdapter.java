@@ -112,7 +112,7 @@ public class ProductOrderDetailsAdapter extends RecyclerView.Adapter<ProductOrde
 ////        yourFormattedString1 = formatter1.format(Double.parseDouble(product_list.get(position).getTotalPrice()));
 ////        holder.amount_value.setText(yourFormattedString1);
         final int finalPosition = position;
-        Log.i("position", String.valueOf(finalPosition));
+        // Log.i("position", String.valueOf(finalPosition));
 //        holder.list_product_code_value.setText(selectedProductsDataList.get(position).getCode());
         holder.txt_products.setText(product_list.get(position).getProductName());
 //        final DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
@@ -122,7 +122,7 @@ public class ProductOrderDetailsAdapter extends RecyclerView.Adapter<ProductOrde
 //            holder.list_price_value.setText("Rs. " + yourFormattedString1);
 //        }
 //        String yourFormattedString2;
-//        Log.i("getDiscountValue()", "'" + String.valueOf(selectedProductsDataList.get(position).getDiscountValue()) + "'");
+//        // Log.i("getDiscountValue()", "'" + String.valueOf(selectedProductsDataList.get(position).getDiscountValue()) + "'");
 //        if (selectedProductsDataList.get(position).getDiscountValue() != null)
 //            yourFormattedString2 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getDiscountValue()));
 //        else

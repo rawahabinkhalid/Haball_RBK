@@ -100,7 +100,7 @@ public class Payment_Summary extends Fragment {
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("CompanyName", null);
         jsonObject.put("CreateDateFrom", null);
@@ -177,9 +177,9 @@ public class Payment_Summary extends Fragment {
     //             try {
     //                 String message = "";
     //                 String responseBody = new String(error.networkResponse.data, "utf-8");
-    //                 Log.i("responseBody", responseBody);
+    //                 // Log.i("responseBody", responseBody);
     //                 JSONObject data = new JSONObject(responseBody);
-    //                 Log.i("data", String.valueOf(data));
+    //                 // Log.i("data", String.valueOf(data));
     //                 Iterator<String> keys = data.keys();
     //                 while (keys.hasNext()) {
     //                     String key = keys.next();

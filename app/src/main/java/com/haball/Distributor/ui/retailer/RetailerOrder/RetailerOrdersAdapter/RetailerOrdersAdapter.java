@@ -48,7 +48,7 @@ public class RetailerOrdersAdapter extends RecyclerView.Adapter<RetailerOrdersAd
         this.OrdersList = ordersList;
         this.OrderStatusKVP = orderStatusKVP;
         this.InvoiceStatusKVP = invoiceStatusKVP;
-        Log.i("InvoiceStatusKVP123", String.valueOf(InvoiceStatusKVP));
+        // Log.i("InvoiceStatusKVP123", String.valueOf(InvoiceStatusKVP));
 
     }
 
@@ -64,7 +64,7 @@ public class RetailerOrdersAdapter extends RecyclerView.Adapter<RetailerOrdersAd
         if (OrdersList.size() == 3 || OrdersList.size() == 4) {
             if (position == (OrdersList.size() - 1)) {
                 //        if (position == 2) {
-                Log.i("DebugSupportFilter_In", OrdersList.get(position).getOrderNumber());
+                // Log.i("DebugSupportFilter_In", OrdersList.get(position).getOrderNumber());
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.WRAP_CONTENT,
                         RelativeLayout.LayoutParams.WRAP_CONTENT
@@ -193,7 +193,7 @@ public class RetailerOrdersAdapter extends RecyclerView.Adapter<RetailerOrdersAd
 
     private void deleteOrderDraft(final Context context, final String ID, final String OrderNumber) throws JSONException {
 
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
 //            final FragmentManager fm = mContxt.getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
@@ -288,12 +288,12 @@ public class RetailerOrdersAdapter extends RecyclerView.Adapter<RetailerOrdersAd
                         editor.putString("Status", OrdersList.get(position).getOrderStatusValue());
                         editor.putString("InvoiceUpload", String.valueOf(OrdersList.get(position).getInvoiceReferenceNumber()));
                         editor.putString("InvoiceStatus", String.valueOf(OrdersList.get(position).getInvoiceStatus()));
-                        Log.i("InvoiceStatus_Adapter", String.valueOf(OrdersList.get(position).getInvoiceStatus()));
+                        // Log.i("InvoiceStatus_Adapter", String.valueOf(OrdersList.get(position).getInvoiceStatus()));
                         editor.commit();
-                        Log.i("order_debug_getID", OrdersList.get(position).getOrderId());
-                        Log.i("order_debug_getStatus", OrdersList.get(position).getOrderStatusValue());
-                        Log.i("order_debug_InvUpload", String.valueOf(OrdersList.get(position).getInvoiceReferenceNumber()));
-                        Log.i("order_debug_InvStatus", "" + OrdersList.get(position).getInvoiceStatus());
+                        // Log.i("order_debug_getID", OrdersList.get(position).getOrderId());
+                        // Log.i("order_debug_getStatus", OrdersList.get(position).getOrderStatusValue());
+                        // Log.i("order_debug_InvUpload", String.valueOf(OrdersList.get(position).getInvoiceReferenceNumber()));
+                        // Log.i("order_debug_InvStatus", "" + OrdersList.get(position).getInvoiceStatus());
                         break;
                     case R.id.orders_cancel:
                         showConfirmCancelOrderDialog(position);
@@ -329,7 +329,7 @@ public class RetailerOrdersAdapter extends RecyclerView.Adapter<RetailerOrdersAd
                             editor.putString("Status", OrdersList.get(position).getOrderStatusValue());
                             editor.putString("InvoiceUpload", String.valueOf(OrdersList.get(position).getInvoiceReferenceNumber()));
                             editor.putString("InvoiceStatus", String.valueOf(OrdersList.get(position).getInvoiceStatus()));
-                            Log.i("InvoiceStatus_Adapter", String.valueOf(OrdersList.get(position).getInvoiceStatus()));
+                            // Log.i("InvoiceStatus_Adapter", String.valueOf(OrdersList.get(position).getInvoiceStatus()));
                             editor.commit();
                             break;
                     }
@@ -342,7 +342,7 @@ public class RetailerOrdersAdapter extends RecyclerView.Adapter<RetailerOrdersAd
 
     private void showConfirmCancelOrderDialog(final int position) {
 
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
 //            final FragmentManager fm = context.getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
@@ -395,9 +395,9 @@ public class RetailerOrdersAdapter extends RecyclerView.Adapter<RetailerOrdersAd
         editor.putString("OrderId", OrdersList.get(finalPosition).getOrderId());
         editor.putString("Status", OrdersList.get(finalPosition).getOrderStatus());
         editor.putString("InvoiceUpload", String.valueOf(OrdersList.get(finalPosition).getInvoiceReferenceNumber()));
-//        Log.i("InvoiceStatusKVP65432", OrdersList.get(finalPosition).getInvoiceStatus());
-//        Log.i("InvoiceStatusKVP65432", String.valueOf(InvoiceStatusKVP));
-//        Log.i("InvoiceStatusKVP65432", "" + InvoiceStatusKVP.get(OrdersList.get(finalPosition).getInvoiceStatus()));
+//        // Log.i("InvoiceStatusKVP65432", OrdersList.get(finalPosition).getInvoiceStatus());
+//        // Log.i("InvoiceStatusKVP65432", String.valueOf(InvoiceStatusKVP));
+//        // Log.i("InvoiceStatusKVP65432", "" + InvoiceStatusKVP.get(OrdersList.get(finalPosition).getInvoiceStatus()));
         editor.putString("InvoiceStatus", String.valueOf(InvoiceStatusKVP.get(OrdersList.get(finalPosition).getInvoiceStatus())));
         editor.commit();
 

@@ -57,8 +57,8 @@ public class RetailerCancelOrder {
         SharedPreferences sharedPreferences1 = context.getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
 
         if (!URL_CANCEL_ORDER.contains("/" + orderId))
             URL_CANCEL_ORDER = URL_CANCEL_ORDER + orderId;

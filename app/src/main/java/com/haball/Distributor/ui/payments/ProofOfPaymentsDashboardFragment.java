@@ -279,7 +279,7 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
                     }
 
                     Filter_selected = consolidate_felter.get(i);
-                    Log.i("Filter_selected", Filter_selected);
+                    // Log.i("Filter_selected", Filter_selected);
                     spinner2.setSelection(0);
                     conso_edittext.setText("");
 
@@ -407,7 +407,7 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
         arrayAdapterPayments.notifyDataSetChanged();
         spinner_consolidate.setAdapter(arrayAdapterPayments);
 
-        Log.i("aaaa1111", String.valueOf(consolidate_felter));
+        // Log.i("aaaa1111", String.valueOf(consolidate_felter));
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -425,7 +425,7 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
                     }
 
                     Filter_selected_value = String.valueOf(i - 1);
-                    Log.i("Filter_selected_value", Filter_selected_value);
+                    // Log.i("Filter_selected_value", Filter_selected_value);
                     try {
                         fetchFilteredProofOfPaymentsData();
                     } catch (JSONException e) {
@@ -448,8 +448,8 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
         conso_edittext.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
-                Log.i("text1", "check");
-                Log.i("text", String.valueOf(s));
+                // Log.i("text1", "check");
+                // Log.i("text", String.valueOf(s));
                 Filter_selected_value = String.valueOf(s);
                 if (!Filter_selected_value.equals("")) {
                     try {
@@ -487,10 +487,10 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
                 y = dy;
                 if (dy <= -5) {
                     scrollEvent.add("ScrollDown");
-//                            Log.i("scrolling", "Scroll Down");
+//                            // Log.i("scrolling", "Scroll Down");
                 } else if (dy > 5) {
                     scrollEvent.add("ScrollUp");
-//                            Log.i("scrolling", "Scroll Up");
+//                            // Log.i("scrolling", "Scroll Up");
                 }
                 String scroll = getScrollEvent();
 
@@ -555,9 +555,9 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
 
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         JSONObject map = new JSONObject();
         map.put("DistributorId", Integer.parseInt(DistributorId));
@@ -576,7 +576,7 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
                 proofOfPaymentsList = gson.fromJson(String.valueOf(result), type);
                 ((ProofOfPaymentAdapter) recyclerView.getAdapter()).addListItem(proofOfPaymentsList);
 
-                Log.e("RESPONSE OF P_O_P", result.toString());
+                // Log.e("RESPONSE OF P_O_P", result.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -610,9 +610,9 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
 
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         JSONObject mapCount = new JSONObject();
         mapCount.put("DistributorId", Integer.parseInt(DistributorId));
@@ -634,7 +634,7 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
                 new ProcessingError().showError(getContext());
 
                 error.printStackTrace();
-                Log.i("onErrorResponse", "Error");
+                // Log.i("onErrorResponse", "Error");
             }
         }) {
             @Override
@@ -669,7 +669,7 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE OF P_O_P", result.toString());
+                // Log.e("RESPONSE OF P_O_P", result.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -705,9 +705,9 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
 
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         JSONObject map = new JSONObject();
         map.put("DistributorId", Integer.parseInt(DistributorId));
@@ -722,7 +722,7 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
         } else {
             map.put(Filter_selected, Filter_selected_value);
         }
-        Log.i("Map", String.valueOf(map));
+        // Log.i("Map", String.valueOf(map));
         MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, URL_PROOF_OF_PAYMENTS, map, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray result) {
@@ -741,7 +741,7 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE OF P_O_P", result.toString());
+                // Log.e("RESPONSE OF P_O_P", result.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -797,7 +797,7 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
     private void updateDisplay(String date_type) {
         if (date_type.equals("first date")) {
             fromDate = year1 + "-" + String.format("%02d", (month1 + 1)) + "-" + String.format("%02d", date1) + "T00:00:00.000Z";
-            Log.i("fromDate", fromDate);
+            // Log.i("fromDate", fromDate);
 
             first_date.setText(new StringBuilder()
                     .append(String.format("%02d", date1)).append("/").append(String.format("%02d", (month1 + 1))).append("/").append(year1));
@@ -889,9 +889,9 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
                     try {
                         String message = "";
                         String responseBody = new String(error.networkResponse.data, "utf-8");
-                        Log.i("responseBody", responseBody);
+                        // Log.i("responseBody", responseBody);
                         JSONObject data = new JSONObject(responseBody);
-                        Log.i("data", String.valueOf(data));
+                        // Log.i("data", String.valueOf(data));
                         Iterator<String> keys = data.keys();
                         while (keys.hasNext()) {
                             String key = keys.next();
@@ -930,7 +930,7 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
                 }
             }
         }
-//        Log.i("distinct", scroll);
+//        // Log.i("distinct", scroll);
         return scroll;
     }
 }

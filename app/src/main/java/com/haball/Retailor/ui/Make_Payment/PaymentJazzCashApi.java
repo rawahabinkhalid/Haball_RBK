@@ -324,7 +324,7 @@ public class PaymentJazzCashApi extends Fragment {
     }
 
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
         final FragmentManager fm = getActivity().getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
@@ -341,7 +341,7 @@ public class PaymentJazzCashApi extends Fragment {
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
                 SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
                         Context.MODE_PRIVATE);
@@ -365,7 +365,7 @@ public class PaymentJazzCashApi extends Fragment {
 
             }
         });
-
+        if(!alertDialog.isShowing())
         alertDialog.show();
     }
 
@@ -381,7 +381,7 @@ public class PaymentJazzCashApi extends Fragment {
 ////        map.put("DealerCode", "201911672");
 //        map.put("PaidAmount", txt_amount.getText().toString());
 
-//        Log.i("JSON ", String.valueOf(map));
+//        // Log.i("JSON ", String.valueOf(map));
         new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
 
@@ -389,7 +389,7 @@ public class PaymentJazzCashApi extends Fragment {
             @Override
             public void onResponse(JSONObject result) {
 //                loader.hideLoader();
-                Log.i("Response_PR", result.toString());
+                // Log.i("Response_PR", result.toString());
                 try {
                     txt_payment_id.setText(String.valueOf(result.getString("PrePaidNumber")));
                     if (!String.valueOf(txt_payment_id.getText()).equals(""))
@@ -426,7 +426,7 @@ public class PaymentJazzCashApi extends Fragment {
                     txt_account_no.setText("03123456789");
                     getJazzCashDataFromPrePayAxisAPI(result.getString("PrePaidNumber"));
                 } catch (JSONException e) {
-                    Log.i("Response PR", e.toString());
+                    // Log.i("Response PR", e.toString());
                     e.printStackTrace();
                 }
             }
@@ -465,7 +465,7 @@ public class PaymentJazzCashApi extends Fragment {
             @Override
             public void onResponse(JSONObject result) {
                 loader.hideLoader();
-                Log.i("Response_PR", result.toString());
+                // Log.i("Response_PR", result.toString());
                 try {
                     aasecretkey = result.getString("aasecretkey");
                     pp_Description = result.getString("pp_Description");
@@ -492,7 +492,7 @@ public class PaymentJazzCashApi extends Fragment {
                     generateSecureHash();
 
                 } catch (JSONException | UnsupportedEncodingException e) {
-                    Log.i("Response PR", e.toString());
+                    // Log.i("Response PR", e.toString());
                     e.printStackTrace();
                 }
             }
@@ -534,7 +534,7 @@ public class PaymentJazzCashApi extends Fragment {
 ////        map.put("DealerCode", "201911672");
 //        map.put("PaidAmount", txt_amount.getText().toString());
 
-//        Log.i("JSON ", String.valueOf(map));
+//        // Log.i("JSON ", String.valueOf(map));
         new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
 
@@ -548,7 +548,7 @@ public class PaymentJazzCashApi extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.i("Response_PR", result.toString());
+                // Log.i("Response_PR", result.toString());
                 try {
                     txt_payment_id.setText(String.valueOf(result.getString("PrePaidNumber")));
                     if (!String.valueOf(txt_payment_id.getText()).equals(""))
@@ -587,7 +587,7 @@ public class PaymentJazzCashApi extends Fragment {
 
                     getJazzCashDataFromPrePayAxisAPI(result.getString("PrePaidNumber"));
                 } catch (JSONException e) {
-                    Log.i("Response PR", e.toString());
+                    // Log.i("Response PR", e.toString());
                     e.printStackTrace();
                 }
             }
@@ -637,7 +637,7 @@ public class PaymentJazzCashApi extends Fragment {
 //        StringRequest sr = new StringRequest(Request.Method.POST, URL_LOGIN, new Response.Listener<String>() {
 //            @Override
 //            public void onResponse(String response) {
-//                Log.i("JazzCashResponse", response);
+//                // Log.i("JazzCashResponse", response);
 ////                loader.hideLoader();
 //                JSONObject resultRegen = null;
 //                try {
@@ -677,7 +677,7 @@ public class PaymentJazzCashApi extends Fragment {
 //                map.put("username", "m.farrukhiftikhar@gmail.com");
 //                map.put("password", "a1s2d3f4");
 //
-//                Log.i("JSON ", String.valueOf(map));
+//                // Log.i("JSON ", String.valueOf(map));
 //                return map;
 //            }
 //        };
@@ -692,7 +692,7 @@ public class PaymentJazzCashApi extends Fragment {
 //        StringRequest sr = new StringRequest(Request.Method.POST, URL_Calculate_Secure_Hash, new Response.Listener<String>() {
 //            @Override
 //            public void onResponse(String response) {
-//                Log.i("JazzCashResponse123", response);
+//                // Log.i("JazzCashResponse123", response);
 ////                loader.hideLoader();
 //                JSONObject resultHash;
 //                try {
@@ -710,7 +710,7 @@ public class PaymentJazzCashApi extends Fragment {
 ////                        @Override
 ////                        public void onResponse(String response) {
 ////                            loader.hideLoader();
-////                            Log.i("JSON_RESPONSE", response);
+////                            // Log.i("JSON_RESPONSE", response);
 ////                            JSONObject result = null;
 ////                            try {
 ////                                result = new JSONObject(response);
@@ -718,9 +718,9 @@ public class PaymentJazzCashApi extends Fragment {
 ////                            } catch (JSONException e) {
 ////                                e.printStackTrace();
 ////                            }
-////                            Log.i("JSON_RESPONSE_JAZZ", String.valueOf(result));
+////                            // Log.i("JSON_RESPONSE_JAZZ", String.valueOf(result));
 //////                Toast.makeText(getContext(), "Payment Request " + prepaid_number + " has been created successfully.", Toast.LENGTH_SHORT).show();
-//////                Log.e("RESPONSE prepaid_number", result.toString());
+//////                // Log.e("RESPONSE prepaid_number", result.toString());
 ////                        }
 ////                    }, new Response.ErrorListener() {
 ////                        @Override
@@ -793,7 +793,7 @@ public class PaymentJazzCashApi extends Fragment {
 //////        map.put("pp_CNIC", pp_CNIC);
 ////                            map.put("Request[pp_CNIC]", "345678");
 ////
-////                            Log.i("JSON ", String.valueOf(map));
+////                            // Log.i("JSON ", String.valueOf(map));
 ////                            return map;
 ////                        }
 ////                    };
@@ -892,7 +892,7 @@ public class PaymentJazzCashApi extends Fragment {
 //                }
 //                map.put("RequestBodyString", obj.toString());
 //
-//                Log.i("JSON ", String.valueOf(map));
+//                // Log.i("JSON ", String.valueOf(map));
 //                return map;
 //            }
 //        };
@@ -959,7 +959,7 @@ public class PaymentJazzCashApi extends Fragment {
 //            @Override
 //            public void onResponse(String response) {
 //                loader.hideLoader();
-//                Log.i("JSON_RESPONSE", response);
+//                // Log.i("JSON_RESPONSE", response);
 //                JSONObject result = null;
 //                try {
 //                    result = new JSONObject(response);
@@ -976,9 +976,9 @@ public class PaymentJazzCashApi extends Fragment {
 //                    new CustomToast().showToast(getActivity(), "Jazz Cash - Log in to Jazz Cash Portal");
 //                    e.printStackTrace();
 //                }
-//                Log.i("JSON_RESPONSE_JAZZ", String.valueOf(result));
+//                // Log.i("JSON_RESPONSE_JAZZ", String.valueOf(result));
 ////                Toast.makeText(getContext(), "Payment Request " + prepaid_number + " has been created successfully.", Toast.LENGTH_SHORT).show();
-////                Log.e("RESPONSE prepaid_number", result.toString());
+////                // Log.e("RESPONSE prepaid_number", result.toString());
 //            }
 //        }, new Response.ErrorListener() {
 //            @Override
@@ -1023,7 +1023,7 @@ public class PaymentJazzCashApi extends Fragment {
 ////            }
 //            @Override
 //            protected Map<String, String> getParams() throws AuthFailureError {
-//                Log.i("JSON ", String.valueOf(map));
+//                // Log.i("JSON ", String.valueOf(map));
 //                return map;
 //            }
 //        };
@@ -1095,7 +1095,7 @@ public class PaymentJazzCashApi extends Fragment {
 //        StringRequest sr = new StringRequest(Request.Method.POST, URL_LOGIN, new Response.Listener<String>() {
 //            @Override
 //            public void onResponse(String response) {
-//                Log.i("JazzCashResponse", response);
+//                // Log.i("JazzCashResponse", response);
 ////                loader.hideLoader();
 //                JSONObject resultRegen = null;
 //                try {
@@ -1106,7 +1106,7 @@ public class PaymentJazzCashApi extends Fragment {
 //                    StringRequest sr = new StringRequest(Request.Method.POST, URL_Calculate_Secure_Hash, new Response.Listener<String>() {
 //                        @Override
 //                        public void onResponse(String response) {
-//                            Log.i("JazzCashResponse123", response);
+//                            // Log.i("JazzCashResponse123", response);
 ////                loader.hideLoader();
 //                            JSONObject resultHash;
 //                            try {
@@ -1123,7 +1123,7 @@ public class PaymentJazzCashApi extends Fragment {
 ////                        @Override
 ////                        public void onResponse(String response) {
 ////                            loader.hideLoader();
-////                            Log.i("JSON_RESPONSE", response);
+////                            // Log.i("JSON_RESPONSE", response);
 ////                            JSONObject result = null;
 ////                            try {
 ////                                result = new JSONObject(response);
@@ -1134,7 +1134,7 @@ public class PaymentJazzCashApi extends Fragment {
                                 @Override
                                 public void onResponse(JSONObject result) {
                                     loader.hideLoader();
-//                                    Log.i("JSON_RESPONSE", response);
+//                                    // Log.i("JSON_RESPONSE", response);
 //                                    JSONObject result = null;
 //                                    try {
 //                                        result = new JSONObject(response);
@@ -1151,9 +1151,9 @@ public class PaymentJazzCashApi extends Fragment {
 //                                        new CustomToast().showToast(getActivity(), "Jazz Cash - Log in to Jazz Cash Portal");
 //                                        e.printStackTrace();
 //                                    }
-                                    Log.i("JSON_RESPONSE_JAZZ", String.valueOf(result));
+                                    // Log.i("JSON_RESPONSE_JAZZ", String.valueOf(result));
 //                Toast.makeText(getContext(), "Payment Request " + prepaid_number + " has been created successfully.", Toast.LENGTH_SHORT).show();
-//                Log.e("RESPONSE prepaid_number", result.toString());
+//                // Log.e("RESPONSE prepaid_number", result.toString());
                                 }
                             }, new Response.ErrorListener() {
                                 @Override
@@ -1199,7 +1199,7 @@ public class PaymentJazzCashApi extends Fragment {
 //            }
 //                                @Override
 //                                protected Map<String, String> getParams() throws AuthFailureError {
-//                                    Log.i("JSON ", String.valueOf(map));
+//                                    // Log.i("JSON ", String.valueOf(map));
 //                                    return map;
 //                                }
                             };
@@ -1214,9 +1214,9 @@ public class PaymentJazzCashApi extends Fragment {
 ////                            } catch (JSONException e) {
 ////                                e.printStackTrace();
 ////                            }
-////                            Log.i("JSON_RESPONSE_JAZZ", String.valueOf(result));
+////                            // Log.i("JSON_RESPONSE_JAZZ", String.valueOf(result));
 //////                Toast.makeText(getContext(), "Payment Request " + prepaid_number + " has been created successfully.", Toast.LENGTH_SHORT).show();
-//////                Log.e("RESPONSE prepaid_number", result.toString());
+//////                // Log.e("RESPONSE prepaid_number", result.toString());
 ////                        }
 ////                    }, new Response.ErrorListener() {
 ////                        @Override
@@ -1289,7 +1289,7 @@ public class PaymentJazzCashApi extends Fragment {
 //////        map.put("pp_CNIC", pp_CNIC);
 ////                            map.put("Request[pp_CNIC]", "345678");
 ////
-////                            Log.i("JSON ", String.valueOf(map));
+////                            // Log.i("JSON ", String.valueOf(map));
 ////                            return map;
 ////                        }
 ////                    };
@@ -1379,7 +1379,7 @@ public class PaymentJazzCashApi extends Fragment {
 //                            }
 //                            map.put("RequestBodyString", obj.toString());
 //
-//                            Log.i("JSON ", String.valueOf(map));
+//                            // Log.i("JSON ", String.valueOf(map));
 //                            return map;
 //                        }
 //                    };
@@ -1419,7 +1419,7 @@ public class PaymentJazzCashApi extends Fragment {
 //                map.put("username", "m.farrukhiftikhar@gmail.com");
 //                map.put("password", "a1s2d3f4");
 //
-//                Log.i("JSON ", String.valueOf(map));
+//                // Log.i("JSON ", String.valueOf(map));
 //                return map;
 //            }
 //        };
@@ -1477,11 +1477,11 @@ public class PaymentJazzCashApi extends Fragment {
                 SortedArray = SortedArray.concat('&' + var);
             }
         }
-        Log.i("sortedarray", SortedArray);
-        Log.i("sortedarray", URLEncoder.encode(SortedArray, StandardCharsets.UTF_8.displayName()));
+        // Log.i("sortedarray", SortedArray);
+        // Log.i("sortedarray", URLEncoder.encode(SortedArray, StandardCharsets.UTF_8.displayName()));
         String Securehash = hmacSha(aasecretkey, URLEncoder.encode(SortedArray, StandardCharsets.UTF_8.displayName()),"HmacSHA256");
         pp_SecureHash = Securehash;
-        Log.i("sortedarray123", Securehash);
+        // Log.i("sortedarray123", Securehash);
     }
 //
 //     private static String encodeValue(String value) {

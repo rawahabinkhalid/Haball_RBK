@@ -90,10 +90,10 @@ public class ViewVoucherRequest {
         SharedPreferences sharedPreferences = context.getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
         if (!URL_VOUCHER_VIEW.contains("/" + paymentId))
             URL_VOUCHER_VIEW = URL_VOUCHER_VIEW + paymentId;
-        Log.i("URL_VOUCHER_VIEW ", URL_VOUCHER_VIEW);
+        // Log.i("URL_VOUCHER_VIEW ", URL_VOUCHER_VIEW);
 
             new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(context);
@@ -105,8 +105,8 @@ public class ViewVoucherRequest {
                 loader.hideLoader();
                 // TODO handle the response
                 try {
-                    Log.i("responseByte", String.valueOf(response));
-                    Log.i("responseByte", String.valueOf(response.length));
+                    // Log.i("responseByte", String.valueOf(response));
+                    // Log.i("responseByte", String.valueOf(response.length));
                     if (response != null) {
                         String dir = Environment.getExternalStorageDirectory() + "/Download/";
                         String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss").format(new Date());
@@ -116,7 +116,7 @@ public class ViewVoucherRequest {
                         fPdf.write(response);
                         fPdf.flush();
                         fPdf.close();
-                        Log.i("Download Complete", "Download complete.");
+                        // Log.i("Download Complete", "Download complete.");
                         Toast.makeText(mContext, "File saved in Downloads", Toast.LENGTH_LONG).show();
 
                         File file = new File(name); // Here you declare your pdf path
@@ -142,7 +142,7 @@ public class ViewVoucherRequest {
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     loader.hideLoader();
-                    Log.d("KEY_ERROR", "UNABLE TO DOWNLOAD FILE");
+                    // Log.d("KEY_ERROR", "UNABLE TO DOWNLOAD FILE");
                     Toast.makeText(context, "UNABLE TO DOWNLOAD FILE", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -173,9 +173,9 @@ public class ViewVoucherRequest {
 //            public void onResponse(JSONObject result) {
 //                // TODO handle the response
 //                try {
-//                    Log.i("response_result", String.valueOf(result));
+//                    // Log.i("response_result", String.valueOf(result));
 //                    byte[] response = String.valueOf(result.get("data")).getBytes();
-//                    Log.i("response", String.valueOf(response));
+//                    // Log.i("response", String.valueOf(response));
 ////                    if (response!=null) {
 ////
 ////                        String dir = Environment.getExternalStorageDirectory() + "/Download/";
@@ -186,7 +186,7 @@ public class ViewVoucherRequest {
 ////                        fPdf.write(response);
 ////                        fPdf.flush();
 ////                        fPdf.close();
-////                        Log.i("Download Complete", "Download complete.");
+////                        // Log.i("Download Complete", "Download complete.");
 ////                        Toast.makeText(mContext, "File saved in Downloads", Toast.LENGTH_LONG).show();
 ////
 ////                        File file = new File(name); // Here you declare your pdf path
@@ -211,7 +211,7 @@ public class ViewVoucherRequest {
 ////                    }
 //                } catch (Exception e) {
 //                    // TODO Auto-generated catch block
-//                    Log.d("KEY_ERROR", "UNABLE TO DOWNLOAD FILE");
+//                    // Log.d("KEY_ERROR", "UNABLE TO DOWNLOAD FILE");
 //                    Toast.makeText(context, "UNABLE TO DOWNLOAD FILE", Toast.LENGTH_LONG).show();
 //                    e.printStackTrace();
 //                }

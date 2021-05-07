@@ -69,7 +69,7 @@ public class PaymentDashboardAdapter extends RecyclerView.Adapter<PaymentDashboa
         if (paymentsList.size() == 3 || paymentsList.size() == 4) {
             if (position == (paymentsList.size() - 1)) {
                 //        if (position == 2) {
-                Log.i("DebugSupportFilter_In", paymentsList.get(position).getInvoiceNumber());
+                // Log.i("DebugSupportFilter_In", paymentsList.get(position).getInvoiceNumber());
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.WRAP_CONTENT,
                         RelativeLayout.LayoutParams.WRAP_CONTENT
@@ -251,7 +251,7 @@ public class PaymentDashboardAdapter extends RecyclerView.Adapter<PaymentDashboa
                                         SharedPreferences.Editor editor = OrderId.edit();
                                         editor.putString("PaymentId", paymentsList.get(position).getRetailerInvoiceId());
                                         editor.putString("InvoiceStatus", String.valueOf(paymentsList.get(position).getInvoiceStatusValue()));
-                                        Log.i("InvoiceStatus_Adapter", String.valueOf(paymentsList.get(position).getStatus()));
+                                        // Log.i("InvoiceStatus_Adapter", String.valueOf(paymentsList.get(position).getStatus()));
                                         editor.commit();
                                         fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
                                         fragmentTransaction.add(R.id.main_container, new RetailerViewInvoice()).addToBackStack("tag");

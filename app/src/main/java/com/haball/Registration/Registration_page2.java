@@ -501,12 +501,12 @@ public class Registration_page2 extends AppCompatActivity {
             map.put("IsAgree", true);
         }
 
-        Log.i("Register_Activity", String.valueOf(map));
+        // Log.i("Register_Activity", String.valueOf(map));
 
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
-                Log.i("Register_Activity", result.toString());
+                // Log.i("Register_Activity", result.toString());
                 try {
                     if (!result.get("DealerCode").toString().isEmpty()) {
                         Intent i = new Intent(Registration_page2.this, Distribution_Login.class);
@@ -524,7 +524,7 @@ public class Registration_page2 extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.i("Register_Activity", String.valueOf(error));
+                // Log.i("Register_Activity", String.valueOf(error));
                 new HaballError().printErrorMessage(Registration_page2.this, error);
                 new ProcessingError().showError(Registration_page2.this);
                 error.printStackTrace();
@@ -542,11 +542,11 @@ public class Registration_page2 extends AppCompatActivity {
                 try {
                     JSONObject obj = result.getJSONObject(0);
                     cities.add(obj.getString("Name"));
-                    Log.i("cities", cities.toString());
+                    // Log.i("cities", cities.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE OF CITIES", result.toString());
+                // Log.e("RESPONSE OF CITIES", result.toString());
 //                Toast.makeText(Registration_Actvity2.this,result.toString(),Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
@@ -573,11 +573,11 @@ public class Registration_page2 extends AppCompatActivity {
                         JSONObject obj = result.getJSONObject(i);
                         provinces.add(obj.getString("Name"));
                     }
-                    Log.i("provinces", provinces.toString());
+                    // Log.i("provinces", provinces.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE OF PROVINCES", result.toString());
+                // Log.e("RESPONSE OF PROVINCES", result.toString());
 //                Toast.makeText(Registration_Actvity2.this,result.toString(),Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
@@ -604,12 +604,12 @@ public class Registration_page2 extends AppCompatActivity {
                 try {
                     JSONObject obj = result.getJSONObject(0);
                     countries.add(obj.getString("Name"));
-                    Log.i("countries", countries.toString());
+                    // Log.i("countries", countries.toString());
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE OF COUNTRIES", result.toString());
+                // Log.e("RESPONSE OF COUNTRIES", result.toString());
 //                Toast.makeText(Registration_Actvity2.this,result.toString(),Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {

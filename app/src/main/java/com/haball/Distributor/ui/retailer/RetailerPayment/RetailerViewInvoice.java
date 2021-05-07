@@ -32,7 +32,7 @@ public class RetailerViewInvoice extends Fragment {
 //        SharedPreferences sharedPreferences3 = getContext().getSharedPreferences("PaymentId",
 //                Context.MODE_PRIVATE);
 //        InvoiceStatus = sharedPreferences3.getString("InvoiceStatus", "");
-//        Log.i("InvoiceStatus", InvoiceStatus);
+//        // Log.i("InvoiceStatus", InvoiceStatus);
 
 //        SectionsPagerAdapter sectionsPagerAdapter = null;
 //        if (InvoiceStatus.equals("null")) {

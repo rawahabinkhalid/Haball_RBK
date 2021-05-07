@@ -175,7 +175,7 @@ public class PlaceholderFragment extends Fragment {
                             spinner_retailer_details.setVisibility(View.VISIBLE);
 //                            try {
 //                                Toast.makeText(getContext(), "Retailer Code: " + companies.get(Company_selected) + "\nCompany Name: " + Company_selected, Toast.LENGTH_LONG).show();
-//                            Log.i("Retailer", "Retailer Code: " + companies.get(Company_selected) + "\nCompany Name: " + Company_selected);
+//                            // Log.i("Retailer", "Retailer Code: " + companies.get(Company_selected) + "\nCompany Name: " + Company_selected);
 //                                fetchPaymentLedgerData(companies.get(Company_selected));
 //                            } catch (JSONException e) {
 //                                e.printStackTrace();
@@ -221,21 +221,21 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
         URL_Retailer_Details = "https://175.107.203.97:4013/api/retailer/";
         URL_Retailer_Details = URL_Retailer_Details + retailerID;
-        Log.i("URL_RETAILER_DETAILS ", URL_Retailer_Details);
+        // Log.i("URL_RETAILER_DETAILS ", URL_Retailer_Details);
 
         JSONObject map = new JSONObject();
         map.put("DistributorId", Integer.parseInt(DistributorId));
-        Log.i("Map", String.valueOf(map));
+        // Log.i("Map", String.valueOf(map));
 
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.GET, URL_Retailer_Details, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
                 try {
-//                    Log.i("result", String.valueOf(result));
+//                    // Log.i("result", String.valueOf(result));
 //                    txt_name.setText(result.getString("Name"));
                     txt_email_address.setText(result.getString("Email"));
                     txt_cnic_no.setText(result.getString("CNIC"));
@@ -313,21 +313,21 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
         if (!URL_Retailer.contains(DistributorId))
             URL_Retailer = URL_Retailer + DistributorId;
-        Log.i("URL_Retailer ", URL_Retailer);
+        // Log.i("URL_Retailer ", URL_Retailer);
 
         MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.GET, URL_Retailer, null, new Response.Listener<JSONArray>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(JSONArray result) {
-                Log.i("result", String.valueOf(result));
+                // Log.i("result", String.valueOf(result));
                 try {
                     JSONObject jsonObject = null;
                     for (int i = 0; i < result.length(); i++) {
@@ -420,9 +420,9 @@ public class PlaceholderFragment extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();

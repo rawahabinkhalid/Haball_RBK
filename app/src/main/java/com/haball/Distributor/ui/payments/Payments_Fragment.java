@@ -345,7 +345,7 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
                 return view;
             }
         };
-        Log.i("aaaa1111", String.valueOf(consolidate_felter));
+        // Log.i("aaaa1111", String.valueOf(consolidate_felter));
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -367,7 +367,7 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
                     }
 
                     Filter_selected_value = String.valueOf(i);
-                    Log.i("Filter_selected_value", Filter_selected_value);
+                    // Log.i("Filter_selected_value", Filter_selected_value);
                     try {
                         fetchFilteredPaymentLedgerData(companies.get(Company_selected));
                     } catch (JSONException e) {
@@ -390,8 +390,8 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
         conso_edittext.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
-                Log.i("text1", "check");
-                Log.i("text", String.valueOf(s));
+                // Log.i("text1", "check");
+                // Log.i("text", String.valueOf(s));
                 Filter_selected_value = String.valueOf(s);
                 if (!Filter_selected_value.equals("")) {
 
@@ -517,10 +517,10 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
                 y = dy;
                 if (dy <= -5) {
                     scrollEvent.add("ScrollDown");
-//                            Log.i("scrolling", "Scroll Down");
+//                            // Log.i("scrolling", "Scroll Down");
                 } else if (dy > 5) {
                     scrollEvent.add("ScrollUp");
-//                            Log.i("scrolling", "Scroll Up");
+//                            // Log.i("scrolling", "Scroll Up");
                 }
                 String scroll = getScrollEvent();
 
@@ -578,7 +578,7 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
         SharedPreferences sharedPreferences = mcontext.getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
@@ -599,7 +599,7 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE OF companies", result.toString());
+                // Log.e("RESPONSE OF companies", result.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -636,8 +636,8 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token pl .. ", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token pl .. ", Token);
 
         JSONObject mapCount = new JSONObject();
         mapCount.put("Status", -1);
@@ -661,7 +661,7 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
                 new ProcessingError().showError(getContext());
 
                 error.printStackTrace();
-                Log.i("onErrorResponse", "Error");
+                // Log.i("onErrorResponse", "Error");
             }
         }) {
             @Override
@@ -689,7 +689,7 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
             @Override
             public void onResponse(JSONArray response) {
                 loader.hideLoader();
-                Log.i(" PAYMENT LEDGER => ", "" + response.toString());
+                // Log.i(" PAYMENT LEDGER => ", "" + response.toString());
                 JSONObject jsonObject = new JSONObject();
                 for (int i = 0; i < response.length(); i++) {
                     try {
@@ -727,7 +727,7 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
                 loader.hideLoader();
 
                 error.printStackTrace();
-                Log.i("onErrorResponse", "Error");
+                // Log.i("onErrorResponse", "Error");
             }
         }) {
             @Override
@@ -755,8 +755,8 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token pl .. ", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token pl .. ", Token);
 
         JSONObject map = new JSONObject();
         map.put("Status", -1);
@@ -769,7 +769,7 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
             @Override
             public void onResponse(JSONArray response) {
                 loader.hideLoader();
-                Log.i(" PAYMENT LEDGER PAGE2", "" + response.toString());
+                // Log.i(" PAYMENT LEDGER PAGE2", "" + response.toString());
                 JSONObject jsonObject = new JSONObject();
                 for (int i = 0; i < response.length(); i++) {
                     try {
@@ -792,7 +792,7 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
                 new HaballError().printErrorMessage(getContext(), error);
                 new ProcessingError().showError(getContext());
                 error.printStackTrace();
-                Log.i("onErrorResponse", "Error");
+                // Log.i("onErrorResponse", "Error");
             }
         }) {
             @Override
@@ -818,8 +818,8 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token pl .. ", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token pl .. ", Token);
 
         JSONObject map = new JSONObject();
         map.put("Status", -1);
@@ -836,13 +836,13 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
         } else {
             map.put(Filter_selected, Filter_selected_value);
         }
-        Log.i("Map", String.valueOf(map));
+        // Log.i("Map", String.valueOf(map));
         loader.showLoader();
         MyJsonArrayRequest request = new MyJsonArrayRequest(Request.Method.POST, URL_PAYMENT_LEDGER, map, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 loader.hideLoader();
-                Log.i(" PAYMENT LEDGER => ", "" + response.toString());
+                // Log.i(" PAYMENT LEDGER => ", "" + response.toString());
                 JSONObject jsonObject = new JSONObject();
                 for (int i = 0; i < response.length(); i++) {
                     try {
@@ -868,7 +868,7 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
                 loader.hideLoader();
 
                 error.printStackTrace();
-                Log.i("onErrorResponse", "Error");
+                // Log.i("onErrorResponse", "Error");
             }
         }) {
             @Override
@@ -915,7 +915,7 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
     private void updateDisplay(String date_type) {
         if (date_type.equals("first date")) {
             fromDate = year1 + "-" + String.format("%02d", (month1 + 1)) + "-" + String.format("%02d", date1) + "T00:00:00.000Z";
-            Log.i("fromDate", fromDate);
+            // Log.i("fromDate", fromDate);
 
             first_date.setText(new StringBuilder()
                     .append(String.format("%02d", date1)).append("/").append(String.format("%02d", (month1 + 1))).append("/").append(year1));
@@ -1006,9 +1006,9 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();
@@ -1045,7 +1045,7 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
                 }
             }
         }
-//        Log.i("distinct", scroll);
+//        // Log.i("distinct", scroll);
         return scroll;
     }
 

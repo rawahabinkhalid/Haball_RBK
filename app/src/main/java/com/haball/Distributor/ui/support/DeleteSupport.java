@@ -54,8 +54,8 @@ public class DeleteSupport {
         SharedPreferences sharedPreferences1 = context.getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
 
         JSONObject map = new JSONObject();
         map.put("Id", supportId);
@@ -63,48 +63,44 @@ public class DeleteSupport {
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_SUPPORT_STATUS_CHANGE, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
-                try {
-                    Log.i("support delete",String.valueOf(result));
-                    Log.i("support delete id",String.valueOf(result.get("Id")));
-                    final AlertDialog delete_successAlert = new AlertDialog.Builder(context).create();
-                    delete_successAlert.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
-                    WindowManager.LayoutParams layoutParams = delete_successAlert.getWindow().getAttributes();
-                    layoutParams.y = 200;
-                    layoutParams.x = -70;// top margin
-                    delete_successAlert.getWindow().setAttributes(layoutParams);
+                // Log.i("support delete",String.valueOf(result));
+                // Log.i("support delete id",String.valueOf(result.get("Id")));
+                final AlertDialog delete_successAlert = new AlertDialog.Builder(context).create();
+                delete_successAlert.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
+                WindowManager.LayoutParams layoutParams = delete_successAlert.getWindow().getAttributes();
+                layoutParams.y = 200;
+                layoutParams.x = -70;// top margin
+                delete_successAlert.getWindow().setAttributes(layoutParams);
 
-                    LayoutInflater delete_inflater = LayoutInflater.from(context);
-                    View delete_success_alert = delete_inflater.inflate(R.layout.password_updatepopup, null);
-                    delete_successAlert.setView(delete_success_alert);
-                    TextView tv_pr1, txt_header1;
-                    txt_header1 = delete_success_alert.findViewById(R.id.txt_header1);
-                    tv_pr1 = delete_success_alert.findViewById(R.id.txt_details);
-                    txt_header1.setText("Ticket Deleted");
-                    tv_pr1.setText("Your Support Ticket has been deleted successfully.");
+                LayoutInflater delete_inflater = LayoutInflater.from(context);
+                View delete_success_alert = delete_inflater.inflate(R.layout.password_updatepopup, null);
+                delete_successAlert.setView(delete_success_alert);
+                TextView tv_pr1, txt_header1;
+                txt_header1 = delete_success_alert.findViewById(R.id.txt_header1);
+                tv_pr1 = delete_success_alert.findViewById(R.id.txt_details);
+                txt_header1.setText("Ticket Deleted");
+                tv_pr1.setText("Your Support Ticket has been deleted successfully.");
 
-                    ImageButton img_delete = (ImageButton) delete_success_alert.findViewById(R.id.image_button);
-                    img_delete.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            delete_successAlert.dismiss();
-                            fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.add(R.id.main_container, new SupportFragment()).addToBackStack(null);
-                            fragmentTransaction.commit();
-                        }
-                    });
-                    delete_successAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialog) {
-                            delete_successAlert.dismiss();
-                            fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.add(R.id.main_container, new SupportFragment()).addToBackStack(null);
-                            fragmentTransaction.commit();
-                        }
-                    });
-                    delete_successAlert.show();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                ImageButton img_delete = (ImageButton) delete_success_alert.findViewById(R.id.image_button);
+                img_delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        delete_successAlert.dismiss();
+                        fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.add(R.id.main_container, new SupportFragment()).addToBackStack(null);
+                        fragmentTransaction.commit();
+                    }
+                });
+                delete_successAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        delete_successAlert.dismiss();
+                        fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.add(R.id.main_container, new SupportFragment()).addToBackStack(null);
+                        fragmentTransaction.commit();
+                    }
+                });
+                delete_successAlert.show();
             }
         }, new Response.ErrorListener() {
             @Override

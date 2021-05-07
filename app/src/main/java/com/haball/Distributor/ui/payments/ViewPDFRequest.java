@@ -87,9 +87,9 @@ public class ViewPDFRequest {
         SharedPreferences sharedPreferences1 = context.getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
-        Log.i("paymentId", paymentId);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
+        // Log.i("paymentId", paymentId);
 
 //        URL_PDF_VIEW = URL_PDF_VIEW+paymentId;
 
@@ -102,13 +102,13 @@ public class ViewPDFRequest {
 //            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 //            @Override
 //            public void onResponse(String result) {
-//                Log.i("PDF VIEW..", result);
+//                // Log.i("PDF VIEW..", result);
 ////                byte[] bytes = result.getBytes(Charset.forName("UTF-8"));
 //////                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 //////                    try {
 //////                        byte[] decodedString = Base64.getDecoder().decode(new String(bytes).getBytes("UTF-8"));
 //////                        String string = new String(decodedString);
-//////                        Log.i("PDF BYTE DECODED..", string);
+//////                        // Log.i("PDF BYTE DECODED..", string);
 //////
 //////                    } catch (UnsupportedEncodingException e) {
 //////                        e.printStackTrace();
@@ -116,7 +116,7 @@ public class ViewPDFRequest {
 //////
 //////                }
 //////                String string = new String(bytes);
-//////                Log.i("PDF BYTE ARRAY..", string);
+//////                // Log.i("PDF BYTE ARRAY..", string);
 ////                saveToFile(bytes, "file.pdf");
 //            }
 //        }, new Response.ErrorListener() {
@@ -143,8 +143,8 @@ public class ViewPDFRequest {
                 // TODO handle the response
                 loader.hideLoader();
                 try {
-                    Log.i("responseByte", String.valueOf(response));
-                    Log.i("responseByte", String.valueOf(response.length));
+                    // Log.i("responseByte", String.valueOf(response));
+                    // Log.i("responseByte", String.valueOf(response.length));
                     if (response != null) {
                         String dir = Environment.getExternalStorageDirectory() + "/Download/";
                         String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss").format(new Date());
@@ -154,7 +154,7 @@ public class ViewPDFRequest {
                         fPdf.write(response);
                         fPdf.flush();
                         fPdf.close();
-                        Log.i("Download Complete", "Download complete.");
+                        // Log.i("Download Complete", "Download complete.");
                         Toast.makeText(mContext, "File saved in Downloads", Toast.LENGTH_LONG).show();
 
                         File file = new File(name); // Here you declare your pdf path
@@ -179,7 +179,7 @@ public class ViewPDFRequest {
                     }
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
-                    Log.d("KEY_ERROR", "UNABLE TO DOWNLOAD FILE");
+                    // Log.d("KEY_ERROR", "UNABLE TO DOWNLOAD FILE");
                     e.printStackTrace();
                 }
             }
@@ -218,9 +218,9 @@ public class ViewPDFRequest {
 
         if (!URL_PDF_VIEW_INVOICE.contains("/" + paymentId))
             URL_PDF_VIEW_INVOICE = URL_PDF_VIEW_INVOICE + paymentId;
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
-        Log.i("paymentId", paymentId);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
+        // Log.i("paymentId", paymentId);
 
 //        URL_PDF_VIEW = URL_PDF_VIEW+paymentId;
 
@@ -235,13 +235,13 @@ public class ViewPDFRequest {
 //            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 //            @Override
 //            public void onResponse(String result) {
-//                Log.i("PDF VIEW..", result);
+//                // Log.i("PDF VIEW..", result);
 ////                byte[] bytes = result.getBytes(Charset.forName("UTF-8"));
 //////                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 //////                    try {
 //////                        byte[] decodedString = Base64.getDecoder().decode(new String(bytes).getBytes("UTF-8"));
 //////                        String string = new String(decodedString);
-//////                        Log.i("PDF BYTE DECODED..", string);
+//////                        // Log.i("PDF BYTE DECODED..", string);
 //////
 //////                    } catch (UnsupportedEncodingException e) {
 //////                        e.printStackTrace();
@@ -249,7 +249,7 @@ public class ViewPDFRequest {
 //////
 //////                }
 //////                String string = new String(bytes);
-//////                Log.i("PDF BYTE ARRAY..", string);
+//////                // Log.i("PDF BYTE ARRAY..", string);
 ////                saveToFile(bytes, "file.pdf");
 //            }
 //        }, new Response.ErrorListener() {
@@ -276,8 +276,8 @@ public class ViewPDFRequest {
                 // TODO handle the response
                 loader.hideLoader();
                 try {
-                    Log.i("responseByte", String.valueOf(response));
-                    Log.i("responseByte", String.valueOf(response.length));
+                    // Log.i("responseByte", String.valueOf(response));
+                    // Log.i("responseByte", String.valueOf(response.length));
                     if (response != null) {
                         String dir = Environment.getExternalStorageDirectory() + "/Download/";
                         String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss").format(new Date());
@@ -287,7 +287,7 @@ public class ViewPDFRequest {
                         fPdf.write(response);
                         fPdf.flush();
                         fPdf.close();
-                        Log.i("Download Complete", "Download complete.");
+                        // Log.i("Download Complete", "Download complete.");
                         Toast.makeText(mContext, "File saved in Downloads", Toast.LENGTH_LONG).show();
 
                         File file = new File(name); // Here you declare your pdf path
@@ -312,7 +312,7 @@ public class ViewPDFRequest {
                     }
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
-                    Log.d("KEY_ERROR", "UNABLE TO DOWNLOAD FILE");
+                    // Log.d("KEY_ERROR", "UNABLE TO DOWNLOAD FILE");
                     e.printStackTrace();
                 }
             }

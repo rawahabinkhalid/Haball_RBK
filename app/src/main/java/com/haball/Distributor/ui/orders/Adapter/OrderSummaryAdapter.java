@@ -54,7 +54,7 @@ public class OrderSummaryAdapter extends RecyclerView.Adapter<OrderSummaryAdapte
         holder.btn_remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("position to be removed", String.valueOf(position));
+                // Log.i("position to be removed", String.valueOf(position));
                 selectedProductsDataList.remove(position);
                 selectedProductsDataListQty.remove(position);
                 notifyItemRemoved(position);
@@ -72,8 +72,8 @@ public class OrderSummaryAdapter extends RecyclerView.Adapter<OrderSummaryAdapte
                 Gson gson = new Gson();
                 String json = gson.toJson(selectedProductsDataList);
                 String jsonqty = gson.toJson(selectedProductsDataListQty);
-                Log.i("jsonqty",jsonqty);
-                Log.i("json",json);
+                // Log.i("jsonqty",jsonqty);
+                // Log.i("json",json);
 
                 SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts",
                         Context.MODE_PRIVATE);

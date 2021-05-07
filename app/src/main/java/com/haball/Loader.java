@@ -39,7 +39,7 @@ public class Loader {
 //        fbDialogue.setContentView(R.layout.loader);
 //        fbDialogue.setCancelable(false);
 //        fbDialogue.show();
-        Log.i("mContext", String.valueOf(mContext));
+        // Log.i("mContext", String.valueOf(mContext));
 
 
 //        if(fbDialogue.isShowing())
@@ -52,7 +52,7 @@ public class Loader {
                 }
 
                 public void onFinish() {
-                    Log.i("mContext_hide", String.valueOf(mContext));
+                    // Log.i("mContext_hide", String.valueOf(mContext));
                     fbDialogue.dismiss();
 
                 }
@@ -63,7 +63,7 @@ public class Loader {
     }
 
     public void hideLoader() {
-        Log.i("mContext_hide", String.valueOf(mContext));
+        // Log.i("mContext_hide", String.valueOf(mContext));
 //        if (fbDialogue.isShowing())
         try {
             fbDialogue.dismiss();

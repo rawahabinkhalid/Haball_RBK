@@ -198,9 +198,9 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences3 = getContext().getSharedPreferences("Invoice_ID",
                 Context.MODE_PRIVATE);
         paymentID = sharedPreferences3.getString("InvoiceID", "");
-        Log.i("payment ID", paymentID);
+        // Log.i("payment ID", paymentID);
 
-        Log.i("emthod", "kmkn");
+        // Log.i("emthod", "kmkn");
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
@@ -209,16 +209,16 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId invoice", DistributorId);
-        Log.i("Token invoice", Token);
+        // Log.i("DistributorId invoice", DistributorId);
+        // Log.i("Token invoice", Token);
         if (!INVOICE_URL.contains(paymentID))
             INVOICE_URL = INVOICE_URL + paymentID;
-        Log.i("INVOICE_URL", INVOICE_URL);
+        // Log.i("INVOICE_URL", INVOICE_URL);
 
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, INVOICE_URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.i("response", String.valueOf(response));
+                // Log.i("response", String.valueOf(response));
                 try {
                     try {
                         if (TextUtils.isEmpty(String.valueOf(response.get("ShipmentId"))))
@@ -277,9 +277,9 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences3 = getContext().getSharedPreferences("Invoice_ID",
                 Context.MODE_PRIVATE);
         paymentID = sharedPreferences3.getString("InvoiceID", "");
-        Log.i("payment ID", paymentID);
+        // Log.i("payment ID", paymentID);
 
-        Log.i("emthod", "kmkn");
+        // Log.i("emthod", "kmkn");
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
@@ -288,16 +288,16 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId invoice", DistributorId);
-        Log.i("Token invoice", Token);
+        // Log.i("DistributorId invoice", DistributorId);
+        // Log.i("Token invoice", Token);
         if (!INVOICE_URL.contains(paymentID))
             INVOICE_URL = INVOICE_URL + paymentID;
-        Log.i("INVOICE_URL", INVOICE_URL);
+        // Log.i("INVOICE_URL", INVOICE_URL);
 
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, INVOICE_URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.i("response", String.valueOf(response));
+                // Log.i("response", String.valueOf(response));
                 try {
                     total_price.setText(response.get("InvoiceTotal").toString());
                     Gson gson = new Gson();
@@ -307,7 +307,7 @@ public class PlaceholderFragment extends Fragment {
                     }.getType();
 
                     invo_productList = gson.fromJson(response.get("InvoiceDetails").toString(), type);
-                    Log.i("ProductList", String.valueOf(response.get("InvoiceDetails")));
+                    // Log.i("ProductList", String.valueOf(response.get("InvoiceDetails")));
                     ProductAdapter productAdapter = new ProductAdapter(getContext(), invo_productList);
                     rv_invo_product.setAdapter(productAdapter);
 
@@ -358,9 +358,9 @@ public class PlaceholderFragment extends Fragment {
 //        SharedPreferences sharedPreferences3 = getContext().getSharedPreferences("Invoice_ID",
 //                Context.MODE_PRIVATE);
 //        paymentID = sharedPreferences3.getString("InvoiceID", "");
-//        Log.i("payment ID", paymentID);
+//        // Log.i("payment ID", paymentID);
 //
-//        Log.i("emthod", "kmkn");
+//        // Log.i("emthod", "kmkn");
 //
 //        SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
@@ -369,16 +369,16 @@ public class PlaceholderFragment extends Fragment {
 //        SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-//        Log.i("DistributorId invoice", DistributorId);
-//        Log.i("Token invoice", Token);
+//        // Log.i("DistributorId invoice", DistributorId);
+//        // Log.i("Token invoice", Token);
 //        if (!INVOICE_URL.contains(paymentID))
 //            INVOICE_URL = INVOICE_URL + paymentID;
-//        Log.i("INVOICE_URL", INVOICE_URL);
+//        // Log.i("INVOICE_URL", INVOICE_URL);
 //
 //        StringRequest stringRequest = new StringRequest(Request.Method.GET, INVOICE_URL, new Response.Listener<String>() {
 //            @Override
 //            public void onResponse(String response) {
-//                Log.i("response", response);
+//                // Log.i("response", response);
 //                try {
 //                    if (response != null && !response.equals("")) {
 //                        Gson gson = new Gson();
@@ -434,9 +434,9 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences3 = getContext().getSharedPreferences("Invoice_ID",
                 Context.MODE_PRIVATE);
         paymentID = sharedPreferences3.getString("InvoiceID", "");
-        Log.i("payment ID", paymentID);
+        // Log.i("payment ID", paymentID);
 
-        Log.i("emthod", "kmkn");
+        // Log.i("emthod", "kmkn");
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
@@ -445,16 +445,16 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId invoice", DistributorId);
-        Log.i("Token invoice", Token);
+        // Log.i("DistributorId invoice", DistributorId);
+        // Log.i("Token invoice", Token);
         if (!INVOICE_URL.contains(paymentID))
             INVOICE_URL = INVOICE_URL + paymentID;
-        Log.i("INVOICE_URL", INVOICE_URL);
+        // Log.i("INVOICE_URL", INVOICE_URL);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, INVOICE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("response", response);
+                // Log.i("response", response);
                 try {
                     if (response != null && !response.equals("")) {
                         Gson gson = new Gson();
@@ -530,9 +530,9 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences3 = getContext().getSharedPreferences("Invoice_ID",
                 Context.MODE_PRIVATE);
         paymentID = sharedPreferences3.getString("InvoiceID", "");
-        Log.i("payment ID", paymentID);
+        // Log.i("payment ID", paymentID);
 
-        Log.i("emthod", "kmkn");
+        // Log.i("emthod", "kmkn");
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
@@ -541,15 +541,15 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId invoice", DistributorId);
-        Log.i("Token invoice", Token);
+        // Log.i("DistributorId invoice", DistributorId);
+        // Log.i("Token invoice", Token);
         if (!INVOICE_URL.contains(paymentID))
             INVOICE_URL = INVOICE_URL + paymentID;
-        Log.i("INVOICE_URL", INVOICE_URL);
+        // Log.i("INVOICE_URL", INVOICE_URL);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, INVOICE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("response", response);
+                // Log.i("response", response);
                 try {
                     if (response != null && !response.equals("")) {
                         Gson gson = new Gson();
@@ -614,7 +614,7 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences3 = getContext().getSharedPreferences("Invoice_ID",
                 Context.MODE_PRIVATE);
         paymentID = sharedPreferences3.getString("InvoiceID", "");
-        Log.i("payment ID", paymentID);
+        // Log.i("payment ID", paymentID);
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
@@ -623,16 +623,16 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId invoice", DistributorId);
-        Log.i("Token invoice", Token);
+        // Log.i("DistributorId invoice", DistributorId);
+        // Log.i("Token invoice", Token);
         if (!INVOICE_URL.contains(paymentID))
             INVOICE_URL = INVOICE_URL + paymentID;
-        Log.i("INVOICE_URL", INVOICE_URL);
+        // Log.i("INVOICE_URL", INVOICE_URL);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, INVOICE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("response", response);
+                // Log.i("response", response);
                 try {
                     if (response != null && !response.equals("")) {
                         Gson gson = new Gson();
@@ -743,9 +743,9 @@ public class PlaceholderFragment extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();

@@ -166,9 +166,9 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                 int heightDiff = view.getRootView().getHeight() - view.getHeight();
 
                 if (heightDiff > 100) {
-                    Log.e("MyActivity", "keyboard opened");
+                    // Log.e("MyActivity", "keyboard opened");
                 } else {
-                    Log.e("MyActivity", "keyboard closed");
+                    // Log.e("MyActivity", "keyboard closed");
                 }
             }
         });
@@ -215,9 +215,9 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                     selectedProductsQuantityList_temp = gson.fromJson(object_stringqty, typeString);
                 }
 
-                Log.i("debug_order_back_pres", String.valueOf(selectedProductsDataList_temp));
-                Log.i("debug_order_back_pres", String.valueOf(selectedProductsDataList_temp.size()));
-                Log.i("debug_order_back_pres", String.valueOf(orderCheckedOutStr));
+                // Log.i("debug_order_back_pres", String.valueOf(selectedProductsDataList_temp));
+                // Log.i("debug_order_back_pres", String.valueOf(selectedProductsDataList_temp.size()));
+                // Log.i("debug_order_back_pres", String.valueOf(orderCheckedOutStr));
 
                 final SharedPreferences orderCheckout_SP = getContext().getSharedPreferences("orderCheckout_discard",
                         Context.MODE_PRIVATE);
@@ -278,7 +278,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
         SharedPreferences add_more_product = getContext().getSharedPreferences("add_more_product",
                 Context.MODE_PRIVATE);
         if (!add_more_product.getString("add_more_product", "").equals("fromAddMore")) {
-            Log.i("debugOrder_AddMore", "not from add more product");
+            // Log.i("debugOrder_AddMore", "not from add more product");
             SharedPreferences selectedProducts = getContext().getSharedPreferences("selectedProducts_retailer_own",
                     Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = selectedProducts.edit();
@@ -319,15 +319,15 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                                 selectedProductsQuantityList = gson.fromJson(object_stringqty, typeString);
 //                        if (selectedProductsDataList.size() > 0) {
 //                            for (int i = 0; i < selectedProductsDataList.size(); i++) {
-//                                Log.i("unit price", selectedProductsDataList.get(i).getProductUnitPrice());
-//                                Log.i("qty", selectedProductsQuantityList.get(i));
+//                                // Log.i("unit price", selectedProductsDataList.get(i).getProductUnitPrice());
+//                                // Log.i("qty", selectedProductsQuantityList.get(i));
 //                                if (!selectedProductsDataList.get(i).getProductUnitPrice().equals("") && !selectedProductsQuantityList.get(i).equals(""))
 //                                    grossAmount += Float.parseFloat(selectedProductsDataList.get(i).getProductUnitPrice()) * Float.parseFloat(selectedProductsQuantityList.get(i));
 //                            }
                                 if (selectedProductsDataList.size() > 0) {
                                     for (int i = 0; i < selectedProductsDataList.size(); i++) {
-//                                Log.i("unit price", selectedProductsDataList.get(i).getProductUnitPrice());
-//                                Log.i("qty", selectedProductsQuantityList.get(i));
+//                                // Log.i("unit price", selectedProductsDataList.get(i).getProductUnitPrice());
+//                                // Log.i("qty", selectedProductsQuantityList.get(i));
                                         if (!selectedProductsDataList.get(i).getProductUnitPrice().equals("") && !selectedProductsQuantityList.get(i).equals(""))
                                             grossAmount += Float.parseFloat(selectedProductsDataList.get(i).getProductUnitPrice()) * Float.parseFloat(selectedProductsQuantityList.get(i));
                                     }
@@ -368,8 +368,8 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
         spinner_conso.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("DebugFilter", "in spinner: " + position);
-                Log.i("DebugFilter", "in spinner: E, " + editTextValue);
+                // Log.i("DebugFilter", "in spinner: " + position);
+                // Log.i("DebugFilter", "in spinner: E, " + editTextValue);
                 Category_selected = totalCategoryTitle.get(position);
 
 //                ((TextView) parent.getChildAt(position)).setTextColor(getResources().getColor(R.color.textcolor));
@@ -380,13 +380,13 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                         et_test.setText("");
                         et_test.clearFocus();
                         try {
-                            Log.i("Categoriesselected", Categories.get(Category_selected) + " - " + Category_selected);
+                            // Log.i("Categoriesselected", Categories.get(Category_selected) + " - " + Category_selected);
                             getFilteredProductCategory(Categories.get(Category_selected));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     } else {
-                        Log.i("titles123", "in else");
+                        // Log.i("titles123", "in else");
                         if (editTextValue.equals("")) {
                             try {
                                 getProductCategory();
@@ -405,50 +405,95 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
 
             }
         });
-
-        et_test.addTextChangedListener(new TextWatcher() {
+        et_test.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public void onFocusChange(View v, boolean hasFocus) {
+                ((FragmentActivity) getContext()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+                if (!hasFocus) {
+                    if (spinner_container_main.getVisibility() == View.GONE) {
 
-            }
+                        spinner_container_main.setVisibility(View.VISIBLE);
+                        TranslateAnimation animate1 = new TranslateAnimation(
+                                0,                 // fromXDelta
+                                0,                 // toXDelta
+                                -spinner_container_main.getHeight(),  // fromYDelta
+                                0);                // toYDelta
+                        animate1.setDuration(250);
+                        animate1.setFillAfter(true);
+                        spinner_container_main.clearAnimation();
+                        spinner_container_main.startAnimation(animate1);
+                    }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                Log.i("DebugFilter", "in edit text: " + s);
-                Log.i("DebugFilter", "in edit text: C, " + Category_selected);
-                editTextValue = String.valueOf(s);
+                    String s = String.valueOf(et_test.getText());
+                    // Log.i("DebugFilter", "in edit text: " + s);
+                    // Log.i("DebugFilter", "in edit text: C, " + Category_selected);
+                    editTextValue = String.valueOf(s);
 
 //                titles = new ArrayList<>();
-                if (!byDefault) {
-
                     if (!String.valueOf(s).equals("")) {
                         spinner_conso.setSelection(0);
-                        Log.i("titles123", "in if");
+                        // Log.i("titles123", "in if");
                         try {
                             getFilteredProduct(String.valueOf(s));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     } else {
-                        Log.i("titles123", "in else");
-                        if (Category_selected != null && Category_selected.equals("All Category")) {
-                            try {
-                                getProductCategory();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+                        // Log.i("titles123", "in else");
+                        try {
+                            getFilteredProductCategory(Categories.get(Category_selected));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
                     }
-                } else {
-                    byDefault = false;
+
                 }
             }
         });
+//        et_test.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                // Log.i("DebugFilter", "in edit text: " + s);
+//                // Log.i("DebugFilter", "in edit text: C, " + Category_selected);
+//                editTextValue = String.valueOf(s);
+//
+////                titles = new ArrayList<>();
+//                if (!byDefault) {
+//
+//                    if (!String.valueOf(s).equals("")) {
+//                        spinner_conso.setSelection(0);
+//                        // Log.i("titles123", "in if");
+//                        try {
+//                            getFilteredProduct(String.valueOf(s));
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    } else {
+//                        // Log.i("titles123", "in else");
+//                        if (Category_selected != null && Category_selected.equals("All Category")) {
+//                            try {
+//                                getProductCategory();
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    byDefault = false;
+//                }
+//            }
+//        });
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -464,10 +509,10 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                 y = dy;
                 if (dy <= -5) {
                     scrollEvent.add("ScrollDown");
-                    Log.i("scrolling", "Scroll Down");
+                    // Log.i("scrolling", "Scroll Down");
                 } else if (dy > 5) {
                     scrollEvent.add("ScrollUp");
-                    Log.i("scrolling", "Scroll Up");
+                    // Log.i("scrolling", "Scroll Up");
                 }
                 String scroll = getScrollEvent();
 
@@ -531,13 +576,13 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                 width = main_container.getMeasuredWidth();
                 height = main_container.getMeasuredHeight();
 
-                Log.i("heightOfLayout", String.valueOf(height));
+                // Log.i("heightOfLayout", String.valueOf(height));
 //                if (height < 1500) {
 //                    recyclerView.setPadding(0, 0, 0, 500);
 //                }
 
-                Log.i("debug_dim_height_debug", String.valueOf(height));
-                Log.i("debug_dim_width_debug", String.valueOf(width));
+                // Log.i("debug_dim_height_debug", String.valueOf(height));
+                // Log.i("debug_dim_width_debug", String.valueOf(width));
 
             }
         });
@@ -556,7 +601,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                         // if keypad is shown, the r.bottom is smaller than that before.
                         int keypadHeight = screenHeight - r.bottom;
 
-                        Log.d("order_debugKey_KeyHeig", "keypadHeight = " + keypadHeight);
+                        // Log.d("order_debugKey_KeyHeig", "keypadHeight = " + keypadHeight);
 
                         if (keypadHeight > screenHeight * 0.15) { // 0.15 ratio is perhaps enough to determine keypad height.
                             // keyboard is opened
@@ -580,7 +625,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
     }
 
     private void onKeyboardVisibilityChanged(boolean opened) {
-        Log.i("order_debugKey_OpenClos", "keyboard " + opened);
+        // Log.i("order_debugKey_OpenClos", "keyboard " + opened);
         if (!opened) {
             spinner_container_main.setVisibility(View.VISIBLE);
             TranslateAnimation animate1 = new TranslateAnimation(
@@ -596,7 +641,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
     }
 
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
         final FragmentManager fm = getActivity().getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
@@ -613,7 +658,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
                 SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
                         Context.MODE_PRIVATE);
@@ -650,7 +695,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
 
             }
         });
-
+        if(!alertDialog.isShowing())
         alertDialog.show();
     }
 
@@ -732,16 +777,16 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                         }
 
 
-//                    Log.i("back_debug", orderCheckedOutStr + "'''1");
-//                    Log.i("back_debug123", String.valueOf(selectedProductsDataList.size()) + "'''2");
-//                    Log.i("back_debug123", String.valueOf(quantity) + "'''3");
-//                    Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "") + "'''4"));
-//                    Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "") + "'''5"));
+//                    // Log.i("back_debug", orderCheckedOutStr + "'''1");
+//                    // Log.i("back_debug123", String.valueOf(selectedProductsDataList.size()) + "'''2");
+//                    // Log.i("back_debug123", String.valueOf(quantity) + "'''3");
+//                    // Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "") + "'''4"));
+//                    // Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "") + "'''5"));
 //
-//                    Log.i("back_debug123", String.valueOf(selectedProductsDataList.size() > 0) + "'''12");
-//                    Log.i("back_debug123", String.valueOf(quantity > 0) + "'''13");
-//                    Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "").equals("draft") + "'''14"));
-//                    Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "").equals("changed") + "'''15"));
+//                    // Log.i("back_debug123", String.valueOf(selectedProductsDataList.size() > 0) + "'''12");
+//                    // Log.i("back_debug123", String.valueOf(quantity > 0) + "'''13");
+//                    // Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "").equals("draft") + "'''14"));
+//                    // Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "").equals("changed") + "'''15"));
 
                     return executeBackStackFlow(selectedProductsSP, orderCheckedOutStr, quantity, selectedProductsDataList, selectedProductsQuantityList);
                 }
@@ -754,21 +799,21 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
 
 
     private boolean executeBackStackFlow(SharedPreferences selectedProductsSP, String orderCheckedOutStr, int quantity, List<OrderChildlist_Model> selectedProductsDataList, List<String> selectedProductsQuantityList) {
-//        Log.i("back_debug", orderCheckedOutStr + "'''1");
-//        Log.i("back_debug123", String.valueOf(selectedProductsDataList.size()) + "'''2");
-//        Log.i("back_debug123", String.valueOf(quantity) + "'''3");
-//        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "") + "'''4"));
-//        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "") + "'''5"));
+//        // Log.i("back_debug", orderCheckedOutStr + "'''1");
+//        // Log.i("back_debug123", String.valueOf(selectedProductsDataList.size()) + "'''2");
+//        // Log.i("back_debug123", String.valueOf(quantity) + "'''3");
+//        // Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "") + "'''4"));
+//        // Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "") + "'''5"));
 //
-//        Log.i("back_debug123", String.valueOf(!orderCheckedOutStr.equals("")) + "'''11");
-//        Log.i("back_debug123", String.valueOf(selectedProductsDataList.size() > 0) + "'''12");
-//        Log.i("back_debug123", String.valueOf(quantity > 0) + "'''13");
-//        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "").equals("draft") + "'''14"));
-//        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "").equals("changed") + "'''15"));
+//        // Log.i("back_debug123", String.valueOf(!orderCheckedOutStr.equals("")) + "'''11");
+//        // Log.i("back_debug123", String.valueOf(selectedProductsDataList.size() > 0) + "'''12");
+//        // Log.i("back_debug123", String.valueOf(quantity > 0) + "'''13");
+//        // Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "").equals("draft") + "'''14"));
+//        // Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "").equals("changed") + "'''15"));
 
 
         if (selectedProductsSP.getString("fromDraft", "").equals("draft")) {
-            Log.i("back_debug", "in draft flow" + "'''1");
+            // Log.i("back_debug", "in draft flow" + "'''1");
             //draft flow
             if (selectedProductsSP.getString("fromDraftChanged", "").equals("changed")) {
                 showDiscardDialog();
@@ -780,7 +825,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                 return true;
             }
         } else {
-            Log.i("back_debug", "in place order flow" + "'''1");
+            // Log.i("back_debug", "in place order flow" + "'''1");
             // place order flow
             if (((!orderCheckedOutStr.equals("")))) {
 //            if (quantity > 0 && (!orderCheckedOutStr.equals(""))) {
@@ -797,7 +842,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
 
 //
 //    private boolean enableCheckout() {
-////        Log.i("checkout", "in checkout");
+////        // Log.i("checkout", "in checkout");
 //        SharedPreferences selectedProducts = getContext().getSharedPreferences("selectedProducts_retailer_own",
 //                Context.MODE_PRIVATE);
 //        Gson gson = new Gson();
@@ -815,8 +860,8 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
 ////        if (selectedProductsDataList != null) {
 ////            if (selectedProductsDataList.size() > 0) {
 ////                for (int i = 0; i < selectedProductsDataList.size(); i++) {
-//////                    Log.i("unit price", selectedProductsDataList.get(i).getProductUnitPrice());
-//////                    Log.i("qty", selectedProductsQuantityList.get(i));
+//////                    // Log.i("unit price", selectedProductsDataList.get(i).getProductUnitPrice());
+//////                    // Log.i("qty", selectedProductsQuantityList.get(i));
 ////                    if (!selectedProductsDataList.get(i).getProductUnitPrice().equals("") && !selectedProductsQuantityList.get(i).equals(""))
 ////                        if (Float.parseFloat(selectedProductsQuantityList.get(i)) > 0) {
 ////                            totalQty = totalQty + Float.parseFloat(selectedProductsQuantityList.get(i));
@@ -824,8 +869,8 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
 ////                }
 ////            }
 ////        }
-//////        Log.i("totalQty", "here");
-//////        Log.i("totalQty", String.valueOf(totalQty));
+//////        // Log.i("totalQty", "here");
+//////        // Log.i("totalQty", String.valueOf(totalQty));
 ////        if (totalQty > 0) {
 ////            btn_checkout.setEnabled(true);
 ////            btn_checkout.setBackgroundResource(R.drawable.button_round);
@@ -874,15 +919,15 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
 //                                        selectedProductsQuantityList = gson.fromJson(object_stringqty, typeString);
 ////                        if (selectedProductsDataList.size() > 0) {
 ////                            for (int i = 0; i < selectedProductsDataList.size(); i++) {
-////                                Log.i("unit price", selectedProductsDataList.get(i).getProductUnitPrice());
-////                                Log.i("qty", selectedProductsQuantityList.get(i));
+////                                // Log.i("unit price", selectedProductsDataList.get(i).getProductUnitPrice());
+////                                // Log.i("qty", selectedProductsQuantityList.get(i));
 ////                                if (!selectedProductsDataList.get(i).getProductUnitPrice().equals("") && !selectedProductsQuantityList.get(i).equals(""))
 ////                                    grossAmount += Float.parseFloat(selectedProductsDataList.get(i).getProductUnitPrice()) * Float.parseFloat(selectedProductsQuantityList.get(i));
 ////                            }
 //                                        if (selectedProductsDataList.size() > 0) {
 //                                            for (int i = 0; i < selectedProductsDataList.size(); i++) {
-////                                Log.i("unit price", selectedProductsDataList.get(i).getProductUnitPrice());
-////                                Log.i("qty", selectedProductsQuantityList.get(i));
+////                                // Log.i("unit price", selectedProductsDataList.get(i).getProductUnitPrice());
+////                                // Log.i("qty", selectedProductsQuantityList.get(i));
 //                                                if (!selectedProductsDataList.get(i).getProductUnitPrice().equals("") && !selectedProductsQuantityList.get(i).equals(""))
 //                                                    grossAmount += Float.parseFloat(selectedProductsDataList.get(i).getProductUnitPrice()) * Float.parseFloat(selectedProductsQuantityList.get(i));
 //                                            }
@@ -922,12 +967,12 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
 //        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        Token = sharedPreferences.getString("Login_Token", "");
-//        Log.i("Token", Token);
+//        // Log.i("Token", Token);
 //
 //        SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-//        Log.i("DistributorId ", DistributorId);
+//        // Log.i("DistributorId ", DistributorId);
 //
 //        SharedPreferences sharedPreferences2 = this.getActivity().getSharedPreferences("CompanyInfo",
 //                Context.MODE_PRIVATE);
@@ -935,7 +980,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
 //
 //        JSONObject map = new JSONObject();
 //        map.put("DistributorId", Integer.parseInt(DistributorId));
-//        Log.i("Map", String.valueOf(map));
+//        // Log.i("Map", String.valueOf(map));
 //        if (!URL_PRODUCT.contains("/" + CompanyId))
 //            URL_PRODUCT = URL_PRODUCT + CompanyId;
 //
@@ -947,9 +992,9 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
 //                List<OrderParentlist_Model> temp12_titles = titles;
 ////                temp_titles = titles;
 //                titles = new ArrayList<>();
-//                Log.i("temp_titles", String.valueOf(temp_titles));
-//                Log.i("resultLength", String.valueOf(result.length()));
-//                Log.i("result", String.valueOf(result));
+//                // Log.i("temp_titles", String.valueOf(temp_titles));
+//                // Log.i("resultLength", String.valueOf(result.length()));
+//                // Log.i("result", String.valueOf(result));
 //                for (int i = 0; i < result.length(); i++) {
 //                    Gson gson = new Gson();
 //                    Type type = new TypeToken<List<OrderChildlist_Model>>() {
@@ -968,7 +1013,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
 ////                                totalCategoryTitle.add(tempModel.getTitle());
 //                                    if (!titles.contains(temp_titles.get(j)))
 //                                        titles.add(temp_titles.get(j));
-//                                    Log.i("titles", String.valueOf(titles));
+//                                    // Log.i("titles", String.valueOf(titles));
 ////                                found = true;
 //                                }
 //                            }
@@ -987,8 +1032,8 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
 //                        e.printStackTrace();
 //                    }
 //                }
-//                Log.i("productList", String.valueOf(productList));
-////                Log.i("titles123", String.valueOf(titles));
+//                // Log.i("productList", String.valueOf(productList));
+////                // Log.i("titles123", String.valueOf(titles));
 //                ParentListAdapter adapter = new ParentListAdapter(getActivity(), initData());
 ////                adapter.setCustomParentAnimationViewId(R.id.parent_list_item_expand_arrow);
 //                adapter.setParentClickableViewAnimationDefaultDuration();
@@ -1023,26 +1068,26 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
 
     private void getFilteredProductCategory(final String ParentId) throws JSONException {
 
-        Log.i("ParentId", ParentId);
+       // // Log.i("ParentId", ParentId);
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Retailer_Id = sharedPreferences1.getString("Retailer_Id", "");
-        Log.i("Retailer_Id ", Retailer_Id);
+        // Log.i("Retailer_Id ", Retailer_Id);
 
         SharedPreferences sharedPreferences2 = this.getActivity().getSharedPreferences("CompanyInfo",
                 Context.MODE_PRIVATE);
         CompanyId = sharedPreferences2.getString("CompanyId", "");
-        Log.i("CompanyId", CompanyId);
+        // Log.i("CompanyId", CompanyId);
 
 
 //        JSONObject map = new JSONObject();
 //        map.put("RetailerId", Integer.parseInt(Retailer_Id));
-//        Log.i("Map", String.valueOf(map));
+//        // Log.i("Map", String.valueOf(map));
         if (!URL_PRODUCT_CATEGORY.contains("/" + CompanyId))
             URL_PRODUCT_CATEGORY = URL_PRODUCT_CATEGORY + CompanyId;
         new SSL_HandShake().handleSSLHandshake();
@@ -1059,7 +1104,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                     e.printStackTrace();
                 }
                 titles = new ArrayList<>();
-                Log.i("result", String.valueOf(result));
+                // Log.i("result", String.valueOf(result));
                 for (int i = 0; i < result.length(); i++) {
 //                    totalCategory = new ArrayList<>();
                     Gson gson = new Gson();
@@ -1067,18 +1112,18 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                     }.getType();
                     try {
                         Object item = result.get(i);
-                        Log.i("itemFilter", String.valueOf(item));
+                        // Log.i("itemFilter", String.valueOf(item));
 
                         // `instanceof` tells us whether the object can be cast to a specific type
                         if (item instanceof JSONObject) {
 //                            titles = gson.fromJson(result.get(i).toString(), type);
-//                            Log.i("productCategory", String.valueOf(titles));
+//                            // Log.i("productCategory", String.valueOf(titles));
 //                            for (int j = 0; j < ((JSONArray) item).length(); j++) {
                             OrderParentlist_Model tempModel = gson.fromJson(((JSONObject) item).toString(), OrderParentlist_Model.class);
-                            Log.i("itemFilter_123", String.valueOf(tempModel));
+                            // Log.i("itemFilter_123", String.valueOf(tempModel));
                             if (tempModel.getParentId().equals(ParentId)) {
                                 titles.add(tempModel);
-                                Log.i("itemFilter_123456", String.valueOf(titles));
+                                // Log.i("itemFilter_123456", String.valueOf(titles));
                             }
 //                            }
                         }
@@ -1088,14 +1133,14 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                 }
                 temp_titles = titles;
 
-                Log.i("titles", String.valueOf(titles));
+                // Log.i("titles", String.valueOf(titles));
 
                 try {
                     Gson gsonChild = new Gson();
                     Type typeChild = new TypeToken<List<OrderChildlist_Model>>() {
                     }.getType();
                     productList = gsonChild.fromJson(String.valueOf(resultMain.getJSONArray("Products")), typeChild);
-                    Log.i("productList", String.valueOf(productList));
+                    // Log.i("productList", String.valueOf(productList));
 
                     if (productList.size() < 3) {
                         if (spinner_container_main.getVisibility() == View.GONE) {
@@ -1182,26 +1227,26 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
 //        SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        Retailer_Id = sharedPreferences1.getString("Retailer_Id", "");
-//        Log.i("Retailer_Id ", DistributorId);
+//        // Log.i("Retailer_Id ", DistributorId);
 
         SharedPreferences sharedPreferences2 = this.getActivity().getSharedPreferences("DealerInfo",
                 Context.MODE_PRIVATE);
         CompanyId = sharedPreferences2.getString("DealerCode", "");
-        Log.i("DealerCode", CompanyId);
+        // Log.i("DealerCode", CompanyId);
 
 
 //        JSONObject map = new JSONObject();
 //        map.put("DistributorId", Integer.parseInt(DistributorId));
-//        Log.i("Map", String.valueOf(map));
+//        // Log.i("Map", String.valueOf(map));
         if (!URL_PRODUCT_CATEGORY.contains("/" + CompanyId))
             URL_PRODUCT_CATEGORY = URL_PRODUCT_CATEGORY + CompanyId;
 
-//        Log.i("Map", String.valueOf(map));
+//        // Log.i("Map", String.valueOf(map));
         new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
 
@@ -1224,7 +1269,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                 Categories = new HashMap<>();
                 totalCategoryTitle = new ArrayList<>();
                 totalCategoryTitle.add("All Category");
-                Log.i("result", String.valueOf(result));
+                // Log.i("result", String.valueOf(result));
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<OrderParentlist_Model>>() {
                 }.getType();
@@ -1253,9 +1298,9 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                             for (int k = 0; k < titles.size(); k++) {
                                 loader.showLoader();
                                 OrderParentlist_Model tempModelProduct = titles.get(k);
-//                            Log.i("tempModelProduct", tempModel.getCategoryId() + " - " + tempModelProduct.getParentId());
+//                            // Log.i("tempModelProduct", tempModel.getCategoryId() + " - " + tempModelProduct.getParentId());
                                 if (tempModel.getCategoryId().equals(tempModelProduct.getParentId())) {
-//                                Log.i("tempModelProduct", "found: " + tempModel.getCategoryId() + " - " + tempModelProduct.getParentId());
+//                                // Log.i("tempModelProduct", "found: " + tempModel.getCategoryId() + " - " + tempModelProduct.getParentId());
                                     countOfProduct++;
                                 }
                             }
@@ -1265,7 +1310,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                             totalCategoryTitle.add(tempModel.getTitle());
                         }
                     }
-                    Log.i("totalCategoryTitle", String.valueOf(totalCategoryTitle));
+                    // Log.i("totalCategoryTitle", String.valueOf(totalCategoryTitle));
                     if (arrayAdapterSpinnerConso == null) {
                         arrayAdapterSpinnerConso = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, totalCategoryTitle) {
                             @Override
@@ -1302,7 +1347,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                 }
                 temp_titles = titles;
 
-                Log.i("titles", String.valueOf(titles));
+                // Log.i("titles", String.valueOf(titles));
                 loader.showLoader();
 
                 try {
@@ -1310,7 +1355,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                     Type typeChild = new TypeToken<List<OrderChildlist_Model>>() {
                     }.getType();
                     productList = gsonChild.fromJson(String.valueOf(resultMain.get("Products")), typeChild);
-                    Log.i("productList", String.valueOf(productList));
+                    // Log.i("productList", String.valueOf(productList));
 
                     if (productList.size() <= 5) {
                         if (spinner_container_main.getVisibility() == View.GONE) {
@@ -1390,22 +1435,22 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
 //        SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        Retailer_Id = sharedPreferences1.getString("Retailer_Id", "");
-//        Log.i("Retailer_Id ", DistributorId);
+//        // Log.i("Retailer_Id ", DistributorId);
 
         SharedPreferences sharedPreferences2 = this.getActivity().getSharedPreferences("DealerInfo",
                 Context.MODE_PRIVATE);
         CompanyId = sharedPreferences2.getString("DealerCode", "");
-        Log.i("DealerCode", CompanyId);
+        // Log.i("DealerCode", CompanyId);
 
 
 //        JSONObject map = new JSONObject();
 //        map.put("DistributorId", Integer.parseInt(DistributorId));
-//        Log.i("Map", String.valueOf(map));
+//        // Log.i("Map", String.valueOf(map));
         if (!URL_PRODUCT_CATEGORY.contains("/" + CompanyId))
             URL_PRODUCT_CATEGORY = URL_PRODUCT_CATEGORY + CompanyId;
 
@@ -1454,20 +1499,20 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                 }
                 temp_titles = titles;
 
-                Log.i("titles", String.valueOf(titles));
+                // Log.i("titles", String.valueOf(titles));
 
                 try {
                     Gson gsonChild = new Gson();
                     Type typeChild = new TypeToken<List<OrderChildlist_Model>>() {
                     }.getType();
                     List<OrderChildlist_Model> tempproductList = gsonChild.fromJson(String.valueOf(resultMain.get("Products")), typeChild);
-                    Log.i("productlistfilter", String.valueOf(tempproductList));
+                    // Log.i("productlistfilter", String.valueOf(tempproductList));
                     for (int i = 0; i < tempproductList.size(); i++) {
-                        Log.i("productlistfilter_123", String.valueOf(tempproductList.get(i)));
+                        // Log.i("productlistfilter_123", String.valueOf(tempproductList.get(i)));
 
                         if (tempproductList.get(i).getTitle().toLowerCase().contains(name.toLowerCase())) {
                             productList.add(tempproductList.get(i));
-                            Log.i("productlistfilter_3456", String.valueOf(productList));
+                            // Log.i("productlistfilter_3456", String.valueOf(productList));
                         }
                     }
 
@@ -1535,30 +1580,30 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
 //        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        Token = sharedPreferences.getString("Login_Token", "");
-//        Log.i("Token", Token);
+//        // Log.i("Token", Token);
 //
 //        SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-//        Log.i("DistributorId ", DistributorId);
+//        // Log.i("DistributorId ", DistributorId);
 //
 //
 //        JSONObject map = new JSONObject();
 //        map.put("DistributorId", Integer.parseInt(DistributorId));
-//        Log.i("Map", String.valueOf(map));
+//        // Log.i("Map", String.valueOf(map));
 //
 //
 //        MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.GET, URL_PRODUCT, null, new Response.Listener<JSONArray>() {
 //            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 //            @Override
 //            public void onResponse(JSONArray result) {
-//                Log.i("result", String.valueOf(result));
+//                // Log.i("result", String.valueOf(result));
 //
 //                Gson gson = new Gson();
 //                Type type = new TypeToken<List<OrderChildlist_Model>>() {
 //                }.getType();
 //                productList = gson.fromJson(String.valueOf(result), type);
-//                Log.i("productList", String.valueOf(productList));
+//                // Log.i("productList", String.valueOf(productList));
 //
 //                ParentListAdapter adapter = new ParentListAdapter(getActivity(), initData());
 //                //adapter.setParentClickableViewAnimationDefaultDuration();
@@ -1594,11 +1639,11 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
     private List<OrderParentlist_Model> initData() {
         List<OrderParentlist_Model> parentObjects = new ArrayList<>();
         for (OrderParentlist_Model title : titles) {
-            Log.i("title", String.valueOf(title.getCategoryId()));
+            // Log.i("title", String.valueOf(title.getCategoryId()));
             List<Object> childlist = new ArrayList<>();
 //            childlist.add(new OrderChildlist_Model());
             for (OrderChildlist_Model product : productList) {
-                Log.i("product", String.valueOf(product.getProductCategoryId()));
+                // Log.i("product", String.valueOf(product.getProductCategoryId()));
                 if (title.getCategoryId().equals(product.getProductCategoryId()))
                     childlist.add(product);
             }
@@ -1624,8 +1669,8 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
 //        @Override
 //        protected Void doInBackground(Void... params) {
 //            while (getContext() != null && !isCancelled()) {
-////                Log.i("productsAsync", "in loop");
-////                Log.i("productsAsync", String.valueOf(selectedProductsDataList));
+////                // Log.i("productsAsync", "in loop");
+////                // Log.i("productsAsync", String.valueOf(selectedProductsDataList));
 //                SharedPreferences selectedProducts = getContext().getSharedPreferences("selectedProducts_retailer_own",
 //                        Context.MODE_PRIVATE);
 //                object_string = selectedProducts.getString("selected_products", "");
@@ -1678,9 +1723,9 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
     //             try {
     //                 String message = "";
     //                 String responseBody = new String(error.networkResponse.data, "utf-8");
-    //                 Log.i("responseBody", responseBody);
+    //                 // Log.i("responseBody", responseBody);
     //                 JSONObject data = new JSONObject(responseBody);
-    //                 Log.i("data", String.valueOf(data));
+    //                 // Log.i("data", String.valueOf(data));
     //                 Iterator<String> keys = data.keys();
     //                 while (keys.hasNext()) {
     //                     String key = keys.next();
@@ -1718,7 +1763,7 @@ public class Retailer_OrderPlace_retailer_dashboarad extends Fragment {
                 }
             }
         }
-//        Log.i("distinct", scroll);
+//        // Log.i("distinct", scroll);
         return scroll;
     }
 }

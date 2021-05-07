@@ -114,8 +114,8 @@ public class My_Network_Fragment extends Fragment {
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
         DistributorId = sharedPreferences.getString("Distributor_Id", "");
-        Log.i("netword_token", Token);
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("netword_token", Token);
+        // Log.i("DistributorId ", DistributorId);
         pageNumbernetwork = 0;
         JSONObject map = new JSONObject();
         try {
@@ -133,7 +133,7 @@ public class My_Network_Fragment extends Fragment {
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, MYNETWORK_COUNT_URL, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
-                Log.i("results_network", String.valueOf(result));
+                // Log.i("results_network", String.valueOf(result));
                 try {
                     totalEntriesnetwork = Double.parseDouble(String.valueOf(result.get("KYCCount")));
                     totalPagesnetwork = Math.ceil(totalEntriesnetwork / 10);
@@ -172,12 +172,12 @@ public class My_Network_Fragment extends Fragment {
             public void onResponse(JSONArray result) {
                 loader.hideLoader();
                 //                    JSONArray jsonArray = new JSONArray(result);
-                Log.i("results_network", String.valueOf(result));
+                // Log.i("results_network", String.valueOf(result));
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<Netwok_Model>>() {
                 }.getType();
                 MyNetworkList = gson.fromJson(result.toString(), type);
-                Log.i("OrdersList", String.valueOf(MyNetworkList));
+                // Log.i("OrdersList", String.valueOf(MyNetworkList));
                 networkAdapter = new Fragment_My_Network_Adapter(getContext(), MyNetworkList);
                 rv_network.setAdapter(networkAdapter);
 //                if (MyNetworkList.size() != 0) {

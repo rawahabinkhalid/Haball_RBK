@@ -147,7 +147,7 @@ public class RetailerOrderDashboard extends Fragment implements DatePickerDialog
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         loader = new Loader(getContext());
 
@@ -155,7 +155,7 @@ public class RetailerOrderDashboard extends Fragment implements DatePickerDialog
         OrderStatusKVP = statusKVP.getOrderStatus();
         InvoiceStatusKVP = statusKVP.getInvoiceStatus();
 
-        Log.i("InvoiceStatusKVP", String.valueOf(InvoiceStatusKVP));
+        // Log.i("InvoiceStatusKVP", String.valueOf(InvoiceStatusKVP));
 
         final View root = inflater.inflate(R.layout.fragment_retailer_order_dashboard, container, false);
         recyclerView = root.findViewById(R.id.rv_retailer_order_dashboard);
@@ -371,7 +371,7 @@ public class RetailerOrderDashboard extends Fragment implements DatePickerDialog
             }
         };
         spinner2.setAdapter(arrayAdapterFeltter);
-        Log.i("aaaa1111", String.valueOf(consolidate_felter));
+        // Log.i("aaaa1111", String.valueOf(consolidate_felter));
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -410,7 +410,7 @@ public class RetailerOrderDashboard extends Fragment implements DatePickerDialog
                     }
 
 //                    Filter_selected_value = String.valueOf(i - 1);
-//                    Log.i("Filter_selected_value", Filter_selected_value);
+//                    // Log.i("Filter_selected_value", Filter_selected_value);
 
                     for (Map.Entry<String, String> entry : OrderStatusKVP.entrySet()) {
                         if (entry.getValue().equals(filters.get(i)))
@@ -418,10 +418,10 @@ public class RetailerOrderDashboard extends Fragment implements DatePickerDialog
                     }
 
 //                    Filter_selected_value = OrderStatusKVP.get(filters.get(i));
-//                    Log.i("Filter_selected_value", filters.get(i));
-//                    Log.i("Filter_selected_value", String.valueOf(OrderStatusKVP.containsValue(filters.get(i))));
-//                    Log.i("Filter_selected_value", OrderStatusKVP.get(filters.get(i)));
-//                    Log.i("Filter_selected_value", Filter_selected_value);
+//                    // Log.i("Filter_selected_value", filters.get(i));
+//                    // Log.i("Filter_selected_value", String.valueOf(OrderStatusKVP.containsValue(filters.get(i))));
+//                    // Log.i("Filter_selected_value", OrderStatusKVP.get(filters.get(i)));
+//                    // Log.i("Filter_selected_value", Filter_selected_value);
                     if (!Filter_selected_value.equals("")) {
                         try {
                             fetchFilteredOrderData();
@@ -443,9 +443,9 @@ public class RetailerOrderDashboard extends Fragment implements DatePickerDialog
 //        conso_edittext.addTextChangedListener(new TextWatcher() {
 //
 //            public void afterTextChanged(Editable s) {
-//                Log.i("text2", String.valueOf(Filter_selected));
-//                Log.i("text1", "check");
-//                Log.i("text", String.valueOf(s));
+//                // Log.i("text2", String.valueOf(Filter_selected));
+//                // Log.i("text1", "check");
+//                // Log.i("text", String.valueOf(s));
 //                Filter_selected_value = String.valueOf(s);
 //                if (!Filter_selected_value.equals("")) {
 //                    try {
@@ -521,10 +521,10 @@ public class RetailerOrderDashboard extends Fragment implements DatePickerDialog
                 y = dy;
                 if (dy <= -5) {
                     scrollEvent.add("ScrollDown");
-//                            Log.i("scrolling", "Scroll Down");
+//                            // Log.i("scrolling", "Scroll Down");
                 } else if (dy > 5) {
                     scrollEvent.add("ScrollUp");
-//                            Log.i("scrolling", "Scroll Up");
+//                            // Log.i("scrolling", "Scroll Up");
                 }
                 String scroll = getScrollEvent();
 
@@ -615,12 +615,12 @@ public class RetailerOrderDashboard extends Fragment implements DatePickerDialog
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
 
         pageNumberOrder = 0;
 
@@ -641,7 +641,7 @@ public class RetailerOrderDashboard extends Fragment implements DatePickerDialog
                         arrayAdapterFeltter.notifyDataSetChanged();
                     }
 
-                    Log.i("ORDERS DATA - ", result.toString());
+                    // Log.i("ORDERS DATA - ", result.toString());
                     Gson gson = new Gson();
                     Type type = new TypeToken<List<RetailerOrdersModel>>() {
                     }.getType();
@@ -653,7 +653,7 @@ public class RetailerOrderDashboard extends Fragment implements DatePickerDialog
                     totalPagesOrder = Math.ceil(totalEntriesOrder / 10);
 
 
-                    Log.i("OrdersList", String.valueOf(OrdersList));
+                    // Log.i("OrdersList", String.valueOf(OrdersList));
                     InvoiceStatusKVP = statusKVP.getInvoiceStatus();
                     mAdapter = new RetailerOrdersAdapter(getContext(), OrdersList, OrderStatusKVP, InvoiceStatusKVP);
                     recyclerView.setAdapter(mAdapter);
@@ -701,12 +701,12 @@ public class RetailerOrderDashboard extends Fragment implements DatePickerDialog
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("DistributorId", DistributorId);
@@ -801,16 +801,16 @@ public class RetailerOrderDashboard extends Fragment implements DatePickerDialog
 
     private void fetchFilteredOrderData() throws JSONException {
         loader.showLoader();
-        Log.i("map", "in function");
+        // Log.i("map", "in function");
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
         pageNumberOrder = 0;
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("DistributorId", DistributorId);
@@ -837,14 +837,14 @@ public class RetailerOrderDashboard extends Fragment implements DatePickerDialog
                 jsonObject.put(Filter_selected, Filter_selected_value);
         }
 
-        Log.i("map_filter_debug", String.valueOf(jsonObject));
+        // Log.i("map_filter_debug", String.valueOf(jsonObject));
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_FETCH_ORDERS, jsonObject, new Response.Listener<JSONObject>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(JSONObject result) {
                 loader.hideLoader();
                 try {
-                    Log.i("ORDERS DATA - ", result.toString());
+                    // Log.i("ORDERS DATA - ", result.toString());
                     Gson gson = new Gson();
                     Type type = new TypeToken<List<RetailerOrdersModel>>() {
                     }.getType();
@@ -856,7 +856,7 @@ public class RetailerOrderDashboard extends Fragment implements DatePickerDialog
                     } else {
                         tv_shipment_no_data.setVisibility(View.VISIBLE);
                     }
-                    Log.i("OrdersList", String.valueOf(OrdersList));
+                    // Log.i("OrdersList", String.valueOf(OrdersList));
                     InvoiceStatusKVP = statusKVP.getInvoiceStatus();
                     mAdapter = new RetailerOrdersAdapter(getContext(), OrdersList, OrderStatusKVP, InvoiceStatusKVP);
                     recyclerView.setAdapter(mAdapter);
@@ -909,7 +909,7 @@ public class RetailerOrderDashboard extends Fragment implements DatePickerDialog
     private void updateDisplay(String date_type) {
         if (date_type.equals("first date")) {
             fromDate = year1 + "-" + String.format("%02d", (month1 + 1)) + "-" + String.format("%02d", date1);
-            Log.i("fromDate", fromDate);
+            // Log.i("fromDate", fromDate);
 
             first_date.setText(new StringBuilder()
                     .append(String.format("%02d", date1)).append("/").append(String.format("%02d", (month1 + 1))).append("/").append(year1));
@@ -1076,9 +1076,9 @@ public class RetailerOrderDashboard extends Fragment implements DatePickerDialog
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();
@@ -1115,7 +1115,7 @@ public class RetailerOrderDashboard extends Fragment implements DatePickerDialog
                 }
             }
         }
-//        Log.i("distinct", scroll);
+//        // Log.i("distinct", scroll);
         return scroll;
     }
 

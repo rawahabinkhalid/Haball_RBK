@@ -89,8 +89,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.NotificationCompat;
 import androidx.core.view.GravityCompat;
+
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -155,10 +155,10 @@ public class RetailorDashboard extends AppCompatActivity {
                     @Override
                     public void run() {
                         JSONObject data = (JSONObject) args[0];
-//                                Log.i("notificationTest", "String.valueOf(args)");
-//                                Log.i("Notification_found", String.valueOf(data));
+//                                // Log.i("notificationTest", "String.valueOf(args)");
+//                                // Log.i("Notification_found", String.valueOf(data));
                         try {
-//                                    Log.i("notificationTest", String.valueOf(data.get("UnSeenCount")));
+//                                    // Log.i("notificationTest", String.valueOf(data.get("UnSeenCount")));
 //                                    Toast.makeText(RetailorDashboard.this, String.valueOf(data.get("UnSeenCount")), Toast.LENGTH_SHORT).show();
                             Gson gson = new Gson();
                             Type type = new TypeToken<List<Retailer_Notification_Model>>() {
@@ -211,7 +211,7 @@ public class RetailorDashboard extends AppCompatActivity {
                                     notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
 
 
-                                    Log.i("Notification_found", "new notification");
+                                    // Log.i("Notification_found", "new notification");
                                 }
                                 UnReadNotifications = notification;
                             } else {
@@ -267,7 +267,7 @@ public class RetailorDashboard extends AppCompatActivity {
 
         try {
             userRights = new JSONArray(sharedPreferences.getString("UserRights", ""));
-            Log.i("userRights", String.valueOf(userRights));
+            // Log.i("userRights", String.valueOf(userRights));
         } catch (
                 JSONException e) {
             e.printStackTrace();
@@ -332,7 +332,7 @@ public class RetailorDashboard extends AppCompatActivity {
                 if (userRightsData.get("Title").equals("Order View")) {
                     Order_View = true;
                 }
-//                Log.i("userRightsData", String.valueOf(userRights.get(i)));
+//                // Log.i("userRightsData", String.valueOf(userRights.get(i)));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -454,7 +454,7 @@ public class RetailorDashboard extends AppCompatActivity {
                             @Override
                             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                                 navigationExpandableListView.setSelected(groupPosition);
-                                Log.i("groupPosition", String.valueOf(groupPosition));
+                                // Log.i("groupPosition", String.valueOf(groupPosition));
 
 
                                 SharedPreferences retailerInfo = getSharedPreferences("Menu_Retailer",
@@ -466,7 +466,7 @@ public class RetailorDashboard extends AppCompatActivity {
 
                                 if (NavList.contains("Dashboard") && NavList.indexOf("Dashboard") == id) {
 //                        if (id == 0) {
-                                    Log.i("Dashboard", "Dashboard Activity");
+                                    // Log.i("Dashboard", "Dashboard Activity");
                                     fragmentTransaction = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction.add(R.id.main_container_ret, new Dashboard_Tabs());
                                     fragmentTransaction.commit();
@@ -480,7 +480,7 @@ public class RetailorDashboard extends AppCompatActivity {
                                     fragmentTransaction.add(R.id.main_container_ret, new My_Network_Fragment()).addToBackStack("tag");
                                     fragmentTransaction.commit();
                                     drawer.closeDrawer(GravityCompat.START);
-                                    Log.i("My Network", "My Network Activity");
+                                    // Log.i("My Network", "My Network Activity");
 
                                     drawer.closeDrawer(GravityCompat.START);
                                 } else if (NavList.contains("Place Order") && NavList.indexOf("Place Order") == id) {
@@ -497,7 +497,7 @@ public class RetailorDashboard extends AppCompatActivity {
                                     editorDraft.apply();
 
 //                        } else if (id == 2) {
-//                            Log.i("Place Order", "Place Order Activity");
+//                            // Log.i("Place Order", "Place Order Activity");
 //                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
 //                            fragmentTransaction.add(R.id.main_container_ret, new PlaceOrderFragment());
 //                            fragmentTransaction.commit();
@@ -509,7 +509,7 @@ public class RetailorDashboard extends AppCompatActivity {
 
                                 } else if (NavList.contains("Make Payment") && NavList.indexOf("Make Payment") == id) {
 //                        } else if (id == 3) {
-                                    Log.i("Make Payment", "Make Payment Activity");
+                                    // Log.i("Make Payment", "Make Payment Activity");
                                     fragmentTransaction = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction.add(R.id.main_container_ret, new CreatePaymentRequestFragment()).addToBackStack("tag1");
                                     fragmentTransaction.commit();
@@ -517,14 +517,14 @@ public class RetailorDashboard extends AppCompatActivity {
 
                                 } else if (NavList.contains("Profile") && NavList.indexOf("Profile") == id) {
 //                        } else if (id == 4) {
-                                    Log.i("Profile", "Profile Activity");
+                                    // Log.i("Profile", "Profile Activity");
                                     fragmentTransaction = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction.add(R.id.main_container_ret, new Profile_Tabs()).addToBackStack("tag");
                                     fragmentTransaction.commit();
                                     drawer.closeDrawer(GravityCompat.START);
                                 } else if (NavList.contains("Support") && NavList.indexOf("Support") == id) {
 //                        } else if (id == 5) {
-                                    Log.i("Support", "Support Activity");
+                                    // Log.i("Support", "Support Activity");
                                     fragmentTransaction = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction.add(R.id.main_container_ret, new SupportFragment()).addToBackStack("tag");
                                     fragmentTransaction.commit();
@@ -574,7 +574,7 @@ public class RetailorDashboard extends AppCompatActivity {
                     public void onResponse(Boolean result) {
                         loader.hideLoader();
 
-                        Log.i("Logout", "Logout Activity");
+                        // Log.i("Logout", "Logout Activity");
                         SharedPreferences login_token = getSharedPreferences("LoginToken",
                                 Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = login_token.edit();
@@ -649,7 +649,7 @@ public class RetailorDashboard extends AppCompatActivity {
 //        if (!tasks.isEmpty()) {
 //            ComponentName topActivity = tasks.get(0).topActivity;
 //            if (!topActivity.getPackageName().equals(getPackageName())) {
-//                Log.i("DebugState", "in pause");
+//                // Log.i("DebugState", "in pause");
 //                logoutOnDestroy();
 //
 //                Intent intent = new Intent(RetailorDashboard.this, Register_Activity.class);
@@ -667,7 +667,7 @@ public class RetailorDashboard extends AppCompatActivity {
 //        if (!tasks.isEmpty()) {
 //            ComponentName topActivity = tasks.get(0).topActivity;
 //            if (!topActivity.getPackageName().equals(getPackageName())) {
-//                Log.i("DebugState", "in stop");
+//                // Log.i("DebugState", "in stop");
 //                logoutOnDestroy();
 //            }
 //        }
@@ -700,25 +700,25 @@ public class RetailorDashboard extends AppCompatActivity {
 //
 //    @Override
 //    protected void onDestroy() {
-////        Log.i("DebugState", "in destroy");
+////        // Log.i("DebugState", "in destroy");
 ////
 ////        logoutOnDestroy();
 //        super.onDestroy();
 //
-////        Log.i("Destroyed", "destroyed");
+////        // Log.i("Destroyed", "destroyed");
 //    }
 //
 //    private void logoutOnDestroy() {
-//        Log.i("Destroyed1", "destroyed");
+//        // Log.i("Destroyed1", "destroyed");
 ////        new SSL_HandShake().handleSSLHandshake();
 //        BooleanRequest sr = new BooleanRequest(Request.Method.DELETE, URL_Logout, null, new Response.Listener<Boolean>() {
 //            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 //            @Override
 //            public void onResponse(Boolean result) {
 ////                loader.hideLoader();
-//                Log.i("Destroyed12", "destroyed");
+//                // Log.i("Destroyed12", "destroyed");
 //
-//                Log.i("Logout", "Logout Activity");
+//                // Log.i("Logout", "Logout Activity");
 //                SharedPreferences login_token = getSharedPreferences("LoginToken",
 //                        Context.MODE_PRIVATE);
 //                SharedPreferences.Editor editor = login_token.edit();
@@ -818,10 +818,10 @@ public class RetailorDashboard extends AppCompatActivity {
 //                            @Override
 //                            public void run() {
 //                                JSONObject data = (JSONObject) args[0];
-////                                Log.i("notificationTest", "String.valueOf(args)");
-////                                Log.i("Notification_found", String.valueOf(data));
+////                                // Log.i("notificationTest", "String.valueOf(args)");
+////                                // Log.i("Notification_found", String.valueOf(data));
 //                                try {
-////                                    Log.i("notificationTest", String.valueOf(data.get("UnSeenCount")));
+////                                    // Log.i("notificationTest", String.valueOf(data.get("UnSeenCount")));
 ////                                    Toast.makeText(RetailorDashboard.this, String.valueOf(data.get("UnSeenCount")), Toast.LENGTH_SHORT).show();
 //                                    Gson gson = new Gson();
 //                                    Type type = new TypeToken<List<Retailer_Notification_Model>>() {
@@ -874,7 +874,7 @@ public class RetailorDashboard extends AppCompatActivity {
 //                                            notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
 //
 //
-//                                            Log.i("Notification_found", "new notification");
+//                                            // Log.i("Notification_found", "new notification");
 //                                        }
 //                                        UnReadNotifications = notification;
 //                                    } else {

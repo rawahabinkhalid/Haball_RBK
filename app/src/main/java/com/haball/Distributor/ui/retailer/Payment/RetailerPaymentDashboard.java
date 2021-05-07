@@ -327,7 +327,7 @@ public class RetailerPaymentDashboard extends Fragment implements DatePickerDial
             }
         };
 
-        Log.i("aaaa1111", String.valueOf(consolidate_felter));
+        // Log.i("aaaa1111", String.valueOf(consolidate_felter));
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -355,7 +355,7 @@ public class RetailerPaymentDashboard extends Fragment implements DatePickerDial
                     }
 
                     Filter_selected_value = filters.get(i);
-                    Log.i("Filter_selected_value", String.valueOf(i));
+                    // Log.i("Filter_selected_value", String.valueOf(i));
 
                     if (Filter_selected_value != "") {
                         try {
@@ -380,8 +380,8 @@ public class RetailerPaymentDashboard extends Fragment implements DatePickerDial
 //        conso_edittext.addTextChangedListener(new TextWatcher() {
 //
 //            public void afterTextChanged(Editable s) {
-//                Log.i("text1", "check");
-//                Log.i("text", String.valueOf(s));
+//                // Log.i("text1", "check");
+//                // Log.i("text", String.valueOf(s));
 //                Filter_selected_value = String.valueOf(s);
 //                if (!Filter_selected_value.equals("")) {
 //                    try {
@@ -447,10 +447,10 @@ public class RetailerPaymentDashboard extends Fragment implements DatePickerDial
                 y = dy;
                 if (dy <= -5) {
                     scrollEvent.add("ScrollDown");
-//                            Log.i("scrolling", "Scroll Down");
+//                            // Log.i("scrolling", "Scroll Down");
                 } else if (dy > 5) {
                     scrollEvent.add("ScrollUp");
-//                            Log.i("scrolling", "Scroll Up");
+//                            // Log.i("scrolling", "Scroll Up");
                 }
                 String scroll = getScrollEvent();
 
@@ -512,7 +512,7 @@ public class RetailerPaymentDashboard extends Fragment implements DatePickerDial
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("TotalRecords", 10);
@@ -578,8 +578,8 @@ public class RetailerPaymentDashboard extends Fragment implements DatePickerDial
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
 
         JSONObject map = new JSONObject();
         map.put("DistributorId", Integer.parseInt(DistributorId));
@@ -616,12 +616,12 @@ public class RetailerPaymentDashboard extends Fragment implements DatePickerDial
         } else {
             map.put(Filter_selected, Filter_selected_value);
         }
-        Log.i("Mapsssss", String.valueOf(map));
+        // Log.i("Mapsssss", String.valueOf(map));
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
                 loader.hideLoader();
-                Log.i("retailerPayment", result.toString());
+                // Log.i("retailerPayment", result.toString());
 
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<Dist_Retailer_Dashboard_Model>>() {
@@ -692,7 +692,7 @@ public class RetailerPaymentDashboard extends Fragment implements DatePickerDial
     private void updateDisplay(String date_type) {
         if (date_type.equals("first date")) {
             fromDate = year1 + "-" + String.format("%02d", (month1 + 1)) + "-" + String.format("%02d", date1);
-            Log.i("fromDate", fromDate);
+            // Log.i("fromDate", fromDate);
 
             first_date.setText(new StringBuilder()
                     .append(String.format("%02d", date1)).append("/").append(String.format("%02d", (month1 + 1))).append("/").append(year1));
@@ -886,7 +886,7 @@ public class RetailerPaymentDashboard extends Fragment implements DatePickerDial
                 }
             }
         }
-//        Log.i("distinct", scroll);
+//        // Log.i("distinct", scroll);
         return scroll;
     }
 }

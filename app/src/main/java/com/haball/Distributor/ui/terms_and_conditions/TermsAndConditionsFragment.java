@@ -102,7 +102,7 @@ public class TermsAndConditionsFragment extends AppCompatActivity {
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
         String RetailerID = sharedPreferences.getString("Retailer_Id", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("RetailerID", Integer.parseInt(RetailerID));
 

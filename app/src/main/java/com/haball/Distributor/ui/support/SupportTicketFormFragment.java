@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Typeface;
@@ -14,7 +13,6 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -26,11 +24,17 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -45,17 +49,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.haball.Distributor.DistributorDashboard;
-import com.haball.Distributor.ui.home.HomeFragment;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.haball.HaballError;
 import com.haball.Loader;
 import com.haball.ProcessingError;
 import com.haball.R;
-import com.haball.Retailor.RetailorDashboard;
 import com.haball.TextField;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -68,17 +69,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import androidx.annotation.NonNull;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 public class SupportTicketFormFragment extends Fragment {
 
     private TextInputEditText BName, Email, MobileNo, Comment;
-   private Button btn_back;
+    private Button btn_back;
     private TextInputLayout layout_BName, layout_Email, layout_MobileNo, layout_Comment;
     private Spinner IssueType, critcicality, Preffered_Contact;
     private String URL_SPINNER_ISSUETYPE = "https://175.107.203.97:4013/api/lookup/ISSUE_TYPE_PRIVATE";
@@ -102,6 +96,7 @@ public class SupportTicketFormFragment extends Fragment {
     private String DistributorId;
     private Typeface myFont;
     private Boolean changed = false;
+    private AlertDialog alertDialog;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -116,9 +111,9 @@ public class SupportTicketFormFragment extends Fragment {
         final String email = data.getString("EmailAddress", "");
         final String phone_number = data.getString("Mobile", "");
 
-        Log.i("name", first_name);
-        Log.i("email", email);
-        Log.i("phone_number", phone_number);
+        // Log.i("name", first_name);
+        // Log.i("email", email);
+        // Log.i("phone_number", phone_number);
         BName = root.findViewById(R.id.BName);
         Email = root.findViewById(R.id.Email);
         MobileNo = root.findViewById(R.id.MobileNo);
@@ -155,7 +150,7 @@ public class SupportTicketFormFragment extends Fragment {
         preffered_contact.add("Preferred Method of Contacting");
         PrefferedContacts = "Preferred Method of Contacting";
 
-        btn_back =  root.findViewById(R.id.btn_back_support);
+        btn_back = root.findViewById(R.id.btn_back_support);
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -466,6 +461,8 @@ public class SupportTicketFormFragment extends Fragment {
         BName.addTextChangedListener(textWatcher);
         Email.addTextChangedListener(textWatcher);
         MobileNo.addTextChangedListener(textWatcher);
+        alertDialog = new AlertDialog.Builder(getContext()).create();
+
         return root;
     }
 
@@ -547,7 +544,7 @@ public class SupportTicketFormFragment extends Fragment {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
 
         JSONObject map = new JSONObject();
         map.put("Name", BName.getText().toString());
@@ -560,18 +557,18 @@ public class SupportTicketFormFragment extends Fragment {
         map.put("Message", Comment.getText().toString());
         map.put("ID", 0);
 
-        Log.i("TICKET OBJECT", String.valueOf(map));
+        // Log.i("TICKET OBJECT", String.valueOf(map));
         loader.showLoader();
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_TICkET, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
-                Log.e("RESPONSE", result.toString());
+                // Log.e("RESPONSE", result.toString());
 //                Toast.makeText(getContext(), "Ticket generated successfully.", Toast.LENGTH_LONG).show();
 //                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
 //                fragmentTransaction.add(((ViewGroup) getView().getParent()).getId(), new SupportFragment());
 //                fragmentTransaction.commit();
                 loader.hideLoader();
-                Log.e("RESPONSE", result.toString());
+                // Log.e("RESPONSE", result.toString());
 //                Toast.makeText(getContext(), "Ticket generated successfully.", Toast.LENGTH_LONG).show();
 //                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
 //                fragmentTransaction.add(((ViewGroup) getView().getParent()).getId(), new SupportFragment());
@@ -647,7 +644,7 @@ public class SupportTicketFormFragment extends Fragment {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         JsonArrayRequest sr = new JsonArrayRequest(Request.Method.GET, URL_SPINNER_ISSUETYPE, null, new Response.Listener<JSONArray>() {
             @Override
@@ -658,12 +655,12 @@ public class SupportTicketFormFragment extends Fragment {
                         jsonObject = result.getJSONObject(i);
                         issue_type.add(jsonObject.getString("value"));
                     }
-                    Log.i("issue type values => ", issue_type.toString());
+                    // Log.i("issue type values => ", issue_type.toString());
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE OF ISSUE TYPE", result.toString());
+                // Log.e("RESPONSE OF ISSUE TYPE", result.toString());
                 fetchCriticality();
             }
         }, new Response.ErrorListener() {
@@ -697,7 +694,7 @@ public class SupportTicketFormFragment extends Fragment {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
 
         JsonArrayRequest sr = new JsonArrayRequest(Request.Method.GET, URL_SPINNER_CRITICALITY, null, new Response.Listener<JSONArray>() {
@@ -710,11 +707,11 @@ public class SupportTicketFormFragment extends Fragment {
                         criticality.add(jsonObject.getString("value"));
 
                     }
-                    Log.i("criticality values => ", criticality.toString());
+                    // Log.i("criticality values => ", criticality.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE OF criticality", result.toString());
+                // Log.e("RESPONSE OF criticality", result.toString());
                 fetchPrefferedContact();
             }
         }, new Response.ErrorListener() {
@@ -748,7 +745,7 @@ public class SupportTicketFormFragment extends Fragment {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
 
         JsonArrayRequest sr = new JsonArrayRequest(Request.Method.GET, URL_SPINNER_PREFFEREDCONTACT, null, new Response.Listener<JSONArray>() {
@@ -762,11 +759,11 @@ public class SupportTicketFormFragment extends Fragment {
                         preffered_contact.add(jsonObject.getString("value"));
                     }
 
-                    Log.i("preffered_contact => ", preffered_contact.toString());
+                    // Log.i("preffered_contact => ", preffered_contact.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE preferedcont", result.toString());
+                // Log.e("RESPONSE preferedcont", result.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -815,9 +812,9 @@ public class SupportTicketFormFragment extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();
@@ -832,11 +829,11 @@ public class SupportTicketFormFragment extends Fragment {
             }
         }
     }
+
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
         final FragmentManager fm = getActivity().getSupportFragmentManager();
 
-        final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
@@ -850,7 +847,7 @@ public class SupportTicketFormFragment extends Fragment {
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
 //                fm.popBackStack();
                 SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
@@ -877,12 +874,15 @@ public class SupportTicketFormFragment extends Fragment {
 
             }
         });
-
-        alertDialog.show();
+        if (!alertDialog.isShowing())
+            alertDialog.show();
     }
+
     @Override
     public void onResume() {
         super.onResume();
+
+
         View.OnKeyListener listener = new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -893,12 +893,13 @@ public class SupportTicketFormFragment extends Fragment {
                     final String txt_MobileNo = String.valueOf(MobileNo.getText());
                     final String txt_Comment = String.valueOf(Comment.getText());
 
-                    BName.clearFocus();
-                    Email.clearFocus();
-                    MobileNo.clearFocus();
-                    Comment.clearFocus();
+//                    BName.clearFocus();
+//                    Email.clearFocus();
+//                    MobileNo.clearFocus();
+//                    Comment.clearFocus();
                     if (!txt_BName.equals(first_name) || !txt_Email.equals(email) || !txt_MobileNo.equals(phone_number) || !txt_Comment.equals("") || !issueType.equals("Issue Type") || !Criticality.equals("Criticality") || !PrefferedContacts.equals("Preferred Method of Contacting")) {
                         showDiscardDialog();
+                        return true;
                     } else {
 //                        fm.popBackStack();
                         SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
@@ -910,9 +911,9 @@ public class SupportTicketFormFragment extends Fragment {
                         FragmentTransaction fragmentTransaction = ((FragmentActivity) getContext()).getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.add(R.id.main_container, new SupportFragment());
                         fragmentTransaction.commit();
-
+                        return true;
                     }
-                    return true;
+
                 }
                 return false;
             }
@@ -933,12 +934,13 @@ public class SupportTicketFormFragment extends Fragment {
                     final String txt_MobileNo = String.valueOf(MobileNo.getText());
                     final String txt_Comment = String.valueOf(Comment.getText());
 
-                    BName.clearFocus();
-                    Email.clearFocus();
-                    MobileNo.clearFocus();
-                    Comment.clearFocus();
+//                    BName.clearFocus();
+//                    Email.clearFocus();
+//                    MobileNo.clearFocus();
+//                    Comment.clearFocus();
                     if (!txt_BName.equals(first_name) || !txt_Email.equals(email) || !txt_MobileNo.equals(phone_number) || !txt_Comment.equals("") || !issueType.equals("Issue Type") || !Criticality.equals("Criticality") || !PrefferedContacts.equals("Preferred Method of Contacting")) {
                         showDiscardDialog();
+                        return true;
                     } else {
 //                        fm.popBackStack();
                         SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
@@ -952,8 +954,6 @@ public class SupportTicketFormFragment extends Fragment {
                         fragmentTransaction.commit();
 
                     }
-
-                    return  true;
                 }
                 return false;
             }

@@ -365,7 +365,7 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
         };
 
 
-        Log.i("aaaa1111", String.valueOf(consolidate_felter));
+        // Log.i("aaaa1111", String.valueOf(consolidate_felter));
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -405,7 +405,7 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
                         Filter_selected = "";
 
                     }
-                    Log.i("Filter_selected_value", Filter_selected_value);
+                    // Log.i("Filter_selected_value", Filter_selected_value);
                     try {
                         fetchFilteredRetailer();
                     } catch (JSONException e) {
@@ -453,8 +453,8 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
 //        conso_edittext.addTextChangedListener(new TextWatcher() {
 //
 //            public void afterTextChanged(Editable s) {
-//                Log.i("text1", "check");
-//                Log.i("text", String.valueOf(s));
+//                // Log.i("text1", "check");
+//                // Log.i("text", String.valueOf(s));
 //                Filter_selected_value = String.valueOf(s);
 //                if (!Filter_selected_value.equals("")) {
 //
@@ -516,10 +516,10 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
                 y = dy;
                 if (dy <= -5) {
                     scrollEvent.add("ScrollDown");
-//                            Log.i("scrolling", "Scroll Down");
+//                            // Log.i("scrolling", "Scroll Down");
                 } else if (dy > 5) {
                     scrollEvent.add("ScrollUp");
-//                            Log.i("scrolling", "Scroll Up");
+//                            // Log.i("scrolling", "Scroll Up");
                 }
                 String scroll = getScrollEvent();
 
@@ -571,7 +571,7 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
                     int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
                     if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount && firstVisibleItemPosition >= 0) {
                         if (totalPages != 0 && pageNumber < totalPages) {
-                            Log.i("map_Retailer_debug", "in scroll listener: " + totalPages);
+                            // Log.i("map_Retailer_debug", "in scroll listener: " + totalPages);
 //                                Toast.makeText(getContext(), pageNumber + " - " + totalPages, Toast.LENGTH_LONG).show();
 //                        btn_load_more.setVisibility(View.VISIBLE);
                             pageNumber++;
@@ -609,12 +609,12 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
 
         JSONObject map = new JSONObject();
         map.put("DistributorId", Integer.parseInt(DistributorId));
@@ -636,13 +636,13 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
             map.put(Filter_selected, Filter_selected_value);
         }
 
-        Log.i("map_Retailer_debug", String.valueOf(map));
+        // Log.i("map_Retailer_debug", String.valueOf(map));
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_Retailers, map, new Response.Listener<JSONObject>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(JSONObject result) {
                 loader.hideLoader();
-                Log.i("Payments Requests", result.toString());
+                // Log.i("Payments Requests", result.toString());
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<Retailer_Management_Dashboard_Model>>() {
                 }.getType();
@@ -688,12 +688,12 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
 
         pageNumber = 0;
         JSONObject map = new JSONObject();
@@ -707,7 +707,7 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
             @Override
             public void onResponse(JSONObject result) {
                 loader.hideLoader();
-                Log.i("Payments_Requests", result.toString());
+                // Log.i("Payments_Requests", result.toString());
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<Retailer_Management_Dashboard_Model>>() {
                 }.getType();
@@ -717,7 +717,7 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
 
 
                     RetailerList = gson.fromJson(result.get("Data").toString(), type);
-                    Log.i("Payments_Requests", String.valueOf(RetailerList.size()));
+                    // Log.i("Payments_Requests", String.valueOf(RetailerList.size()));
                     mAdapter = new Retailer_Management_Dashboard_Adapter(getContext(), RetailerList);
                     recyclerView.setAdapter(mAdapter);
                     if (RetailerList.size() != 0) {
@@ -763,12 +763,12 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
 
         pageNumber = 0;
 
@@ -797,7 +797,7 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
             @Override
             public void onResponse(JSONObject result) {
                 loader.hideLoader();
-                Log.i("Payments Requests", result.toString());
+                // Log.i("Payments Requests", result.toString());
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<Retailer_Management_Dashboard_Model>>() {
                 }.getType();
@@ -871,7 +871,7 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
     private void updateDisplay(String date_type) {
         if (date_type.equals("first date")) {
             fromDate = year1 + "-" + String.format("%02d", (month1 + 1)) + "-" + String.format("%02d", date1);
-            Log.i("fromDate", fromDate);
+            // Log.i("fromDate", fromDate);
 
             first_date.setText(new StringBuilder()
                     .append(String.format("%02d", date1)).append("/").append(String.format("%02d", (month1 + 1))).append("/").append(year1));
@@ -983,9 +983,9 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();
@@ -1022,7 +1022,7 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
                 }
             }
         }
-//        Log.i("distinct", scroll);
+//        // Log.i("distinct", scroll);
         return scroll;
     }
 }

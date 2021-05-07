@@ -104,7 +104,7 @@ DistributorPaymentRequestAdaptor extends RecyclerView.Adapter<DistributorPayment
         if (paymentsRequestList.size() == 3 || paymentsRequestList.size() == 4) {
             if (position == (paymentsRequestList.size() - 1)) {
                 //        if (position == 2) {
-                Log.i("DebugSupportFilter_In", paymentsRequestList.get(position).getPrePaidNumber());
+                // Log.i("DebugSupportFilter_In", paymentsRequestList.get(position).getPrePaidNumber());
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.WRAP_CONTENT,
                         RelativeLayout.LayoutParams.WRAP_CONTENT
@@ -150,7 +150,7 @@ DistributorPaymentRequestAdaptor extends RecyclerView.Adapter<DistributorPayment
 //                                        SharedPreferences.Editor editor = OrderId.edit();
 //                                        editor.putString("PaymentId", paymentsRequestList.get(position).getID());
 //                                        editor.putString("InvoiceStatus", String.valueOf(paymentsRequestList.get(position).getPrepaidStatusValue()));
-//                                        Log.i("InvoiceStatus_Adapter", String.valueOf(paymentsRequestList.get(position).getPrepaidStatusValue()));
+//                                        // Log.i("InvoiceStatus_Adapter", String.valueOf(paymentsRequestList.get(position).getPrepaidStatusValue()));
 //                                        editor.commit();
 //                                        fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
 //                                        fragmentTransaction.add(R.id.main_container, new RetailerViewInvoice()).addToBackStack("tag");
@@ -221,7 +221,7 @@ DistributorPaymentRequestAdaptor extends RecyclerView.Adapter<DistributorPayment
                                         SharedPreferences.Editor editor = OrderId.edit();
                                         editor.putString("PaymentId", paymentsRequestList.get(position).getID());
                                         editor.putString("InvoiceStatus", String.valueOf(paymentsRequestList.get(position).getPrepaidStatusValue()));
-                                        Log.i("InvoiceStatus_Adapter", String.valueOf(paymentsRequestList.get(position).getPrepaidStatusValue()));
+                                        // Log.i("InvoiceStatus_Adapter", String.valueOf(paymentsRequestList.get(position).getPrepaidStatusValue()));
                                         editor.commit();
                                         fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
                                         fragmentTransaction.add(R.id.main_container, new ViewInvoice()).addToBackStack("tag");
@@ -349,7 +349,7 @@ DistributorPaymentRequestAdaptor extends RecyclerView.Adapter<DistributorPayment
 //                                                ((TextView) adapterView.getChildAt(0)).setTextColor(context.getResources().getColor(android.R.color.darker_gray));
 //                                            } else {
 //                                                company_names = CompanyNames.get(i);
-//                                                Log.i("company name and id ", companyNameAndId.get(company_names));
+//                                                // Log.i("company name and id ", companyNameAndId.get(company_names));
 //                                            }
 //                                        }
 //
@@ -529,7 +529,7 @@ DistributorPaymentRequestAdaptor extends RecyclerView.Adapter<DistributorPayment
                 Context.MODE_PRIVATE);
         final String Token = sharedPreferences.getString("Login_Token", "");
 
-        Log.i("Token Retailer ", Token);
+        // Log.i("Token Retailer ", Token);
         JSONObject map = new JSONObject();
         map.put("ActionValue", "6");
         map.put("BankIMD", paymentsRequestList.get(position).getBankIMD());
@@ -563,7 +563,7 @@ DistributorPaymentRequestAdaptor extends RecyclerView.Adapter<DistributorPayment
             public void onResponse(JSONObject response) {
                 // TODO handle the response
                 loader.hideLoader();
-                Log.i("paymentLog_Response", String.valueOf(response));
+                // Log.i("paymentLog_Response", String.valueOf(response));
                 final Dialog fbDialogue = new Dialog(context);
                 //fbDialogue.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
                 fbDialogue.setContentView(R.layout.password_updatepopup);
@@ -610,7 +610,7 @@ DistributorPaymentRequestAdaptor extends RecyclerView.Adapter<DistributorPayment
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.i("paymentLog_Error", String.valueOf(error));
+                // Log.i("paymentLog_Error", String.valueOf(error));
                 loader.hideLoader();
                 new HaballError().printErrorMessage(context, error);
                 new ProcessingError().showError(context);

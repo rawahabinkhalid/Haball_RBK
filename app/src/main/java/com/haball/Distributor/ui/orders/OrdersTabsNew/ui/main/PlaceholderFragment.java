@@ -224,7 +224,7 @@ public class PlaceholderFragment extends Fragment {
 //                            spinner_retailer_details.setVisibility(View.VISIBLE);
 //                            try {
 //                                Toast.makeText(getContext(), "Retailer Code: " + companies.get(Company_selected) + "\nCompany Name: " + Company_selected, Toast.LENGTH_LONG).show();
-//                            Log.i("Retailer", "Retailer Code: " + companies.get(Company_selected) + "\nCompany Name: " + Company_selected);
+//                            // Log.i("Retailer", "Retailer Code: " + companies.get(Company_selected) + "\nCompany Name: " + Company_selected);
 //                                fetchPaymentLedgerData(companies.get(Company_selected));
 //                            } catch (JSONException e) {
 //                                e.printStackTrace();
@@ -333,28 +333,28 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
         if (!URL_Company.contains(DistributorId))
             URL_Company = URL_Company + DistributorId;
-        Log.i("URL_Company ", URL_Company);
+        // Log.i("URL_Company ", URL_Company);
 
         MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.GET, URL_Company, null, new Response.Listener<JSONArray>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(JSONArray result) {
                 loader.hideLoader();
-                Log.i("result", String.valueOf(result));
+                // Log.i("result", String.valueOf(result));
                 object_string = String.valueOf(result);
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<Distributor_Fragment_Model_DistOrder>>() {
                 }.getType();
                 CompanyList = gson.fromJson(object_string, type);
-                Log.i("CompanyList", String.valueOf(CompanyList));
+                // Log.i("CompanyList", String.valueOf(CompanyList));
                 try {
                     JSONObject jsonObject = null;
                     for (int i = 0; i < result.length(); i++) {
@@ -396,7 +396,7 @@ public class PlaceholderFragment extends Fragment {
     }
 
     private void setCompanyDetails(int position) {
-        Log.i("companyDetail", String.valueOf(CompanyList.get(position)));
+        // Log.i("companyDetail", String.valueOf(CompanyList.get(position)));
 //        txt_name.setVisibility(View.GONE);
         txt_name.setText(CompanyList.get(position).getName());
 //        txt_email_address.setVisibility(View.GONE);
@@ -407,7 +407,7 @@ public class PlaceholderFragment extends Fragment {
         txt_mobile_no.setText(CompanyList.get(position).getPhone());
 //        txt_address.setVisibility(View.GONE);
         txt_address.setText(CompanyList.get(position).getAddress1());
-        Log.i("CompanyID", CompanyList.get(position).getID());
+        // Log.i("CompanyID", CompanyList.get(position).getID());
         SharedPreferences companyInfo = getContext().getSharedPreferences("CompanyInfo",
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = companyInfo.edit();
@@ -442,9 +442,9 @@ public class PlaceholderFragment extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();

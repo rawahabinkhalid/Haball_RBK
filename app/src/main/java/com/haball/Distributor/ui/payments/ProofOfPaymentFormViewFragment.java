@@ -66,7 +66,7 @@ public class ProofOfPaymentFormViewFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.activity_proof_of_payment_view, container, false);
         ProofOfPaymentID = getArguments().getString("ProofOfPaymentID");
-        Log.i("ProofOfPaymentID: ", ProofOfPaymentID);
+        // Log.i("ProofOfPaymentID: ", ProofOfPaymentID);
 
         tv_pop_id = root.findViewById(R.id.tv_pop_id);
         tv_distributor_name = root.findViewById(R.id.tv_distributor_name);
@@ -99,7 +99,7 @@ public class ProofOfPaymentFormViewFragment extends Fragment {
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.GET, URL_PROOF_OF_PAYMENTS, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
-                Log.i("RESPONSE", result.toString());
+                // Log.i("RESPONSE", result.toString());
 
                 try {
                     tv_pop_id.setText(result.getString("POPNumber"));
@@ -119,7 +119,7 @@ public class ProofOfPaymentFormViewFragment extends Fragment {
                     mAdapter = new ProofOfPaymentViewFormAdapter(getContext(), proofOfPaymentViewFormList);
                     rv_proof_of_payments_view.setAdapter(mAdapter);
 
-                    Log.i("View Details", String.valueOf(proofOfPaymentViewFormList));
+                    // Log.i("View Details", String.valueOf(proofOfPaymentViewFormList));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -173,9 +173,9 @@ public class ProofOfPaymentFormViewFragment extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();

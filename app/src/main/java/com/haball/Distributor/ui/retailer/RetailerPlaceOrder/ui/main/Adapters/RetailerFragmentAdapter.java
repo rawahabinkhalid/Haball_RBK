@@ -90,7 +90,7 @@ public class RetailerFragmentAdapter extends RecyclerView.Adapter<RetailerFragme
 //                    public boolean onMenuItemClick(MenuItem item) {
 //                        switch (item.getItemId()) {
 //                            case R.id.orders_view:
-//                                Log.i("text1", "View Item");
+//                                // Log.i("text1", "View Item");
 //                                Toast.makeText(context,"View Clicked",Toast.LENGTH_LONG).show();
 //                                break;
 //

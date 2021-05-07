@@ -603,7 +603,7 @@ public class Support_Ticket_Form extends AppCompatActivity {
 
 
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
         final FragmentManager fm = getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -621,7 +621,7 @@ public class Support_Ticket_Form extends AppCompatActivity {
         btn_discard.setText("Yes");
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
 
                 Intent intent = new Intent(Support_Ticket_Form.this, Distribution_Login.class);
@@ -638,7 +638,7 @@ public class Support_Ticket_Form extends AppCompatActivity {
 
             }
         });
-
+        if(!alertDialog.isShowing())
         alertDialog.show();
     }
 
@@ -690,7 +690,7 @@ public class Support_Ticket_Form extends AppCompatActivity {
         map.put("PreferredContactMethod", PrefferedContacts);
         map.put("Description", Comment.getText().toString());
 
-        Log.i("TICKET OBJECT", String.valueOf(map));
+        // Log.i("TICKET OBJECT", String.valueOf(map));
         new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(this);
 
@@ -698,7 +698,7 @@ public class Support_Ticket_Form extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject result) {
                 loader.hideLoader();
-                Log.e("RESPONSE", result.toString());
+                // Log.e("RESPONSE", result.toString());
 //                Toast.makeText(getApplicationContext(), "Ticket Created Successfully", Toast.LENGTH_LONG).show();
 //                Intent intent = new Intent(Support_Ticket_Form.this, RetailerLogin.class);
 //                startActivity(intent);
@@ -773,11 +773,11 @@ public class Support_Ticket_Form extends AppCompatActivity {
 //                        jsonObject = result.getJSONObject(i);
 //                        issue_type.add(jsonObject.getString("value"));
 //                    }
-//                    Log.i("issue type values => ", issue_type.toString());
+//                    // Log.i("issue type values => ", issue_type.toString());
 //                } catch (JSONException e) {
 //                    e.printStackTrace();
 //                }
-//                Log.e("RESPONSE OF ISSUE TYPE", result.toString());
+//                // Log.e("RESPONSE OF ISSUE TYPE", result.toString());
 //            }
 //        }, new Response.ErrorListener() {
 //            @Override
@@ -823,11 +823,11 @@ public class Support_Ticket_Form extends AppCompatActivity {
 //                        criticality.add(jsonObject.getString("value"));
 //
 //                    }
-//                    Log.i("criticality values => ", criticality.toString());
+//                    // Log.i("criticality values => ", criticality.toString());
 //                } catch (JSONException e) {
 //                    e.printStackTrace();
 //                }
-//                Log.e("RESPONSE OF criticality", result.toString());
+//                // Log.e("RESPONSE OF criticality", result.toString());
 //            }
 //        }, new Response.ErrorListener() {
 //            @Override
@@ -873,11 +873,11 @@ public class Support_Ticket_Form extends AppCompatActivity {
 //                        preffered_contact.add(jsonObject.getString("value"));
 //                    }
 //
-//                    Log.i("preffered_contact => ", preffered_contact.toString());
+//                    // Log.i("preffered_contact => ", preffered_contact.toString());
 //                } catch (JSONException e) {
 //                    e.printStackTrace();
 //                }
-//                Log.e("RESPONSE preferedcont", result.toString());
+//                // Log.e("RESPONSE preferedcont", result.toString());
 //            }
 //        }, new Response.ErrorListener() {
 //            @Override
@@ -949,7 +949,7 @@ public class Support_Ticket_Form extends AppCompatActivity {
                         issue_type.add(jsonObject.getString("value"));
                         issue_type_map.put(jsonObject.getString("value"), jsonObject.getString("key"));
                     }
-                    Log.i("preffered_contact => ", preffered_contact.toString());
+                    // Log.i("preffered_contact => ", preffered_contact.toString());
                     arrayAdapterPreferredContact.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     arrayAdapterPreferredContact.notifyDataSetChanged();
                     Preffered_Contact.setAdapter(arrayAdapterPreferredContact);
@@ -965,7 +965,7 @@ public class Support_Ticket_Form extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE preferedcont", result.toString());
+                // Log.e("RESPONSE preferedcont", result.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -1013,9 +1013,9 @@ public class Support_Ticket_Form extends AppCompatActivity {
             try {
                 String message = "";
                 String responseBody = new String(error.networkResponse.data, "utf-8");
-                Log.i("responseBody", responseBody);
+                // Log.i("responseBody", responseBody);
                 JSONObject data = new JSONObject(responseBody);
-                Log.i("data", String.valueOf(data));
+                // Log.i("data", String.valueOf(data));
                 Iterator<String> keys = data.keys();
                 while (keys.hasNext()) {
                     String key = keys.next();

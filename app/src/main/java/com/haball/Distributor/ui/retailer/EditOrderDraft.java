@@ -66,8 +66,8 @@ public class EditOrderDraft {
 //        SharedPreferences sharedPreferences1 = context.getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-//        Log.i("DistributorId ", DistributorId);
-//        Log.i("Token", Token);
+//        // Log.i("DistributorId ", DistributorId);
+//        // Log.i("Token", Token);
 //
 //        if (!URL_EDIT_ORDER_DRAFT.contains(orderId))
 //            URL_EDIT_ORDER_DRAFT = URL_EDIT_ORDER_DRAFT + orderId;
@@ -77,16 +77,16 @@ public class EditOrderDraft {
 //            @Override
 //            public void onResponse(JSONObject response) {
 //                // TODO handle the response
-//                Log.i("responseDraft", String.valueOf(response));
+//                // Log.i("responseDraft", String.valueOf(response));
 //
 //                try {
 //                    JSONArray arr = response.getJSONArray("OrderDetails");
 //
-////                    Log.i("jsonOrderDetail1", String.valueOf(arr));
+////                    // Log.i("jsonOrderDetail1", String.valueOf(arr));
 ////                    Gson gson = new Gson();
 ////                    String json = null;
 ////                    json = gson.toJson(arr);
-////                    Log.i("jsonOrderDetail", json);
+////                    // Log.i("jsonOrderDetail", json);
 //                    SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts_distributor_draft",
 //                            Context.MODE_PRIVATE);
 //                    SharedPreferences.Editor editor = selectedProducts.edit();
@@ -109,7 +109,7 @@ public class EditOrderDraft {
 
         SharedPreferences sharedPreferences1 = context.getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         if (!URL_EDIT_ORDER_DRAFT.contains(orderId))
             URL_EDIT_ORDER_DRAFT = URL_EDIT_ORDER_DRAFT + orderId;
@@ -123,7 +123,7 @@ public class EditOrderDraft {
             public void onResponse(JSONObject response) {
                 loader.hideLoader();
                 // TODO handle the response
-                Log.i("responseDraft", String.valueOf(response));
+                // Log.i("responseDraft", String.valueOf(response));
 
                 try {
                     JSONArray arr = response.getJSONArray("OrderDetails");
@@ -143,13 +143,13 @@ public class EditOrderDraft {
                     sharedPreferences1_editor.apply();
 
 
-                    Log.i("jsonOrderDetail1", String.valueOf(arr));
+                    // Log.i("jsonOrderDetail1", String.valueOf(arr));
                     Gson gson = new Gson();
                     Type type = new TypeToken<List<ViewOrderProductModel>>() {
                     }.getType();
                     RetailerDraftProductsList = gson.fromJson(arr.toString(), type);
                     for(int i = 0; i < RetailerDraftProductsList.size(); i++) {
-                        Log.i("jsonOrderDetail", String.valueOf(RetailerDraftProductsList.get(i).getProductTitle()));
+                        // Log.i("jsonOrderDetail", String.valueOf(RetailerDraftProductsList.get(i).getProductTitle()));
                                                                                     //                                                                                                                                                                                                                                                                                                  public OrderChildlist_Model_DistOrder(String ID, String companyId, String categoryId, String code, String title, String shortDescription, String longDescription, String unitPrice, String categoryTitle, String packSize, String UOMId, String UOMTitle, String imageData, String imageType, String discountId, String effectiveDate, String expiryDate, String isPercentage, String discountValue, String discountAmount) {
                         selectedProductsDataList.add(new OrderChildlist_Model(RetailerDraftProductsList.get(i).getProductId(), RetailerDraftProductsList.get(i).getProductCode(), RetailerDraftProductsList.get(i).getProductTitle(), RetailerDraftProductsList.get(i).getProductUnitPrice(), "0", RetailerDraftProductsList.get(i).getUnitOFMeasure(), RetailerDraftProductsList.get(i).getDiscount(), "1"));
                         selectedProductsQuantityList.add(RetailerDraftProductsList.get(i).getOrderedQty());
@@ -159,8 +159,8 @@ public class EditOrderDraft {
 
                     if (selectedProductsDataList.size() > 0) {
                         for (int i = 0; i < selectedProductsDataList.size(); i++) {
-                            Log.i("unit price", selectedProductsDataList.get(i).getProductUnitPrice());
-                            Log.i("qty", selectedProductsQuantityList.get(i));
+                            // Log.i("unit price", selectedProductsDataList.get(i).getProductUnitPrice());
+                            // Log.i("qty", selectedProductsQuantityList.get(i));
                             if (!selectedProductsDataList.get(i).getProductUnitPrice().equals("") && !selectedProductsQuantityList.get(i).equals(""))
                                 grossAmount += Float.parseFloat(selectedProductsDataList.get(i).getProductUnitPrice()) * Float.parseFloat(selectedProductsQuantityList.get(i));
                         }
@@ -174,8 +174,8 @@ public class EditOrderDraft {
 
                     String json = gson.toJson(selectedProductsDataList);
                     String jsonqty = gson.toJson(selectedProductsQuantityList);
-                    Log.i("debugOrder_jsonqty", jsonqty);
-                    Log.i("debugOrder_json", json);
+                    // Log.i("debugOrder_jsonqty", jsonqty);
+                    // Log.i("debugOrder_json", json);
                     SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts_retailer",
                             Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = selectedProducts.edit();

@@ -95,7 +95,7 @@ public class View_Payment_Fragment extends Fragment {
         if (!PAYMENT_REQUEST_URL.contains(PaymentsRequestId))
             PAYMENT_REQUEST_URL = PAYMENT_REQUEST_URL + PaymentsRequestId;
 
-        Log.i("PaymentsRequestId12", PAYMENT_REQUEST_URL);
+        // Log.i("PaymentsRequestId12", PAYMENT_REQUEST_URL);
 
         layout_txt_heading = root.findViewById(R.id.layout_txt_heading);
         layout_txt_paymentid = root.findViewById(R.id.layout_txt_paymentid);
@@ -204,17 +204,17 @@ public class View_Payment_Fragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
 
         JSONObject map = new JSONObject();
         map.put("DistributorId", Integer.parseInt(DistributorId));
-        Log.i("Map", String.valueOf(map));
+        // Log.i("Map", String.valueOf(map));
 
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.GET, PAYMENT_REQUEST_URL, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
-                Log.i("result", String.valueOf(result));
+                // Log.i("result", String.valueOf(result));
                 try {
                     if (!String.valueOf(result.get("CompanyName")).equals("null")) {
                         txt_heading.setText(String.valueOf(result.get("CompanyName")));
@@ -358,9 +358,9 @@ public class View_Payment_Fragment extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();

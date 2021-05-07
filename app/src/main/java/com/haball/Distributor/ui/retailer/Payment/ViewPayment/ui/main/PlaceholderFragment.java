@@ -101,10 +101,10 @@ public class PlaceholderFragment extends Fragment {
         } else {
             URL_Payment_Data = "https://175.107.203.97:4013/api/retailerprepaidrequest/";
         }
-        Log.i("PaymentId", PaymentId);
+        // Log.i("PaymentId", PaymentId);
         if (!URL_Payment_Data.contains(PaymentId)) {
             URL_Payment_Data = URL_Payment_Data + PaymentId;
-            Log.i("URL_Order_Data", URL_Payment_Data);
+            // Log.i("URL_Order_Data", URL_Payment_Data);
         }
         View rootView = null;
 
@@ -183,12 +183,12 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId invoice", DistributorId);
-        Log.i("Token invoice", Token);
+        // Log.i("DistributorId invoice", DistributorId);
+        // Log.i("Token invoice", Token);
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, URL_Payment_Data, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.i("Order Data response", String.valueOf(response));
+                // Log.i("Order Data response", String.valueOf(response));
                 try {
                     txt_orderID.setText(String.valueOf(response.get("InvoiceOrderNumber")));
                     txt_company_order.setText(String.valueOf(response.get("RetailerCompanyName")));
@@ -231,8 +231,8 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId invoice", DistributorId);
-        Log.i("Token invoice", Token);
+        // Log.i("DistributorId invoice", DistributorId);
+        // Log.i("Token invoice", Token);
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, URL_Payment_Data, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -241,7 +241,7 @@ public class PlaceholderFragment extends Fragment {
                 }.getType();
                 try {
                     invo_productList = gson.fromJson(response.get("OrderDetails").toString(), type);
-                    Log.i("OrderDetails", String.valueOf(response.get("OrderDetails")));
+                    // Log.i("OrderDetails", String.valueOf(response.get("OrderDetails")));
                     Payment_View_Adapter productAdapter = new Payment_View_Adapter(getContext(), invo_productList);
                     rv_dist_retailer_order_details.setAdapter(productAdapter);
                 } catch (JSONException e) {
@@ -281,12 +281,12 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId invoice", DistributorId);
-        Log.i("Token invoice", Token);
+        // Log.i("DistributorId invoice", DistributorId);
+        // Log.i("Token invoice", Token);
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, URL_Payment_Data, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.i("Order Data response2", String.valueOf(response));
+                // Log.i("Order Data response2", String.valueOf(response));
                 try {
                     txt_companyName.setText(String.valueOf(response.get("RetailerCompanyName")));
                     txt_paymentID.setText(String.valueOf(response.get("PaymentID")));
@@ -349,9 +349,9 @@ public class PlaceholderFragment extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();

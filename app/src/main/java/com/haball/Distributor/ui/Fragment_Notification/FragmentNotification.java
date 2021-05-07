@@ -108,17 +108,17 @@ public class FragmentNotification extends Fragment {
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
         ID = sharedPreferences1.getString("ID", "");
         String URL_NOTIFICATION = "https://175.107.203.97:4013/api/useralert/";
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
 
         if (!URL_NOTIFICATION.contains("/" + ID))
             URL_NOTIFICATION = URL_NOTIFICATION + ID;
-        Log.i("URL_NOTIFICATION", URL_NOTIFICATION);
+        // Log.i("URL_NOTIFICATION", URL_NOTIFICATION);
 
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.GET, URL_NOTIFICATION, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
-                Log.i("URL_NOTIFICATION", String.valueOf(result));
+                // Log.i("URL_NOTIFICATION", String.valueOf(result));
                 loader.hideLoader();
 
                 try {
@@ -142,7 +142,7 @@ public class FragmentNotification extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 loader.hideLoader();
 //                printErrorMessage(error);
-                Log.i("fetch_notification", "error in fetch notification");
+                // Log.i("fetch_notification", "error in fetch notification");
                 error.printStackTrace();
                 new HaballError().printErrorMessage(mcontext, error);
                 new ProcessingError().showError(mcontext);
@@ -196,7 +196,7 @@ public class FragmentNotification extends Fragment {
         String URL_NOTIFICATION_SEEN = "https://175.107.203.97:4013/api/useralert/MarkSeen/";
         if (!URL_NOTIFICATION_SEEN.contains("/" + ID))
             URL_NOTIFICATION_SEEN = URL_NOTIFICATION_SEEN + ID;
-        Log.i("URL_NOTIFICATION", URL_NOTIFICATION_SEEN);
+        // Log.i("URL_NOTIFICATION", URL_NOTIFICATION_SEEN);
 
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.GET, URL_NOTIFICATION_SEEN, null, new Response.Listener<JSONObject>() {
             @Override
@@ -207,7 +207,7 @@ public class FragmentNotification extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 loader.hideLoader();
-                Log.i("fetch_notification", "error in setNotificationStatus");
+                // Log.i("fetch_notification", "error in setNotificationStatus");
                 new HaballError().printErrorMessage(mcontext, error);
                 new ProcessingError().showError(mcontext);
                 error.printStackTrace();
@@ -250,11 +250,11 @@ public class FragmentNotification extends Fragment {
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
         ID = sharedPreferences1.getString("ID", "");
         String URL_NOTIFICATION = "https://175.107.203.97:4013/api/useralert/";
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
 
         URL_NOTIFICATION = URL_NOTIFICATION + ID;
-        Log.i("URL_NOTIFICATION", URL_NOTIFICATION);
+        // Log.i("URL_NOTIFICATION", URL_NOTIFICATION);
 
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.GET, URL_NOTIFICATION, null, new Response.Listener<JSONObject>() {
             @Override
@@ -283,15 +283,15 @@ public class FragmentNotification extends Fragment {
 //                        }
 //                    }
 //                }, 0, 5000);
-                Log.i("ResultLength", "" + result.length());
-                Log.i("RESULT NOTIFICATION", result.toString());
+                // Log.i("ResultLength", "" + result.length());
+                // Log.i("RESULT NOTIFICATION", result.toString());
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 new HaballError().printErrorMessage(mcontext, error);
-                Log.i("fetch_notification", "error in fetchNotificationForItemCount");
+                // Log.i("fetch_notification", "error in fetchNotificationForItemCount");
                 new ProcessingError().showError(mcontext);
                 error.printStackTrace();
             }

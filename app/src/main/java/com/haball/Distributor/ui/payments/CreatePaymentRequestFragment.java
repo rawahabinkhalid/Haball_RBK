@@ -6,25 +6,21 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.style.StyleSpan;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -50,6 +46,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.haball.CustomToast;
 import com.haball.Distributor.DistributorDashboard;
 import com.haball.HaballError;
@@ -57,8 +55,6 @@ import com.haball.Loader;
 import com.haball.ProcessingError;
 import com.haball.R;
 import com.haball.TextField;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -90,6 +86,7 @@ public class CreatePaymentRequestFragment extends Fragment {
     private TextInputLayout layout_txt_amount;
     private Typeface myFont;
     private Loader loader;
+    private AlertDialog alertDialog;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -138,8 +135,8 @@ public class CreatePaymentRequestFragment extends Fragment {
                     }
                     company_names = CompanyNames.get(i);
 
-                    Log.i("company name and id ", companyNameAndId.get(company_names));
-                    Log.i("Company_Nameeee ", company_names);
+                    // Log.i("company name and id ", companyNameAndId.get(company_names));
+                    // Log.i("Company_Nameeee ", company_names);
 
                 }
                 checkFieldsForEmptyValues();
@@ -151,7 +148,7 @@ public class CreatePaymentRequestFragment extends Fragment {
 
             }
         });
-        final View finalroot = root;
+
         fetchCompanyData();
         btn_create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,6 +186,7 @@ public class CreatePaymentRequestFragment extends Fragment {
             }
         };
         txt_amount.addTextChangedListener(textWatcher);
+        alertDialog = new AlertDialog.Builder(getContext()).create();
 
         return root;
     }
@@ -206,15 +204,15 @@ public class CreatePaymentRequestFragment extends Fragment {
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
                     final String txt_amounts = txt_amount.getText().toString();
                     final String company = String.valueOf(spinner_company.getItemAtPosition(spinner_company.getSelectedItemPosition()));
-                    Log.i("onResume_txt_amount", String.valueOf(txt_amounts));
-                    Log.i("onResume_company_name", String.valueOf(company));
-
-                    txt_amount.clearFocus();
+                    // Log.i("onResume_txt_amount", String.valueOf(txt_amounts));
+                    // Log.i("onResume_company_name", String.valueOf(company));
+                    // txt_amount.clearFocus();
                     if (!txt_amounts.equals("") || (!company.equals("Select Company") && company != null)) {
                         showDiscardDialog();
-
                         return true;
+
                     } else {
+
                         SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
                                 Context.MODE_PRIVATE);
                         SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
@@ -241,8 +239,8 @@ public class CreatePaymentRequestFragment extends Fragment {
                     // handle back button's click listener
                     final String txt_amounts = txt_amount.getText().toString();
                     final String company = String.valueOf(spinner_company.getItemAtPosition(spinner_company.getSelectedItemPosition()));
-                    Log.i("onResume_txt_amount", String.valueOf(txt_amounts));
-                    Log.i("onResume_company_name", String.valueOf(company));
+                    // Log.i("onResume_txt_amount", String.valueOf(txt_amounts));
+                    // Log.i("onResume_company_name", String.valueOf(company));
 
 //                    Toast.makeText(getActivity(), "Back press", Toast.LENGTH_SHORT).show();
                     if (!txt_amounts.equals("") || (!company.equals("Select Company") && company != null)) {
@@ -258,7 +256,6 @@ public class CreatePaymentRequestFragment extends Fragment {
                         Intent login_intent = new Intent(((FragmentActivity) getContext()), DistributorDashboard.class);
                         ((FragmentActivity) getContext()).startActivity(login_intent);
                         ((FragmentActivity) getContext()).finish();
-                        return true;
                     }
                 }
                 return false;
@@ -268,10 +265,8 @@ public class CreatePaymentRequestFragment extends Fragment {
     }
 
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
         final FragmentManager fm = getActivity().getSupportFragmentManager();
-
-        final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
@@ -285,7 +280,7 @@ public class CreatePaymentRequestFragment extends Fragment {
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
                 SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
                         Context.MODE_PRIVATE);
@@ -309,8 +304,10 @@ public class CreatePaymentRequestFragment extends Fragment {
 
             }
         });
-
-        alertDialog.show();
+        // Log.i("alertMessage", String.valueOf(alertDialog.isShowing()));
+        if (!alertDialog.isShowing())
+            alertDialog.show();
+        // Log.i("alertMessage", String.valueOf(alertDialog.isShowing()));
     }
 
     private void checkFieldsForEmptyValues() {
@@ -341,8 +338,8 @@ public class CreatePaymentRequestFragment extends Fragment {
             SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                     Context.MODE_PRIVATE);
             DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-            Log.i("DistributorId ", DistributorId);
-            Log.i("Token", Token);
+            // Log.i("DistributorId ", DistributorId);
+            // Log.i("Token", Token);
 
             JSONObject map = new JSONObject();
             map.put("Status", 0);
@@ -379,7 +376,7 @@ public class CreatePaymentRequestFragment extends Fragment {
                     showSuccessDialog(prepaid_number);
 
                     //                    Toast.makeText(getContext(), "Payment Request " + prepaid_number + " has been created successfully.", Toast.LENGTH_SHORT).show();
-//                    Log.e("RESPONSE prepaid_number", result.toString());
+//                    // Log.e("RESPONSE prepaid_number", result.toString());
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -416,18 +413,18 @@ public class CreatePaymentRequestFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
 
         URL_PAYMENT_REQUESTS_SELECT_COMPANY = URL_PAYMENT_REQUESTS_SELECT_COMPANY + DistributorId;
-        Log.i("URL_PROOF_OF_PAYMENTS ", URL_PAYMENT_REQUESTS_SELECT_COMPANY);
+        // Log.i("URL_PROOF_OF_PAYMENTS ", URL_PAYMENT_REQUESTS_SELECT_COMPANY);
 
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         JsonArrayRequest sr = new JsonArrayRequest(Request.Method.GET, URL_PAYMENT_REQUESTS_SELECT_COMPANY, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray result) {
                 loader.hideLoader();
-                Log.i("aaaaaabb", String.valueOf(result));
+                // Log.i("aaaaaabb", String.valueOf(result));
                 try {
                     JSONObject jsonObject = null;
                     CompanyNames = new ArrayList<>();
@@ -468,7 +465,7 @@ public class CreatePaymentRequestFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE OF COMPANY ID", result.toString());
+                // Log.e("RESPONSE OF COMPANY ID", result.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -560,9 +557,9 @@ public class CreatePaymentRequestFragment extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();

@@ -164,10 +164,10 @@ public class PlaceholderFragment extends Fragment {
 
 
         paymentId = sharedPreferences3.getString("PaymentId", "");
-        Log.i("paymentId", paymentId);
+        // Log.i("paymentId", paymentId);
         if (!URL_Payment_Data.contains(paymentId)) {
             URL_Payment_Data = URL_Payment_Data + paymentId;
-            Log.i("URL_Payment_Data", URL_Payment_Data);
+            // Log.i("URL_Payment_Data", URL_Payment_Data);
         }
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
@@ -249,7 +249,7 @@ public class PlaceholderFragment extends Fragment {
                 SharedPreferences sharedPreferences1 = getContext().getSharedPreferences("PaymentId",
                         Context.MODE_PRIVATE);
                 InvoiceStatus = sharedPreferences1.getString("InvoiceStatus", "");
-                Log.i("InvoiceStatus", InvoiceStatus);
+                // Log.i("InvoiceStatus", InvoiceStatus);
 
 //        SectionsPagerAdapter sectionsPagerAdapter = null;
                 if (!InvoiceStatus.equals("null") && !InvoiceStatus.equals("Pending")) {
@@ -279,7 +279,7 @@ public class PlaceholderFragment extends Fragment {
                         Context.MODE_PRIVATE);
                 InvoiceStatus = sharedPreferences1.getString("InvoiceStatus", "");
                 String ReferenceNumber = sharedPreferences1.getString("ReferenceNumber", "");
-                Log.i("InvoiceStatus", InvoiceStatus);
+                // Log.i("InvoiceStatus", InvoiceStatus);
 
 //        SectionsPagerAdapter sectionsPagerAdapter = null;
 //                if (InvoiceStatus.equals("Invoiced") || InvoiceStatus.equals("Paid") || InvoiceStatus.equals("Pending") || InvoiceStatus.equals("Cancelled") || ReferenceNumber.equals("null")) {
@@ -556,19 +556,19 @@ public class PlaceholderFragment extends Fragment {
         Token = sharedPreferences.getString("Login_Token", "");
         if (!URL_Payment_Data.contains("/" + paymentId)) {
             URL_Payment_Data = URL_Payment_Data + paymentId;
-            Log.i("URL_Payment_Data", URL_Payment_Data);
+            // Log.i("URL_Payment_Data", URL_Payment_Data);
         }
 //        SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-//        Log.i("DistributorId invoice", DistributorId);
-        Log.i("Token invoice", Token);
+//        // Log.i("DistributorId invoice", DistributorId);
+        // Log.i("Token invoice", Token);
         new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, URL_Payment_Data, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.i("Order Data response", String.valueOf(response));
+                // Log.i("Order Data response", String.valueOf(response));
                 try {
                     if (!String.valueOf(response.get("RetailerOrderNumber")).equals("") && !String.valueOf(response.get("RetailerOrderNumber")).equals("null"))
                         txt_orderID.setText(String.valueOf(response.get("RetailerOrderNumber")));
@@ -659,7 +659,7 @@ public class PlaceholderFragment extends Fragment {
         tv_shipment_no_data.setVisibility(View.GONE);
         if (!URL_Payment_Data.contains("/" + paymentId)) {
             URL_Payment_Data = URL_Payment_Data + paymentId;
-            Log.i("URL_Payment_Data", URL_Payment_Data);
+            // Log.i("URL_Payment_Data", URL_Payment_Data);
         }
         new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
@@ -683,7 +683,7 @@ public class PlaceholderFragment extends Fragment {
                         if (!String.valueOf(invo_productList.get(i).getDiscount()).equals("null"))
                             totalDiscount += Double.parseDouble(invo_productList.get(i).getDiscount());
                     }
-                    Log.i("OrderDetails", String.valueOf(response.get("OrderDetails")));
+                    // Log.i("OrderDetails", String.valueOf(response.get("OrderDetails")));
                     RetailerViewOrderProductAdapter productAdapter = new RetailerViewOrderProductAdapter(getContext(), invo_productList);
                     rv_fragment_retailer_order_details.setAdapter(productAdapter);
                     DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
@@ -775,13 +775,13 @@ public class PlaceholderFragment extends Fragment {
         Token = sharedPreferences.getString("Login_Token", "");
 //        if (!URL_Payment_Data.contains("/" + paymentId)) {
 //            URL_Payment_Data = URL_Payment_Data + paymentId;
-//            Log.i("URL_Payment_Data", URL_Payment_Data);
+//            // Log.i("URL_Payment_Data", URL_Payment_Data);
 //        }
 //        SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-//        Log.i("DistributorId invoice", DistributorId);
-        Log.i("Token invoice12", Token);
+//        // Log.i("DistributorId invoice", DistributorId);
+        // Log.i("Token invoice12", Token);
         new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
 
@@ -789,7 +789,7 @@ public class PlaceholderFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 loader.hideLoader();
-                Log.i("Order Data response2", String.valueOf(response));
+                // Log.i("Order Data response2", String.valueOf(response));
                 try {
                     txt_companyName.setText(String.valueOf(response.get("RetailerCompanyName")));
                     if (!String.valueOf(response.get("RetailerCompanyName")).equals("") && !String.valueOf(response.get("RetailerCompanyName")).equals("null"))
@@ -892,13 +892,13 @@ public class PlaceholderFragment extends Fragment {
         Token = sharedPreferences.getString("Login_Token", "");
         if (!URL_Payment_Data.contains("/" + paymentId)) {
             URL_Payment_Data = URL_Payment_Data + paymentId;
-            Log.i("URL_Payment_Data", URL_Payment_Data);
+            // Log.i("URL_Payment_Data", URL_Payment_Data);
         }
 //        SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-//        Log.i("DistributorId invoice", DistributorId);
-        Log.i("Token invoice12", Token);
+//        // Log.i("DistributorId invoice", DistributorId);
+        // Log.i("Token invoice12", Token);
         new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
 
@@ -906,7 +906,7 @@ public class PlaceholderFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 loader.hideLoader();
-                Log.i("Order Data_UnPaid", String.valueOf(response));
+                // Log.i("Order Data_UnPaid", String.valueOf(response));
                 try {
                     RetailerCompanyName = String.valueOf(response.get("RetailerCompanyName"));
 
@@ -1034,9 +1034,9 @@ public class PlaceholderFragment extends Fragment {
     //             try {
     //                 String message = "";
     //                 String responseBody = new String(error.networkResponse.data, "utf-8");
-    //                 Log.i("responseBody", responseBody);
+    //                 // Log.i("responseBody", responseBody);
     //                 JSONObject data = new JSONObject(responseBody);
-    //                 Log.i("data", String.valueOf(data));
+    //                 // Log.i("data", String.valueOf(data));
     //                 Iterator<String> keys = data.keys();
     //                 while (keys.hasNext()) {
     //                     String key = keys.next();

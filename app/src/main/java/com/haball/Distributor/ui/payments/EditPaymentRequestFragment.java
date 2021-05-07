@@ -299,7 +299,7 @@ public class EditPaymentRequestFragment extends Fragment {
     }
 
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
         final FragmentManager fm = getActivity().getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
@@ -311,7 +311,7 @@ public class EditPaymentRequestFragment extends Fragment {
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
                 fm.popBackStack();
             }
@@ -325,7 +325,7 @@ public class EditPaymentRequestFragment extends Fragment {
 
             }
         });
-
+        if(!alertDialog.isShowing())
         alertDialog.show();
     }
     private void checkFieldsForEmptyValues() {
@@ -353,8 +353,8 @@ public class EditPaymentRequestFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
 
         new EditPayment().EditPayment(getActivity(), getContext(), Token, DistributorId, PrePaidId, PrePaidNumber, companyNameAndId.get(company_names), txt_amount.getText().toString());
     }
@@ -367,12 +367,12 @@ public class EditPaymentRequestFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
 
         URL_PAYMENT_REQUESTS_SELECT_COMPANY = URL_PAYMENT_REQUESTS_SELECT_COMPANY + DistributorId;
-        Log.i("URL_PROOF_OF_PAYMENTS ", URL_PAYMENT_REQUESTS_SELECT_COMPANY);
+        // Log.i("URL_PROOF_OF_PAYMENTS ", URL_PAYMENT_REQUESTS_SELECT_COMPANY);
 
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         JsonArrayRequest sr = new JsonArrayRequest(Request.Method.GET, URL_PAYMENT_REQUESTS_SELECT_COMPANY, null, new Response.Listener<JSONArray>() {
             @Override
@@ -393,13 +393,13 @@ public class EditPaymentRequestFragment extends Fragment {
                 spinner_company.setAdapter(arrayAdapterPayments);
 
                 txt_amount.setText(Amount);
-                Log.i("Debugging", String.valueOf(CompanyNames));
-                Log.i("Debugging", String.valueOf(CompanyNames.indexOf(CompanyName)));
-                Log.i("Debugging", String.valueOf(CompanyName));
+                // Log.i("Debugging", String.valueOf(CompanyNames));
+                // Log.i("Debugging", String.valueOf(CompanyNames.indexOf(CompanyName)));
+                // Log.i("Debugging", String.valueOf(CompanyName));
 //        int spinnerPosition = arrayAdapterPayments.getPosition(CompanyName);
                 spinner_company.setSelection(CompanyNames.indexOf(CompanyName));
 
-                Log.e("RESPONSE OF COMPANY ID", result.toString());
+                // Log.e("RESPONSE OF COMPANY ID", result.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -469,9 +469,9 @@ public class EditPaymentRequestFragment extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();

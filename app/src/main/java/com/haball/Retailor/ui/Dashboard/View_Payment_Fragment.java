@@ -82,7 +82,7 @@ public class View_Payment_Fragment extends Fragment {
         SharedPreferences sharedPreferences3 = getContext().getSharedPreferences("paymentsRequestListID",
                 Context.MODE_PRIVATE);
         PaymentsRequestId = sharedPreferences3.getString("paymentsRequestListID", "");
-//        Log.i("PaymentsRequestId12", PaymentsRequestId);
+//        // Log.i("PaymentsRequestId12", PaymentsRequestId);
         if (!PAYMENT_REQUEST_URL.contains(PaymentsRequestId))
             PAYMENT_REQUEST_URL = PAYMENT_REQUEST_URL + PaymentsRequestId;
 
@@ -193,7 +193,7 @@ public class View_Payment_Fragment extends Fragment {
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.GET, PAYMENT_REQUEST_URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
-                Log.i("resultInvoice", String.valueOf(result));
+                // Log.i("resultInvoice", String.valueOf(result));
                 try {
                     if (!String.valueOf(result.get("CompanyName")).equals("null")) {
                         txt_heading.setText(String.valueOf(result.get("CompanyName")));
@@ -320,9 +320,9 @@ public class View_Payment_Fragment extends Fragment {
     //             try {
     //                 String message = "";
     //                 String responseBody = new String(error.networkResponse.data, "utf-8");
-    //                 Log.i("responseBody", responseBody);
+    //                 // Log.i("responseBody", responseBody);
     //                 JSONObject data = new JSONObject(responseBody);
-    //                 Log.i("data", String.valueOf(data));
+    //                 // Log.i("data", String.valueOf(data));
     //                 Iterator<String> keys = data.keys();
     //                 while (keys.hasNext()) {
     //                     String key = keys.next();

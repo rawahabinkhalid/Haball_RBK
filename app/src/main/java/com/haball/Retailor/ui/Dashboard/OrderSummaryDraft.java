@@ -187,7 +187,7 @@ public class OrderSummaryDraft extends Fragment {
         recyclerView1.setAdapter(mAdapter1);
         recyclerView1.setNestedScrollingEnabled(false);
 
-        Log.i("aaaaaa", String.valueOf(mAdapter1));
+        // Log.i("aaaaaa", String.valueOf(mAdapter1));
 
         return view;
 
@@ -215,7 +215,7 @@ public class OrderSummaryDraft extends Fragment {
     }
 
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
         final FragmentManager fm = getActivity().getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
@@ -227,7 +227,7 @@ public class OrderSummaryDraft extends Fragment {
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
                 fm.popBackStack();
             }
@@ -241,7 +241,7 @@ public class OrderSummaryDraft extends Fragment {
 
             }
         });
-
+        if(!alertDialog.isShowing())
         alertDialog.show();
     }
 //
@@ -292,7 +292,7 @@ public class OrderSummaryDraft extends Fragment {
 //                jsonArray.put(obj);
 //            }
 //        }
-//        Log.i("Array", String.valueOf(jsonArray));
+//        // Log.i("Array", String.valueOf(jsonArray));
 //
 //        JSONObject jsonObject = new JSONObject();
 //        jsonObject.put("DistributorId", DistributorId);
@@ -302,11 +302,11 @@ public class OrderSummaryDraft extends Fragment {
 //        jsonObject.put("OrderTemplateDetails", jsonArray);
 //
 //
-//        Log.i("jsonObject", String.valueOf(jsonObject));
+//        // Log.i("jsonObject", String.valueOf(jsonObject));
 //        JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_SAVE_TEMPLATE, jsonObject, new Response.Listener<JSONObject>() {
 //            @Override
 //            public void onResponse(final JSONObject result) {
-//                Log.i("RESPONSE ORDER .. ", result.toString());
+//                // Log.i("RESPONSE ORDER .. ", result.toString());
 //                SharedPreferences grossamount = getContext().getSharedPreferences("grossamount",
 //                        Context.MODE_PRIVATE);
 //                SharedPreferences.Editor editor = grossamount.edit();
@@ -368,7 +368,7 @@ public class OrderSummaryDraft extends Fragment {
                 jsonArray.put(obj);
             }
         }
-        Log.i("Array", String.valueOf(jsonArray));
+        // Log.i("Array", String.valueOf(jsonArray));
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("ID", 0);
@@ -381,14 +381,14 @@ public class OrderSummaryDraft extends Fragment {
 //        jsonObject.put("TotalGST", gst_amount);
 //        jsonObject.put("TotalDiscountAmount", 0);
 
-        Log.i("jsonObject", String.valueOf(jsonObject));
+        // Log.i("jsonObject", String.valueOf(jsonObject));
         new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
 
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_SAVE_DRAFT, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(final JSONObject result) {
-                Log.i("RESPONSE ORDER .. ", result.toString());
+                // Log.i("RESPONSE ORDER .. ", result.toString());
                 try {
                     SharedPreferences grossamount = getContext().getSharedPreferences("grossamount",
                             Context.MODE_PRIVATE);
@@ -448,7 +448,7 @@ public class OrderSummaryDraft extends Fragment {
             if (!selectedProductsQuantityList.get(i).equals("0") && !selectedProductsQuantityList.get(i).equals(""))
                 jsonArray.put(obj);
         }
-        Log.i("Array", String.valueOf(jsonArray));
+        // Log.i("Array", String.valueOf(jsonArray));
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("ID", 0);
@@ -460,14 +460,14 @@ public class OrderSummaryDraft extends Fragment {
 //        jsonObject.put("Discount", 0);
 //        jsonObject.put("TotalPrice", totalAmount);
 
-        Log.i("jsonObject", String.valueOf(jsonObject));
+        // Log.i("jsonObject", String.valueOf(jsonObject));
         new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
 
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_CONFIRM_ORDERS, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(final JSONObject result) {
-                Log.i("RESPONSE ORDER .. ", result.toString());
+                // Log.i("RESPONSE ORDER .. ", result.toString());
                 try {
                     Toast.makeText(getContext(), "Order Request ID " + result.get("OrderNumber") + " has been submitted successfully and sent for approval.", Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
@@ -512,7 +512,7 @@ public class OrderSummaryDraft extends Fragment {
         @Override
         protected Void doInBackground(Void... params) {
             while (getContext() != null) {
-                Log.i("async", "in async");
+                // Log.i("async", "in async");
                 SharedPreferences selectedProducts = getContext().getSharedPreferences("selectedProducts_retailer_own",
                         Context.MODE_PRIVATE);
                 object_string = selectedProducts.getString("selected_products", "");
@@ -521,7 +521,7 @@ public class OrderSummaryDraft extends Fragment {
                 }.getType();
                 temp_list = gson.fromJson(object_string, type);
                 object_stringqty = selectedProducts.getString("selected_products_qty", "");
-                Log.i("qty_async", object_stringqty);
+                // Log.i("qty_async", object_stringqty);
                 Type typestr = new TypeToken<List<String>>() {
                 }.getType();
                 temp_listqty = gson.fromJson(object_stringqty, typestr);
@@ -541,7 +541,7 @@ public class OrderSummaryDraft extends Fragment {
         @Override
         protected void onPostExecute(Void result) {
             if (getContext() != null) {
-                Log.i("async", "in async else");
+                // Log.i("async", "in async else");
                 qtyChanged();
                 new MyAsyncTask().execute();
             }
@@ -562,8 +562,8 @@ public class OrderSummaryDraft extends Fragment {
         Gson gson = new Gson();
         object_string = selectedProducts.getString("selected_products", "");
         object_stringqty = selectedProducts.getString("selected_products_qty", "");
-        Log.i("object_string", object_string);
-        Log.i("object_stringqty", object_stringqty);
+        // Log.i("object_string", object_string);
+        // Log.i("object_stringqty", object_stringqty);
         Type type = new TypeToken<List<OrderChildlist_Model>>() {
         }.getType();
         Type typeQty = new TypeToken<List<String>>() {
@@ -606,9 +606,9 @@ public class OrderSummaryDraft extends Fragment {
     //             try {
     //                 String message = "";
     //                 String responseBody = new String(error.networkResponse.data, "utf-8");
-    //                 Log.i("responseBody", responseBody);
+    //                 // Log.i("responseBody", responseBody);
     //                 JSONObject data = new JSONObject(responseBody);
-    //                 Log.i("data", String.valueOf(data));
+    //                 // Log.i("data", String.valueOf(data));
     //                 Iterator<String> keys = data.keys();
     //                 while (keys.hasNext()) {
     //                     String key = keys.next();

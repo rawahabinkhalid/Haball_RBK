@@ -28,7 +28,7 @@ public class DealerInformation extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root =  inflater.inflate(R.layout.fragment_dealer_information, container, false);
-        Log.i("dealerActivity" , "123321");
+        // Log.i("dealerActivity" , "123321");
     return root;
     }
 

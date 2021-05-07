@@ -151,7 +151,7 @@ public class DistributorDashboard extends AppCompatActivity {
 
         try {
             userRights = new JSONArray(sharedPreferences.getString("UserRights", ""));
-            Log.i("userRights", String.valueOf(userRights));
+            // Log.i("userRights", String.valueOf(userRights));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -201,7 +201,7 @@ public class DistributorDashboard extends AppCompatActivity {
         for (int i = 0; i < userRights.length(); i++) {
             try {
                 JSONObject userRightsData = new JSONObject(String.valueOf(userRights.get(i)));
-                Log.i("userRights", String.valueOf(userRightsData.get("RightId")));
+                // Log.i("userRights", String.valueOf(userRightsData.get("RightId")));
                 if (String.valueOf(userRightsData.get("RightId")).equals("2")) {
                     Company_Preference = true;
                 }
@@ -283,7 +283,7 @@ public class DistributorDashboard extends AppCompatActivity {
                     Support_Resolve = true;
                 }
 
-//                Log.i("userRightsData", String.valueOf(userRights.get(i)));
+//                // Log.i("userRightsData", String.valueOf(userRights.get(i)));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -431,30 +431,30 @@ public class DistributorDashboard extends AppCompatActivity {
                         navigationExpandableListView.setSelected(groupPosition);
 
                         if (NavList.contains("Dashboard") && NavList.indexOf("Dashboard") == id) {
-                            Log.i("Dashboard", "Dashboard Activity"); //DONE
+                            // Log.i("Dashboard", "Dashboard Activity"); //DONE
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.add(R.id.main_container, new HomeFragment());
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
                         } else if (NavList.contains("My Network") && NavList.indexOf("My Network") == id) {
-                            Log.i("My Network", "My Network Activity");
+                            // Log.i("My Network", "My Network Activity");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
 //                            fragmentTransaction.add(R.id.main_container_ret, new My_NetworkDashboard());
                             fragmentTransaction.add(R.id.main_container, new My_Network_Fragment()).addToBackStack("tag");
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
                         } else if (NavList.contains("Place Order") && NavList.indexOf("Place Order") == id) {
-                            Log.i("Place Order", "Orders Activity");
+                            // Log.i("Place Order", "Orders Activity");
 //                            getSupportFragmentManager().popBackStack("tag", FragmentManager.POP_BACK_STACK_INCLUSIVE);
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.replace(R.id.main_container, new Order_PlaceOrder()).addToBackStack("tag");
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
                         } else if (NavList.contains("Payment") && NavList.indexOf("Payment") == id) {
-                            Log.i("Payments", "Payments Activity");//DONE
+                            // Log.i("Payments", "Payments Activity");//DONE
                             navigationView.setItemTextColor(ColorStateList.valueOf(Color.RED));
                         } else if (NavList.contains("Shipment") && NavList.indexOf("Shipment") == id) {
-                            Log.i("Shipment", "Shipment Activity");
+                            // Log.i("Shipment", "Shipment Activity");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.add(R.id.main_container, new Shipments_Fragments()).addToBackStack("tag");
                             fragmentTransaction.commit();
@@ -470,24 +470,24 @@ public class DistributorDashboard extends AppCompatActivity {
 //        jsonObject.put("AmountMax", null);
                             drawer.closeDrawer(GravityCompat.START);
                         } else if (NavList.contains("Retailer Management") && NavList.indexOf("Retailer Management") == id) {
-                            Log.i("Retailer", "Retailer Activity");
+                            // Log.i("Retailer", "Retailer Activity");
 
 
                         } else if (NavList.contains("Profile") && NavList.indexOf("Profile") == id) {
-                            Log.i("Profile", "Profile Activity");
+                            // Log.i("Profile", "Profile Activity");
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.add(R.id.main_container, new Distributor_Profile()).addToBackStack("tag");
                             ;
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
                         } else if (NavList.contains("Support") && NavList.indexOf("Support") == id) {
-                            Log.i("Suppport", "Support Activity"); //DONE
+                            // Log.i("Suppport", "Support Activity"); //DONE
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.add(R.id.main_container, new SupportFragment()).addToBackStack("tag");
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
                         } else if (NavList.contains("Logout") && NavList.indexOf("Logout") == id) {
-                            Log.i("Logout", "Logout Activity");
+                            // Log.i("Logout", "Logout Activity");
                             if (Token != null) {
                                 //                                Intent login = new Intent(DistributorDashboard.this, Distribution_Login.class);
 //                                startActivity(login);
@@ -537,7 +537,7 @@ public class DistributorDashboard extends AppCompatActivity {
                             }
                             drawer.closeDrawer(GravityCompat.START);
 //                        } else if (id == 8) {
-//                            Log.i("terms and conditions", "terms and conditions");
+//                            // Log.i("terms and conditions", "terms and conditions");
 //                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
 //                            fragmentTransaction.add(R.id.main_container, new TermsAndConditionsFragment());
 //                            fragmentTransaction.commit();
@@ -555,7 +555,7 @@ public class DistributorDashboard extends AppCompatActivity {
 
 ////
 ////                        if (groupPosition == 2 && childPosition == 0) {
-////                            Log.i("Consolidate Payments", "Child");//DONE
+////                            // Log.i("Consolidate Payments", "Child");//DONE
 ////                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
 ////                            fragmentTransaction.add(R.id.main_container, new ConsolidatedPaymentsFragment()).addToBackStack("tag");
 ////                            ;
@@ -564,28 +564,28 @@ public class DistributorDashboard extends AppCompatActivity {
 ////                        }
 //                        if (groupPosition == 3 && childPosition == 0) {
                         if (NavList.contains("Payment") && NavList.indexOf("Payment") == groupPosition && NavList_Payment.contains("Payments_Payment_Request") && NavList_Payment.indexOf("Payments_Payment_Request") == childPosition) {
-                            Log.i("Make Payment", "Child");//DONE
+                            // Log.i("Make Payment", "Child");//DONE
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.add(R.id.main_container, new CreatePaymentRequestFragment()).addToBackStack(null);
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 //                        } else if (groupPosition == 3 && childPosition == 1) {
                         } else if (NavList.contains("Payment") && NavList.indexOf("Payment") == groupPosition && NavList_Payment.contains("PaymentsLedger") && NavList_Payment.indexOf("PaymentsLedger") == childPosition) {
-                            Log.i("Payment Ledger", "Child"); //DONE
+                            // Log.i("Payment Ledger", "Child"); //DONE
                             fragmentTransaction = getSupportFragmentManager().beginTransaction();
                             fragmentTransaction.add(R.id.main_container, new Payments_Fragment()).addToBackStack("tag");
                             fragmentTransaction.commit();
                             drawer.closeDrawer(GravityCompat.START);
 ////                        }
 //////                        else if (groupPosition == 2 && childPosition == 3) {
-//////                            Log.i("Proof of Payments", "Child"); //DONE
+//////                            // Log.i("Proof of Payments", "Child"); //DONE
 //////                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
 //////                            fragmentTransaction.add(R.id.main_container, new ProofOfPaymentsDashboardFragment()).addToBackStack("tag");
 //////                            fragmentTransaction.commit();
 //////                            drawer.closeDrawer(GravityCompat.START);
 //////                        }
 ////                        else if (groupPosition == 2 && childPosition == 0) {
-////                            Log.i("Place order", "Child"); //DONE
+////                            // Log.i("Place order", "Child"); //DONE
 ////                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
 ////                            fragmentTransaction.add(R.id.main_container, new Order_PlaceOrder()).addToBackStack("tag");
 ////                            fragmentTransaction.commit();
@@ -623,7 +623,7 @@ public class DistributorDashboard extends AppCompatActivity {
     private void getNotificationCount() {
         if (!URL_Notification.contains("/" + ID))
             URL_Notification = URL_Notification + ID;
-        Log.i("URL_NOTIFICATION", URL_Notification);
+        // Log.i("URL_NOTIFICATION", URL_Notification);
 
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.GET, URL_Notification, null, new Response.Listener<JSONObject>() {
             @Override
@@ -631,7 +631,7 @@ public class DistributorDashboard extends AppCompatActivity {
                 try {
 
                     int count = Integer.parseInt(String.valueOf(result.get("count")));
-                    Log.i("DistributorDashboard", String.valueOf(count));
+                    // Log.i("DistributorDashboard", String.valueOf(count));
                     if (count == 0) {
                         notification_icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_no_notifications_black_24dp));
                     } else {
@@ -816,9 +816,9 @@ public class DistributorDashboard extends AppCompatActivity {
             try {
                 String message = "";
                 String responseBody = new String(error.networkResponse.data, "utf-8");
-                Log.i("responseBody", responseBody);
+                // Log.i("responseBody", responseBody);
                 JSONObject data = new JSONObject(responseBody);
-                Log.i("data", String.valueOf(data));
+                // Log.i("data", String.valueOf(data));
                 Iterator<String> keys = data.keys();
                 while (keys.hasNext()) {
                     String key = keys.next();

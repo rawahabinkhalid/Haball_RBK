@@ -63,7 +63,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
 
     public Order_Summary_Adapter_DistOrder(FragmentActivity activity, Context context, List<OrderChildlist_Model_DistOrder> selectedProductsDataList, List<String> selectedProductsDataListQty, Button btn_confirm, Button btn_draft, TextView total_amount, TextView discount_amount) {
         changed = false;
-        Log.i("debug_back_pressed", "String.valueOf(selectedProductsDataList)");
+        // Log.i("debug_back_pressed", "String.valueOf(selectedProductsDataList)");
         this.context = context;
         this.activity = activity;
         this.selectedProductsDataList = selectedProductsDataList;
@@ -74,7 +74,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
         this.discount_amount = discount_amount;
 
         for (int iter = 0; iter < this.selectedProductsDataList.size(); iter++) {
-            Log.i("haball_quantity_check", this.selectedProductsDataListQty.get(iter) + "'");
+            // Log.i("haball_quantity_check", this.selectedProductsDataListQty.get(iter) + "'");
             if (this.selectedProductsDataListQty.get(iter).equals("0") || this.selectedProductsDataListQty.get(iter).equals("")) {
                 this.selectedProductsDataListQty.set(iter, "0");
 
@@ -102,8 +102,8 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                 Gson gson = new Gson();
                 String json = gson.toJson(this.selectedProductsDataList);
                 String jsonqty = gson.toJson(this.selectedProductsDataListQty);
-                Log.i("jsonqty", jsonqty);
-                Log.i("json", json);
+                // Log.i("jsonqty", jsonqty);
+                // Log.i("json", json);
 
                 SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts_distributor",
                         Context.MODE_PRIVATE);
@@ -116,8 +116,8 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
 
         if (selectedProductsDataList.size() > 0) {
             for (int i = 0; i < selectedProductsDataList.size(); i++) {
-                Log.i("unit price", selectedProductsDataList.get(i).getUnitPrice());
-                Log.i("qty", selectedProductsDataListQty.get(i));
+                // Log.i("unit price", selectedProductsDataList.get(i).getUnitPrice());
+                // Log.i("qty", selectedProductsDataListQty.get(i));
                 if (!selectedProductsDataList.get(i).getUnitPrice().equals("") && !selectedProductsDataListQty.get(i).equals("")) {
                     if (selectedProductsDataList.get(i).getDiscountValue() != null) {
                         grossAmount += (Float.parseFloat(selectedProductsDataList.get(i).getUnitPrice()) - Float.parseFloat(selectedProductsDataList.get(i).getDiscountValue())) * Float.parseFloat(selectedProductsDataListQty.get(i));
@@ -164,9 +164,9 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
         this.selectedProductsDataListQty_temp = this.selectedProductsDataListQty;
 
 
-        Log.i("selectedProducts", String.valueOf(this.selectedProductsDataList));
-        Log.i("debug_back_pressed", String.valueOf(this.selectedProductsDataList_temp));
-        Log.i("debug_back_pressed", String.valueOf(this.selectedProductsDataListQty_temp));
+        // Log.i("selectedProducts", String.valueOf(this.selectedProductsDataList));
+        // Log.i("debug_back_pressed", String.valueOf(this.selectedProductsDataList_temp));
+        // Log.i("debug_back_pressed", String.valueOf(this.selectedProductsDataListQty_temp));
     }
 
     private void enableCheckoutButton() {
@@ -201,7 +201,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
 
         final int finalPosition = position;
 //        if (!selectedProductsDataListQty.get(position).equals("0") && !selectedProductsDataListQty.get(position).equals("")) {
-        Log.i("position", String.valueOf(finalPosition));
+        // Log.i("position", String.valueOf(finalPosition));
         holder.list_numberOFitems.setText(selectedProductsDataListQty.get(position));
 //        holder.list_product_code_value.setText(selectedProductsDataList.get(position).getCode());
         holder.list_txt_products_.setText(selectedProductsDataList.get(position).getTitle());
@@ -212,7 +212,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
 //            holder.list_price_value.setText("Rs. " + yourFormattedString1);
 //        }
 //        String yourFormattedString2;
-//        Log.i("getDiscountValue()", "'" + String.valueOf(selectedProductsDataList.get(position).getDiscountValue()) + "'");
+//        // Log.i("getDiscountValue()", "'" + String.valueOf(selectedProductsDataList.get(position).getDiscountValue()) + "'");
 //        if (selectedProductsDataList.get(position).getDiscountValue() != null)
 //            yourFormattedString2 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getDiscountValue()));
 //        else
@@ -316,7 +316,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                                 public void run() {
                                     loader.hideLoader();
 
-                                    Log.i("back_key_debug", "back from fragment 1");
+                                    // Log.i("back_key_debug", "back from fragment 1");
                                     SharedPreferences selectedProductsSP = context.getSharedPreferences("FromDraft_Temp",
                                             Context.MODE_PRIVATE);
                                     if (!selectedProductsSP.getString("fromDraft", "").equals("draft")) {
@@ -416,7 +416,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                         btn_discard.setText("Delete");
                         btn_discard.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
-                                Log.i("CreatePayment", "Button Clicked");
+                                // Log.i("CreatePayment", "Button Clicked");
                                 holder.list_numberOFitems.clearFocus();
                                 alertDialog.dismiss();
                                 deleteProduct(holder, finalPosition);
@@ -583,8 +583,8 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
 
 
                     if (holder.list_txt_products_.getText().equals(selectedProductsDataList.get(position).getTitle())) {
-                        Log.i("debugOrder_textChang", String.valueOf(selectedProductsDataList.get(position).getTitle()));
-                        Log.i("debugOrder_textChang1", String.valueOf(holder.list_txt_products_.getText()));
+                        // Log.i("debugOrder_textChang", String.valueOf(selectedProductsDataList.get(position).getTitle()));
+                        // Log.i("debugOrder_textChang1", String.valueOf(holder.list_txt_products_.getText()));
                         checkOutEnabler(holder, position, str_quantity);
                     }
                 }
@@ -612,7 +612,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                 btn_discard.setText("Delete");
                 btn_discard.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        Log.i("CreatePayment", "Button Clicked");
+                        // Log.i("CreatePayment", "Button Clicked");
                         alertDialog.dismiss();
                         deleteProduct(holder, finalPosition);
                     }
@@ -639,8 +639,8 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
 ////            Gson gson = new Gson();
 ////            String json = gson.toJson(selectedProductsDataList);
 ////            String jsonqty = gson.toJson(selectedProductsDataListQty);
-////            Log.i("jsonqty", jsonqty);
-////            Log.i("json", json);
+////            // Log.i("jsonqty", jsonqty);
+////            // Log.i("json", json);
 ////
 ////            SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts_distributor",
 ////                    Context.MODE_PRIVATE);
@@ -671,8 +671,8 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
 
 
             for (int i = 0; i < selectedProductsDataList.size(); i++) {
-                Log.i("unit price", selectedProductsDataList.get(i).getUnitPrice());
-                Log.i("qty", selectedProductsDataListQty.get(i));
+                // Log.i("unit price", selectedProductsDataList.get(i).getUnitPrice());
+                // Log.i("qty", selectedProductsDataListQty.get(i));
                 if (!selectedProductsDataList.get(i).getUnitPrice().equals("") && !selectedProductsDataListQty.get(i).equals("")) {
                     if (selectedProductsDataList.get(i).getDiscountValue() != null) {
                         grossAmount += (Float.parseFloat(selectedProductsDataList.get(i).getUnitPrice()) - Float.parseFloat(selectedProductsDataList.get(i).getDiscountValue())) * Float.parseFloat(selectedProductsDataListQty.get(i));
@@ -713,8 +713,8 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
         Gson gson = new Gson();
         String json = gson.toJson(selectedProductsDataList);
         String jsonqty = gson.toJson(selectedProductsDataListQty);
-        Log.i("jsonqty", jsonqty);
-        Log.i("json", json);
+        // Log.i("jsonqty", jsonqty);
+        // Log.i("json", json);
 
         SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts_distributor",
                 Context.MODE_PRIVATE);
@@ -758,8 +758,8 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
 
                     if (selectedProductsDataList.size() > 0) {
                         for (int i = 0; i < selectedProductsDataList.size(); i++) {
-                            Log.i("unit price", selectedProductsDataList.get(i).getUnitPrice());
-                            Log.i("qty", selectedProductsDataListQty.get(i));
+                            // Log.i("unit price", selectedProductsDataList.get(i).getUnitPrice());
+                            // Log.i("qty", selectedProductsDataListQty.get(i));
                             if (!selectedProductsDataList.get(i).getUnitPrice().equals("") && !selectedProductsDataListQty.get(i).equals("")) {
                                 if (selectedProductsDataList.get(i).getDiscountValue() != null) {
                                     grossAmount += (Float.parseFloat(selectedProductsDataList.get(i).getUnitPrice()) - Float.parseFloat(selectedProductsDataList.get(i).getDiscountValue())) * Float.parseFloat(selectedProductsDataListQty.get(i));
@@ -805,10 +805,10 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
     }
 
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
         final FragmentManager fm = activity.getSupportFragmentManager();
 
-        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+      final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
         LayoutInflater inflater = LayoutInflater.from(context);
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
@@ -822,7 +822,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
                 SharedPreferences tabsFromDraft = context.getSharedPreferences("OrderTabsFromDraft",
                         Context.MODE_PRIVATE);
@@ -846,7 +846,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
 
             }
         });
-
+        if(!alertDialog.isShowing())
         alertDialog.show();
     }
 
@@ -887,9 +887,9 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
     }
 
     private void checkOutEnabler(Order_Summary_Adapter_DistOrder.ViewHolder holder, int position, String s) {
-        Log.i("debugOrder_seldatalist", String.valueOf(selectedProductsDataList));
+        // Log.i("debugOrder_seldatalist", String.valueOf(selectedProductsDataList));
         if (selectedProductsDataList != null) {
-            Log.i("debugOrder_seldata_nnul", String.valueOf(selectedProductsDataList));
+            // Log.i("debugOrder_seldata_nnul", String.valueOf(selectedProductsDataList));
             int foundIndex = -1;
             for (int i = 0; i < selectedProductsDataList.size(); i++) {
                 if (selectedProductsDataList.get(i).getTitle().equals(String.valueOf(holder.list_txt_products_.getText()))) {
@@ -897,19 +897,19 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                     break;
                 }
             }
-            Log.i("debugOrder_seldata_ind", String.valueOf(foundIndex));
+            // Log.i("debugOrder_seldata_ind", String.valueOf(foundIndex));
 
             if (foundIndex != -1) {
                 selectedProductsDataListQty.set(foundIndex, String.valueOf(s));
             }
-            Log.i("debugOrder_seldata_qty", String.valueOf(selectedProductsDataListQty));
+            // Log.i("debugOrder_seldata_qty", String.valueOf(selectedProductsDataListQty));
         }
 
         Gson gson = new Gson();
         String json = gson.toJson(selectedProductsDataList);
         String jsonqty = gson.toJson(selectedProductsDataListQty);
-        Log.i("debugOrder_jsonqty", jsonqty);
-        Log.i("debugOrder_json", json);
+        // Log.i("debugOrder_jsonqty", jsonqty);
+        // Log.i("debugOrder_json", json);
         SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts_distributor",
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = selectedProducts.edit();
@@ -919,8 +919,8 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
 
         if (selectedProductsDataList.size() > 0) {
             for (int i = 0; i < selectedProductsDataList.size(); i++) {
-                Log.i("unit price", selectedProductsDataList.get(i).getUnitPrice());
-                Log.i("qty", selectedProductsDataListQty.get(i));
+                // Log.i("unit price", selectedProductsDataList.get(i).getUnitPrice());
+                // Log.i("qty", selectedProductsDataListQty.get(i));
                 if (!selectedProductsDataList.get(i).getUnitPrice().equals("") && !selectedProductsDataListQty.get(i).equals("")) {
                     if (selectedProductsDataList.get(i).getDiscountValue() != null) {
                         grossAmount += (Float.parseFloat(selectedProductsDataList.get(i).getUnitPrice()) - Float.parseFloat(selectedProductsDataList.get(i).getDiscountValue())) * Float.parseFloat(selectedProductsDataListQty.get(i));

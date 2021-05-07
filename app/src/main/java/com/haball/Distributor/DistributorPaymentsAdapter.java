@@ -47,20 +47,20 @@ public class DistributorPaymentsAdapter extends RecyclerView.Adapter<Distributor
         this.invoiceList = invoiceList;
         if (invoiceList != null && paymentsList != null) {
             size = paymentsList.size() + invoiceList.size();
-            Log.i("(size) if", String.valueOf(size));
-            Log.i("Payments List (size) if", String.valueOf(paymentsList.size()));
-            Log.i("Invoice List (size) if", String.valueOf(paymentsList.size()));
+            // Log.i("(size) if", String.valueOf(size));
+            // Log.i("Payments List (size) if", String.valueOf(paymentsList.size()));
+            // Log.i("Invoice List (size) if", String.valueOf(paymentsList.size()));
         } else if (paymentsList != null) {
             size = paymentsList.size();
-            Log.i("(size) elseif", String.valueOf(size));
+            // Log.i("(size) elseif", String.valueOf(size));
 
-            Log.i("Payments List(size)elif", String.valueOf(paymentsList.size()));
+            // Log.i("Payments List(size)elif", String.valueOf(paymentsList.size()));
 
         } else if (invoiceList != null) {
             size = invoiceList.size();
-            Log.i("(size) elseif", String.valueOf(size));
+            // Log.i("(size) elseif", String.valueOf(size));
 
-            Log.i("Invoice List(size)elif", String.valueOf(paymentsList.size()));
+            // Log.i("Invoice List(size)elif", String.valueOf(paymentsList.size()));
 
         }
 
@@ -75,7 +75,7 @@ public class DistributorPaymentsAdapter extends RecyclerView.Adapter<Distributor
 
     @Override
     public void onBindViewHolder(@NonNull DistributorPaymentsAdapter.ViewHolder holder, int position) {
-        Log.i("POSITION .. ", String.valueOf(position));
+        // Log.i("POSITION .. ", String.valueOf(position));
 
         if (position < paymentsList.size()) {
             holder.tv_state.setVisibility(View.GONE);

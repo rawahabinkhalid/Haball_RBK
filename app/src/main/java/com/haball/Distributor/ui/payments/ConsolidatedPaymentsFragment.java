@@ -285,7 +285,7 @@ public class ConsolidatedPaymentsFragment extends Fragment {
                 return view;
             }
         };
-        Log.i("aaaa1111", String.valueOf(consolidate_felter));
+        // Log.i("aaaa1111", String.valueOf(consolidate_felter));
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -305,7 +305,7 @@ public class ConsolidatedPaymentsFragment extends Fragment {
                     }
 
                     Filter_selected_value = String.valueOf(i - 1);
-                    Log.i("Filter_selected_value", Filter_selected_value);
+                    // Log.i("Filter_selected_value", Filter_selected_value);
                     try {
                         fetchFilteredConsolidatePayments();
                     } catch (JSONException e) {
@@ -328,8 +328,8 @@ public class ConsolidatedPaymentsFragment extends Fragment {
         conso_edittext.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
-                Log.i("text1", "check");
-                Log.i("text", String.valueOf(s));
+                // Log.i("text1", "check");
+                // Log.i("text", String.valueOf(s));
                 Filter_selected_value = String.valueOf(s);
                 if (!Filter_selected_value.equals("")) {
                     try {
@@ -419,10 +419,10 @@ public class ConsolidatedPaymentsFragment extends Fragment {
                 y = dy;
                 if (dy <= -5) {
                     scrollEvent.add("ScrollDown");
-//                            Log.i("scrolling", "Scroll Down");
+//                            // Log.i("scrolling", "Scroll Down");
                 } else if (dy > 5) {
                     scrollEvent.add("ScrollUp");
-//                            Log.i("scrolling", "Scroll Up");
+//                            // Log.i("scrolling", "Scroll Up");
                 }
                 String scroll = getScrollEvent();
 
@@ -487,8 +487,8 @@ public class ConsolidatedPaymentsFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
 
         JSONObject mapCount = new JSONObject();
         mapCount.put("Status", -1);
@@ -511,7 +511,7 @@ public class ConsolidatedPaymentsFragment extends Fragment {
                 new ProcessingError().showError(getContext());
 
                 error.printStackTrace();
-                Log.i("onErrorResponse", "Error");
+                // Log.i("onErrorResponse", "Error");
             }
         }) {
             @Override
@@ -577,8 +577,8 @@ public class ConsolidatedPaymentsFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
 
         JSONObject map = new JSONObject();
         map.put("DistributorId", Integer.parseInt(DistributorId));
@@ -589,7 +589,7 @@ public class ConsolidatedPaymentsFragment extends Fragment {
             @Override
             public void onResponse(JSONArray result) {
 //                loader.hideLoader();
-                Log.i("ConsolidatePayments", result.toString());
+                // Log.i("ConsolidatePayments", result.toString());
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<ConsolidatePaymentsModel>>() {
                 }.getType();
@@ -635,20 +635,20 @@ public class ConsolidatedPaymentsFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
 
         JSONObject map = new JSONObject();
         map.put("DistributorId", Integer.parseInt(DistributorId));
         map.put("TotalRecords", 10);
         map.put("PageNumber", 0.1);
         map.put(Filter_selected, Filter_selected_value);
-        Log.i("Map", String.valueOf(map));
+        // Log.i("Map", String.valueOf(map));
         MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, URL_CONSOLIDATE_PAYMENTS, map, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray result) {
 //                loader.hideLoader();
-                Log.i("ConsolidatePayments", result.toString());
+                // Log.i("ConsolidatePayments", result.toString());
 
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<ConsolidatePaymentsModel>>() {
@@ -703,9 +703,9 @@ public class ConsolidatedPaymentsFragment extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();
@@ -743,7 +743,7 @@ public class ConsolidatedPaymentsFragment extends Fragment {
                 }
             }
         }
-//        Log.i("distinct", scroll);
+//        // Log.i("distinct", scroll);
         return scroll;
     }
 }

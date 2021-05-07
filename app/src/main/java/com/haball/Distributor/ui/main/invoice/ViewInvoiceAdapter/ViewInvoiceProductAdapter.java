@@ -265,7 +265,7 @@ public class ViewInvoiceProductAdapter extends RecyclerView.Adapter<ViewInvoiceP
 //        String yourFormattedString3 = formatter1.format(Double.parseDouble(OrdersList.get(position).getTotalPrice()));
 //        holder.amount_value.setText("Rs.\u00A0" + yourFormattedString3);
 //        holder.amount_new_line_value.setText("Rs.\u00A0" + yourFormattedString3);
-//        Log.i("ellipsizing_textview", String.valueOf(isTextViewEllipsized(holder.amount_value)));
+//        // Log.i("ellipsizing_textview", String.valueOf(isTextViewEllipsized(holder.amount_value)));
 
     }
 

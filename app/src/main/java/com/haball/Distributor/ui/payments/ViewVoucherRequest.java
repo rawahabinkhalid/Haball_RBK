@@ -91,14 +91,14 @@ public class ViewVoucherRequest {
         SharedPreferences sharedPreferences1 = context.getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
 //        URL_VOUCHER_VIEW = URL_VOUCHER_VIEW+paymentId;
-        Log.i("URL_VOUCHER_VIEW ", URL_VOUCHER_VIEW);
+        // Log.i("URL_VOUCHER_VIEW ", URL_VOUCHER_VIEW);
 
         JSONObject map = new JSONObject();
         map.put("ID", Integer.parseInt(paymentId));
-        Log.i("map", String.valueOf(map));
+        // Log.i("map", String.valueOf(map));
 
         final Context finalcontext = context;
         InputStreamVolleyRequest request = new InputStreamVolleyRequest(Request.Method.POST, URL_VOUCHER_VIEW, map, new Response.Listener<byte[]>() {
@@ -107,8 +107,8 @@ public class ViewVoucherRequest {
                 loader.hideLoader();
                 // TODO handle the response
                 try {
-                    Log.i("responseByte", String.valueOf(response));
-                    Log.i("responseByte", String.valueOf(response.length));
+                    // Log.i("responseByte", String.valueOf(response));
+                    // Log.i("responseByte", String.valueOf(response.length));
                     if (response!=null) {
                         String dir = Environment.getExternalStorageDirectory() + "/Download/";
                         String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss").format(new Date());
@@ -118,7 +118,7 @@ public class ViewVoucherRequest {
                         fPdf.write(response);
                         fPdf.flush();
                         fPdf.close();
-                        Log.i("Download Complete", "Download complete.");
+                        // Log.i("Download Complete", "Download complete.");
                         Toast.makeText(mContext, "File saved in Downloads", Toast.LENGTH_LONG).show();
 
                         File file = new File(name); // Here you declare your pdf path
@@ -143,7 +143,7 @@ public class ViewVoucherRequest {
                     }
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
-                    Log.d("KEY_ERROR", "UNABLE TO DOWNLOAD FILE");
+                    // Log.d("KEY_ERROR", "UNABLE TO DOWNLOAD FILE");
                     Toast.makeText(context, "UNABLE TO DOWNLOAD FILE", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -187,14 +187,14 @@ public class ViewVoucherRequest {
         if (!URL_PDF_VIEW_INVOICE.contains("/" + paymentId))
             URL_PDF_VIEW_INVOICE = URL_PDF_VIEW_INVOICE + paymentId;
 
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
 //        URL_VOUCHER_VIEW = URL_VOUCHER_VIEW+paymentId;
-        Log.i("URL_VOUCHER_VIEW ", URL_VOUCHER_VIEW);
+        // Log.i("URL_VOUCHER_VIEW ", URL_VOUCHER_VIEW);
 
         JSONObject map = new JSONObject();
         map.put("ID", Integer.parseInt(paymentId));
-        Log.i("map", String.valueOf(map));
+        // Log.i("map", String.valueOf(map));
 
         final Context finalcontext = context;
         InputStreamVolleyRequest request = new InputStreamVolleyRequest(Request.Method.GET, URL_PDF_VIEW_INVOICE, map, new Response.Listener<byte[]>() {
@@ -203,8 +203,8 @@ public class ViewVoucherRequest {
                 loader.hideLoader();
                 // TODO handle the response
                 try {
-                    Log.i("responseByte", String.valueOf(response));
-                    Log.i("responseByte", String.valueOf(response.length));
+                    // Log.i("responseByte", String.valueOf(response));
+                    // Log.i("responseByte", String.valueOf(response.length));
                     if (response!=null) {
                         String dir = Environment.getExternalStorageDirectory() + "/Download/";
                         String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss").format(new Date());
@@ -214,7 +214,7 @@ public class ViewVoucherRequest {
                         fPdf.write(response);
                         fPdf.flush();
                         fPdf.close();
-                        Log.i("Download Complete", "Download complete.");
+                        // Log.i("Download Complete", "Download complete.");
                         Toast.makeText(mContext, "File saved in Downloads", Toast.LENGTH_LONG).show();
 
                         File file = new File(name); // Here you declare your pdf path
@@ -239,7 +239,7 @@ public class ViewVoucherRequest {
                     }
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
-                    Log.d("KEY_ERROR", "UNABLE TO DOWNLOAD FILE");
+                    // Log.d("KEY_ERROR", "UNABLE TO DOWNLOAD FILE");
                     Toast.makeText(context, "UNABLE TO DOWNLOAD FILE", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }

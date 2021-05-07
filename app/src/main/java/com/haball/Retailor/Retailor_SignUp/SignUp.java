@@ -260,7 +260,7 @@ public class SignUp extends AppCompatActivity implements View.OnFocusChangeListe
             map.put("CityId", 1);
             map.put("PostCode", "12345");
 
-            Log.i("MAP OBJECT", String.valueOf(map));
+            // Log.i("MAP OBJECT", String.valueOf(map));
             new SSL_HandShake().handleSSLHandshake();
 //            final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(this);
 
@@ -268,7 +268,7 @@ public class SignUp extends AppCompatActivity implements View.OnFocusChangeListe
                 @Override
                 public void onResponse(JSONObject result) {
                     loader.hideLoader();
-                    Log.e("RESPONSE", result.toString());
+                    // Log.e("RESPONSE", result.toString());
                     try {
                         if (!result.get("RetailerCode").toString().isEmpty()) {
                             Intent i = new Intent(SignUp.this, RetailerLogin.class);
@@ -327,7 +327,7 @@ public class SignUp extends AppCompatActivity implements View.OnFocusChangeListe
 
 
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
 //        final FragmentManager fm = getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -339,7 +339,7 @@ public class SignUp extends AppCompatActivity implements View.OnFocusChangeListe
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
                 finish();
             }
@@ -353,7 +353,7 @@ public class SignUp extends AppCompatActivity implements View.OnFocusChangeListe
 
             }
         });
-
+        if(!alertDialog.isShowing())
         alertDialog.show();
     }
 

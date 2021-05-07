@@ -25,7 +25,7 @@ public class DistributorShipment_OrderDetails extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.distributor_shipment__view_shipment_2_fragment, container, false);
-        Log.i("OrderDetails()", "OrderDetails()");
+        // Log.i("OrderDetails()", "OrderDetails()");
         return root;
     }
 

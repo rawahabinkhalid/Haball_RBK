@@ -84,7 +84,7 @@ public class SupportDashboardAdapter extends RecyclerView.Adapter<SupportDashboa
         if (supportList.size() == 3 || supportList.size() == 4) {
             if (position == (supportList.size() - 1)) {
                 //        if (position == 2) {
-                Log.i("DebugSupportFilter_In", supportList.get(position).getId());
+                // Log.i("DebugSupportFilter_In", supportList.get(position).getId());
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.WRAP_CONTENT,
                         RelativeLayout.LayoutParams.WRAP_CONTENT
@@ -170,7 +170,7 @@ public class SupportDashboardAdapter extends RecyclerView.Adapter<SupportDashboa
 //                                        new HaballError().printErrorMessage(error);
 //
 //                                        error.printStackTrace();
-//                                        Log.i("onErrorResponse", "Error");
+//                                        // Log.i("onErrorResponse", "Error");
 //                                    }
 //                                });
 //                                Volley.newRequestQueue(mContxt).add(request);
@@ -249,7 +249,7 @@ public class SupportDashboardAdapter extends RecyclerView.Adapter<SupportDashboa
     }
 
     private void showDeleteTicketDialog(final int position) {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
 //        final FragmentManager fm = getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(mContxt).create();
@@ -333,9 +333,9 @@ public class SupportDashboardAdapter extends RecyclerView.Adapter<SupportDashboa
     //             try {
     //                 String message = "";
     //                 String responseBody = new String(error.networkResponse.data, "utf-8");
-    //                 Log.i("responseBody", responseBody);
+    //                 // Log.i("responseBody", responseBody);
     //                 JSONObject data = new JSONObject(responseBody);
-    //                 Log.i("data", String.valueOf(data));
+    //                 // Log.i("data", String.valueOf(data));
     //                 Iterator<String> keys = data.keys();
     //                 while (keys.hasNext()) {
     //                     String key = keys.next();

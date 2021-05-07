@@ -53,8 +53,8 @@ public class OrdersItemsAdapter extends RecyclerView.Adapter<OrdersItemsAdapter.
         if(!object_string.equals("")) {
             selectedProductsDataList = gson.fromJson(object_string, type);
             selectedProductsQuantityList = gson.fromJson(object_stringqty, typeString);
-            Log.i("selectedProductsQty", String.valueOf(object_stringqty));
-            Log.i("selectedProducts", String.valueOf(object_string));
+            // Log.i("selectedProductsQty", String.valueOf(object_stringqty));
+            // Log.i("selectedProducts", String.valueOf(object_string));
         }
     }
 
@@ -74,7 +74,7 @@ public class OrdersItemsAdapter extends RecyclerView.Adapter<OrdersItemsAdapter.
                 Gson gson = new Gson();
                 String json = gson.toJson(selectedProductsDataList);
                 if (selectedProductsDataList.get(j).getTitle().equals(productsDataList.get(position).getTitle())) {
-                    Log.i("found", String.valueOf(productsDataList.get(position).getTitle()));
+                    // Log.i("found", String.valueOf(productsDataList.get(position).getTitle()));
                     holder.btn_cart.setBackgroundResource(R.drawable.button_round);
                     holder.btn_cart.setEnabled(true);
                     holder.quantity.setText(selectedProductsQuantityList.get(j));
@@ -123,7 +123,7 @@ public class OrdersItemsAdapter extends RecyclerView.Adapter<OrdersItemsAdapter.
 
                         if (foundIndex != -1)
                             selectedProductsQuantityList.set(foundIndex, String.valueOf(holder.quantity.getText()));
-                        Log.i("selected updated qty", String.valueOf(selectedProductsQuantityList));
+                        // Log.i("selected updated qty", String.valueOf(selectedProductsQuantityList));
                     }
                 } else {
                     selectedProductsDataList.add(productsDataList.get(position));
@@ -136,8 +136,8 @@ public class OrdersItemsAdapter extends RecyclerView.Adapter<OrdersItemsAdapter.
                 Gson gson = new Gson();
                 String json = gson.toJson(selectedProductsDataList);
                 String jsonqty = gson.toJson(selectedProductsQuantityList);
-                Log.i("jsonqty", jsonqty);
-                Log.i("json", json);
+                // Log.i("jsonqty", jsonqty);
+                // Log.i("json", json);
                 SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts",
                         Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = selectedProducts.edit();

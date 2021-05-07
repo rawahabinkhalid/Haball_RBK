@@ -179,21 +179,21 @@ public class Notification_Fragment extends Fragment {
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
         UserId = sharedPreferences.getString("UserId", "");
-        Log.i("Token  ", Token);
+        // Log.i("Token  ", Token);
 
         JSONObject map = new JSONObject();
 //        map.put("userId", Integer.parseInt(UserId));
         map.put("TotalRecords", 10);
         map.put("PageNumber", pageNumber);
 
-        Log.i("map_SSSS", String.valueOf(map));
+        // Log.i("map_SSSS", String.valueOf(map));
         new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL_Notification, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 loader.hideLoader();
-                Log.i("response_support ", String.valueOf(response));
+                // Log.i("response_support ", String.valueOf(response));
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<Retailer_Notification_Model>>() {
                 }.getType();
@@ -250,26 +250,26 @@ public class Notification_Fragment extends Fragment {
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
         UserId = sharedPreferences.getString("UserId", "");
-        Log.i("Token  ", Token);
+        // Log.i("Token  ", Token);
         pageNumber = 0;
         JSONObject map = new JSONObject();
 //        map.put("userId", Integer.parseInt(UserId));
         map.put("TotalRecords", 10);
         map.put("PageNumber", pageNumber);
 
-        Log.i("map_SSSS", String.valueOf(map));
+        // Log.i("map_SSSS", String.valueOf(map));
         new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, URL_Notification, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 loader.hideLoader();
-                Log.i("response_support ", String.valueOf(response));
+                // Log.i("response_support ", String.valueOf(response));
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<Retailer_Notification_Model>>() {
                 }.getType();
                 try {
-                    Log.i("response_support_1", String.valueOf(response.getJSONArray("data")));
+                    // Log.i("response_support_1", String.valueOf(response.getJSONArray("data")));
 //                    SupportList = gson.fromJson(String.valueOf(response.get(0)), type);
                     NotificationList = gson.fromJson(String.valueOf(response.getJSONArray("data")), type);
 
@@ -342,7 +342,7 @@ public class Notification_Fragment extends Fragment {
                 }
             }
         }
-        Log.i("scrolling123", scroll);
+        // Log.i("scrolling123", scroll);
         return scroll;
     }
 
@@ -417,7 +417,7 @@ public class Notification_Fragment extends Fragment {
                                     tv_notification_no_data.setVisibility(View.VISIBLE);
                                 }
 
-                                Log.i("notificationTest12", String.valueOf(NotificationList));
+                                // Log.i("notificationTest12", String.valueOf(NotificationList));
                                 NotificationAdapter = new Notification_Adapter(getContext(), NotificationList);
                                 recyclerView.setAdapter(NotificationAdapter);
 

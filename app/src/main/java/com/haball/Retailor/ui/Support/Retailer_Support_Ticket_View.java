@@ -148,12 +148,12 @@ public class Retailer_Support_Ticket_View extends Fragment {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token  ", Token);
+        // Log.i("Token  ", Token);
 
 //        statusKVP = new StatusKVP(getContext(), Token);
 
-//        Log.i("statuskvp", "String.valueOf(RetailerContactingMethodKVP)");
-//        Log.i("statuskvp", String.valueOf(RetailerContactingMethodKVP));
+//        // Log.i("statuskvp", "String.valueOf(RetailerContactingMethodKVP)");
+//        // Log.i("statuskvp", String.valueOf(RetailerContactingMethodKVP));
         SharedPreferences prefs = getContext().getSharedPreferences("StatusKVP", getContext().MODE_PRIVATE);
         RetailerIssueTypePrivateKVPString = prefs.getString("RetailerIssueTypePrivateKVP", "");
         RetailerContactingMethodKVPString = prefs.getString("RetailerContactingMethodKVP", "");
@@ -167,8 +167,8 @@ public class Retailer_Support_Ticket_View extends Fragment {
 //        prefs.edit().putString("RetailerCriticalityPrivateKVP", gson.toJson(RetailerCriticalityPrivateKVP)).apply();
 
 
-        Log.i("statuskvp", "String.valueOf(RetailerIssueTypePrivateKVP)");
-        Log.i("statuskvp", String.valueOf(RetailerIssueTypePrivateKVP));
+        // Log.i("statuskvp", "String.valueOf(RetailerIssueTypePrivateKVP)");
+        // Log.i("statuskvp", String.valueOf(RetailerIssueTypePrivateKVP));
 
 
         fetchSupportData();
@@ -186,7 +186,7 @@ public class Retailer_Support_Ticket_View extends Fragment {
     }
 
     private void showDeleteTicketDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
 //        final FragmentManager fm = getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
@@ -234,7 +234,7 @@ public class Retailer_Support_Ticket_View extends Fragment {
                 Context.MODE_PRIVATE);
         ID = sharedPreferences3.getString("SupportId", "");
 
-        Log.i("IDDDD", ID);
+        // Log.i("IDDDD", ID);
         if (!URL_SUPPORT_VIEW.contains("/" + ID))
             URL_SUPPORT_VIEW = URL_SUPPORT_VIEW + ID;
         new SSL_HandShake().handleSSLHandshake();
@@ -250,15 +250,15 @@ public class Retailer_Support_Ticket_View extends Fragment {
                 RetailerIssueTypePrivateKVP = gson.fromJson(RetailerIssueTypePrivateKVPString, type);
                 RetailerContactingMethodKVP = gson.fromJson(RetailerContactingMethodKVPString, type);
                 RetailerCriticalityPrivateKVP = gson.fromJson(RetailerCriticalityPrivateKVPString, type);
-                Log.i("statuskvp1", String.valueOf(RetailerIssueTypePrivateKVPString));
-                Log.i("statuskvp1", String.valueOf(RetailerIssueTypePrivateKVP));
+                // Log.i("statuskvp1", String.valueOf(RetailerIssueTypePrivateKVPString));
+                // Log.i("statuskvp1", String.valueOf(RetailerIssueTypePrivateKVP));
 //                RetailerIssueTypePrivateKVP = statusKVP.getRetailerIssueTypePrivateKVP();
 //                RetailerCriticalityPrivateKVP = statusKVP.getRetailerCriticalityPrivateKVP();
 //                RetailerContactingMethodKVP = statusKVP.getRetailerContactingMethodKVP();
-//                Log.i("statuskvp", "String.valueOf(RetailerContactingMethodKVP)");
-//                Log.i("statuskvp", String.valueOf(RetailerContactingMethodKVP));
+//                // Log.i("statuskvp", "String.valueOf(RetailerContactingMethodKVP)");
+//                // Log.i("statuskvp", String.valueOf(RetailerContactingMethodKVP));
 
-                Log.i("ticket_viewdata", String.valueOf(response));
+                // Log.i("ticket_viewdata", String.valueOf(response));
 
                 String issue_type = "", criticality = "", preffered_contact = "";
                 try {
@@ -282,11 +282,11 @@ public class Retailer_Support_Ticket_View extends Fragment {
                     }
 
                     ID = String.valueOf(response.get("ID"));
-                    Log.i("statuskvp2", String.valueOf(RetailerIssueTypePrivateKVP));
+                    // Log.i("statuskvp2", String.valueOf(RetailerIssueTypePrivateKVP));
 
                     for (Map.Entry<String, String> entry : RetailerIssueTypePrivateKVP.entrySet()) {
-                        Log.i("statuskvp3", String.valueOf(entry));
-                        Log.i("statuskvp3", String.valueOf(response.get("IssueType")));
+                        // Log.i("statuskvp3", String.valueOf(entry));
+                        // Log.i("statuskvp3", String.valueOf(response.get("IssueType")));
                         if (entry.getKey().equals(String.valueOf(response.get("IssueType"))))
                             issue_type = entry.getValue();
                     }
@@ -315,7 +315,7 @@ public class Retailer_Support_Ticket_View extends Fragment {
                 new HaballError().printErrorMessage(getContext(), error);
 
                 error.printStackTrace();
-                Log.i("onErrorResponse", "Error");
+                // Log.i("onErrorResponse", "Error");
             }
         }) {
             @Override
@@ -337,10 +337,10 @@ public class Retailer_Support_Ticket_View extends Fragment {
 //
 //
 //        ID = sharedPreferences3.getString("SupportId", "");
-//        Log.i("SupportId", ID);
+//        // Log.i("SupportId", ID);
 //        if (!URL_SUPPORT_VIEW.contains("//" + ID)) {
 //            URL_SUPPORT_VIEW = URL_SUPPORT_VIEW + ID;
-//            Log.i("URL_SUPPORT_VIEW", URL_SUPPORT_VIEW);
+//            // Log.i("URL_SUPPORT_VIEW", URL_SUPPORT_VIEW);
 //        }
 //
 //        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, URL_SUPPORT_VIEW, null, new Response.Listener<JSONObject>() {
@@ -367,7 +367,7 @@ public class Retailer_Support_Ticket_View extends Fragment {
 //                new HaballError().printErrorMessage(error);
 //
 //                error.printStackTrace();
-//                Log.i("onErrorResponse", "Error");
+//                // Log.i("onErrorResponse", "Error");
 //            }
 //        });
 //        Volley.newRequestQueue(getContext()).add(request);
@@ -416,9 +416,9 @@ public class Retailer_Support_Ticket_View extends Fragment {
     //             try {
     //                 String message = "";
     //                 String responseBody = new String(error.networkResponse.data, "utf-8");
-    //                 Log.i("responseBody", responseBody);
+    //                 // Log.i("responseBody", responseBody);
     //                 JSONObject data = new JSONObject(responseBody);
-    //                 Log.i("data", String.valueOf(data));
+    //                 // Log.i("data", String.valueOf(data));
     //                 Iterator<String> keys = data.keys();
     //                 while (keys.hasNext()) {
     //                     String key = keys.next();

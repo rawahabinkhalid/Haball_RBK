@@ -114,6 +114,8 @@
                 android:layout_height="match_parent"
                 android:inputType="number"
                 android:maxLength="9"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:theme="@style/TextLabelEditeText"
                 />
         </com.google.android.material.textfield.TextInputLayout>

@@ -113,6 +113,7 @@ public class PlaceholderFragment extends Fragment {
     private int keyDel;
     private Loader loader;
     private Button btn_back;
+    private AlertDialog alertDialog;
 
     public static PlaceholderFragment newInstance(int index) {
         PlaceholderFragment fragment = new PlaceholderFragment();
@@ -226,6 +227,7 @@ public class PlaceholderFragment extends Fragment {
                     }
                 });
                 Rmobile.setOnTouchListener(new View.OnTouchListener() {
+                    @SuppressLint("ClickableViewAccessibility")
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         final int DRAWABLE_LEFT = 0;
@@ -240,9 +242,9 @@ public class PlaceholderFragment extends Fragment {
                                 Rmobile.setFocusable(true);
                                 Rmobile.setFocusableInTouchMode(true);
                                 Rmobile.requestFocus();
+
                                 InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-
                                 Rmobile.setSelection(Rmobile.getText().length());
 //                                btn_save_password.setEnabled(true);
 //                                btn_save_password.setBackground(getResources().getDrawable(R.drawable.button_background));
@@ -363,7 +365,7 @@ public class PlaceholderFragment extends Fragment {
                 });
 
                 profileData();
-
+                alertDialog = new AlertDialog.Builder(getContext()).create();
                 break;
 
             }
@@ -457,7 +459,7 @@ public class PlaceholderFragment extends Fragment {
                     public void afterTextChanged(Editable s) {
                         checkFieldsForEmptyValuesUpdatePass();
 //                        if (txt_newpassword.getText().toString().equals(txt_cfmpassword.getText().toString())) {
-//                            Log.i("Password_Log", "in password check2");
+//                            // Log.i("Password_Log", "in password check2");
 //                            confirm_password_check = true;
 ////            layout_password3.setPasswordVisibilityToggleEnabled(true);
 //                            layout_password3.setBoxStrokeColor(getResources().getColor(R.color.box_stroke));
@@ -499,6 +501,7 @@ public class PlaceholderFragment extends Fragment {
                 txt_newpassword.addTextChangedListener(textWatcher_newPass);
                 txt_cfmpassword.addTextChangedListener(textWatcher_cfmPass);
             }
+            alertDialog = new AlertDialog.Builder(getContext()).create();
             break;
         }
 
@@ -542,7 +545,7 @@ public class PlaceholderFragment extends Fragment {
 //    }
 //
 //    private void showDiscardDialog() {
-//        Log.i("CreatePayment", "In Dialog");
+//        // Log.i("CreatePayment", "In Dialog");
 //        final FragmentManager fm = getActivity().getSupportFragmentManager();
 //
 //        final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
@@ -552,7 +555,7 @@ public class PlaceholderFragment extends Fragment {
 //        Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
 //        btn_discard.setOnClickListener(new View.OnClickListener() {
 //            public void onClick(View v) {
-//                Log.i("CreatePayment", "Button Clicked");
+//                // Log.i("CreatePayment", "Button Clicked");
 //                alertDialog.dismiss();
 //                fm.popBackStack();
 //            }
@@ -606,18 +609,18 @@ public class PlaceholderFragment extends Fragment {
                         || rmobile.length() != 12
 //                || comment.equals("")
                 ) {
-                    Log.i("debugProfileVali", "true");
-                    Log.i("debugProfileVali", "'" + remail + "'");
-                    Log.i("debugProfileVali", "'" + rmobile + "'");
-                    Log.i("debugProfileVali", "'" + r_Address + "'");
+                    // Log.i("debugProfileVali", "true");
+                    // Log.i("debugProfileVali", "'" + remail + "'");
+                    // Log.i("debugProfileVali", "'" + rmobile + "'");
+                    // Log.i("debugProfileVali", "'" + r_Address + "'");
                     btn_save_password.setEnabled(false);
                     btn_save_password.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
 
                 } else {
-                    Log.i("debugProfileVali", "false");
-                    Log.i("debugProfileVali", "'" + remail + "'");
-                    Log.i("debugProfileVali", "'" + rmobile + "'");
-                    Log.i("debugProfileVali", "'" + r_Address + "'");
+                    // Log.i("debugProfileVali", "false");
+                    // Log.i("debugProfileVali", "'" + remail + "'");
+                    // Log.i("debugProfileVali", "'" + rmobile + "'");
+                    // Log.i("debugProfileVali", "'" + r_Address + "'");
 
                     btn_save_password.setEnabled(true);
                     btn_save_password.setBackground(getResources().getDrawable(R.drawable.button_background));
@@ -663,10 +666,17 @@ public class PlaceholderFragment extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
 
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
-                    Remail.clearFocus();
-                    Rmobile.clearFocus();
-                    R_Address.clearFocus();
-                    showDiscardDialog();
+                   // Remail.clearFocus()
+                    // ;
+                    if (changed) {
+                        showDiscardDialog();
+                        return true;
+                    }
+                    else {
+                        Intent login_intent = new Intent(((FragmentActivity) getContext()), RetailorDashboard.class);
+                        ((FragmentActivity) getContext()).startActivity(login_intent);
+                        ((FragmentActivity) getContext()).finish();
+                    }
                 }
                 return false;
             }
@@ -690,6 +700,7 @@ public class PlaceholderFragment extends Fragment {
                         Intent login_intent = new Intent(((FragmentActivity) getContext()), RetailorDashboard.class);
                         ((FragmentActivity) getContext()).startActivity(login_intent);
                         ((FragmentActivity) getContext()).finish();
+                        return true;
                     }
                 }
                 return false;
@@ -699,14 +710,23 @@ public class PlaceholderFragment extends Fragment {
     }
 
     private void onResumePassword() {
+        super.onResume();
         View.OnKeyListener listener = new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
-                    txt_password.clearFocus();
-                    txt_newpassword.clearFocus();
-                    txt_cfmpassword.clearFocus();
-                    showDiscardDialog();
+                    String txtpassword = txt_password.getText().toString();
+                    String txtnewpassword = txt_newpassword.getText().toString();
+                    String txtcfmpassword = txt_cfmpassword.getText().toString();
+                    if (!txtpassword.equals("") || !txtnewpassword.equals("") || !txtcfmpassword.equals("")) {
+                        showDiscardDialog();
+
+                        return true;
+                    } else {
+                        Intent login_intent = new Intent(((FragmentActivity) getContext()), RetailorDashboard.class);
+                        ((FragmentActivity) getContext()).startActivity(login_intent);
+                        ((FragmentActivity) getContext()).finish();
+                    }
                 }
                 return false;
             }
@@ -720,8 +740,10 @@ public class PlaceholderFragment extends Fragment {
         getView().setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
+
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
                     // handle back button's click listener
+
 //                    Toast.makeText(getActivity(), "Back press", Toast.LENGTH_SHORT).show();
                     String txtpassword = txt_password.getText().toString();
                     String txtnewpassword = txt_newpassword.getText().toString();
@@ -735,6 +757,7 @@ public class PlaceholderFragment extends Fragment {
                         ((FragmentActivity) getContext()).finish();
                     }
                 }
+
                 return false;
             }
         });
@@ -742,10 +765,9 @@ public class PlaceholderFragment extends Fragment {
     }
 
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
-        final FragmentManager fm = getActivity().getSupportFragmentManager();
 
-        final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+        // Log.i("CreatePayment", "In Dialog");
+        final FragmentManager fm = getActivity().getSupportFragmentManager();
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
@@ -759,8 +781,9 @@ public class PlaceholderFragment extends Fragment {
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
+
 //                fm.popBackStack();
                 SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
                         Context.MODE_PRIVATE);
@@ -780,10 +803,18 @@ public class PlaceholderFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
+                alertDialog.dismiss();
 
             }
         });
 
+        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                alertDialog.dismiss();
+            }
+        });
+        if(!alertDialog.isShowing())
         alertDialog.show();
     }
 
@@ -823,7 +854,7 @@ public class PlaceholderFragment extends Fragment {
                 SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
                         Context.MODE_PRIVATE);
                 Token = sharedPreferences.getString("Login_Token", "");
-                Log.i("Login_Token", Token);
+                // Log.i("Login_Token", Token);
                 SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                         Context.MODE_PRIVATE);
                 ID = sharedPreferences1.getString("ID", "");
@@ -838,7 +869,7 @@ public class PlaceholderFragment extends Fragment {
                 map.put("ConfirmPassword", txt_cfmpassword.getText().toString());
 //            map.put("ID", ID);
                 map.put("Username", username);
-                Log.i("MapChangePass", map.toString());
+                // Log.i("MapChangePass", map.toString());
                 new SSL_HandShake().handleSSLHandshake();
 //            final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
                 BooleanRequest sr = new BooleanRequest(Request.Method.POST, ChangePass_URL, String.valueOf(map), new Response.Listener<Boolean>() {
@@ -846,7 +877,7 @@ public class PlaceholderFragment extends Fragment {
                     @Override
                     public void onResponse(Boolean result) {
                         loader.hideLoader();
-                        Log.i("response", String.valueOf(result));
+                        // Log.i("response", String.valueOf(result));
                         if (result) {
 //                            Toast.makeText(getActivity(), result.get("message").toString(), Toast.LENGTH_SHORT).show();
 //                        } else {
@@ -1167,9 +1198,9 @@ public class PlaceholderFragment extends Fragment {
             SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                     Context.MODE_PRIVATE);
             RetailerId = sharedPreferences1.getString("Retailer_Id", "");
-            Log.i("RetailerId ", RetailerId);
+            // Log.i("RetailerId ", RetailerId);
 //        PROFILE_URL = PROFILE_URL + RetailerId;
-            Log.i("Token Retailer ", Token);
+            // Log.i("Token Retailer ", Token);
 
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("ID", RetailerId);
@@ -1263,9 +1294,9 @@ public class PlaceholderFragment extends Fragment {
         //         try {
         //             String message = "";
         //             String responseBody = new String(error.networkResponse.data, "utf-8");
-        //             Log.i("responseBody", responseBody);
+        //             // Log.i("responseBody", responseBody);
         //             JSONObject data = new JSONObject(responseBody);
-        //             Log.i("data", String.valueOf(data));
+        //             // Log.i("data", String.valueOf(data));
         //             Iterator<String> keys = data.keys();
         //             while (keys.hasNext()) {
         //                 String key = keys.next();
@@ -1290,9 +1321,9 @@ public class PlaceholderFragment extends Fragment {
             SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                     Context.MODE_PRIVATE);
             RetailerId = sharedPreferences1.getString("Retailer_Id", "");
-            Log.i("RetailerId ", RetailerId);
+            // Log.i("RetailerId ", RetailerId);
             PROFILE_URL = PROFILE_URL + RetailerId;
-            Log.i("Token Retailer ", Token);
+            // Log.i("Token Retailer ", Token);
             new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
             JsonObjectRequest sr = new JsonObjectRequest(Request.Method.GET, PROFILE_URL, null, new Response.Listener<JSONObject>() {
@@ -1300,7 +1331,7 @@ public class PlaceholderFragment extends Fragment {
                 public void onResponse(JSONObject result) {
                     loader.hideLoader();
                     try {
-                        Log.i("aaaaa", String.valueOf(result));
+                        // Log.i("aaaaa", String.valueOf(result));
                         CompanyName = result.getString("CompanyName");
                         Rfirstname.setText(result.getString("Name"));
                         Remail.setText(result.getString("Email"));

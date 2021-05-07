@@ -76,12 +76,12 @@ public class RetailerViewOrderProductAdapterBackup extends RecyclerView.Adapter<
         holder.product_code.append(ss1);
 
 //        holder.product_code.measure(0, 0);
-//        Log.i("height_debug", String.valueOf(holder.product_code.getHeight()));
-//        Log.i("height_debug", String.valueOf(holder.product_code.getLineCount()));
-//        Log.i("height_debug", String.valueOf(holder.product_code.getMeasuredHeight()));
+//        // Log.i("height_debug", String.valueOf(holder.product_code.getHeight()));
+//        // Log.i("height_debug", String.valueOf(holder.product_code.getLineCount()));
+//        // Log.i("height_debug", String.valueOf(holder.product_code.getMeasuredHeight()));
 
 
-//        Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
+//        // Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
 //        holder.product_code.append(ss1);
 //        if (holder.product_code.getLayout() == null) {
 //            holder.product_code.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
@@ -95,25 +95,25 @@ public class RetailerViewOrderProductAdapterBackup extends RecyclerView.Adapter<
 //        } else {
 //            prevLineCount = holder.product_code.getLineCount();
 //        }
-        Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
+        // Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
 
         holder.product_code.append("\n");
 //        newLineCount = getHeight(String.valueOf(holder.product_code.getText()), holder.product_code);
 //        holder.product_code.onPreDraw();
-//        Log.i("height_debug_newLine", String.valueOf(holder.product_code.getLineCount()));
+//        // Log.i("height_debug_newLine", String.valueOf(holder.product_code.getLineCount()));
 
 //        holder.product_code.measure(0, 0);
-//        Log.i("height_debug", String.valueOf(holder.product_code .getHeight()));
-//        Log.i("height_debug", String.valueOf(holder.product_code.getLineCount()));
-//        Log.i("height_debug", String.valueOf(holder.product_code.getMeasuredHeight()));
+//        // Log.i("height_debug", String.valueOf(holder.product_code .getHeight()));
+//        // Log.i("height_debug", String.valueOf(holder.product_code.getLineCount()));
+//        // Log.i("height_debug", String.valueOf(holder.product_code.getMeasuredHeight()));
 //        holder.product_code.post(new Runnable() {
 //            @Override
 //            public void run() {
-//                Log.v("Line count: ", holder.product_code.getLineCount()+"");
+//                // Log.v("Line count: ", holder.product_code.getLineCount()+"");
 //            }
 //        });
 
-//        Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
+//        // Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
 //        holder.product_code.append(ss1);
 //        if (holder.product_code.getLayout() == null) {
 //            holder.product_code.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
@@ -127,7 +127,7 @@ public class RetailerViewOrderProductAdapterBackup extends RecyclerView.Adapter<
 //        } else {
 //            prevLineCount = holder.product_code.getLineCount();
 //        }
-        Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
+        // Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
 
 
         holder.product_code.append("Price:\u00A0");
@@ -141,7 +141,7 @@ public class RetailerViewOrderProductAdapterBackup extends RecyclerView.Adapter<
         holder.product_code.append(ss1);
 
 //        holder.product_code.onPreDraw();
-//        Log.i("height_debug_newLine", String.valueOf(holder.product_code.getLineCount()));
+//        // Log.i("height_debug_newLine", String.valueOf(holder.product_code.getLineCount()));
 
 
 //        ss1_temp = new SpannableString(holder.product_code.getText());
@@ -153,9 +153,9 @@ public class RetailerViewOrderProductAdapterBackup extends RecyclerView.Adapter<
 
 //        holder.product_code.invalidate();
 //        prevLineCount = holder.product_code.getLineCount() * holder.product_code.getLineHeight();
-//        Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
+//        // Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
 
-//        Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
+//        // Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
 //        holder.product_code.append(ss1);
 //        if (holder.product_code.getLayout() == null) {
 //            holder.product_code.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
@@ -169,7 +169,7 @@ public class RetailerViewOrderProductAdapterBackup extends RecyclerView.Adapter<
 //        } else {
 //            prevLineCount = holder.product_code.getLineCount();
 //        }
-        Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
+        // Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
 
         if (OrdersList.get(position).getUOMTitle() != null && !OrdersList.get(position).getUOMTitle().equals("null")) {
             holder.product_code.append("            ");
@@ -181,7 +181,7 @@ public class RetailerViewOrderProductAdapterBackup extends RecyclerView.Adapter<
             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
             holder.product_code.append(ss1);
 //
-//            Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
+//            // Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
 //            holder.product_code.append(ss1);
 //            if (holder.product_code.getLayout() == null) {
 //                holder.product_code.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
@@ -195,11 +195,11 @@ public class RetailerViewOrderProductAdapterBackup extends RecyclerView.Adapter<
 //            } else {
 //                prevLineCount = holder.product_code.getLineCount();
 //            }
-            Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
+            // Log.i("height_debug_prevLine", String.valueOf(prevLineCount));
 //
 ////            holder.product_code.invalidate();
 ////            newLineCount = holder.product_code.getLineCount() * holder.product_code.getLineHeight();
-//            Log.i("height_debug_newLine", String.valueOf(newLineCount));
+//            // Log.i("height_debug_newLine", String.valueOf(newLineCount));
 //
 //            if(prevLineCount == newLineCount) {
 //                holder.product_code.setText(ss1_temp);
@@ -284,7 +284,7 @@ public class RetailerViewOrderProductAdapterBackup extends RecyclerView.Adapter<
 //        SharedPreferences sharedPreferences1 = context.getSharedPreferences("OrderId",
 //                Context.MODE_PRIVATE);
 //        String InvoiceStatus = sharedPreferences1.getString("InvoiceStatus", "null");
-//        Log.i("InvoiceStatus", InvoiceStatus);
+//        // Log.i("InvoiceStatus", InvoiceStatus);
 //
 //
 //        holder.product_code_value.setText(OrdersList.get(position).getProductCode());

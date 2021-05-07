@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
         int value = Integer.parseInt(selectedTab.getString("TabNo", "0"));
         if (myVal == -1)
             myVal = value;
-        Log.i("OrderTabsFromDraft", String.valueOf(myVal));
+        // Log.i("OrderTabsFromDraft", String.valueOf(myVal));
 
 //        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getActivity(), getChildFragmentManager());
 //        final ViewPager viewPager = root.findViewById(R.id.view_pager1);

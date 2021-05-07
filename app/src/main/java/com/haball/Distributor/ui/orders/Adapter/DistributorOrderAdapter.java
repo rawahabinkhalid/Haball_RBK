@@ -86,7 +86,7 @@ public class DistributorOrderAdapter extends RecyclerView.Adapter<DistributorOrd
 //                    public boolean onMenuItemClick(MenuItem item) {
 //                        switch (item.getItemId()) {
 //                            case R.id.orders_view:
-//                                Log.i("text1", "View Item");
+//                                // Log.i("text1", "View Item");
 //                                Toast.makeText(context,"View Clicked",Toast.LENGTH_LONG).show();
 //                                break;
 //
@@ -131,7 +131,7 @@ public class DistributorOrderAdapter extends RecyclerView.Adapter<DistributorOrd
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.orders_view:
-                                Log.i("text1", "View Item");
+                                // Log.i("text1", "View Item");
                                 // Toast.makeText(context,"View Clicked",Toast.LENGTH_LONG).show();
                                 break;
 

@@ -42,7 +42,7 @@ public class Retailer_Place_Order extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        Log.i("Place_Order", "Opened new place order");
+        // Log.i("Place_Order", "Opened new place order");
         View root = inflater.inflate(R.layout.activity_retailer_place_order, container, false);
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getActivity(), getChildFragmentManager());
         final ViewPager viewPager = root.findViewById(R.id.view_pager_rpoid);

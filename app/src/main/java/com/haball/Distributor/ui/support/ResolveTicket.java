@@ -31,12 +31,12 @@ public class ResolveTicket {
     protected void RequestResolveTicket(String id, final Context context, final String Token) {
 
         URL_RESOLVE_TICKET = URL_RESOLVE_TICKET+id;
-        Log.i("NOTIFICATION_DISMISS", URL_RESOLVE_TICKET);
+        // Log.i("NOTIFICATION_DISMISS", URL_RESOLVE_TICKET);
 
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_RESOLVE_TICKET, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
-                Log.i("DISMISSED ", result.toString());
+                // Log.i("DISMISSED ", result.toString());
 
             }
         }, new Response.ErrorListener() {

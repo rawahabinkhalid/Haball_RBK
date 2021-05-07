@@ -51,8 +51,8 @@ public class PaymentDeleteOrder {
     public void deleteOrder(final Context context, String invoiceId, final String invoiceNumber) {
         loader = new Loader(context);
         loader.showLoader();
-        Log.i("paymentLog", "in delete order");
-        Log.i("paymentLog_Error", String.valueOf(invoiceId));
+        // Log.i("paymentLog", "in delete order");
+        // Log.i("paymentLog_Error", String.valueOf(invoiceId));
 
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("LoginToken",
@@ -64,8 +64,8 @@ public class PaymentDeleteOrder {
         RetailerId = sharedPreferences1.getString("Retailer_Id", "");
         if (!URL_DELETE_PAYMENT.contains("/" + invoiceId))
             URL_DELETE_PAYMENT = URL_DELETE_PAYMENT + invoiceId;
-        Log.i("RetailerId ", RetailerId);
-        Log.i("Token Retailer ", Token);
+        // Log.i("RetailerId ", RetailerId);
+        // Log.i("Token Retailer ", Token);
 
 
         final Context finalcontext = context;
@@ -76,7 +76,7 @@ public class PaymentDeleteOrder {
             public void onResponse(JSONObject response) {
                 // TODO handle the response
                 loader.hideLoader();
-                Log.i("paymentLog_Response", String.valueOf(response));
+                // Log.i("paymentLog_Response", String.valueOf(response));
                 final Dialog fbDialogue = new Dialog(context);
                 //fbDialogue.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
                 fbDialogue.setContentView(R.layout.password_updatepopup);
@@ -123,7 +123,7 @@ public class PaymentDeleteOrder {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.i("paymentLog_Error", String.valueOf(error));
+                // Log.i("paymentLog_Error", String.valueOf(error));
                 loader.hideLoader();
                 new HaballError().printErrorMessage(context, error);
                 new ProcessingError().showError(context);

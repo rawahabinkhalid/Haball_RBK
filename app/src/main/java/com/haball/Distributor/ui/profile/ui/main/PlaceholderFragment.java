@@ -11,12 +11,8 @@ import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.InputType;
-import android.text.Spanned;
-import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -26,7 +22,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -90,15 +85,15 @@ public class PlaceholderFragment extends Fragment {
     private PageViewModel pageViewModel;
     private Button change_pwd, update_password, distri_btn_save;
     private TextInputEditText edt_firstname, edt_lastname, edt_email, edt_dist_mobile, R_Address;
-    private TextInputLayout layout_edt_dist_code, layout_edt_firstname, layout_edt_lastname, layout_edt_email,
+    public TextInputLayout layout_edt_dist_code, layout_edt_firstname, layout_edt_lastname, layout_edt_email,
             layout_tv_cnic, layout_edt_dist_mobile, layout_tv_NTN, layout_tv_companyname, layout_tv_created_date,
             layout_R_Address;
     private TextInputEditText txt_password, txt_newpassword, txt_cfmpassword;
     public TextInputEditText edt_dist_code, tv_cnic, tv_NTN, tv_companyname, tv_created_date;
     private String PROFILE_URL = "https://175.107.203.97:4013/api/distributor/";
     private String PROFILE_ADDRESS_URL = "https://175.107.203.97:4013/api/distributor/ReadAdditionalAddress/";
-    private String ChangePass_URL = "https://175.107.203.97:4013/api/Users/ChangePassword";
-    private String PROFILE_EDIT_URL = "https://175.107.203.97:4013/api/distributor/saveProfile";
+    public String ChangePass_URL = "https://175.107.203.97:4013/api/Users/ChangePassword";
+    public String PROFILE_EDIT_URL = "https://175.107.203.97:4013/api/distributor/saveProfile";
     private String Token;
     private String DistributorId, ID, Username, Phone;
     private Dialog change_password_dail;
@@ -107,12 +102,13 @@ public class PlaceholderFragment extends Fragment {
     private TextInputLayout layout_password1, layout_password3, layout_password;
     private String currentTab = "";
     private Boolean changed = false;
-    private Button btn_back;
+    public Button btn_back;
     private TextView tv_pr1;
     private String Email = "", Address = "", Mobile = "", firstname = "", lastname = "";
     private FragmentTransaction fragmentTransaction;
     private String AddressID = "";
     private JSONObject AddressData = new JSONObject();
+    private AlertDialog alertDialog;
 
     public static PlaceholderFragment newInstance(int index) {
         PlaceholderFragment fragment = new PlaceholderFragment();
@@ -243,7 +239,7 @@ public class PlaceholderFragment extends Fragment {
 //                            public CharSequence filter(CharSequence cs, int start,
 //                                                       int end, Spanned spanned, int dStart, int dEnd) {
 //                                // TODO Auto-generated method stub
-//                                Log.i("debug_keyFilter", String.valueOf(cs));
+//                                // Log.i("debug_keyFilter", String.valueOf(cs));
 //                                if(cs.equals("")){ // for backspace
 //                                    return cs;
 //                                }
@@ -376,14 +372,15 @@ public class PlaceholderFragment extends Fragment {
                             if (event.getRawX() >= (edt_dist_mobile.getRight() - edt_dist_mobile.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
                                 // your action here
                                 edt_dist_mobile.setInputType(InputType.TYPE_CLASS_NUMBER);
-                                edt_dist_mobile.requestFocus();
                                 edt_dist_mobile.setFocusable(true);
                                 edt_dist_mobile.setFocusableInTouchMode(true);
+                                edt_dist_mobile.requestFocus();
+
                                 InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
                                 edt_dist_mobile.setSelection(edt_dist_mobile.getText().length());
-//                                distri_btn_save.setEnabled(true);
-//                                distri_btn_save.setBackground(getResources().getDrawable(R.drawable.button_background));
+//                                btn_save_password.setEnabled(true);
+//                                btn_save_password.setBackground(getResources().getDrawable(R.drawable.button_background));
                                 changed = true;
                                 return true;
                             }
@@ -545,8 +542,7 @@ public class PlaceholderFragment extends Fragment {
                     }
                 });
                 profileData();
-
-
+                alertDialog = new AlertDialog.Builder(getContext()).create();
             }
             break;
 
@@ -626,6 +622,7 @@ public class PlaceholderFragment extends Fragment {
                 txt_password.addTextChangedListener(textWatcher);
                 txt_newpassword.addTextChangedListener(textWatcher);
                 txt_cfmpassword.addTextChangedListener(textWatcher);
+                alertDialog = new AlertDialog.Builder(getContext()).create();
         }
 
 
@@ -711,18 +708,18 @@ public class PlaceholderFragment extends Fragment {
                         || rmobile.length() != 12
 //                || comment.equals("")
                 ) {
-                    Log.i("debugProfileVali", "true");
-                    Log.i("debugProfileVali", "'" + remail + "'");
-                    Log.i("debugProfileVali", "'" + rmobile + "'");
-                    Log.i("debugProfileVali", "'" + r_Address + "'");
+                    // Log.i("debugProfileVali", "true");
+                    // Log.i("debugProfileVali", "'" + remail + "'");
+                    // Log.i("debugProfileVali", "'" + rmobile + "'");
+                    // Log.i("debugProfileVali", "'" + r_Address + "'");
                     distri_btn_save.setEnabled(false);
                     distri_btn_save.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
 
                 } else {
-                    Log.i("debugProfileVali", "false");
-                    Log.i("debugProfileVali", "'" + remail + "'");
-                    Log.i("debugProfileVali", "'" + rmobile + "'");
-                    Log.i("debugProfileVali", "'" + r_Address + "'");
+                    // Log.i("debugProfileVali", "false");
+                    // Log.i("debugProfileVali", "'" + remail + "'");
+                    // Log.i("debugProfileVali", "'" + rmobile + "'");
+                    // Log.i("debugProfileVali", "'" + r_Address + "'");
 
                     distri_btn_save.setEnabled(true);
                     distri_btn_save.setBackground(getResources().getDrawable(R.drawable.button_background));
@@ -768,15 +765,23 @@ public class PlaceholderFragment extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
 
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
-                    edt_firstname.clearFocus();
-                    edt_lastname.clearFocus();
-                    edt_email.clearFocus();
-                    edt_dist_mobile.clearFocus();
-                    R_Address.clearFocus();
-                    showDiscardDialog();
-                    return true;
+//                    edt_firstname.clearFocus();
+//                    edt_lastname.clearFocus();
+//                    edt_email.clearFocus();
+//                    edt_dist_mobile.clearFocus();
+//                    R_Address.clearFocus();
+                    if (changed) {
+                        Toast.makeText(getContext(),"changed mobile", Toast.LENGTH_SHORT).show();
+                        showDiscardDialog();
+                        return true;
+                    } else {
+                        Intent login_intent = new Intent(((FragmentActivity) getContext()), DistributorDashboard.class);
+                        ((FragmentActivity) getContext()).startActivity(login_intent);
+                        ((FragmentActivity) getContext()).finish();
+                    }
+
                 }
-                return false;
+            return false;
             }
         };
         edt_firstname.setOnKeyListener(listener);
@@ -800,7 +805,6 @@ public class PlaceholderFragment extends Fragment {
                         Intent login_intent = new Intent(((FragmentActivity) getContext()), DistributorDashboard.class);
                         ((FragmentActivity) getContext()).startActivity(login_intent);
                         ((FragmentActivity) getContext()).finish();
-                        return true;
                     }
                 }
                 return false;
@@ -814,11 +818,13 @@ public class PlaceholderFragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
-                    txt_password.clearFocus();
-                    txt_newpassword.clearFocus();
-                    txt_cfmpassword.clearFocus();
+//                    txt_password.clearFocus();
+//                    txt_newpassword.clearFocus();
+//                    txt_cfmpassword.clearFocus();
                     showDiscardDialog();
+                    return true;
                 }
+
                 return false;
             }
         };
@@ -844,6 +850,7 @@ public class PlaceholderFragment extends Fragment {
                         Intent login_intent = new Intent(((FragmentActivity) getContext()), DistributorDashboard.class);
                         ((FragmentActivity) getContext()).startActivity(login_intent);
                         ((FragmentActivity) getContext()).finish();
+                        return true;
                     }
                 }
                 return false;
@@ -853,10 +860,8 @@ public class PlaceholderFragment extends Fragment {
     }
 
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
         final FragmentManager fm = getActivity().getSupportFragmentManager();
-
-        final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
@@ -870,7 +875,7 @@ public class PlaceholderFragment extends Fragment {
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
 //                fm.popBackStack();
                 SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
@@ -894,7 +899,7 @@ public class PlaceholderFragment extends Fragment {
 
             }
         });
-
+        if(!alertDialog.isShowing())
         alertDialog.show();
     }
 
@@ -931,14 +936,14 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId1 ", DistributorId);
+        // Log.i("DistributorId1 ", DistributorId);
         PROFILE_URL = PROFILE_URL + DistributorId;
         PROFILE_ADDRESS_URL = PROFILE_ADDRESS_URL + DistributorId;
-        Log.i("Token1", Token);
+        // Log.i("Token1", Token);
         StringRequest sr = new StringRequest(Request.Method.GET, PROFILE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String result) {
-                Log.i("aaaaa", result);
+                // Log.i("aaaaa", result);
                 try {
                     if (result != null && !result.equals("")) {
                         Gson gson = new Gson();
@@ -990,7 +995,7 @@ public class PlaceholderFragment extends Fragment {
 //                    editor.putString("email" , edt_email.getText().toString());
 //                    editor.putString("phone_number" , edt_dist_mobile.getText().toString());
 //                    editor.apply();
-//                    Log.i("editor_chcek" , String.valueOf(companyId));
+//                    // Log.i("editor_chcek" , String.valueOf(companyId));
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(getActivity(), "Error" + e.toString(), Toast.LENGTH_SHORT).show();
@@ -1102,7 +1107,7 @@ public class PlaceholderFragment extends Fragment {
                 SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
                         Context.MODE_PRIVATE);
                 Token = sharedPreferences.getString("Login_Token", "");
-                Log.i("Login_Token", Token);
+                // Log.i("Login_Token", Token);
                 SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                         Context.MODE_PRIVATE);
                 ID = sharedPreferences1.getString("ID", "");
@@ -1120,12 +1125,12 @@ public class PlaceholderFragment extends Fragment {
                 //        map.put("NewPassword1", "Force@123");
                 map.put("ID", ID);
                 map.put("Username", Username);
-                Log.i("Map", map.toString());
+                // Log.i("Map", map.toString());
                 JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, ChangePass_URL, map, new Response.Listener<JSONObject>() {
                     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onResponse(JSONObject result) {
-                        Log.i("response545", String.valueOf(result));
+                        // Log.i("response545", String.valueOf(result));
                         try {
                             if (result.has("message")) {
                                 Toast.makeText(getActivity(), result.get("message").toString(), Toast.LENGTH_SHORT).show();
@@ -1204,7 +1209,7 @@ public class PlaceholderFragment extends Fragment {
                             Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
 
                         }
-                        //                Log.e("RESPONSE", result.toString());
+                        //                // Log.e("RESPONSE", result.toString());
                         //                Toast.makeText(Distribution_Login.this,result.toString(),Toast.LENGTH_LONG).show();
                     }
                 }, new Response.ErrorListener() {
@@ -1442,9 +1447,9 @@ public class PlaceholderFragment extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();
@@ -1471,7 +1476,7 @@ public class PlaceholderFragment extends Fragment {
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
         String UserID = sharedPreferences1.getString("ID", "");
-        Log.i("Distributor_Id ", DistributorId);
+        // Log.i("Distributor_Id ", DistributorId);
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("ID", DistributorId);
@@ -1489,7 +1494,7 @@ public class PlaceholderFragment extends Fragment {
         jsonObject.put("Status", 1);
         jsonObject.put("UserID", UserID);
         jsonObject.put("DistributorId", DistributorId);
-        Log.i("Distributor_Id ", String.valueOf(jsonObject));
+        // Log.i("Distributor_Id ", String.valueOf(jsonObject));
 
 
 //        BillingAddress1: null

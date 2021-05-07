@@ -97,8 +97,8 @@ public class Consolidate_Fragment_View_Payment extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
         URL_CONSOLIDATE_PAYMENTS_DETAILS = URL_CONSOLIDATE_PAYMENTS_DETAILS + ConsolidatedInvoiceId;
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.GET, URL_CONSOLIDATE_PAYMENTS_DETAILS, null, new Response.Listener<JSONObject>() {
             @Override
@@ -124,11 +124,11 @@ public class Consolidate_Fragment_View_Payment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                try {
-                    Log.i("Consolidate Array", result.getJSONArray("InvoiceDetails").toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    // Log.i("Consolidate Array", result.getJSONArray("InvoiceDetails").toString());
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<Consolidate_Fragment_Model>>() {
                 }.getType();
@@ -183,9 +183,9 @@ public class Consolidate_Fragment_View_Payment extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();

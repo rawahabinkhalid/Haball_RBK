@@ -193,7 +193,7 @@ public class OrderSummaryDraft extends Fragment {
     }
 
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
         final FragmentManager fm = getActivity().getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
@@ -205,7 +205,7 @@ public class OrderSummaryDraft extends Fragment {
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
                 fm.popBackStack();
             }
@@ -219,7 +219,7 @@ public class OrderSummaryDraft extends Fragment {
 
             }
         });
-
+        if(!alertDialog.isShowing())
         alertDialog.show();
     }
 
@@ -270,7 +270,7 @@ public class OrderSummaryDraft extends Fragment {
                 jsonArray.put(obj);
             }
         }
-        Log.i("Array", String.valueOf(jsonArray));
+        // Log.i("Array", String.valueOf(jsonArray));
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("DiscountAmount", 0);
@@ -303,12 +303,12 @@ public class OrderSummaryDraft extends Fragment {
         jsonObject.put("PaymentTermId", 1);
         jsonObject.put("DistributorDealerCode", DealerCode);
 
-        Log.i("jsonObject", String.valueOf(jsonObject));
+        // Log.i("jsonObject", String.valueOf(jsonObject));
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_CONFIRM_ORDERS, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(final JSONObject result) {
 //                loader.hideLoader();
-                Log.i("RESPONSE ORDER .. ", result.toString());
+                // Log.i("RESPONSE ORDER .. ", result.toString());
                 try {
                     SharedPreferences grossamount = getContext().getSharedPreferences("grossamount",
                             Context.MODE_PRIVATE);
@@ -399,7 +399,7 @@ public class OrderSummaryDraft extends Fragment {
                 jsonArray.put(obj);
             }
         }
-        Log.i("Array", String.valueOf(jsonArray));
+        // Log.i("Array", String.valueOf(jsonArray));
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("DistributorId", DistributorId);
@@ -409,12 +409,12 @@ public class OrderSummaryDraft extends Fragment {
         jsonObject.put("OrderTemplateDetails", jsonArray);
 
 
-        Log.i("jsonObject", String.valueOf(jsonObject));
+        // Log.i("jsonObject", String.valueOf(jsonObject));
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_SAVE_TEMPLATE, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(final JSONObject result) {
 //                loader.hideLoader();
-                Log.i("RESPONSE ORDER .. ", result.toString());
+                // Log.i("RESPONSE ORDER .. ", result.toString());
                 SharedPreferences grossamount = getContext().getSharedPreferences("grossamount",
                         Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = grossamount.edit();
@@ -501,7 +501,7 @@ public class OrderSummaryDraft extends Fragment {
                 jsonArray.put(obj);
             }
         }
-        Log.i("Array", String.valueOf(jsonArray));
+        // Log.i("Array", String.valueOf(jsonArray));
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("DiscountAmount", 0);
@@ -531,12 +531,12 @@ public class OrderSummaryDraft extends Fragment {
         jsonObject.put("BillingCityId", 1);
         jsonObject.put("BillingPostCode", "00000");
 
-        Log.i("jsonObject", String.valueOf(jsonObject));
+        // Log.i("jsonObject", String.valueOf(jsonObject));
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_SAVE_DRAFT, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(final JSONObject result) {
 //                loader.hideLoader();
-                Log.i("RESPONSE ORDER .. ", result.toString());
+                // Log.i("RESPONSE ORDER .. ", result.toString());
                 try {
                     SharedPreferences grossamount = getContext().getSharedPreferences("grossamount",
                             Context.MODE_PRIVATE);
@@ -596,7 +596,7 @@ public class OrderSummaryDraft extends Fragment {
         @Override
         protected Void doInBackground(Void... params) {
             while (getContext() != null) {
-//                Log.i("async", "in async");
+//                // Log.i("async", "in async");
                 if (getContext().getSharedPreferences("selectedProducts_distributor_draft",
                         Context.MODE_PRIVATE) != null) {
                     SharedPreferences selectedProducts = getContext().getSharedPreferences("selectedProducts_distributor_draft",
@@ -609,9 +609,9 @@ public class OrderSummaryDraft extends Fragment {
                     if (!object_string.equals("")) {
                         if (selectedProductsDataList != null) {
                             if (temp_list != selectedProductsDataList) {
-//                                Log.i("async", temp_list.size() + " + " + selectedProductsDataList.size());
-//                                Log.i("async", String.valueOf(temp_list));
-//                                Log.i("async", String.valueOf(selectedProductsDataList));
+//                                // Log.i("async", temp_list.size() + " + " + selectedProductsDataList.size());
+//                                // Log.i("async", String.valueOf(temp_list));
+//                                // Log.i("async", String.valueOf(selectedProductsDataList));
                                 selectedProductsDataList = temp_list;
                                 break;
                             }
@@ -626,7 +626,7 @@ public class OrderSummaryDraft extends Fragment {
         @Override
         protected void onPostExecute(Void result) {
             if (getContext() != null) {
-//                Log.i("async", "in async else");
+//                // Log.i("async", "in async else");
                 qtyChanged();
                 new MyAsyncTask().execute();
             }
@@ -654,7 +654,7 @@ public class OrderSummaryDraft extends Fragment {
         if (selectedProductsDataList != null) {
             if (selectedProductsDataList.size() > 0) {
                 for (int i = 0; i < selectedProductsDataList.size(); i++) {
-                    Log.i("unit price", selectedProductsDataList.get(i).getUnitPrice());
+                    // Log.i("unit price", selectedProductsDataList.get(i).getUnitPrice());
                     if (!selectedProductsDataList.get(i).getUnitPrice().equals("") && !selectedProductsDataList.get(i).getOrderQty().equals(""))
                         grossAmount += Float.parseFloat(selectedProductsDataList.get(i).getUnitPrice()) * Float.parseFloat(selectedProductsDataList.get(i).getOrderQty());
                 }
@@ -703,9 +703,9 @@ public class OrderSummaryDraft extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();

@@ -70,7 +70,7 @@ public class DistributorOrdersAdapter extends RecyclerView.Adapter<DistributorOr
         if (OrderList.size() == 3 || OrderList.size() == 4) {
              if (position == (OrderList.size() - 1)) {
  //        if (position == 2) {
-                 Log.i("DebugSupportFilter_In", OrderList.get(position).getOrderNumber());
+                 // Log.i("DebugSupportFilter_In", OrderList.get(position).getOrderNumber());
                  RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                          RelativeLayout.LayoutParams.WRAP_CONTENT,
                          RelativeLayout.LayoutParams.WRAP_CONTENT
@@ -257,7 +257,7 @@ public class DistributorOrdersAdapter extends RecyclerView.Adapter<DistributorOr
 
     private void showConfirmCancelOrderDialog(final int position) {
 
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
 //            final FragmentManager fm = mContxt.getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(mContxt).create();
@@ -311,7 +311,7 @@ public class DistributorOrdersAdapter extends RecyclerView.Adapter<DistributorOr
 //        deleteDraft.deleteDraft(context, ID, OrderNumber);
 
 
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
 //            final FragmentManager fm = mContxt.getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(mContxt).create();

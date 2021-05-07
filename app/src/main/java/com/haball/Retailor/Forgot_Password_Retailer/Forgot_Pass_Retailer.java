@@ -111,7 +111,7 @@ public class Forgot_Pass_Retailer extends AppCompatActivity {
 //        heading.setText( "Welcome To Retailer Portal" );
 //        btn_back = (ImageButton) customView.findViewById(R.id.btn_back);
         btn_reset = (Button) findViewById(R.id.btn_reset_ret);
-        Log.i("Btn-Reset", "Button");
+        // Log.i("Btn-Reset", "Button");
         btn_reset.setEnabled(false);
         btn_reset.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
 
@@ -249,10 +249,10 @@ public class Forgot_Pass_Retailer extends AppCompatActivity {
                 btn_reset.setEnabled(true);
                 btn_reset.setBackground(getResources().getDrawable(R.drawable.button_background));
 //                progressDialog.dismiss();
-//                Log.i("forgotpass", "'" + result + "'");
-//                Log.i("forgotpass", "'" + result.equals("true") + "'");
+//                // Log.i("forgotpass", "'" + result + "'");
+//                // Log.i("forgotpass", "'" + result.equals("true") + "'");
                 if (result.equals("\"true\"")) {
-//                Log.e("RESPONSE", result);
+//                // Log.e("RESPONSE", result);
 //                img_email.setOnClickListener(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
@@ -363,7 +363,7 @@ public class Forgot_Pass_Retailer extends AppCompatActivity {
     }
 
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         LayoutInflater inflater = LayoutInflater.from(this);
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
@@ -381,7 +381,7 @@ public class Forgot_Pass_Retailer extends AppCompatActivity {
         btn_discard.setText("Exit");
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
                 Intent intent = new Intent(Forgot_Pass_Retailer.this, RetailerLogin.class);
                 startActivity(intent);

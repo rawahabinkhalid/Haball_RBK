@@ -131,7 +131,7 @@ public class ProofOfPaymentForm extends Fragment {
 
         String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
 
-        Log.e("LOOK", imageEncoded);
+        // Log.e("LOOK", imageEncoded);
         return imageEncoded;
     }
 
@@ -450,7 +450,7 @@ public class ProofOfPaymentForm extends Fragment {
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_PROOF_OF_PAYMENTS_SUBMIT, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
-                Log.e("RESPONSE", result.toString());
+                // Log.e("RESPONSE", result.toString());
                 try {
                     Toast.makeText(getContext(), "Proof Of payment ID " + result.getString("POPNumber") + " has been created successfully.", Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
@@ -635,12 +635,12 @@ public class ProofOfPaymentForm extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
 
         URL_PROOF_OF_PAYMENTS = URL_PROOF_OF_PAYMENTS + DistributorId;
-        Log.i("URL_PROOF_OF_PAYMENTS ", URL_PROOF_OF_PAYMENTS);
+        // Log.i("URL_PROOF_OF_PAYMENTS ", URL_PROOF_OF_PAYMENTS);
 
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         JsonArrayRequest sr = new JsonArrayRequest(Request.Method.GET, URL_MODE_OF_PAYMENTS, null, new Response.Listener<JSONArray>() {
             @Override
@@ -655,7 +655,7 @@ public class ProofOfPaymentForm extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE PAYMENT MODES", result.toString());
+                // Log.e("RESPONSE PAYMENT MODES", result.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -692,12 +692,12 @@ public class ProofOfPaymentForm extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
 
         URL_PROOF_OF_PAYMENTS = URL_PROOF_OF_PAYMENTS + DistributorId;
-        Log.i("URL_PROOF_OF_PAYMENTS ", URL_PROOF_OF_PAYMENTS);
+        // Log.i("URL_PROOF_OF_PAYMENTS ", URL_PROOF_OF_PAYMENTS);
 
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         JsonArrayRequest sr = new JsonArrayRequest(Request.Method.GET, URL_PROOF_OF_PAYMENTS, null, new Response.Listener<JSONArray>() {
             @Override
@@ -712,7 +712,7 @@ public class ProofOfPaymentForm extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE OF PAYMENT ID", result.toString());
+                // Log.e("RESPONSE OF PAYMENT ID", result.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -774,9 +774,9 @@ public class ProofOfPaymentForm extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();

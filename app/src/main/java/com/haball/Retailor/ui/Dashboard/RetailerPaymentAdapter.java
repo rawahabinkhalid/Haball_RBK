@@ -76,7 +76,7 @@ public class RetailerPaymentAdapter extends RecyclerView.Adapter<RetailerPayment
  //            if (rv_filter.getVisibility() == View.GONE) {
                  if (position == (paymentsList.size() - 1)) {
  //        if (position == 2) {
-                     Log.i("DebugSupportFilter_In", paymentsList.get(position).getInvoiceNumber());
+                     // Log.i("DebugSupportFilter_In", paymentsList.get(position).getInvoiceNumber());
                      RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                              RelativeLayout.LayoutParams.WRAP_CONTENT,
                              RelativeLayout.LayoutParams.WRAP_CONTENT
@@ -121,7 +121,7 @@ public class RetailerPaymentAdapter extends RecyclerView.Adapter<RetailerPayment
                                         SharedPreferences.Editor editor = OrderId.edit();
                                         editor.putString("PaymentId", paymentsList.get(position).getRetailerInvoiceId());
                                         editor.putString("InvoiceStatus", String.valueOf(paymentsList.get(position).getStatus()));
-                                        Log.i("InvoiceStatus_Adapter", String.valueOf(paymentsList.get(position).getStatus()));
+                                        // Log.i("InvoiceStatus_Adapter", String.valueOf(paymentsList.get(position).getStatus()));
                                         editor.commit();
                                         fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
                                         fragmentTransaction.add(R.id.main_container_ret, new RetailerViewInvoice()).addToBackStack("tag");
@@ -139,7 +139,7 @@ public class RetailerPaymentAdapter extends RecyclerView.Adapter<RetailerPayment
 //                                        editor_JazzCash.putString("PaymentId", paymentsList.get(position).getRetailerInvoiceId());
 //                                        editor_JazzCash.putString("InvoiceStatus", String.valueOf(paymentsList.get(position).getStatus()));
 //                                        editor_JazzCash.putString("Type", "Invoice");
-//                                        Log.i("InvoiceStatus_Adapter", String.valueOf(paymentsList.get(position).getStatus()));
+//                                        // Log.i("InvoiceStatus_Adapter", String.valueOf(paymentsList.get(position).getStatus()));
 //                                        editor_JazzCash.commit();
 //                                        fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
 //                                        fragmentTransaction.add(R.id.main_container_ret, new PaymentJazzCashApi()).addToBackStack("null");
@@ -210,7 +210,7 @@ public class RetailerPaymentAdapter extends RecyclerView.Adapter<RetailerPayment
                                         SharedPreferences.Editor editor = OrderId.edit();
                                         editor.putString("PaymentId", paymentsList.get(position).getRetailerInvoiceId());
                                         editor.putString("InvoiceStatus", String.valueOf(paymentsList.get(position).getStatus()));
-                                        Log.i("InvoiceStatus_Adapter", String.valueOf(paymentsList.get(position).getStatus()));
+                                        // Log.i("InvoiceStatus_Adapter", String.valueOf(paymentsList.get(position).getStatus()));
                                         editor.commit();
                                         fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
                                         fragmentTransaction.add(R.id.main_container_ret, new RetailerViewInvoice()).addToBackStack("tag");

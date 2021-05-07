@@ -111,13 +111,14 @@ public class Support_Ticket_Form_Fragment extends Fragment {
     private String first_name = "", email = "", phone_number = "";
     private Boolean changed = false;
     private Loader loader;
-
+    private AlertDialog alertDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.activity_support__ticket__form__retailerform, container, false);
 
+        alertDialog = new AlertDialog.Builder(getContext()).create();
 
         SharedPreferences data = getContext().getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
@@ -129,9 +130,9 @@ public class Support_Ticket_Form_Fragment extends Fragment {
 
         myFont = ResourcesCompat.getFont(getContext(), R.font.open_sans);
 
-        Log.i("name", first_name);
-        Log.i("email", email);
-        Log.i("phone_number", phone_number);
+        // Log.i("name", first_name);
+        // Log.i("email", email);
+        // Log.i("phone_number", phone_number);
 
         BName = root.findViewById(R.id.BName);
         Email = root.findViewById(R.id.Email);
@@ -556,7 +557,7 @@ public class Support_Ticket_Form_Fragment extends Fragment {
                 // TODO Auto-generated method stub
             }
         });
-
+        alertDialog  = new AlertDialog.Builder(getContext()).create();
         return root;
     }
 
@@ -634,104 +635,10 @@ public class Support_Ticket_Form_Fragment extends Fragment {
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        final String txt_BName = String.valueOf(BName.getText());
-        final String txt_Email = String.valueOf(Email.getText());
-        final String txt_MobileNo = String.valueOf(MobileNo.getText());
-        final String txt_Comment = String.valueOf(Comment.getText());
-        final FragmentManager fm = getActivity().getSupportFragmentManager();
-
-
-        View.OnKeyListener keyListener = new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK) {
-                    Log.i("supportDebug1", "'" + txt_BName + "', '" + first_name + "'");
-                    Log.i("supportDebug1", "'" + txt_Email + "', '" + email + "'");
-                    Log.i("supportDebug1", "'" + txt_MobileNo + "', '" + phone_number + "'");
-                    Log.i("supportDebug1", "'" + txt_Comment + "'");
-                    Log.i("supportDebug1", "'" + issueType + "', '" + IssueType.getSelectedItemPosition() + "'");
-                    Log.i("supportDebug1", "'" + PrefferedContacts + "', '" + Preffered_Contact.getSelectedItemPosition() + "'");
-                    Log.i("supportDebug1", "'" + Criticality + "', '" + critcicality.getSelectedItemPosition() + "'");
-
-                    BName.clearFocus();
-                    Email.clearFocus();
-                    MobileNo.clearFocus();
-                    Comment.clearFocus();
-                    if (!txt_BName.equals(first_name) || !txt_Email.equals(email) || !txt_MobileNo.equals(phone_number) || !txt_Comment.equals("") || !issueType.equals("Issue Type") || !Criticality.equals("Criticality") || !PrefferedContacts.equals("Preferred Method of Contacting")) {
-                        showDiscardDialog();
-                    } else {
-//                        fm.popBackStack();
-                        SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
-                                Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
-                        editorOrderTabsFromDraft.putString("TabNo", "0");
-                        editorOrderTabsFromDraft.apply();
-
-                        Intent login_intent = new Intent(((FragmentActivity) getContext()), RetailorDashboard.class);
-                        ((FragmentActivity) getContext()).startActivity(login_intent);
-                        ((FragmentActivity) getContext()).finish();
-
-                    }
-                }
-                return false;
-            }
-        };
-
-        BName.setOnKeyListener(keyListener);
-        Email.setOnKeyListener(keyListener);
-        MobileNo.setOnKeyListener(keyListener);
-        Comment.setOnKeyListener(keyListener);
-
-        getView().setFocusableInTouchMode(true);
-        getView().requestFocus();
-        getView().setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    Log.i("supportDebug", "'" + txt_BName + "', '" + first_name + "'");
-                    Log.i("supportDebug", "'" + txt_Email + "', '" + email + "'");
-                    Log.i("supportDebug", "'" + txt_MobileNo + "', '" + phone_number + "'");
-                    Log.i("supportDebug", "'" + txt_Comment + "'");
-                    Log.i("supportDebug", "'" + issueType + "', '" + IssueType.getSelectedItemPosition() + "'");
-                    Log.i("supportDebug", "'" + PrefferedContacts + "', '" + Preffered_Contact.getSelectedItemPosition() + "'");
-                    Log.i("supportDebug", "'" + Criticality + "', '" + critcicality.getSelectedItemPosition() + "'");
-                    // handle back button's click listener
-//                    Toast.makeText(getActivity(), "Back press", Toast.LENGTH_SHORT).show();
-//                    if (!txt_BName.equals(first_name) || !txt_Email.equals(email) || !txt_MobileNo.equals(phone_number) || !txt_Comment.equals("") || !issueType.equals("Issue Type") || !Criticality.equals("Criticality") || !PrefferedContacts.equals("Preferred Method of Contacting")) {
-                    if (!txt_BName.equals(first_name) || !txt_Email.equals(email) || !txt_MobileNo.equals(phone_number) || !txt_Comment.equals("") || !issueType.equals("Issue Type") || !Criticality.equals("Criticality") || !PrefferedContacts.equals("Preferred Method of Contacting")) {
-//                    if (!txt_BName.equals("") || !txt_Email.equals("") || !txt_MobileNo.equals("") || !txt_Comment.equals("") || !issueType.equals("Issue Type") || !critcicality_val.equals("Criticality") || !preffered_Contact.equals("Preferred Method of Contacting")) {
-                        showDiscardDialog();
-                        return true;
-                    } else {
-//                        fm.popBackStack();
-                        SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
-                                Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
-                        editorOrderTabsFromDraft.putString("TabNo", "0");
-                        editorOrderTabsFromDraft.apply();
-
-                        Intent login_intent = new Intent(((FragmentActivity) getContext()), RetailorDashboard.class);
-                        ((FragmentActivity) getContext()).startActivity(login_intent);
-                        ((FragmentActivity) getContext()).finish();
-
-                        return false;
-                    }
-                }
-                return false;
-            }
-        });
-
-    }
-
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
         final FragmentManager fm = getActivity().getSupportFragmentManager();
 
-        final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
@@ -745,7 +652,7 @@ public class Support_Ticket_Form_Fragment extends Fragment {
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
 //                fm.popBackStack();
                 SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
@@ -754,9 +661,12 @@ public class Support_Ticket_Form_Fragment extends Fragment {
                 editorOrderTabsFromDraft.putString("TabNo", "0");
                 editorOrderTabsFromDraft.apply();
 
-                Intent login_intent = new Intent(((FragmentActivity) getContext()), RetailorDashboard.class);
-                ((FragmentActivity) getContext()).startActivity(login_intent);
-                ((FragmentActivity) getContext()).finish();
+                FragmentTransaction fragmentTransaction = ((FragmentActivity) getContext()).getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.main_container_ret, new SupportFragment());
+                fragmentTransaction.commit();
+//                Intent login_intent = new Intent(((FragmentActivity) getContext()), DistributorDashboard.class);
+//                ((FragmentActivity) getContext()).startActivity(login_intent);
+//                ((FragmentActivity) getContext()).finish();
 
             }
         });
@@ -769,8 +679,90 @@ public class Support_Ticket_Form_Fragment extends Fragment {
 
             }
         });
+        if(!alertDialog.isShowing())
+            alertDialog.show();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        View.OnKeyListener listener = new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
 
-        alertDialog.show();
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    final String txt_BName = String.valueOf(BName.getText());
+                    final String txt_Email = String.valueOf(Email.getText());
+                    final String txt_MobileNo = String.valueOf(MobileNo.getText());
+                    final String txt_Comment = String.valueOf(Comment.getText());
+
+//                    BName.clearFocus();
+//                    Email.clearFocus();
+//                    MobileNo.clearFocus();
+//                    Comment.clearFocus();
+                    if (!txt_BName.equals(first_name) || !txt_Email.equals(email) || !txt_MobileNo.equals(phone_number) || !txt_Comment.equals("") || !issueType.equals("Issue Type") || !Criticality.equals("Criticality") || !PrefferedContacts.equals("Preferred Method of Contacting")) {
+                        showDiscardDialog();
+                        return true;
+                    } else {
+//                        fm.popBackStack();
+                        SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
+                                Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
+                        editorOrderTabsFromDraft.putString("TabNo", "0");
+                        editorOrderTabsFromDraft.apply();
+
+                        FragmentTransaction fragmentTransaction = ((FragmentActivity) getContext()).getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.add(R.id.main_container_ret, new SupportFragment());
+                        fragmentTransaction.commit();
+
+                    }
+                    return true;
+                }
+                return false;
+            }
+        };
+        BName.setOnKeyListener(listener);
+        Email.setOnKeyListener(listener);
+        MobileNo.setOnKeyListener(listener);
+        Comment.setOnKeyListener(listener);
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    final String txt_BName = String.valueOf(BName.getText());
+                    final String txt_Email = String.valueOf(Email.getText());
+                    final String txt_MobileNo = String.valueOf(MobileNo.getText());
+                    final String txt_Comment = String.valueOf(Comment.getText());
+
+//                    BName.clearFocus();
+//                    Email.clearFocus();
+//                    MobileNo.clearFocus();
+//                    Comment.clearFocus();
+                    if (!txt_BName.equals(first_name) || !txt_Email.equals(email) || !txt_MobileNo.equals(phone_number) || !txt_Comment.equals("") || !issueType.equals("Issue Type") || !Criticality.equals("Criticality") || !PrefferedContacts.equals("Preferred Method of Contacting")) {
+                        showDiscardDialog();
+                        return  true;
+                    } else {
+//                        fm.popBackStack();
+                        SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
+                                Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
+                        editorOrderTabsFromDraft.putString("TabNo", "0");
+                        editorOrderTabsFromDraft.apply();
+
+                        FragmentTransaction fragmentTransaction = ((FragmentActivity) getContext()).getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.add(R.id.main_container_ret, new SupportFragment());
+                        fragmentTransaction.commit();
+
+                    }
+
+                    return  true;
+                }
+                return false;
+            }
+        });
+
     }
 
 
@@ -785,11 +777,11 @@ public class Support_Ticket_Form_Fragment extends Fragment {
 //                        jsonObject = result.getJSONObject(i);
 //                        issue_type.add(jsonObject.getString("value"));
 //                    }
-//                    Log.i("issue type values => ", issue_type.toString());
+//                    // Log.i("issue type values => ", issue_type.toString());
 //                } catch (JSONException e) {
 //                    e.printStackTrace();
 //                }
-//                Log.e("RESPONSE OF ISSUE TYPE", result.toString());
+//                // Log.e("RESPONSE OF ISSUE TYPE", result.toString());
 //            }
 //        }, new Response.ErrorListener() {
 //            @Override
@@ -825,11 +817,11 @@ public class Support_Ticket_Form_Fragment extends Fragment {
 //                        criticality.add(jsonObject.getString("value"));
 //
 //                    }
-//                    Log.i("criticality values => ", criticality.toString());
+//                    // Log.i("criticality values => ", criticality.toString());
 //                } catch (JSONException e) {
 //                    e.printStackTrace();
 //                }
-//                Log.e("RESPONSE OF criticality", result.toString());
+//                // Log.e("RESPONSE OF criticality", result.toString());
 //            }
 //        }, new Response.ErrorListener() {
 //            @Override
@@ -865,11 +857,11 @@ public class Support_Ticket_Form_Fragment extends Fragment {
 //                        preffered_contact.add(jsonObject.getString("value"));
 //                    }
 //
-//                    Log.i("preffered_contact => ", preffered_contact.toString());
+//                    // Log.i("preffered_contact => ", preffered_contact.toString());
 //                } catch (JSONException e) {
 //                    e.printStackTrace();
 //                }
-//                Log.e("RESPONSE preferedcont", result.toString());
+//                // Log.e("RESPONSE preferedcont", result.toString());
 //            }
 //        }, new Response.ErrorListener() {
 //            @Override
@@ -901,7 +893,7 @@ public class Support_Ticket_Form_Fragment extends Fragment {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
@@ -937,11 +929,11 @@ public class Support_Ticket_Form_Fragment extends Fragment {
                     arrayAdapterIssueType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     arrayAdapterIssueType.notifyDataSetChanged();
                     IssueType.setAdapter(arrayAdapterIssueType);
-                    Log.i("preffered_contact => ", preffered_contact.toString());
+                    // Log.i("preffered_contact => ", preffered_contact.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE preferedcont", result.toString());
+                // Log.e("RESPONSE preferedcont", result.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -980,7 +972,7 @@ public class Support_Ticket_Form_Fragment extends Fragment {
         map.put("Description", Comment.getText().toString());
         map.put("ID", 0);
 
-        Log.i("TICKET_OBJECT", String.valueOf(map));
+        // Log.i("TICKET_OBJECT", String.valueOf(map));
         new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
 
@@ -988,7 +980,7 @@ public class Support_Ticket_Form_Fragment extends Fragment {
             @Override
             public void onResponse(JSONObject result) {
                 loader.hideLoader();
-                Log.e("RESPONSE", result.toString());
+                // Log.e("RESPONSE", result.toString());
 //                Toast.makeText(getContext(), "Ticket generated successfully.", Toast.LENGTH_LONG).show();
 //                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
 //                fragmentTransaction.add(((ViewGroup) getView().getParent()).getId(), new SupportFragment());
@@ -1073,9 +1065,9 @@ public class Support_Ticket_Form_Fragment extends Fragment {
     //             try {
     //                 String message = "";
     //                 String responseBody = new String(error.networkResponse.data, "utf-8");
-    //                 Log.i("responseBody", responseBody);
+    //                 // Log.i("responseBody", responseBody);
     //                 JSONObject data = new JSONObject(responseBody);
-    //                 Log.i("data", String.valueOf(data));
+    //                 // Log.i("data", String.valueOf(data));
     //                 Iterator<String> keys = data.keys();
     //                 while (keys.hasNext()) {
     //                     String key = keys.next();

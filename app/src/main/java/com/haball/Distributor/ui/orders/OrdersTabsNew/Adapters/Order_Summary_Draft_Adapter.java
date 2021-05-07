@@ -41,7 +41,7 @@ public class Order_Summary_Draft_Adapter extends RecyclerView.Adapter<Order_Summ
     @Override
     public void onBindViewHolder(@NonNull final Order_Summary_Draft_Adapter.ViewHolder holder, int position) {
         final int finalPosition = position;
-        Log.i("position", String.valueOf(finalPosition));
+        // Log.i("position", String.valueOf(finalPosition));
         if (selectedProductsDataList.get(position).getOrderQty() != null)
             holder.list_numberOFitems.setText(selectedProductsDataList.get(position).getOrderQty());
         if (selectedProductsDataList.get(position).getCode() != null)
@@ -70,7 +70,7 @@ public class Order_Summary_Draft_Adapter extends RecyclerView.Adapter<Order_Summ
             @Override
             public void afterTextChanged(Editable s) {
 //                if (String.valueOf(s).equals("0")) {
-//                    Log.i("position to be removed", String.valueOf(finalPosition));
+//                    // Log.i("position to be removed", String.valueOf(finalPosition));
 //                    selectedProductsDataList.remove(finalPosition);
 //                    selectedProductsDataListQty.remove(finalPosition);
 //                    notifyItemRemoved(finalPosition);
@@ -79,8 +79,8 @@ public class Order_Summary_Draft_Adapter extends RecyclerView.Adapter<Order_Summ
 //                    Gson gson = new Gson();
 //                    String json = gson.toJson(selectedProductsDataList);
 //                    String jsonqty = gson.toJson(selectedProductsDataListQty);
-//                    Log.i("jsonqty", jsonqty);
-//                    Log.i("json", json);
+//                    // Log.i("jsonqty", jsonqty);
+//                    // Log.i("json", json);
 //
 //                    SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts_distributor_draft",
 //                            Context.MODE_PRIVATE);
@@ -142,7 +142,7 @@ public class Order_Summary_Draft_Adapter extends RecyclerView.Adapter<Order_Summ
 
             Gson gson = new Gson();
             String json = gson.toJson(selectedProductsDataList);
-            Log.i("json", json);
+            // Log.i("json", json);
             SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts_distributor_draft",
                     Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = selectedProducts.edit();

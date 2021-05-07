@@ -360,7 +360,7 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
         };
 
 
-        Log.i("aaaa1111", String.valueOf(consolidate_felter));
+        // Log.i("aaaa1111", String.valueOf(consolidate_felter));
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -398,7 +398,7 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
 
                     }
 
-                    Log.i("Filter_selected_value", Filter_selected_value);
+                    // Log.i("Filter_selected_value", Filter_selected_value);
                     try {
                         fetchFilteredShipments();
                     } catch (JSONException e) {
@@ -421,8 +421,8 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
 //        conso_edittext.addTextChangedListener(new TextWatcher() {
 //
 //            public void afterTextChanged(Editable s) {
-//                Log.i("text1", "check");
-//                Log.i("text", String.valueOf(s));
+//                // Log.i("text1", "check");
+//                // Log.i("text", String.valueOf(s));
 //                Filter_selected_value = String.valueOf(s);
 //                if (!Filter_selected_value.equals("")) {
 //
@@ -486,10 +486,10 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
                 y = dy;
                 if (dy <= -5) {
                     scrollEvent.add("ScrollDown");
-//                            Log.i("scrolling", "Scroll Down");
+//                            // Log.i("scrolling", "Scroll Down");
                 } else if (dy > 5) {
                     scrollEvent.add("ScrollUp");
-//                            Log.i("scrolling", "Scroll Up");
+//                            // Log.i("scrolling", "Scroll Up");
                 }
                 String scroll = getScrollEvent();
 
@@ -578,12 +578,12 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
 
         pageNumber = 0;
 
@@ -638,7 +638,7 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
             @Override
             public void onResponse(JSONArray result) {
                 loader.hideLoader();
-                Log.i("Shipment", result.toString());
+                // Log.i("Shipment", result.toString());
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<ShipmentModel>>() {
                 }.getType();
@@ -686,12 +686,12 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
 
         pageNumber = 0;
 
@@ -719,14 +719,14 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
         } else if (!Filter_selected.equals("")) {
             map.put(Filter_selected, Filter_selected_value);
         }
-        Log.i("Map", String.valueOf(map));
+        // Log.i("Map", String.valueOf(map));
 
         MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, URL_SHIPMENTS, map, new Response.Listener<JSONArray>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(JSONArray result) {
                 loader.hideLoader();
-                Log.i("Shipment Filtered", result.toString());
+                // Log.i("Shipment Filtered", result.toString());
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<ShipmentModel>>() {
                 }.getType();
@@ -772,12 +772,12 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
 
         JSONObject map = new JSONObject();
         map.put("DistributorId", Integer.parseInt(DistributorId));
@@ -800,7 +800,7 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
         } else if (!Filter_selected.equals("")) {
             map.put(Filter_selected, Filter_selected_value);
         }
-        Log.i("Map", String.valueOf(map));
+        // Log.i("Map", String.valueOf(map));
 
         MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, URL_SHIPMENTS, map, new Response.Listener<JSONArray>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -870,7 +870,7 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
     private void updateDisplay(String date_type) {
         if (date_type.equals("first date")) {
             fromDate = year1 + "-" + String.format("%02d", (month1 + 1)) + "-" + String.format("%02d", date1);
-            Log.i("fromDate", fromDate);
+            // Log.i("fromDate", fromDate);
 
             first_date.setText(new StringBuilder()
                     .append(String.format("%02d", date1)).append("/").append(String.format("%02d", (month1 + 1))).append("/").append(year1));
@@ -1037,9 +1037,9 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();
@@ -1076,7 +1076,7 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
                 }
             }
         }
-//        Log.i("distinct", scroll);
+//        // Log.i("distinct", scroll);
         return scroll;
     }
 
@@ -1104,7 +1104,7 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
 
 //    @Override
 //    public boolean onBackPressed() {
-//        Log.i("aaaaa123", String.valueOf(onBackPressed()));
+//        // Log.i("aaaaa123", String.valueOf(onBackPressed()));
 //        Fragment fragment = fragmentManager.findFragmentById(R.id.main_container);
 //        if (fragment != null) {
 //            FragmentTransaction fragmentTransaction = ((FragmentActivity) getActivity()).getSupportFragmentManager().beginTransaction();

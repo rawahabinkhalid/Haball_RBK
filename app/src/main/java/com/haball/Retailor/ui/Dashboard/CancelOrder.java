@@ -58,7 +58,7 @@ public class CancelOrder {
         SharedPreferences sharedPreferences = context.getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         JSONObject map = new JSONObject();
         map.put("ID", orderId);

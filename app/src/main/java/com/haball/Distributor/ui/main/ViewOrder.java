@@ -42,8 +42,8 @@ public class ViewOrder extends Fragment {
         InvoiceStatus = sharedPreferences3.getString("InvoiceStatus", "");
         String OrderStatus = sharedPreferences3.getString("Status", "");
         String InvoiceUpload = sharedPreferences3.getString("InvoiceUpload", "");
-        Log.i("InvoiceStatus", InvoiceStatus);
-        Log.i("OrderStatus", OrderStatus);
+        // Log.i("InvoiceStatus", InvoiceStatus);
+        // Log.i("OrderStatus", OrderStatus);
 
 //        SectionsPagerAdapter sectionsPagerAdapter = null;
         if (InvoiceStatus.equals("null") || InvoiceStatus.equals("Pending") || OrderStatus.equals("Pending") || OrderStatus.equals("Rejected")|| ((InvoiceUpload.equals("0")) && OrderStatus.equals("Cancelled"))) {

@@ -129,9 +129,9 @@ public class PlaceholderFragment extends Fragment {
 
 //        SharedPreferences selectedProductsSP = getContext().getSharedPreferences("FromDraft",
 //                Context.MODE_PRIVATE);
-//        Log.i("debugOrder_fromDraft", "'" + selectedProductsSP.getString("fromDraft", "") + "'");
+//        // Log.i("debugOrder_fromDraft", "'" + selectedProductsSP.getString("fromDraft", "") + "'");
 //        if (!selectedProductsSP.getString("fromDraft", "").equals("draft")) {
-//            Log.i("debugOrder_emptyProd", "empty the products list");
+//            // Log.i("debugOrder_emptyProd", "empty the products list");
 //
 //
 //            SharedPreferences selectedProducts = getContext().getSharedPreferences("selectedProducts_retailer_own",
@@ -240,7 +240,7 @@ public class PlaceholderFragment extends Fragment {
                             spinner_retailer_details.setVisibility(View.VISIBLE);
 //                            try {
 //                                Toast.makeText(getContext(), "Retailer Code: " + companies.get(Company_selected) + "\nCompany Name: " + Company_selected, Toast.LENGTH_LONG).show();
-//                            Log.i("Retailer", "Retailer Code: " + companies.get(Company_selected) + "\nCompany Name: " + Company_selected);
+//                            // Log.i("Retailer", "Retailer Code: " + companies.get(Company_selected) + "\nCompany Name: " + Company_selected);
 //                                fetchPaymentLedgerData(companies.get(Company_selected));
 //                            } catch (JSONException e) {
 //                                e.printStackTrace();
@@ -318,15 +318,15 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Retailer_Id = sharedPreferences1.getString("Retailer_Id", "");
-        Log.i("Retailer_Id ", Retailer_Id);
+        // Log.i("Retailer_Id ", Retailer_Id);
         if (!URL_Retailer.contains(Retailer_Id))
             URL_Retailer = URL_Retailer + Retailer_Id;
-        Log.i("URL_Company ", URL_Retailer);
+        // Log.i("URL_Company ", URL_Retailer);
             new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
 
@@ -334,13 +334,13 @@ public class PlaceholderFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(JSONArray result) {
-                Log.i("result", String.valueOf(result));
+                // Log.i("result", String.valueOf(result));
                 object_string = String.valueOf(result);
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<Company_Fragment_Model>>() {
                 }.getType();
                 CompanyList = gson.fromJson(object_string, type);
-                Log.i("CompanyList", String.valueOf(CompanyList));
+                // Log.i("CompanyList", String.valueOf(CompanyList));
                 try {
                     String CompanyNameDraft = "";
                     SharedPreferences selectedProductsSP = getContext().getSharedPreferences("FromDraft",
@@ -429,7 +429,7 @@ public class PlaceholderFragment extends Fragment {
     }
 
     private void setCompanyDetails(int position) {
-        Log.i("companyDetail", String.valueOf(CompanyList.get(position)));
+        // Log.i("companyDetail", String.valueOf(CompanyList.get(position)));
 //        txt_name.setText(CompanyList.get(position).getCompanyName());
         txt_email_address.setText(CompanyList.get(position).getEmail());
         txt_cnic_no.setText(CompanyList.get(position).getCNIC());
@@ -464,9 +464,9 @@ public class PlaceholderFragment extends Fragment {
     //             try {
     //                 String message = "";
     //                 String responseBody = new String(error.networkResponse.data, "utf-8");
-    //                 Log.i("responseBody", responseBody);
+    //                 // Log.i("responseBody", responseBody);
     //                 JSONObject data = new JSONObject(responseBody);
-    //                 Log.i("data", String.valueOf(data));
+    //                 // Log.i("data", String.valueOf(data));
     //                 Iterator<String> keys = data.keys();
     //                 while (keys.hasNext()) {
     //                     String key = keys.next();

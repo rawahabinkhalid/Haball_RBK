@@ -41,7 +41,7 @@ public class DistributorInvoicesAdapter extends RecyclerView.Adapter<Distributor
     public DistributorInvoicesAdapter(Context context, List<DistributorInvoicesModel> invoicesList) {
         this.mContxt = context;
         this.invoicesList = invoicesList;
-        Log.i("Payments List => ", String.valueOf(invoicesList));
+        // Log.i("Payments List => ", String.valueOf(invoicesList));
     }
 
     @NonNull

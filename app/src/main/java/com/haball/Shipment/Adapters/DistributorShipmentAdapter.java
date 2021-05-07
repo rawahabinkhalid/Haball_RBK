@@ -55,7 +55,7 @@ public class DistributorShipmentAdapter extends RecyclerView.Adapter<Distributor
          if (shipmentList.size() == 3 || shipmentList.size() == 4) {
              if (position == (shipmentList.size() - 1)) {
  //        if (position == 2) {
-                 Log.i("DebugSupportFilter_In", shipmentList.get(position).getDeliveryNumber());
+                 // Log.i("DebugSupportFilter_In", shipmentList.get(position).getDeliveryNumber());
                  RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                          RelativeLayout.LayoutParams.WRAP_CONTENT,
                          RelativeLayout.LayoutParams.WRAP_CONTENT

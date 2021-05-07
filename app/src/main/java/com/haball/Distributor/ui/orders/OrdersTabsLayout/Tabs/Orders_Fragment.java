@@ -117,7 +117,7 @@ public class Orders_Fragment extends Fragment {
 //                }
 //                else{
 //                    Filter_selected = consolidate_felter.get(i);
-//                    Log.i("Filter_selected", Filter_selected);
+//                    // Log.i("Filter_selected", Filter_selected);
 //                    if(!Filter_selected.equals("Status"))
 //                        spinner2.setSelection(0);
 //                    if(!Filter_selected.equals("Payment Term"))
@@ -183,7 +183,7 @@ public class Orders_Fragment extends Fragment {
 //        arrayAdapterPayments.notifyDataSetChanged();
 //        spinner_consolidate.setAdapter(arrayAdapterPayments);
 //
-//        Log.i("aaaa1111", String.valueOf(consolidate_felter));
+//        // Log.i("aaaa1111", String.valueOf(consolidate_felter));
 //        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 //            @Override
 //            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -197,7 +197,7 @@ public class Orders_Fragment extends Fragment {
 //                        Filter_selected_value = String.valueOf(i);
 //                    if(filters.get(i).equals("Select All"))
 //                        Filter_selected_value = "-1";
-//                    Log.i("Filter_selected_value",Filter_selected_value);
+//                    // Log.i("Filter_selected_value",Filter_selected_value);
 //                    try {
 //                        fetchFilteredOrders();
 //                    } catch (JSONException e) {
@@ -220,8 +220,8 @@ public class Orders_Fragment extends Fragment {
 //        conso_edittext.addTextChangedListener(new TextWatcher() {
 //
 //            public void afterTextChanged(Editable s) {
-//                Log.i("text1", "check");
-//                Log.i("text", String.valueOf(s));
+//                // Log.i("text1", "check");
+//                // Log.i("text", String.valueOf(s));
 //                Filter_selected_value = String.valueOf(s);
 //                try {
 //                    fetchFilteredOrders();
@@ -253,12 +253,12 @@ public class Orders_Fragment extends Fragment {
 //        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        Token = sharedPreferences.getString("Login_Token","");
-//        Log.i("Token", Token);
+//        // Log.i("Token", Token);
 //
 //        SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        DistributorId = sharedPreferences1.getString("Distributor_Id","");
-//        Log.i("DistributorId ", DistributorId);
+//        // Log.i("DistributorId ", DistributorId);
 //
 //        JSONObject map = new JSONObject();
 //        map.put("DistributorId", Integer.parseInt(DistributorId));
@@ -271,7 +271,7 @@ public class Orders_Fragment extends Fragment {
 //            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 //            @Override
 //            public void onResponse(JSONArray result) {
-//                Log.i("Payments Requests", result.toString());
+//                // Log.i("Payments Requests", result.toString());
 //                Gson gson = new Gson();
 //                Type type = new TypeToken<List<OrderFragmentModel>>(){}.getType();
 //                OrderList = gson.fromJson(result.toString(),type);
@@ -302,12 +302,12 @@ public class Orders_Fragment extends Fragment {
 //        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        Token = sharedPreferences.getString("Login_Token","");
-//        Log.i("Token", Token);
+//        // Log.i("Token", Token);
 //
 //        SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        DistributorId = sharedPreferences1.getString("Distributor_Id","");
-//        Log.i("DistributorId ", DistributorId);
+//        // Log.i("DistributorId ", DistributorId);
 //
 //        JSONObject map = new JSONObject();
 //        map.put("DistributorId", Integer.parseInt(DistributorId));
@@ -316,13 +316,13 @@ public class Orders_Fragment extends Fragment {
 ////        map.put("Status", -1);
 //        map.put("OrderState", -1);
 //        map.put(Filter_selected, Filter_selected_value);
-//        Log.i("Map", String.valueOf(map));
+//        // Log.i("Map", String.valueOf(map));
 //
 //        MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, URL_ORDER, map,new Response.Listener<JSONArray>() {
 //            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 //            @Override
 //            public void onResponse(JSONArray result) {
-//                Log.i("Payments Requests", result.toString());
+//                // Log.i("Payments Requests", result.toString());
 //                Gson gson = new Gson();
 //                Type type = new TypeToken<List<OrderFragmentModel>>(){}.getType();
 //                OrderList = gson.fromJson(result.toString(),type);

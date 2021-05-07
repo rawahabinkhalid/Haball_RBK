@@ -143,10 +143,10 @@ public class Support_Ticket_View extends Fragment {
 
 
         ID = sharedPreferences3.getString("SupportId", "");
-        Log.i("SupportId", ID);
+        // Log.i("SupportId", ID);
         if (!URL_SUPPORT_VIEW.contains("//" + ID)) {
             URL_SUPPORT_VIEW = URL_SUPPORT_VIEW + ID;
-            Log.i("URL_SUPPORT_VIEW", URL_SUPPORT_VIEW);
+            // Log.i("URL_SUPPORT_VIEW", URL_SUPPORT_VIEW);
         }
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, URL_SUPPORT_VIEW, null, new Response.Listener<JSONObject>() {
@@ -189,7 +189,7 @@ public class Support_Ticket_View extends Fragment {
                 new HaballError().printErrorMessage(getContext(), error);
                 new ProcessingError().showError(getContext());
                 error.printStackTrace();
-                Log.i("onErrorResponse", "Error");
+                // Log.i("onErrorResponse", "Error");
             }
         });
         Volley.newRequestQueue(getContext()).add(request);
@@ -217,9 +217,9 @@ public class Support_Ticket_View extends Fragment {
     //             try {
     //                 String message = "";
     //                 String responseBody = new String(error.networkResponse.data, "utf-8");
-    //                 Log.i("responseBody", responseBody);
+    //                 // Log.i("responseBody", responseBody);
     //                 JSONObject data = new JSONObject(responseBody);
-    //                 Log.i("data", String.valueOf(data));
+    //                 // Log.i("data", String.valueOf(data));
     //                 Iterator<String> keys = data.keys();
     //                 while (keys.hasNext()) {
     //                     String key = keys.next();
@@ -235,7 +235,7 @@ public class Support_Ticket_View extends Fragment {
     //     }
     // }
     private void showDeleteTicketDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
 //        final FragmentManager fm = getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();

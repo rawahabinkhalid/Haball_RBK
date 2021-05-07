@@ -160,14 +160,14 @@ public class ViewRetailer extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
 
         JSONObject map = new JSONObject();
         map.put("RetailerCode", mg_rt_code.getText());
         map.put("Status", String.valueOf((check_box.isChecked()) ? 1 : 2));
         map.put("SapCode", mg_rt_sapcode.getText());
-        Log.i("Status", String.valueOf((check_box.isChecked()) ? 1 : 2));
+        // Log.i("Status", String.valueOf((check_box.isChecked()) ? 1 : 2));
 
 
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_UPDATE_RETAILER, map, new Response.Listener<JSONObject>() {
@@ -240,21 +240,21 @@ public class ViewRetailer extends Fragment {
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
-        Log.i("Token", Token);
+        // Log.i("DistributorId ", DistributorId);
+        // Log.i("Token", Token);
 
         URL_RETAILER_DETAILS = URL_RETAILER_DETAILS + RetailerId;
-        Log.i("URL_RETAILER_DETAILS ", URL_RETAILER_DETAILS);
+        // Log.i("URL_RETAILER_DETAILS ", URL_RETAILER_DETAILS);
 
         JSONObject map = new JSONObject();
         map.put("DistributorId", Integer.parseInt(DistributorId));
-        Log.i("Map", String.valueOf(map));
+        // Log.i("Map", String.valueOf(map));
 
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.GET, URL_RETAILER_DETAILS, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
                 try {
-//                    Log.i("result", String.valueOf(result));
+//                    // Log.i("result", String.valueOf(result));
                     mg_rt_code.setText(result.getString("RetailerCode"));
                     mg_rt_code.setTextColor(getResources().getColor(R.color.textcolor));
                     mg_rt_firstname.setText(result.getString("Name"));
@@ -280,7 +280,7 @@ public class ViewRetailer extends Fragment {
 //                        check_box.setChecked(true);
 //                    else
 //                        check_box.setChecked(false);
-                    Log.i("result_getString", result.getString("Address"));
+                    // Log.i("result_getString", result.getString("Address"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -328,9 +328,9 @@ public class ViewRetailer extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();

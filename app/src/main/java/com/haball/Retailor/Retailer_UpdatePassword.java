@@ -215,7 +215,7 @@ public class Retailer_UpdatePassword extends AppCompatActivity {
         alertDialog.setView(view_popup);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
                 try {
                     skipUpdatePassword(targetClass);
@@ -272,7 +272,7 @@ public class Retailer_UpdatePassword extends AppCompatActivity {
         alertDialog.setView(view_popup);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
                 Intent intent = new Intent(Retailer_UpdatePassword.this, RetailerLogin.class);
                 startActivity(intent);
@@ -307,7 +307,7 @@ public class Retailer_UpdatePassword extends AppCompatActivity {
         loader.showLoader();
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("skip", true);
-        Log.i("Password_Log", String.valueOf(jsonObject));
+        // Log.i("Password_Log", String.valueOf(jsonObject));
 
         String requestBody = jsonObject.toString();
         
@@ -431,12 +431,12 @@ public class Retailer_UpdatePassword extends AppCompatActivity {
         if (password_check && confirm_password_check) {
             loader.showLoader();
 
-            Log.i("Token", Token);
+            // Log.i("Token", Token);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("Username", UserName);
             jsonObject.put("NewPassword", txt_newpassword.getText());
             jsonObject.put("ConfirmPassword", txt_cfmpassword.getText());
-            Log.i("Password_Log", String.valueOf(jsonObject));
+            // Log.i("Password_Log", String.valueOf(jsonObject));
 
             String requestBody = jsonObject.toString();
             new SSL_HandShake().handleSSLHandshake();
@@ -553,7 +553,7 @@ public class Retailer_UpdatePassword extends AppCompatActivity {
     private void checkPasswords(final boolean hasFocus) {
 //        String reg_ex = "^(?=.*[a-zA-Z])((?=.*\\d)|(?=.*[\\.,#';\\\\\\(\\)\\{\\}'`/$^+=!*()@%&])).{6,}$";
         String reg_ex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,}$";
-        Log.i("Password_Log", "in password check");
+        // Log.i("Password_Log", "in password check");
 
         if (!hasFocus && txt_newpassword.getText().toString().trim().equals("")) {
             layout_password1.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.edit_text_hint_color)));
@@ -627,7 +627,7 @@ public class Retailer_UpdatePassword extends AppCompatActivity {
     }
 
     private void checkConfirmPassword(final boolean hasFocus) {
-        Log.i("Password_Log", "in password check1");
+        // Log.i("Password_Log", "in password check1");
         if (!hasFocus && txt_cfmpassword.getText().toString().trim().equals("")) {
             layout_password3.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.edit_text_hint_color)));
         } else {
@@ -656,7 +656,7 @@ public class Retailer_UpdatePassword extends AppCompatActivity {
 
         }
         if (txt_newpassword.getText().toString().equals(txt_cfmpassword.getText().toString())) {
-            Log.i("Password_Log", "in password check2");
+            // Log.i("Password_Log", "in password check2");
             confirm_password_check = true;
 //            layout_password3.setPasswordVisibilityToggleEnabled(true);
         } else {
@@ -718,9 +718,9 @@ public class Retailer_UpdatePassword extends AppCompatActivity {
     //         try {
     //             String message = "";
     //             String responseBody = new String(error.networkResponse.data, "utf-8");
-    //             Log.i("responseBody", responseBody);
+    //             // Log.i("responseBody", responseBody);
     //             JSONObject data = new JSONObject(responseBody);
-    //             Log.i("data", String.valueOf(data));
+    //             // Log.i("data", String.valueOf(data));
     //             Iterator<String> keys = data.keys();
     //             while (keys.hasNext()) {
     //                 String key = keys.next();

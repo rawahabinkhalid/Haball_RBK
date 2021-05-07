@@ -41,7 +41,7 @@ public class HaballError {
         if (context != null) {
 //            printAdvancedErrorInfo(context, error);
 //            if (error instanceof ClientError) {
-//                Log.i("Logout", "Logout Activity");
+//                // Log.i("Logout", "Logout Activity");
 ////                SharedPreferences login_token = context.getSharedPreferences("LoginToken",
 ////                        Context.MODE_PRIVATE);
 ////                SharedPreferences.Editor editor = login_token.edit();
@@ -70,7 +70,7 @@ public class HaballError {
 //                    try {
 //                        JSONObject data = new JSONObject(responseBody);
 //                        if (data.getString("name").equals("TokenExpiredError")) {
-                    Log.i("Logout", "Logout Activity");
+                    // Log.i("Logout", "Logout Activity");
                     SharedPreferences login_token = context.getSharedPreferences("LoginToken",
                             Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = login_token.edit();
@@ -143,7 +143,7 @@ public class HaballError {
 //             //                        HttpHeaderParser.parseCharset(response.headers, "utf-8"));
 //             //                // Now you can use any deserializer to make sense of data
 //             //                JSONObject obj = new JSONObject(res);
-//             //                Log.i("obj", String.valueOf(obj));
+//             //                // Log.i("obj", String.valueOf(obj));
 //             //                Iterator<String> keys = obj.keys();
 //             //                int i = 0;
 //             //                while(keys.hasNext()) {
@@ -153,7 +153,7 @@ public class HaballError {
 //             ////                    }
 //             //                    i++;
 //             //                }
-//             //                Log.i("message", message);
+//             //                // Log.i("message", message);
 //             //                Toast.makeText(context, String.valueOf(message), Toast.LENGTH_LONG).show();
 //             //            } catch (UnsupportedEncodingException e1) {
 //             //                // Couldn't properly decode data to string

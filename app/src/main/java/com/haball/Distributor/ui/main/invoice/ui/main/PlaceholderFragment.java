@@ -159,11 +159,11 @@ public class PlaceholderFragment extends Fragment {
 
         orderID = sharedPreferences3.getString("PaymentId", "");
         orderStatus = sharedPreferences3.getString("Status", "");
-        Log.i("PaymentId", orderID);
-        Log.i("orderStatus", orderStatus);
+        // Log.i("PaymentId", orderID);
+        // Log.i("orderStatus", orderStatus);
         if (!URL_Order_Data.contains(orderID)) {
             URL_Order_Data = URL_Order_Data + orderID;
-            Log.i("URL_Order_Data", URL_Order_Data);
+            // Log.i("URL_Order_Data", URL_Order_Data);
         }
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
@@ -173,13 +173,13 @@ public class PlaceholderFragment extends Fragment {
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
 
-//        Log.i("StatusKVP", String.valueOf(Token));
+//        // Log.i("StatusKVP", String.valueOf(Token));
 
         StatusKVPClass = new StatusKVP(getContext(), Token);
         OrderStatusKVP = StatusKVPClass.getOrderStatus();
         InvoiceStatusKVP = StatusKVPClass.getInvoiceStatus();
-        Log.i("StatusKVP1", "String.valueOf(OrderStatusKVP)");
-        Log.i("StatusKVP1", String.valueOf(OrderStatusKVP));
+        // Log.i("StatusKVP1", "String.valueOf(OrderStatusKVP)");
+        // Log.i("StatusKVP1", String.valueOf(OrderStatusKVP));
 
         View rootView = null;
         switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
@@ -255,7 +255,7 @@ public class PlaceholderFragment extends Fragment {
                         Context.MODE_PRIVATE);
                 InvoiceStatus = sharedPreferences11.getString("InvoiceStatus", "");
                 String Status = sharedPreferences11.getString("Status", "");
-                Log.i("InvoiceStatus", InvoiceStatus);
+                // Log.i("InvoiceStatus", InvoiceStatus);
 
 //        SectionsPagerAdapter sectionsPagerAdapter = null;
                 if ((!InvoiceStatus.equals("null") && !InvoiceStatus.equals("Pending")) || Status.equals("Cancelled")) {
@@ -287,7 +287,7 @@ public class PlaceholderFragment extends Fragment {
 
 //                getInvoiceStatusFromAPI();
 
-                Log.i("InvoiceStatus", InvoiceStatus);
+                // Log.i("InvoiceStatus", InvoiceStatus);
 
 //        SectionsPagerAdapter sectionsPagerAdapter = null;
                 if (InvoiceStatus.equals("Paid") || InvoiceStatus.equals("Invoiced")) {
@@ -556,7 +556,7 @@ public class PlaceholderFragment extends Fragment {
 //                Context.MODE_PRIVATE);
 //        Token = sharedPreferences.getString("Login_Token", "");
 //
-//        Log.i("Token", Token);
+//        // Log.i("Token", Token);
 //        new SSL_HandShake().handleSSLHandshake();
 //
 //        JsonArrayRequest sr = new JsonArrayRequest(Request.Method.GET, URL_PAYMENT_REQUESTS_SELECT_COMPANY, null, new Response.Listener<JSONArray>() {
@@ -578,15 +578,15 @@ public class PlaceholderFragment extends Fragment {
 //                    spinner_companyName.setAdapter(arrayAdapterPayments);
 //
 //                    // txt_amount.setText(Amount);
-//                    Log.i("Debugging", String.valueOf(CompanyNames));
-//                    Log.i("Debugging", String.valueOf(CompanyNames.indexOf(CompanyName)));
-//                    Log.i("Debugging", String.valueOf(CompanyName));
+//                    // Log.i("Debugging", String.valueOf(CompanyNames));
+//                    // Log.i("Debugging", String.valueOf(CompanyNames.indexOf(CompanyName)));
+//                    // Log.i("Debugging", String.valueOf(CompanyName));
 ////        int spinnerPosition = arrayAdapterPayments.getPosition(CompanyName);
 ////                    spinner_companyName.setSelection(CompanyNames.indexOf(CompanyName));
 //                } catch (JSONException e) {
 //                    e.printStackTrace();
 //                }
-//                Log.e("RESPONSE OF COMPANY ID", result.toString());
+//                // Log.e("RESPONSE OF COMPANY ID", result.toString());
 //            }
 //        }, new Response.ErrorListener() {
 //            @Override
@@ -647,13 +647,13 @@ public class PlaceholderFragment extends Fragment {
 //
 //
 //    private void getInvoiceStatusFromAPI() {
-//        Log.i("DistributorId invoice", DistributorId);
-//        Log.i("Token invoice", Token);
+//        // Log.i("DistributorId invoice", DistributorId);
+//        // Log.i("Token invoice", Token);
 //        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, URL_Order_Data, null, new Response.Listener<JSONObject>() {
 //            @Override
 //            public void onResponse(JSONObject result) {
 //                loader.hideLoader();
-//                Log.i("Order Data response", String.valueOf(result));
+//                // Log.i("Order Data response", String.valueOf(result));
 //                try {
 //                    if (result.has("Invoice")) {
 //                        JSONObject response = result.getJSONObject("Invoice");
@@ -689,14 +689,14 @@ public class PlaceholderFragment extends Fragment {
 //    }
 
     private void getOrderData() {
-        Log.i("DistributorId invoice", DistributorId);
-        Log.i("Token invoice", Token);
-        Log.i("status_order_111", String.valueOf(txt_status_order));
+        // Log.i("DistributorId invoice", DistributorId);
+        // Log.i("Token invoice", Token);
+        // Log.i("status_order_111", String.valueOf(txt_status_order));
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, URL_Order_Data, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 loader.hideLoader();
-                Log.i("Order Data response", String.valueOf(response));
+                // Log.i("Order Data response", String.valueOf(response));
                 try {
 
 //                    txt_orderID.setText(String.valueOf(response.get("OrderNumber")));
@@ -767,8 +767,8 @@ public class PlaceholderFragment extends Fragment {
         tv_shipment_no_data = rootView.findViewById(R.id.tv_shipment_no_data);
         tv_shipment_no_data.setVisibility(View.GONE);
 
-        Log.i("DistributorId invoice", DistributorId);
-        Log.i("Token invoice", Token);
+        // Log.i("DistributorId invoice", DistributorId);
+        // Log.i("Token invoice", Token);
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, URL_Order_Data, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -778,7 +778,7 @@ public class PlaceholderFragment extends Fragment {
 //                }.getType();
 //                try {
 //                    invo_productList = gson.fromJson(response.get("OrderDetails").toString(), type);
-//                    Log.i("OrderDetails", String.valueOf(response.get("OrderDetails")));
+//                    // Log.i("OrderDetails", String.valueOf(response.get("OrderDetails")));
 //                    ViewInvoiceProductAdapter productAdapter = new ViewInvoiceProductAdapter(getContext(), invo_productList);
 //                    rv_fragment_retailer_order_details.setAdapter(productAdapter);
 //                    if (invo_productList.size() != 0) {
@@ -806,7 +806,7 @@ public class PlaceholderFragment extends Fragment {
                         if (!String.valueOf(invo_productList.get(i).getDiscount()).equals("null"))
                             totalDiscount += Double.parseDouble(invo_productList.get(i).getDiscount());
                     }
-                    Log.i("OrderDetails", String.valueOf(response.get("InvoiceDetails")));
+                    // Log.i("OrderDetails", String.valueOf(response.get("InvoiceDetails")));
                     ViewInvoiceProductAdapter productAdapter = new ViewInvoiceProductAdapter(getContext(), invo_productList);
                     rv_fragment_retailer_order_details.setAdapter(productAdapter);
                     DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
@@ -885,13 +885,13 @@ public class PlaceholderFragment extends Fragment {
     }
 
     private void getPaidInvoiceData() {
-        Log.i("DistributorId invoice", DistributorId);
-        Log.i("Token invoice", Token);
+        // Log.i("DistributorId invoice", DistributorId);
+        // Log.i("Token invoice", Token);
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, URL_Order_Data, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 loader.hideLoader();
-                Log.i("Order Data response2", String.valueOf(response));
+                // Log.i("Order Data response2", String.valueOf(response));
                 try {
 //                    if (result.has("Invoice")) {
 ////                        JSONObject responseInv = response.getJSONObject("Invoice");
@@ -980,19 +980,19 @@ public class PlaceholderFragment extends Fragment {
 //        Token = sharedPreferences.getString("Login_Token", "");
 //        if (!URL_Order_Data.contains("/" + orderID)) {
 //            URL_Order_Data = URL_Order_Data + orderID;
-//            Log.i("URL_Payment_Data", URL_Order_Data);
+//            // Log.i("URL_Payment_Data", URL_Order_Data);
 //        }
 ////        SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
 ////                Context.MODE_PRIVATE);
 ////        DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-////        Log.i("DistributorId invoice", DistributorId);
-//        Log.i("Token invoice12", Token);
+////        // Log.i("DistributorId invoice", DistributorId);
+//        // Log.i("Token invoice12", Token);
 //        new SSL_HandShake().handleSSLHandshake();
 //        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, URL_Order_Data, null, new Response.Listener<JSONObject>() {
 //            @Override
 //            public void onResponse(JSONObject result) {
 //                loader.hideLoader();
-//                Log.i("Order Data_UnPaid", String.valueOf(result));
+//                // Log.i("Order Data_UnPaid", String.valueOf(result));
 //                try {
 //                    JSONObject response = result.getJSONObject("Invoice");
 //                    invoiceID = response.getString("ID");
@@ -1089,9 +1089,9 @@ public class PlaceholderFragment extends Fragment {
                 try {
                     String message = "";
                     String responseBody = new String(error.networkResponse.data, "utf-8");
-                    Log.i("responseBody", responseBody);
+                    // Log.i("responseBody", responseBody);
                     JSONObject data = new JSONObject(responseBody);
-                    Log.i("data", String.valueOf(data));
+                    // Log.i("data", String.valueOf(data));
                     Iterator<String> keys = data.keys();
                     while (keys.hasNext()) {
                         String key = keys.next();

@@ -229,12 +229,12 @@ public class Support_Ticket_Form_Retailer extends AppCompatActivity {
         map.put("Message", Comment.getText().toString());
         map.put("ID", 0);
 
-        Log.i("TICKET OBJECT", String.valueOf(map));
+        // Log.i("TICKET OBJECT", String.valueOf(map));
 
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_TICkET, map, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject result) {
-                Log.e("RESPONSE", result.toString());
+                // Log.e("RESPONSE", result.toString());
                 finish();
             }
 
@@ -268,11 +268,11 @@ public class Support_Ticket_Form_Retailer extends AppCompatActivity {
                         jsonObject  = result.getJSONObject(i);
                         issue_type.add(jsonObject.getString("value"));
                     }
-                    Log.i("issue type values => ",issue_type.toString());
+                    // Log.i("issue type values => ",issue_type.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE OF ISSUE TYPE", result.toString());
+                // Log.e("RESPONSE OF ISSUE TYPE", result.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -318,11 +318,11 @@ public class Support_Ticket_Form_Retailer extends AppCompatActivity {
                         criticality.add(jsonObject.getString("value"));
 
                     }
-                    Log.i("criticality values => ",criticality.toString());
+                    // Log.i("criticality values => ",criticality.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE OF criticality", result.toString());
+                // Log.e("RESPONSE OF criticality", result.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -368,11 +368,11 @@ public class Support_Ticket_Form_Retailer extends AppCompatActivity {
                         preffered_contact.add(jsonObject.getString("value"));
                     }
 
-                    Log.i("preffered_contact => ",preffered_contact.toString());
+                    // Log.i("preffered_contact => ",preffered_contact.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE preferedcont", result.toString());
+                // Log.e("RESPONSE preferedcont", result.toString());
             }
         }, new Response.ErrorListener() {
             @Override

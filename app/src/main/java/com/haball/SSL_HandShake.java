@@ -123,7 +123,7 @@ public class SSL_HandShake {
 //                                originalTrustManager.checkClientTrusted(certs, authType);
 //                            }
 //                        } catch (CertificateException e) {
-//                            Log.w("checkClientTrusted", e.toString());
+//                            // Log.w("checkClientTrusted", e.toString());
 //                        }
 //                    }
 //
@@ -135,7 +135,7 @@ public class SSL_HandShake {
 //                                originalTrustManager.checkServerTrusted(certs, authType);
 //                            }
 //                        } catch (CertificateException e) {
-//                            Log.w("checkServerTrusted", e.toString());
+//                            // Log.w("checkServerTrusted", e.toString());
 //                        }
 //                    }
 //                }
@@ -246,7 +246,7 @@ public class SSL_HandShake {
 //                                originalTrustManager.checkClientTrusted(certs, authType);
 //                            }
 //                        } catch (CertificateException e) {
-//                            Log.w("checkClientTrusted", e.toString());
+//                            // Log.w("checkClientTrusted", e.toString());
 //                        }
 //                    }
 //
@@ -258,7 +258,7 @@ public class SSL_HandShake {
 //                                originalTrustManager.checkServerTrusted(certs, authType);
 //                            }
 //                        } catch (CertificateException e) {
-//                            Log.w("checkServerTrusted", e.toString());
+//                            // Log.w("checkServerTrusted", e.toString());
 //                        }
 //                    }
 //                }

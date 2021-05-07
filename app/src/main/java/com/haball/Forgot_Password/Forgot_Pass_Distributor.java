@@ -220,7 +220,7 @@ public class Forgot_Pass_Distributor extends AppCompatActivity {
             public void onResponse(String result) {
                 loader.hideLoader();
                 if (result.equals("\"success\"")) {
-//                Log.e("RESPONSE", result);
+//                // Log.e("RESPONSE", result);
 //                img_email.setOnClickListener(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
@@ -375,7 +375,7 @@ public class Forgot_Pass_Distributor extends AppCompatActivity {
 //    }
 
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         LayoutInflater inflater = LayoutInflater.from(this);
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
@@ -393,7 +393,7 @@ public class Forgot_Pass_Distributor extends AppCompatActivity {
         btn_discard.setText("Exit");
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
 
                 Intent intent = new Intent(Forgot_Pass_Distributor.this, Distribution_Login.class);

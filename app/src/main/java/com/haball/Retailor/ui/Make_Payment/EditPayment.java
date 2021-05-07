@@ -43,7 +43,7 @@ public class EditPayment {
 
     public void EditPayment(final FragmentActivity activity, final Context context, final String Token, String PrePaidId, final String PrePaidNumber, String DealerCode, String PaidAmount) throws JSONException {
         mContext = context;
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         JSONObject map = new JSONObject();
         map.put("ID", PrePaidId);
@@ -60,7 +60,7 @@ public class EditPayment {
                 context.startActivity(dashboard_intent);
                 activity.finish();
 
-                Log.e("RESPONSE prepaid_number", result.toString());
+                // Log.e("RESPONSE prepaid_number", result.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -105,9 +105,9 @@ public class EditPayment {
     //         try {
     //             String message = "";
     //             String responseBody = new String(error.networkResponse.data, "utf-8");
-    //             Log.i("responseBody", responseBody);
+    //             // Log.i("responseBody", responseBody);
     //             JSONObject data = new JSONObject(responseBody);
-    //             Log.i("data", String.valueOf(data));
+    //             // Log.i("data", String.valueOf(data));
     //             Iterator<String> keys = data.keys();
     //             while (keys.hasNext()) {
     //                 String key = keys.next();

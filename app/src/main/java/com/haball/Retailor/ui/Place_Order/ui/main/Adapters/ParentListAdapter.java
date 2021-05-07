@@ -53,11 +53,11 @@ import java.util.List;
 
 public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist_Model, OrderChildlist_Model, OrderParentLIst_VH, OrderChildList_VH> {
     LayoutInflater inflater;
-    private Context context;
+    private final Context context;
     public List<OrderChildlist_Model> selectedProductsDataList = new ArrayList<>();
     private List<String> selectedProductsQuantityList = new ArrayList<>();
     private String object_string, object_stringqty;
-    private int pre_expanded = -1;
+    private final int pre_expanded = -1;
     public List<OrderParentLIst_VH> OrderParentList = new ArrayList<>();
     private int parentPosition = -1;
     private List<OrderParentlist_Model> parentItemList;
@@ -69,7 +69,7 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
 
     public ParentListAdapter(Context context, List<OrderParentlist_Model> parentItemList, RelativeLayout filter_layout, Button btn_checkout, List<OrderChildlist_Model> productList, Loader loader) {
         super(parentItemList);
-        inflater = LayoutInflater.from(context);
+       inflater = LayoutInflater.from(context);
         this.context = context;
         this.parentItemList = parentItemList;
         this.filter_layout = filter_layout;
@@ -90,8 +90,8 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
         if (!object_string.equals("")) {
             selectedProductsDataList = gson.fromJson(object_string, type);
             selectedProductsQuantityList = gson.fromJson(object_stringqty, typeString);
-            Log.i("debugOrder_selProdQty", String.valueOf(object_stringqty));
-            Log.i("debugOrder_selProd", String.valueOf(object_string));
+            // Log.i("debugOrder_selProdQty", String.valueOf(object_stringqty));
+            // Log.i("debugOrder_selProd", String.valueOf(object_string));
         }
 
         Quantity = 0;
@@ -137,8 +137,8 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
     @Override
     public void onBindParentViewHolder(@NonNull final OrderParentLIst_VH orderParentLIst_vh, final int position, @NonNull OrderParentlist_Model o) {
 //    public void onBindParentViewHolder(final OrderParentLIst_VH orderParentLIst_vh, final int position, OrderParentlist_Model o) {
-        Log.i("debugOrder_object", String.valueOf(position));
-        Log.i("debugOrder_object1", String.valueOf(orderParentLIst_vh.getPosition()));
+        // Log.i("debugOrder_object", String.valueOf(position));
+        // Log.i("debugOrder_object1", String.valueOf(orderParentLIst_vh.getPosition()));
         final OrderParentlist_Model orderParentlist_model = (OrderParentlist_Model) o;
         orderParentLIst_vh._textview.setText(orderParentlist_model.getTitle());
         orderParentLIst_VH_main = orderParentLIst_vh;
@@ -158,7 +158,7 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
 
         //    public void onBindChildViewHolder(OrderChildList_VH orderChildList_vh, int pos, int i, OrderChildlist_Model o) {
 
-//        Log.i("debugOrder_o", String.valueOf(o));
+//        // Log.i("debugOrder_o", String.valueOf(o));
         OrderChildlist_Model orderChildlist_model = (OrderChildlist_Model) o;
         final OrderChildList_VH temp_orderChildList_vh = orderChildList_vh;
         final int temp_i = i;
@@ -170,7 +170,7 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
                 if (productList.get(iter).getProductCategoryId().equals(orderChildlist_model.getProductCategoryId()))
                     totalChildInThisParent++;
         }
-        Log.i("totalChildInThisParent", String.valueOf(totalChildInThisParent));
+        // Log.i("totalChildInThisParent", String.valueOf(totalChildInThisParent));
 //
         orderChildList_vh.list_txt_products.setText(orderChildlist_model.getTitle());
 //        orderChildList_vh.list_product_code_value.setText(orderChildlist_model.getProductCode());
@@ -234,7 +234,7 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
 //                ((FragmentActivity) context). .getView().findFocus();
-                Log.i("focusdebugging", String.valueOf(v.findFocus()));
+                // Log.i("focusdebugging", String.valueOf(v.findFocus()));
 
 
             }
@@ -263,8 +263,8 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
                         str_quantity = "0";
 
                     if (temp_orderChildList_vh.list_txt_products.getText().equals(temp_orderChildlist_model.getTitle())) {
-                        Log.i("debugOrder_textChang", String.valueOf(temp_orderChildlist_model.getTitle()));
-                        Log.i("debugOrder_textChang1", String.valueOf(temp_orderChildList_vh.list_txt_products.getText()));
+                        // Log.i("debugOrder_textChang", String.valueOf(temp_orderChildlist_model.getTitle()));
+                        // Log.i("debugOrder_textChang1", String.valueOf(temp_orderChildList_vh.list_txt_products.getText()));
                         checkOutEnabler(temp_orderChildList_vh, temp_i, temp_orderChildlist_model, str_quantity);
                     }
                 }
@@ -275,8 +275,8 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
         orderChildList_vh.list_numberOFitems.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                Log.i("order_place_debug", String.valueOf(keyCode));
-                Log.i("order_place_debug123123", String.valueOf(KeyEvent.KEYCODE_BACK));
+                // Log.i("order_place_debug", String.valueOf(keyCode));
+                // Log.i("order_place_debug123123", String.valueOf(KeyEvent.KEYCODE_BACK));
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
 //                    FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
 ////                        fragmentTransaction.add(R.id.main_container, new Dist_OrderPlace()).addToBackStack("null");
@@ -287,8 +287,8 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
                     SharedPreferences orderCheckout = context.getSharedPreferences("orderCheckout_discard",
                             Context.MODE_PRIVATE);
                     String orderCheckedOutStr = orderCheckout.getString("orderCheckout", "");
-                    Log.i("back_debug", orderCheckedOutStr + "'''");
-                    Log.i("back_debug123", String.valueOf(selectedProductsDataList.size()));
+                    // Log.i("back_debug", orderCheckedOutStr + "'''");
+                    // Log.i("back_debug123", String.valueOf(selectedProductsDataList.size()));
 
                     List<OrderChildlist_Model> selectedProductsDataList = new ArrayList<>();
                     List<String> selectedProductsQuantityList = new ArrayList<>();
@@ -320,7 +320,7 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
                     return executeBackStackFlow(selectedProductsSP, orderCheckedOutStr, quantity, selectedProductsDataList, selectedProductsQuantityList);
 
                 }
-//                Log.i("order_place_debug", String.valueOf(KeyCode));
+//                // Log.i("order_place_debug", String.valueOf(KeyCode));
 
                 return false;
             }
@@ -331,7 +331,7 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (finalTotalChildInThisParent == (i + 1)) {
-                    Log.i("order_place_debug8", "done clicked on last child");
+                    // Log.i("order_place_debug8", "done clicked on last child");
                     InputMethodManager imm = (InputMethodManager) ((FragmentActivity) context).getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
@@ -351,17 +351,17 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
     }
 
     private boolean executeBackStackFlow(SharedPreferences selectedProductsSP, String orderCheckedOutStr, int quantity, List<OrderChildlist_Model> selectedProductsDataList, List<String> selectedProductsQuantityList) {
-        Log.i("back_debug", orderCheckedOutStr + "'''1");
-        Log.i("back_debug123", String.valueOf(selectedProductsDataList.size()) + "'''2");
-        Log.i("back_debug123", String.valueOf(quantity) + "'''3");
-        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "") + "'''4"));
-        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "") + "'''5"));
+        // Log.i("back_debug", orderCheckedOutStr + "'''1");
+        // Log.i("back_debug123", String.valueOf(selectedProductsDataList.size()) + "'''2");
+        // Log.i("back_debug123", String.valueOf(quantity) + "'''3");
+        // Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "") + "'''4"));
+        // Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "") + "'''5"));
 
-        Log.i("back_debug123", String.valueOf(!orderCheckedOutStr.equals("")) + "'''11");
-        Log.i("back_debug123", String.valueOf(selectedProductsDataList.size() > 0) + "'''12");
-        Log.i("back_debug123", String.valueOf(quantity > 0) + "'''13");
-        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "").equals("draft") + "'''14"));
-        Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "").equals("changed") + "'''15"));
+        // Log.i("back_debug123", String.valueOf(!orderCheckedOutStr.equals("")) + "'''11");
+        // Log.i("back_debug123", String.valueOf(selectedProductsDataList.size() > 0) + "'''12");
+        // Log.i("back_debug123", String.valueOf(quantity > 0) + "'''13");
+        // Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraft", "").equals("draft") + "'''14"));
+        // Log.i("back_debug123", String.valueOf(selectedProductsSP.getString("fromDraftChanged", "").equals("changed") + "'''15"));
 
         FragmentTransaction fragmentTransaction;
         if (selectedProductsSP.getString("fromDraft", "").equals("draft")) {
@@ -396,7 +396,7 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
     }
 
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
         final FragmentManager fm = ((FragmentActivity) context).getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
@@ -413,7 +413,7 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
                 SharedPreferences tabsFromDraft = context.getSharedPreferences("OrderTabsFromDraft",
                         Context.MODE_PRIVATE);
@@ -451,7 +451,7 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
 
             }
         });
-
+        if(!alertDialog.isShowing())
         alertDialog.show();
     }
 
@@ -505,8 +505,8 @@ public class ParentListAdapter extends ExpandableRecyclerAdapter<OrderParentlist
         Gson gson = new Gson();
         String json = gson.toJson(selectedProductsDataList);
         String jsonqty = gson.toJson(selectedProductsQuantityList);
-        Log.i("debugOrder_jsonqty", jsonqty);
-        Log.i("debugOrder_json", json);
+        // Log.i("debugOrder_jsonqty", jsonqty);
+        // Log.i("debugOrder_json", json);
         SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts_retailer_own",
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = selectedProducts.edit();

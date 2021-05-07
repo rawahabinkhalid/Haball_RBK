@@ -158,12 +158,12 @@ public class PlaceholderFragment extends Fragment {
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-        Log.i("DistributorId ", DistributorId);
+        // Log.i("DistributorId ", DistributorId);
         if (!URL_Company.contains(DistributorId))
             URL_Company = URL_Company + DistributorId;
 
@@ -172,12 +172,12 @@ public class PlaceholderFragment extends Fragment {
             @Override
             public void onResponse(JSONArray result) {
 //                loader.hideLoader();
-                Log.i("Payments Requests", result.toString());
+                // Log.i("Payments Requests", result.toString());
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<Company_Fragment_Model>>() {
                 }.getType();
                 CompanyList = gson.fromJson(result.toString(), type);
-                Log.i("CompanyList", String.valueOf(CompanyList));
+                // Log.i("CompanyList", String.valueOf(CompanyList));
                 mAdapter = new CompanyFragmentAdapter(getContext(), CompanyList, pager);
                 recyclerView.setAdapter(mAdapter);
             }
@@ -211,12 +211,12 @@ public class PlaceholderFragment extends Fragment {
 //        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        Token = sharedPreferences.getString("Login_Token","");
-//        Log.i("Token", Token);
+//        // Log.i("Token", Token);
 //
 //        SharedPreferences sharedPreferences1 = this.getActivity().getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        DistributorId = sharedPreferences1.getString("Distributor_Id","");
-//        Log.i("DistributorId ", DistributorId);
+//        // Log.i("DistributorId ", DistributorId);
 //
 //        JSONObject map = new JSONObject();
 //        map.put("DistributorId", Integer.parseInt(DistributorId));
@@ -225,13 +225,13 @@ public class PlaceholderFragment extends Fragment {
 ////        map.put("Status", -1);
 //        map.put("OrderState", -1);
 //        map.put(Filter_selected, Filter_selected_value);
-//        Log.i("Map", String.valueOf(map));
+//        // Log.i("Map", String.valueOf(map));
 //
 //        MyJsonArrayRequest sr = new MyJsonArrayRequest(Request.Method.POST, URL_ORDER, map,new Response.Listener<JSONArray>() {
 //            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 //            @Override
 //            public void onResponse(JSONArray result) {
-//                Log.i("Payments Requests", result.toString());
+//                // Log.i("Payments Requests", result.toString());
 //                Gson gson = new Gson();
 //                Type type = new TypeToken<List<OrderFragmentModel>>(){}.getType();
 //                OrderList = gson.fromJson(result.toString(),type);
@@ -262,9 +262,9 @@ public class PlaceholderFragment extends Fragment {
             try {
                 String message = "";
                 String responseBody = new String(error.networkResponse.data, "utf-8");
-                Log.i("responseBody", responseBody);
+                // Log.i("responseBody", responseBody);
                 JSONObject data = new JSONObject(responseBody);
-                Log.i("data", String.valueOf(data));
+                // Log.i("data", String.valueOf(data));
                 Iterator<String> keys = data.keys();
                 while (keys.hasNext()) {
                     String key = keys.next();

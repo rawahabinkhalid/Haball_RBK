@@ -58,6 +58,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.haball.CustomToast;
+import com.haball.Distributor.DistributorDashboard;
 import com.haball.HaballError;
 import com.haball.Loader;
 import com.haball.ProcessingError;
@@ -102,6 +103,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
     private FragmentTransaction fragmentTransaction;
     private Loader loader;
     private RelativeLayout rl_jazz_cash;
+    private AlertDialog alertDialog;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -172,10 +174,10 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
 //        CompanyName = "One call";
 //        CompanyId = "20203847";
 //        Amount = "500";
-//        Log.i("payment3_PrePaidId", PrePaidId);
-//        Log.i("payment3_CompanyName", CompanyName);
-//        Log.i("payment3_CompanyId", CompanyId);
-//        Log.i("payment3_Amount", Amount);
+//        // Log.i("payment3_PrePaidId", PrePaidId);
+//        // Log.i("payment3_CompanyName", CompanyName);
+//        // Log.i("payment3_CompanyId", CompanyId);
+//        // Log.i("payment3_Amount", Amount);
 //
 //        arrayAdapterPayments = new ArrayAdapter<>(root.getContext(),
 //                android.R.layout.simple_spinner_dropdown_item, CompanyNames);
@@ -219,7 +221,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
                 }
                 company_names = CompanyNames.get(i);
                 checkFieldsForEmptyValues();
-//                Log.i("company name and id ", companyNameAndId.get(company_names));
+//                // Log.i("company name and id ", companyNameAndId.get(company_names));
 //                if (company_names.equals("Select Company") || company_names.equals(CompanyName))
 //                    btn_update.setText("Back");
 //                else
@@ -250,7 +252,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
 //                    btn_update.setText("Update");
 //                else
 //                    btn_update.setText("Back");
-                    Log.i("PaymentAmountDebug", String.valueOf(txt_amount.getText()));
+                    // Log.i("PaymentAmountDebug", String.valueOf(txt_amount.getText()));
                     checkFieldsForEmptyValues();
                 }
             }
@@ -348,21 +350,43 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
                 });
             }
         });
-
+        alertDialog = new AlertDialog.Builder(getContext()).create();
         return root;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+//        final String txt_amounts = txt_amount.getText().toString();
+//        final String company = String.valueOf(spinner_company.getItemAtPosition(spinner_company.getSelectedItemPosition()));
+        final FragmentManager fm = getActivity().getSupportFragmentManager();
 
         txt_amount.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
-                    txt_amount.clearFocus();
-                    if (btn_update.getText().equals("Update")) {
+                    final String txt_amounts = txt_amount.getText().toString();
+                    final String company = String.valueOf(spinner_companyName.getItemAtPosition(spinner_companyName.getSelectedItemPosition()));
+                    // Log.i("onResume_txt_amount", String.valueOf(txt_amounts));
+                    // Log.i("onResume_company_name", String.valueOf(company));
+                    // txt_amount.clearFocus();
+                    if (!txt_amounts.equals("") || (!company.equals("Select Company") && company != null)) {
                         showDiscardDialog();
+                        return true;
+
+                    } else {
+
+                        SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
+                                Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
+                        editorOrderTabsFromDraft.putString("TabNo", "0");
+                        editorOrderTabsFromDraft.apply();
+
+                        Intent login_intent = new Intent(((FragmentActivity) getContext()), RetailorDashboard.class);
+                        ((FragmentActivity) getContext()).startActivity(login_intent);
+                        ((FragmentActivity) getContext()).finish();
+                        return true;
+
                     }
                 }
                 return false;
@@ -376,19 +400,16 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
                     // handle back button's click listener
+                    final String txt_amounts = txt_amount.getText().toString();
+                    final String company = String.valueOf(spinner_companyName.getItemAtPosition(spinner_companyName.getSelectedItemPosition()));
+                    // Log.i("onResume_txt_amount", String.valueOf(txt_amounts));
+                    // Log.i("onResume_company_name", String.valueOf(company));
+
 //                    Toast.makeText(getActivity(), "Back press", Toast.LENGTH_SHORT).show();
-                    String txt_amounts = txt_amount.getText().toString();
-                    String company = (String) spinner_companyName.getItemAtPosition(spinner_companyName.getSelectedItemPosition()).toString();
-//                    if ((!txt_amounts.equals("")
-//                            && !txt_amounts.equals(Amount))
-//                            || (!company.equals("Select Company") && !company.equals(CompanyName))
-//
-//                    ) {
-                    if (btn_update.getText().equals("Update")) {
+                    if (!txt_amounts.equals("") || (!company.equals("Select Company") && company != null)) {
                         showDiscardDialog();
                         return true;
                     } else {
-//                        return false;
                         SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
                                 Context.MODE_PRIVATE);
                         SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
@@ -398,6 +419,8 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
                         Intent login_intent = new Intent(((FragmentActivity) getContext()), RetailorDashboard.class);
                         ((FragmentActivity) getContext()).startActivity(login_intent);
                         ((FragmentActivity) getContext()).finish();
+                        return true;
+
                     }
                 }
                 return false;
@@ -422,7 +445,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.add(R.id.main_container_ret, new CreatePaymentRequestFragment());
@@ -438,14 +461,13 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
 
             }
         });
-
+        if(!alertDialog.isShowing())
         alertDialog.show();
     }
 
     private void showDiscardDialog() {
         final FragmentManager fm = getActivity().getSupportFragmentManager();
         if (!MenuItem.equals("View")) {
-            final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             View view_popup = inflater.inflate(R.layout.discard_changes, null);
             TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
@@ -459,7 +481,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
             Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
             btn_discard.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Log.i("CreatePayment", "Button Clicked");
+                    // Log.i("CreatePayment", "Button Clicked");
                     alertDialog.dismiss();
 //                    fm.popBackStack();
                     SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
@@ -483,7 +505,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
 
                 }
             });
-
+            if(!alertDialog.isShowing())
             alertDialog.show();
         } else {
             SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
@@ -518,7 +540,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
             Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
             btn_discard.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Log.i("CreatePayment", "Button Clicked");
+                    // Log.i("CreatePayment", "Button Clicked");
                     alertDialog.dismiss();
                     SharedPreferences JazzCash = ((FragmentActivity) getContext()).getSharedPreferences("PaymentId",
                             Context.MODE_PRIVATE);
@@ -543,7 +565,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
 
                 }
             });
-
+            if(!alertDialog.isShowing())
             alertDialog.show();
         } else {
             SharedPreferences JazzCash = ((FragmentActivity) getContext()).getSharedPreferences("PaymentId",
@@ -564,10 +586,10 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
     private void checkFieldsForEmptyValues() {
         String txt_amounts = txt_amount.getText().toString();
         String company = (String) spinner_companyName.getItemAtPosition(spinner_companyName.getSelectedItemPosition()).toString();
-        Log.i("DebugEditPayment", txt_amounts);
-        Log.i("DebugEditPayment", Amount);
-        Log.i("DebugEditPayment", company);
-        Log.i("DebugEditPayment", CompanyName);
+        // Log.i("DebugEditPayment", txt_amounts);
+        // Log.i("DebugEditPayment", Amount);
+        // Log.i("DebugEditPayment", company);
+        // Log.i("DebugEditPayment", CompanyName);
         if ((!txt_amounts.equals(Amount)) || (!company.equals(CompanyName))
 
         ) {
@@ -635,7 +657,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
 //        map.put("DealerCode", "201911672");
                 map.put("PaidAmount", txt_amount.getText().toString());
 
-                Log.i("JSON ", String.valueOf(map));
+                // Log.i("JSON ", String.valueOf(map));
                 new SSL_HandShake().handleSSLHandshake();
 //                final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
 
@@ -644,11 +666,11 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
                     public void onResponse(JSONObject result) {
                         loader.hideLoader();
                         try {
-                            Log.i("Response PR", result.toString());
+                            // Log.i("Response PR", result.toString());
                             prepaid_number = result.getString("PrePaidNumber");
                             prepaid_id = result.getString("ID");
                         } catch (JSONException e) {
-                            Log.i("Response PR", e.toString());
+                            // Log.i("Response PR", e.toString());
                             e.printStackTrace();
                         }
 
@@ -668,7 +690,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
                         showSuccessDialog(prepaid_number);
 
 //                Toast.makeText(getContext(), "Payment Request " + prepaid_number + " has been created successfully.", Toast.LENGTH_SHORT).show();
-//                Log.e("RESPONSE prepaid_number", result.toString());
+//                // Log.e("RESPONSE prepaid_number", result.toString());
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -708,7 +730,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
                 Context.MODE_PRIVATE);
         Token = sharedPreferences.getString("Login_Token", "");
 
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
         new SSL_HandShake().handleSSLHandshake();
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
 
@@ -729,9 +751,9 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
                     spinner_companyName.setAdapter(arrayAdapterPayments);
 
                     // txt_amount.setText(Amount);
-                    Log.i("Debugging", String.valueOf(CompanyNames));
-                    Log.i("Debugging", String.valueOf(CompanyNames.indexOf(CompanyName)));
-                    Log.i("Debugging", String.valueOf(CompanyName));
+                    // Log.i("Debugging", String.valueOf(CompanyNames));
+                    // Log.i("Debugging", String.valueOf(CompanyNames.indexOf(CompanyName)));
+                    // Log.i("Debugging", String.valueOf(CompanyName));
 //        int spinnerPosition = arrayAdapterPayments.getPosition(CompanyName);
                     spinner_companyName.setSelection(CompanyNames.indexOf(CompanyName));
                     company_names = CompanyName;
@@ -746,7 +768,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.e("RESPONSE OF COMPANY ID", result.toString());
+                // Log.e("RESPONSE OF COMPANY ID", result.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -848,9 +870,9 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
     //             try {
     //                 String message = "";
     //                 String responseBody = new String(error.networkResponse.data, "utf-8");
-    //                 Log.i("responseBody", responseBody);
+    //                 // Log.i("responseBody", responseBody);
     //                 JSONObject data = new JSONObject(responseBody);
-    //                 Log.i("data", String.valueOf(data));
+    //                 // Log.i("data", String.valueOf(data));
     //                 Iterator<String> keys = data.keys();
     //                 while (keys.hasNext()) {
     //                     String key = keys.next();

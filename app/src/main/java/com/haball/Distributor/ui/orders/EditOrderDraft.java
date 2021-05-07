@@ -79,8 +79,8 @@ public class EditOrderDraft {
 //        SharedPreferences sharedPreferences1 = context.getSharedPreferences("LoginToken",
 //                Context.MODE_PRIVATE);
 //        DistributorId = sharedPreferences1.getString("Distributor_Id", "");
-//        Log.i("DistributorId ", DistributorId);
-//        Log.i("Token", Token);
+//        // Log.i("DistributorId ", DistributorId);
+//        // Log.i("Token", Token);
 //
 //        if (!URL_EDIT_ORDER_DRAFT.contains(orderId))
 //            URL_EDIT_ORDER_DRAFT = URL_EDIT_ORDER_DRAFT + orderId;
@@ -90,16 +90,16 @@ public class EditOrderDraft {
 //            @Override
 //            public void onResponse(JSONObject response) {
 //                // TODO handle the response
-//                Log.i("responseDraft", String.valueOf(response));
+//                // Log.i("responseDraft", String.valueOf(response));
 //
 //                try {
 //                    JSONArray arr = response.getJSONArray("OrderDetails");
 //
-////                    Log.i("jsonOrderDetail1", String.valueOf(arr));
+////                    // Log.i("jsonOrderDetail1", String.valueOf(arr));
 ////                    Gson gson = new Gson();
 ////                    String json = null;
 ////                    json = gson.toJson(arr);
-////                    Log.i("jsonOrderDetail", json);
+////                    // Log.i("jsonOrderDetail", json);
 //                    SharedPreferences selectedProducts = context.getSharedPreferences("selectedProducts_distributor_draft",
 //                            Context.MODE_PRIVATE);
 //                    SharedPreferences.Editor editor = selectedProducts.edit();
@@ -123,7 +123,7 @@ public class EditOrderDraft {
 
         SharedPreferences sharedPreferences1 = context.getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
-        Log.i("Token", Token);
+        // Log.i("Token", Token);
 
         if (!URL_EDIT_ORDER_DRAFT.contains(orderId))
             URL_EDIT_ORDER_DRAFT = URL_EDIT_ORDER_DRAFT + orderId;
@@ -137,7 +137,7 @@ public class EditOrderDraft {
             public void onResponse(JSONObject response) {
 //                loader.hideLoader();
                 // TODO handle the response
-                Log.i("responseDraft", String.valueOf(response));
+                // Log.i("responseDraft", String.valueOf(response));
 
                 getParentCategory(loader, orderId, response);
             }
@@ -173,7 +173,7 @@ public class EditOrderDraft {
 
             JSONObject map = new JSONObject();
             map.put("DistributorId", Integer.parseInt(DistributorId));
-            Log.i("Map", String.valueOf(map));
+            // Log.i("Map", String.valueOf(map));
             if (!URL_PRODUCT_CATEGORY.contains("/" + CompanyId))
                 URL_PRODUCT_CATEGORY = URL_PRODUCT_CATEGORY + CompanyId;
 //        titles = new ArrayList<>();
@@ -183,7 +183,7 @@ public class EditOrderDraft {
                 @Override
                 public void onResponse(JSONArray result) {
                     loader.hideLoader();
-                    Log.i("result", String.valueOf(result));
+                    // Log.i("result", String.valueOf(result));
                     for (int i = 0; i < result.length(); i++) {
                         Gson gson = new Gson();
                         Type type = new TypeToken<List<OrderParentlist_Model_DistOrder>>() {
@@ -215,13 +215,13 @@ public class EditOrderDraft {
                     try {
                         arr = response.getJSONArray("OrderDetails");
 
-                        Log.i("jsonOrderDetail1", String.valueOf(arr));
+                        // Log.i("jsonOrderDetail1", String.valueOf(arr));
                         Gson gson = new Gson();
                         Type type = new TypeToken<List<ViewOrderProductModel>>() {
                         }.getType();
                         RetailerDraftProductsList = gson.fromJson(arr.toString(), type);
                         for (int i = 0; i < RetailerDraftProductsList.size(); i++) {
-                            Log.i("jsonOrderDetail", String.valueOf(RetailerDraftProductsList.get(i).getProductName()));
+                            // Log.i("jsonOrderDetail", String.valueOf(RetailerDraftProductsList.get(i).getProductName()));
                             //                                                                                                                                                                                                                                                                                                  public OrderChildlist_Model_DistOrder(String ID, String companyId, String categoryId, String code, String title, String shortDescription, String longDescription, String unitPrice, String categoryTitle, String packSize, String UOMId, String UOMTitle, String imageData, String imageType, String discountId, String effectiveDate, String expiryDate, String isPercentage, String discountValue, String discountAmount) {
                             selectedProductsDataList.add(new OrderChildlist_Model_DistOrder(RetailerDraftProductsList.get(i).getID(), RetailerDraftProductsList.get(i).getCompanyId(), RetailerDraftProductsList.get(i).getCategoryId(), RetailerDraftProductsList.get(i).getProductCode(), RetailerDraftProductsList.get(i).getTitle(), RetailerDraftProductsList.get(i).getShortDescription(), RetailerDraftProductsList.get(i).getLongDescription(), RetailerDraftProductsList.get(i).getUnitPrice(), RetailerDraftProductsList.get(i).getCategoryTitle(), RetailerDraftProductsList.get(i).getPackSize(), RetailerDraftProductsList.get(i).getUOMId(), RetailerDraftProductsList.get(i).getUOMTitle(), RetailerDraftProductsList.get(i).getImageData(), RetailerDraftProductsList.get(i).getImageType(), RetailerDraftProductsList.get(i).getDiscountId(), RetailerDraftProductsList.get(i).getEffectiveDate(), RetailerDraftProductsList.get(i).getExpiryDate(), RetailerDraftProductsList.get(i).getIsPercentage(), RetailerDraftProductsList.get(i).getDiscountValue(), RetailerDraftProductsList.get(i).getDiscountAmount()));
                             selectedProductsQuantityList.add(RetailerDraftProductsList.get(i).getOrderQty());
@@ -231,8 +231,8 @@ public class EditOrderDraft {
 
                         if (selectedProductsDataList.size() > 0) {
                             for (int i = 0; i < selectedProductsDataList.size(); i++) {
-                                Log.i("unit price", selectedProductsDataList.get(i).getUnitPrice());
-                                Log.i("qty", selectedProductsQuantityList.get(i));
+                                // Log.i("unit price", selectedProductsDataList.get(i).getUnitPrice());
+                                // Log.i("qty", selectedProductsQuantityList.get(i));
                                 if (!selectedProductsDataList.get(i).getUnitPrice().equals("") && !selectedProductsQuantityList.get(i).equals(""))
                                     grossAmount += Float.parseFloat(selectedProductsDataList.get(i).getUnitPrice()) * Float.parseFloat(selectedProductsQuantityList.get(i));
                             }
@@ -274,8 +274,8 @@ public class EditOrderDraft {
 
                         String json = gson.toJson(selectedProductsDataList);
                         String jsonqty = gson.toJson(selectedProductsQuantityList);
-                        Log.i("debugOrder_jsonqty", jsonqty);
-                        Log.i("debugOrder_json", json);
+                        // Log.i("debugOrder_jsonqty", jsonqty);
+                        // Log.i("debugOrder_json", json);
                         SharedPreferences selectedProducts = mContext.getSharedPreferences("selectedProducts_distributor",
                                 Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = selectedProducts.edit();

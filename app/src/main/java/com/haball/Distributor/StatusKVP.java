@@ -173,7 +173,7 @@ public class StatusKVP {
 
   public HashMap<String, String> getOrderStatus() {
     wait_until_fetched(OrderStatusKVP);
-    //        Log.i("StatusKVP1", String.valueOf(OrderStatusKVP));
+    //        // Log.i("StatusKVP1", String.valueOf(OrderStatusKVP));
     return OrderStatusKVP;
   }
 
@@ -444,7 +444,7 @@ public class StatusKVP {
                   jsonObject.getString("key"),
                   jsonObject.getString("value")
                 );
-                //                            Log.i("statuskvp", String.valueOf(RetailerContactingMethodKVP));
+                //                            // Log.i("statuskvp", String.valueOf(RetailerContactingMethodKVP));
               } else if (
                 jsonObject.getString("type").equals("TRANSACTION_DOC_TYPE")
               ) RetailerTransactionDocTypeKVP.put(
@@ -595,7 +595,7 @@ public class StatusKVP {
 
   public HashMap<String, String> getRetailerContactingMethodKVP() {
     wait_until_fetched(RetailerContactingMethodKVP);
-    //        Log.i("statuskvp", String.valueOf(RetailerContactingMethodKVP));
+    //        // Log.i("statuskvp", String.valueOf(RetailerContactingMethodKVP));
     return RetailerContactingMethodKVP;
   }
 
@@ -679,9 +679,9 @@ public class StatusKVP {
   //         try {
   //             String message = "";
   //             String responseBody = new String(error.networkResponse.data, "utf-8");
-  //             Log.i("responseBody", responseBody);
+  //             // Log.i("responseBody", responseBody);
   //             JSONObject data = new JSONObject(responseBody);
-  //             Log.i("data", String.valueOf(data));
+  //             // Log.i("data", String.valueOf(data));
   //             Iterator<String> keys = data.keys();
   //             while (keys.hasNext()) {
   //                 String key = keys.next();

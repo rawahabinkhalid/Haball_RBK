@@ -159,7 +159,6 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
                 android:hint="Mobile No"
-                
                 android:theme="@style/TextLabel"
                 app:boxBackgroundColor="#fff"
                 app:boxStrokeColor="@color/box_stroke"
@@ -171,6 +170,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:maxLength="12"
+                    android:inputType="phone"
                     android:drawableRight="@drawable/ic_edit_black_24dp"
                     android:theme="@style/TextLabelEditeText" />
 

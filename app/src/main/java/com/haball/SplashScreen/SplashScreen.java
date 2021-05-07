@@ -98,8 +98,8 @@ public class SplashScreen extends AppCompatActivity {
                     IsTermAndConditionAccepted = sharedPreferences.getString("IsTermAndConditionAccepted", "");
                 if (!sharedPreferences.getString("UpdatePassword", "").equals(""))
                     UpdatePassword = sharedPreferences.getString("UpdatePassword", "");
-                Log.i("Token Splash", Token);
-                Log.i("User Type", sharedPreferences.getString("User_Type", ""));
+                // Log.i("Token Splash", Token);
+                // Log.i("User Type", sharedPreferences.getString("User_Type", ""));
 
 //                SharedPreferences companyId = getApplicationContext().getSharedPreferences("SendData",
 //                        Context.MODE_PRIVATE);

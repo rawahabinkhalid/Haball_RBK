@@ -70,7 +70,7 @@ public class RetailerOrderAdapter extends RecyclerView.Adapter<RetailerOrderAdap
          if (OrderList.size() == 3 || OrderList.size() == 4) {
              if (position == (OrderList.size() - 1)) {
  //        if (position == 2) {
-                 Log.i("DebugSupportFilter_In", OrderList.get(position).getOrderNumber());
+                 // Log.i("DebugSupportFilter_In", OrderList.get(position).getOrderNumber());
                  RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                          RelativeLayout.LayoutParams.WRAP_CONTENT,
                          RelativeLayout.LayoutParams.WRAP_CONTENT
@@ -192,7 +192,7 @@ public class RetailerOrderAdapter extends RecyclerView.Adapter<RetailerOrderAdap
 
     private void showConfirmCancelOrderDialog(final int position) {
 
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
 //            final FragmentManager fm = mContxt.getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(mContxt).create();
@@ -254,12 +254,12 @@ public class RetailerOrderAdapter extends RecyclerView.Adapter<RetailerOrderAdap
                         editor.putString("Status", OrderList.get(position).getStatus());
                         editor.putString("InvoiceUpload", String.valueOf(OrderList.get(position).getInvoiceUpload()));
                         editor.putString("InvoiceStatus", String.valueOf(OrderList.get(position).getInvoiceStatus()));
-                        Log.i("InvoiceStatus_Adapter", String.valueOf(OrderList.get(position).getInvoiceStatus()));
+                        // Log.i("InvoiceStatus_Adapter", String.valueOf(OrderList.get(position).getInvoiceStatus()));
                         editor.commit();
-                        Log.i("order_debug_getID", OrderList.get(position).getID());
-                        Log.i("order_debug_getStatus", OrderList.get(position).getStatus());
-                        Log.i("order_debug_InvUpload", String.valueOf(OrderList.get(position).getInvoiceUpload()));
-                        Log.i("order_debug_InvStatus", "" + OrderList.get(position).getInvoiceStatus());
+                        // Log.i("order_debug_getID", OrderList.get(position).getID());
+                        // Log.i("order_debug_getStatus", OrderList.get(position).getStatus());
+                        // Log.i("order_debug_InvUpload", String.valueOf(OrderList.get(position).getInvoiceUpload()));
+                        // Log.i("order_debug_InvStatus", "" + OrderList.get(position).getInvoiceStatus());
                         break;
                     case R.id.orders_cancel:
                         showConfirmCancelOrderDialog(position);
@@ -292,7 +292,7 @@ public class RetailerOrderAdapter extends RecyclerView.Adapter<RetailerOrderAdap
                         editor.putString("Status", OrderList.get(position).getStatus());
                         editor.putString("InvoiceUpload", String.valueOf(OrderList.get(position).getInvoiceUpload()));
                         editor.putString("InvoiceStatus", String.valueOf(OrderList.get(position).getInvoiceStatus()));
-                        Log.i("InvoiceStatus_Adapter", String.valueOf(OrderList.get(position).getInvoiceStatus()));
+                        // Log.i("InvoiceStatus_Adapter", String.valueOf(OrderList.get(position).getInvoiceStatus()));
                         editor.commit();
                         break;
                 }
@@ -310,7 +310,7 @@ public class RetailerOrderAdapter extends RecyclerView.Adapter<RetailerOrderAdap
 
     private void deleteOrderDraft(final Context context, final String ID, final String OrderNumber) throws JSONException {
 
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
 //            final FragmentManager fm = mContxt.getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(mContxt).create();

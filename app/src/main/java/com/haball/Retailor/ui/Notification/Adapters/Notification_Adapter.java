@@ -85,8 +85,8 @@ public class Notification_Adapter extends RecyclerView.Adapter<Notification_Adap
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.dismiss:
-                                Log.i("DISMISS CASE", "HERE");
-                                Log.i("NotificationID", NotificationList.get(position).getID());
+                                // Log.i("DISMISS CASE", "HERE");
+                                // Log.i("NotificationID", NotificationList.get(position).getID());
                                 if (!dismiss_alert.contains("/" + NotificationList.get(position).getID()))
                                     dismiss_alert = dismiss_alert + NotificationList.get(position).getID();
 

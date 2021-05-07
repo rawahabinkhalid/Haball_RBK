@@ -181,6 +181,7 @@ public class Registration_main extends AppCompatActivity implements View.OnFocus
 
             }
         });
+
     }
 
     @Override
@@ -198,7 +199,7 @@ public class Registration_main extends AppCompatActivity implements View.OnFocus
 
 
     private void showDiscardDialog() {
-        Log.i("CreatePayment", "In Dialog");
+        // Log.i("CreatePayment", "In Dialog");
 //        final FragmentManager fm = getSupportFragmentManager();
 
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -215,7 +216,7 @@ public class Registration_main extends AppCompatActivity implements View.OnFocus
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("CreatePayment", "Button Clicked");
+                // Log.i("CreatePayment", "Button Clicked");
                 alertDialog.dismiss();
                 finish();
             }
@@ -229,7 +230,7 @@ public class Registration_main extends AppCompatActivity implements View.OnFocus
 
             }
         });
-
+        if(!alertDialog.isShowing())
         alertDialog.show();
     }
 
@@ -256,7 +257,7 @@ public class Registration_main extends AppCompatActivity implements View.OnFocus
             BooleanRequest booleanRequest = new BooleanRequest(Request.Method.POST, URL, requestBody, new Response.Listener<Boolean>() {
                 @Override
                 public void onResponse(Boolean response) {
-                    Log.i("response", String.valueOf(response));
+                    // Log.i("response", String.valueOf(response));
                     if (response.toString().equals("true")) {
                         txt_username.setError("Username Already Exists.");
                     }
