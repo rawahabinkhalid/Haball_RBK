@@ -243,14 +243,14 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                 totalamount = Float.parseFloat(selectedProductsDataListQty.get(position)) * Float.parseFloat(selectedProductsDataList.get(position).getUnitPrice());
         }
 
-        holder.product_code.setText("Product Code:\u00A0");
+        holder.product_code.setText(R.string.product_code_for_adapter);
         SpannableString ss1 = new SpannableString(selectedProductsDataList.get(position).getCode());
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
         holder.product_code.append(ss1);
 
         holder.product_code.append("\n");
 
-        holder.product_code.append("Price:\u00A0");
+        holder.product_code.append(context.getResources().getString(R.string.price_adapter));
 
         DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
         String yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getUnitPrice()));
@@ -265,7 +265,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
         if (selectedProductsDataList.get(position).getDiscountValue() != null && !selectedProductsDataList.get(position).getDiscountValue().equals("0") && !selectedProductsDataList.get(position).getDiscountValue().equals("") && !selectedProductsDataList.get(position).getDiscountValue().equals("null")) {
             holder.product_code.append("\u00A0| ");
 
-            holder.product_code.append("Disc:\u00A0");
+            holder.product_code.append(String.valueOf(R.string.disc_adpter));
 
             yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getDiscountValue()));
 
@@ -277,7 +277,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
         if (selectedProductsDataList.get(position).getUOMTitle() != null && !selectedProductsDataList.get(position).getUOMTitle().equals("null")) {
             holder.product_code.append("\u00A0| ");
 
-            holder.product_code.append("UOM:\u00A0");
+            holder.product_code.append(context.getResources().getString(R.string.UOM_adapter));
             String temp_uom = selectedProductsDataList.get(position).getUOMTitle().replaceAll(" ", "\u00A0");
             ss1 = new SpannableString(temp_uom);
             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -287,7 +287,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
         if (selectedProductsDataList.get(position).getPackSize() != null && !selectedProductsDataList.get(position).getPackSize().equals("null")) {
             holder.product_code.append("\u00A0| ");
 
-            holder.product_code.append("Pack Size:\u00A0");
+            holder.product_code.append(String.valueOf(context.getResources().getString(R.string.pack_size_adapter)));
             String temp_uom = selectedProductsDataList.get(position).getPackSize().replaceAll(" ", "\u00A0");
             ss1 = new SpannableString(temp_uom);
             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -297,7 +297,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
         yourFormattedString3 = formatter1.format(totalamount);
         holder.product_code.append("\u00A0| ");
 
-        holder.product_code.append("Amount:\u00A0");
+        holder.product_code.append(context.getResources().getString(R.string.amount_adapter));
         ss1 = new SpannableString(yourFormattedString3);
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
         holder.product_code.append(ss1);
@@ -403,8 +403,8 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                         View view_popup = inflater.inflate(R.layout.discard_changes, null);
                         TextView tv_discard = view_popup.findViewById(R.id.tv_discard);
                         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-                        tv_discard_txt.setText("Are you sure, you want to delete this product?");
-                        tv_discard.setText("Delete Product");
+                        tv_discard_txt.setText(R.string.delete_product_msg);
+                        tv_discard.setText(R.string.delete_product);
 
                         alertDialog.setView(view_popup);
                         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
@@ -413,7 +413,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                         layoutParams.x = -70;// top margin
                         alertDialog.getWindow().setAttributes(layoutParams);
                         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
-                        btn_discard.setText("Delete");
+                        btn_discard.setText(R.string.delete);
                         btn_discard.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
                                 // Log.i("CreatePayment", "Button Clicked");
@@ -447,14 +447,14 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                         yourFormattedString3 = finalFormatter.format(totalamount);
 
 
-                        holder.product_code.setText("Product Code:\u00A0");
+                        holder.product_code.setText(R.string.product_code_for_adapter);
                         SpannableString ss1 = new SpannableString(selectedProductsDataList.get(position).getCode());
                         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
                         holder.product_code.append(ss1);
 
                         holder.product_code.append("\n");
 
-                        holder.product_code.append("Price:\u00A0");
+                        holder.product_code.append(context.getResources().getString(R.string.price_adapter));
 
                         DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
                         String yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getUnitPrice()));
@@ -469,7 +469,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                         if (selectedProductsDataList.get(position).getDiscountValue() != null && !selectedProductsDataList.get(position).getDiscountValue().equals("0") && !selectedProductsDataList.get(position).getDiscountValue().equals("") && !selectedProductsDataList.get(position).getDiscountValue().equals("null")) {
                             holder.product_code.append("\u00A0| ");
 
-                            holder.product_code.append("Disc:\u00A0");
+                            holder.product_code.append(context.getResources().getString(R.string.disc_adpter));
 
                             yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getDiscountValue()));
 
@@ -481,7 +481,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                         if (selectedProductsDataList.get(position).getUOMTitle() != null && !selectedProductsDataList.get(position).getUOMTitle().equals("null")) {
                             holder.product_code.append("\u00A0| ");
 
-                            holder.product_code.append("UOM:\u00A0");
+                            holder.product_code.append(context.getResources().getString(R.string.UOM_adapter));
                             String temp_uom = selectedProductsDataList.get(position).getUOMTitle().replaceAll(" ", "\u00A0");
                             ss1 = new SpannableString(temp_uom);
                             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -491,7 +491,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                         if (selectedProductsDataList.get(position).getPackSize() != null && !selectedProductsDataList.get(position).getPackSize().equals("null")) {
                             holder.product_code.append("\u00A0| ");
 
-                            holder.product_code.append("Pack Size:\u00A0");
+                            holder.product_code.append(context.getResources().getString(R.string.pack_size_adapter));
                             String temp_uom = selectedProductsDataList.get(position).getPackSize().replaceAll(" ", "\u00A0");
                             ss1 = new SpannableString(temp_uom);
                             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -501,7 +501,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                         yourFormattedString3 = formatter1.format(totalamount);
                         holder.product_code.append("\u00A0| ");
 
-                        holder.product_code.append("Amount:\u00A0");
+                        holder.product_code.append(context.getResources().getString(R.string.amount_adapter));
                         ss1 = new SpannableString(yourFormattedString3);
                         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
                         holder.product_code.append(ss1);
@@ -517,14 +517,14 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
 
                         yourFormattedString3 = finalFormatter.format(totalamount);
 
-                        holder.product_code.setText("Product Code:\u00A0");
+                        holder.product_code.setText(context.getResources().getString(R.string.product_code_for_adapter));
                         SpannableString ss1 = new SpannableString(selectedProductsDataList.get(position).getCode());
                         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
                         holder.product_code.append(ss1);
 
                         holder.product_code.append("\n");
 
-                        holder.product_code.append("Price:\u00A0");
+                        holder.product_code.append(context.getResources().getString(R.string.price_adapter));
 
                         DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
                         String yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getUnitPrice()));
@@ -539,7 +539,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                         if (selectedProductsDataList.get(position).getDiscountValue() != null && !selectedProductsDataList.get(position).getDiscountValue().equals("0") && !selectedProductsDataList.get(position).getDiscountValue().equals("") && !selectedProductsDataList.get(position).getDiscountValue().equals("null")) {
                             holder.product_code.append("\u00A0| ");
 
-                            holder.product_code.append("Disc:\u00A0");
+                            holder.product_code.append(context.getResources().getString(R.string.disc_adpter));
 
                             yourFormattedString1 = formatter1.format(Double.parseDouble(selectedProductsDataList.get(position).getDiscountValue()));
 
@@ -551,7 +551,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                         if (selectedProductsDataList.get(position).getUOMTitle() != null && !selectedProductsDataList.get(position).getUOMTitle().equals("null")) {
                             holder.product_code.append("\u00A0| ");
 
-                            holder.product_code.append("UOM:\u00A0");
+                            holder.product_code.append(context.getResources().getString(R.string.UOM_adapter));
                             String temp_uom = selectedProductsDataList.get(position).getUOMTitle().replaceAll(" ", "\u00A0");
                             ss1 = new SpannableString(temp_uom);
                             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -561,7 +561,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                         if (selectedProductsDataList.get(position).getPackSize() != null && !selectedProductsDataList.get(position).getPackSize().equals("null")) {
                             holder.product_code.append("\u00A0| ");
 
-                            holder.product_code.append("Pack Size:\u00A0");
+                            holder.product_code.append(context.getResources().getString(R.string.pack_size_adapter));
                             String temp_uom = selectedProductsDataList.get(position).getPackSize().replaceAll(" ", "\u00A0");
                             ss1 = new SpannableString(temp_uom);
                             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -571,7 +571,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                         yourFormattedString3 = formatter1.format(totalamount);
                         holder.product_code.append("\u00A0| ");
 
-                        holder.product_code.append("Amount:\u00A0");
+                        holder.product_code.append(context.getResources().getString(R.string.amount_adapter));
                         ss1 = new SpannableString(yourFormattedString3);
                         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
                         holder.product_code.append(ss1);
@@ -599,8 +599,8 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                 View view_popup = inflater.inflate(R.layout.discard_changes, null);
                 TextView tv_discard = view_popup.findViewById(R.id.tv_discard);
                 TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-                tv_discard_txt.setText("Are you sure, you want to delete this product?");
-                tv_discard.setText("Delete Product");
+                tv_discard_txt.setText(R.string.delete_product_msg);
+                tv_discard.setText(R.string.delete_product);
 
                 alertDialog.setView(view_popup);
                 alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
@@ -609,7 +609,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
                 layoutParams.x = -70;// top margin
                 alertDialog.getWindow().setAttributes(layoutParams);
                 Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
-                btn_discard.setText("Delete");
+                btn_discard.setText(R.string.delete);
                 btn_discard.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         // Log.i("CreatePayment", "Button Clicked");
@@ -729,8 +729,8 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
         TextView tv_pr1, txt_header1;
         txt_header1 = fbDialogue.findViewById(R.id.txt_header1);
         tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
-        tv_pr1.setText("Your product has been deleted successfully.");
-        txt_header1.setText("Product Deleted");
+        tv_pr1.setText(R.string.deleted_product_msg);
+        txt_header1.setText(R.string.deleted_product);
         fbDialogue.setCancelable(true);
         fbDialogue.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = fbDialogue.getWindow().getAttributes();
@@ -812,7 +812,7 @@ public class Order_Summary_Adapter_DistOrder extends RecyclerView.Adapter<Order_
         LayoutInflater inflater = LayoutInflater.from(context);
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard_txt.setText("Are you sure, you want to leave this page? Your changes will be discarded.");
+        tv_discard_txt.setText(R.string.discard_text);
         alertDialog.setView(view_popup);
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();

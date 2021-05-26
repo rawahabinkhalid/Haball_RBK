@@ -49,14 +49,14 @@ public class Payment_View_Adapter extends RecyclerView.Adapter<Payment_View_Adap
     @Override
     public void onBindViewHolder(@NonNull Payment_View_Adapter.ViewHolder holder, int position) {
         holder.txt_products.setText(OrdersList.get(position).getProductName());
-        holder.product_code.setText("Product Code:\u00A0");
+        holder.product_code.setText(context.getResources().getString(R.string.product_code_for_adapter));
         SpannableString ss1 = new SpannableString(OrdersList.get(position).getProductCode());
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
         holder.product_code.append(ss1);
 
         holder.product_code.append("\n");
 
-        holder.product_code.append("Price:\u00A0");
+        holder.product_code.append(context.getResources().getString(R.string.price_adapter));
 
         DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
         String yourFormattedString1 = formatter1.format(Double.parseDouble(OrdersList.get(position).getUnitPrice()));
@@ -67,7 +67,7 @@ public class Payment_View_Adapter extends RecyclerView.Adapter<Payment_View_Adap
         if (OrdersList.get(position).getUOM() != null && !OrdersList.get(position).getUOM().equals("null")) {
             holder.product_code.append("        ");
 
-            holder.product_code.append("UOM:\u00A0");
+            holder.product_code.append(context.getResources().getString(R.string.UOM_adapter));
 
             ss1 = new SpannableString(OrdersList.get(position).getUOM());
             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -78,7 +78,7 @@ public class Payment_View_Adapter extends RecyclerView.Adapter<Payment_View_Adap
         if (!OrdersList.get(position).getDiscount().equals("0") && !OrdersList.get(position).getDiscount().equals("") && !OrdersList.get(position).getDiscount().equals("null")) {
             holder.product_code.append("            ");
 
-            holder.product_code.append("Disc:\u00A0");
+            holder.product_code.append(context.getResources().getString(R.string.disc_adpter));
 
             formatter1 = new DecimalFormat("#,###,##0.00");
             yourFormattedString1 = formatter1.format(Double.parseDouble(OrdersList.get(position).getDiscount()));
@@ -90,7 +90,7 @@ public class Payment_View_Adapter extends RecyclerView.Adapter<Payment_View_Adap
         }
         holder.product_code.append("        ");
 
-        holder.product_code.append("Qty:\u00A0");
+        holder.product_code.append(context.getResources().getString(R.string.qty_adapter));
 
         ss1 = new SpannableString(OrdersList.get(position).getOrderQty());
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -98,7 +98,7 @@ public class Payment_View_Adapter extends RecyclerView.Adapter<Payment_View_Adap
 
         holder.product_code.append("        ");
 
-        holder.product_code.append("Amount:\u00A0");
+        holder.product_code.append(context.getResources().getString(R.string.amount_adapter));
 
         formatter1 = new DecimalFormat("#,###,##0.00");
         yourFormattedString1 = formatter1.format(Double.parseDouble(OrdersList.get(position).getTotalPrice()));

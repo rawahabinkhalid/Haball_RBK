@@ -145,7 +145,7 @@ public class PlaceholderFragment extends Fragment {
 
                 root = inflater.inflate(R.layout.fragment_retailor_profile, container, false);
                 loader = new Loader(getContext());
-                currentTab = "Profile";
+                currentTab = getResources().getString(R.string.profile);
                 Rfirstname = root.findViewById(R.id.Rfirstname);
                 Rcode = root.findViewById(R.id.Rcode);
                 Rcnic = root.findViewById(R.id.Rcnic);
@@ -371,7 +371,7 @@ public class PlaceholderFragment extends Fragment {
             }
             case 2: {
                 root = inflater.inflate(R.layout.pasword_change, container, false);
-                currentTab = "Password";
+                currentTab = getResources().getString(R.string.password);
                 loader = new Loader(getContext());
                 layout_password = root.findViewById(R.id.layout_password);
                 txt_password = root.findViewById(R.id.txt_password);
@@ -654,9 +654,9 @@ public class PlaceholderFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (currentTab.equals("Profile"))
+        if (currentTab.equals(getResources().getString(R.string.profile)))
             onResumeProfile();
-        else if (currentTab.equals("Password"))
+        else if (currentTab.equals(getResources().getString(R.string.password)))
             onResumePassword();
     }
 
@@ -771,7 +771,7 @@ public class PlaceholderFragment extends Fragment {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard_txt.setText("Are you sure, you want to leave this page? Your changes will be discarded.");
+        tv_discard_txt.setText(getResources().getString(R.string.discard_text));
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
         layoutParams.y = 200;
@@ -887,7 +887,7 @@ public class PlaceholderFragment extends Fragment {
 
                             tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
 //                            tv_pr1.setText("User Profile ID " + ID + " password has been changed successfully.");
-                            tv_pr1.setText("Your password has been updated. You can login with the new credentials.");
+                            tv_pr1.setText(getResources().getString(R.string.update_password_msg));
                             fbDialogue.setCancelable(true);
                             fbDialogue.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
                             WindowManager.LayoutParams layoutParams = fbDialogue.getWindow().getAttributes();
@@ -932,7 +932,7 @@ public class PlaceholderFragment extends Fragment {
                         loader.hideLoader();
 //                    new HaballError().printErrorMessage(error);
                         error.printStackTrace();
-                        new CustomToast().showToast(getActivity(), "Password mismatch");
+                        new CustomToast().showToast(getActivity(), getResources().getString(R.string.password_mismatch));
 
                         layout_password.setBoxStrokeColor(getResources().getColor(R.color.error_stroke_color));
                         layout_password.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.error_stroke_color)));
@@ -1002,12 +1002,12 @@ public class PlaceholderFragment extends Fragment {
                 });
                 Volley.newRequestQueue(getActivity()).add(sr);
             } else {
-                new CustomToast().showToast(getActivity(), "New password cannot be old password.");
+                new CustomToast().showToast(getActivity(), getResources().getString(R.string.old_password_not_match));
 
             }
         } else{
 //            Toast.makeText(getActivity(), "Password do not Match", Toast.LENGTH_LONG).show();
-                new CustomToast().showToast(getActivity(), "Password mismatch");
+                new CustomToast().showToast(getActivity(), getResources().getString(R.string.password_mismatch));
                 layout_password1.setBoxStrokeColor(getResources().getColor(R.color.error_stroke_color));
                 layout_password1.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.error_stroke_color)));
                 layout_password1.setPasswordVisibilityToggleTintList(ColorStateList.valueOf(getResources().getColor(R.color.error_stroke_color)));
@@ -1223,8 +1223,8 @@ public class PlaceholderFragment extends Fragment {
                     TextView tv_pr1, txt_header1;
                     txt_header1 = fbDialogue.findViewById(R.id.txt_header1);
                     tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
-                    tv_pr1.setText("Your profile has been updated successfully.");
-                    txt_header1.setText("Profile Updated");
+                    tv_pr1.setText(getResources().getString(R.string.profile_updated_msg));
+                    txt_header1.setText(getResources().getString(R.string.profile_updated));
                     fbDialogue.setCancelable(true);
                     fbDialogue.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
                     WindowManager.LayoutParams layoutParams = fbDialogue.getWindow().getAttributes();

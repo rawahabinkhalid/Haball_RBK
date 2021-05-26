@@ -8,8 +8,10 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
@@ -32,6 +34,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.haball.Distribution_Login.Distribution_Login;
+import com.haball.LanguageClasses.ChangeLanguage;
 import com.haball.R;
 import com.haball.Retailer_Login.RetailerLogin;
 import com.haball.Retailor.Retailer_TermsAndConditionsFragment;
@@ -44,6 +47,9 @@ import androidx.appcompat.app.ActionBar;
 
 public class Register_Activity extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
+    private String language;
+    private TextView txt_retailer, txt_distributor, select_type, welcome_text, tv_description;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +61,17 @@ public class Register_Activity extends AppCompatActivity {
         ll_main_background.setBackground(background_drawable);
 
 //        testingFunction();
-
+        //language change
+        SharedPreferences languageType = getSharedPreferences("changeLanguage",
+                Context.MODE_PRIVATE);
+        language = languageType.getString("language", "");
         RelativeLayout rl_distributor = findViewById(R.id.rl_distributor);
         RelativeLayout rl_retailor = findViewById(R.id.rl_retailor);
-
+        welcome_text = findViewById(R.id.welcome_text);
+        txt_retailer = findViewById(R.id.txt_retailer);
+        txt_distributor = findViewById(R.id.txt_distributor);
+        select_type = findViewById(R.id.select_type);
+        tv_description = findViewById(R.id.tv_description);
         rl_distributor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -75,7 +88,7 @@ public class Register_Activity extends AppCompatActivity {
 
         });
 
-
+        changeLanguage();
     }
 
     @Override
@@ -94,5 +107,18 @@ public class Register_Activity extends AppCompatActivity {
             }
         }, 1500);
 
+    }
+    void changeLanguage() {
+        ChangeLanguage changeLanguage = new ChangeLanguage();
+        changeLanguage.changeLanguage(this, language);
+        if (language.equals("ur")) {
+            txt_retailer.setText(R.string.retailer);
+            txt_distributor.setText(R.string.distributor);
+            select_type.setText(R.string.select_account);
+            welcome_text.setText(R.string.wellcome_haball);
+            tv_description.setText(R.string.Txt_Description_haball);
+
+
+        }
     }
 }

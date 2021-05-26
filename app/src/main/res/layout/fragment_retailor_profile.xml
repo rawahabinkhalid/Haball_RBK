@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:fontFamily="@font/open_sans_semibold"
-                android:hint="Retailer Code"
+                android:hint="@string/retailer_code"
                 android:theme="@style/TextLabel"
                 app:boxStrokeColor="@color/box_stroke">
 
@@ -52,7 +52,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:hint="Full Name*"
+                android:hint="@string/full_name"
                 android:theme="@style/TextLabel"
                 app:boxStrokeColor="@color/box_stroke">
 
@@ -74,7 +74,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:hint="Email Address*"
+                android:hint="@string/email_address"
                 android:textColorHint="#96bb3c"
                 android:theme="@style/TextLabel"
                 app:boxStrokeColor="@color/box_stroke">
@@ -98,7 +98,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:hint="CNIC No"
+                android:hint="@string/cnic"
                 android:theme="@style/TextLabel"
                 app:boxStrokeColor="@color/box_stroke">
 
@@ -120,7 +120,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:hint="Mobile No"
+                android:hint="@string/mobile_no"
                 android:theme="@style/TextLabel"
                 app:boxStrokeColor="@color/box_stroke">
 
@@ -143,7 +143,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:hint="Created Date"
+                android:hint="@string/created_date"
                 android:theme="@style/TextLabel"
                 app:boxStrokeColor="@color/box_stroke">
 
@@ -164,7 +164,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:hint="Address"
+                android:hint="@string/address"
                 android:theme="@style/TextLabel"
                 app:boxStrokeColor="@color/box_stroke">
 
@@ -173,7 +173,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:drawableRight="@drawable/ic_edit_black_24dp"
-                    android:gravity="top|left"
+                    android:gravity="top"
                     android:inputType="textMultiLine"
                     android:theme="@style/TextLabelEditeText" />
 
@@ -188,7 +188,7 @@
                 android:background="@drawable/disabled_button_background"
                 android:enabled="false"
                 android:fontFamily="@font/open_sans"
-                android:text="Update"
+                android:text="@string/btn_update"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="@dimen/button_text_size" />
@@ -200,7 +200,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/button_background"
                 android:fontFamily="@font/open_sans"
-                android:text="Back"
+                android:text="@string/back"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="@dimen/button_text_size" />

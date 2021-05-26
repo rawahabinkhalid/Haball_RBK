@@ -235,8 +235,8 @@ public class Forgot_Pass_Distributor extends AppCompatActivity {
                     TextView tv_pr1, txt_header1;
                     txt_header1 = fbDialogue.findViewById(R.id.txt_header1);
                     tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
-                    txt_header1.setText("Email Sent");
-                    tv_pr1.setText("Password reset instructions have been sent to the email address provided.");
+                    txt_header1.setText(R.string.email_sent);
+                    tv_pr1.setText(R.string.email_sent_text);
                     fbDialogue.setCancelable(true);
                     fbDialogue.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
                     WindowManager.LayoutParams layoutParams = fbDialogue.getWindow().getAttributes();
@@ -381,8 +381,8 @@ public class Forgot_Pass_Distributor extends AppCompatActivity {
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard = view_popup.findViewById(R.id.tv_discard);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard.setText("Alert");
-        tv_discard_txt.setText("Are you sure, you want to exit this page?");
+        tv_discard.setText(R.string.alert);
+        tv_discard_txt.setText(R.string.alert_text);
         alertDialog.setView(view_popup);
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
@@ -390,7 +390,7 @@ public class Forgot_Pass_Distributor extends AppCompatActivity {
         layoutParams.x = -70;// top margin
         alertDialog.getWindow().setAttributes(layoutParams);
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
-        btn_discard.setText("Exit");
+        btn_discard.setText(R.string.exit);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Log.i("CreatePayment", "Button Clicked");

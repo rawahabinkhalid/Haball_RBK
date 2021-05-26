@@ -197,12 +197,12 @@ public class ProofOfPaymentForm extends Fragment {
 
         View root = inflater.inflate(R.layout.activity_proof__of__payment__form, container, false);
 
-        payment_ids.add("Payment ID *");
-        payment_modes.add("Payment Mode *");
+        payment_ids.add(getResources().getString(R.string.paymentiD));
+        payment_modes.add(getResources().getString(R.string.payment_mode));
 
-        ImageFileTypes.add("File Type *");
-        ImageFileTypes.add("Deposit-slip");
-        ImageFileTypes.add("CNIC");
+        ImageFileTypes.add(getResources().getString(R.string.file_type));
+        ImageFileTypes.add(getResources().getString(R.string.deposite_slip));
+        ImageFileTypes.add(getResources().getString(R.string.cnic));
 
         FileTypeIdValue.put("Deposit-slip", "0");
         FileTypeIdValue.put("Cheque", "1");
@@ -227,7 +227,7 @@ public class ProofOfPaymentForm extends Fragment {
             @Override
             public void onClick(View view) {
                 try {
-                    Toast.makeText(getContext(), "Requesting please wait", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), getResources().getString(R.string.requesting_msg), Toast.LENGTH_LONG).show();
                     makePOPRequest();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -399,8 +399,8 @@ public class ProofOfPaymentForm extends Fragment {
         if (bank.equals("")
                 || txt_brnch.equals("")
                 || txt_trans.equals("")
-                || paymentId.equals("Payment ID *")
-                || modeOf_payment.equals("Payment Mode *")
+                || paymentId.equals(getResources().getString(R.string.paymentiD))
+                || modeOf_payment.equals(getResources().getString(R.string.payment_mode))
         ) {
 //            btn_upload.setEnabled( false );
             btn_finish.setEnabled(false);
@@ -574,15 +574,15 @@ public class ProofOfPaymentForm extends Fragment {
                 if (DocumentNames != null) {
 
                     alertDialog.dismiss();
-                    progressDialog.setTitle("Uploading ... ");
-                    progressDialog.setMessage("Please wait...");
+                    progressDialog.setTitle(getResources().getString(R.string.uploading));
+                    progressDialog.setMessage(getResources().getString(R.string.please_wait));
                     progressDialog.setCancelable(false);
                     progressDialog.setProgress(i);
                     progressDialog.show();
 
                     CDT = new CountDownTimer(8000, 1000) {
                         public void onTick(long millisUntilFinished) {
-                            progressDialog.setMessage("Please wait...");
+                            progressDialog.setMessage(getResources().getString(R.string.please_wait));
                             i--;
                         }
 
@@ -604,22 +604,22 @@ public class ProofOfPaymentForm extends Fragment {
     }
 
     private void openImageChooserDialog() {
-        final CharSequence[] items = {"Take Photo", "Gallery", "Cancel"};
+        final CharSequence[] items = {getResources().getString(R.string.take_photo), getResources().getString(R.string.gallery), getResources().getString(R.string.cancel)};
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getContext());
         builder.setTitle("Add Photo");
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
 
-                if (items[item].equals("Take Photo")) {
+                if (items[item].equals(getResources().getString(R.string.take_photo))) {
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(intent, REQUEST_CAMERA);
-                } else if (items[item].equals("Gallery")) {
+                } else if (items[item].equals(getResources().getString(R.string.gallery))) {
                     Intent intent = new Intent(
                             Intent.ACTION_PICK,
                             MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(intent, SELECT_FILE);
-                } else if (items[item].equals("Cancel")) {
+                } else if (items[item].equals(getResources().getString(R.string.cancel))) {
                     dialog.dismiss();
                 }
             }

@@ -3,6 +3,6 @@
     <!-- menu group -->
     <group android:id="@+id/dismiss_group">
         <item android:id="@+id/dismiss"
-            android:title="Remove" />
+            android:title="@string/remove" />
     </group>
 </menu>

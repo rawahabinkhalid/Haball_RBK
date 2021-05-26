@@ -472,9 +472,9 @@ public class Dist_Order_Summary extends Fragment {
                 TextView tv_pr1, txt_header1;
                 txt_header1 = fbDialogue.findViewById(R.id.txt_header1);
                 tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
-                txt_header1.setText("Order Created");
+                txt_header1.setText(R.string.order_created);
                 try {
-                    tv_pr1.setText("Your Order ID " + result.getString("OrderNumber") + " has been created successfully.");
+                    tv_pr1.setText((getResources().getString(R.string.order_created))+ result.getString("OrderNumber") + (getResources().getString(R.string.order_created_msg)));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -546,11 +546,11 @@ public class Dist_Order_Summary extends Fragment {
                     tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
                     txt_header1 = fbDialogue.findViewById(R.id.txt_header1);
 //                            tv_pr1.setText("User Profile ID " + ID + " password has been changed successfully.");
-                    txt_header1.setText("Alert");
+                    txt_header1.setText(R.string.alert);
                     txt_header1.setTextColor(getContext().getResources().getColor(R.color.error_stroke_color));
                     txt_header1.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.border_set_error));
 //                    tv_pr1.setText("Sorry, your order cannot be processed as your available balance is Rs.. "+current_balance+ " only");
-                    tv_pr1.setText("Sorry, your order cannot be processed due to insufficient ledger balance.");
+                    tv_pr1.setText(getResources().getString(R.string.insufficient_balance_msg));
                     fbDialogue.setCancelable(true);
                     fbDialogue.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
                     WindowManager.LayoutParams layoutParams = fbDialogue.getWindow().getAttributes();
@@ -668,7 +668,7 @@ public class Dist_Order_Summary extends Fragment {
                 selectedProducts_distributor_editor.clear();
                 selectedProducts_distributor_editor.apply();
 
-                Toast.makeText(getContext(), "Order has been saved as template successfully", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), getResources().getString(R.string.temperory_save_msg), Toast.LENGTH_LONG).show();
                 SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
                         Context.MODE_PRIVATE);
                 SharedPreferences.Editor editorOrderTabsFromDraft = tabsFromDraft.edit();
@@ -812,7 +812,7 @@ public class Dist_Order_Summary extends Fragment {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard_txt.setText("Are you sure, you want to leave this page? Your changes will be discarded.");
+        tv_discard_txt.setText(R.string.discard_text);
         alertDialog.setView(view_popup);
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
@@ -960,9 +960,9 @@ public class Dist_Order_Summary extends Fragment {
                 TextView tv_pr1, txt_header1;
                 txt_header1 = fbDialogue.findViewById(R.id.txt_header1);
                 tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
-                txt_header1.setText("Order Saved");
+                txt_header1.setText(getResources().getString(R.string.order_saved));
                 try {
-                    tv_pr1.setText("Your Order ID " + result.getString("OrderNumber") + " has been saved successfully.");
+                    tv_pr1.setText((getResources().getString(R.string.order_saved_msg)) + result.getString("OrderNumber") + (getResources().getString(R.string.order_saved_msg)));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -146,11 +146,11 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
         //   spinner_companyName.setText(CompanyName);
         // CompanyNames.add(CompanyName);
         fetchCompanyData();
-        CompanyNames.add("Select Company");
+        CompanyNames.add(getResources().getString(R.string.select_company));
         company_names = "";
 
         if (MenuItem.equals("View")) {
-            btn_update.setText("Back");
+            btn_update.setText(getResources().getString(R.string.back));
             txt_amount.setEnabled(false);
             spinner_companyName.setEnabled(false);
             spinner_companyName.setClickable(false);
@@ -262,7 +262,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
         btn_newpayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (btn_update.getText().equals("Back")) {
+                if (btn_update.getText().equals(getResources().getString(R.string.back))) {
                     FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.add(R.id.main_container_ret, new CreatePaymentRequestFragment());
                     fragmentTransaction.commit();
@@ -275,7 +275,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (btn_update.getText().equals("Back")) {
+                if (btn_update.getText().equals(getResources().getString(R.string.back))) {
 //                    final FragmentManager fm = getActivity().getSupportFragmentManager();
 //                    fm.popBackStack();
                     SharedPreferences tabsFromDraft = getContext().getSharedPreferences("OrderTabsFromDraft",
@@ -288,7 +288,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
                     ((FragmentActivity) getContext()).startActivity(login_intent);
                     ((FragmentActivity) getContext()).finish();
 
-                } else if (btn_update.getText().equals("Update")) {
+                } else if (btn_update.getText().equals(getResources().getString(R.string.btn_update))) {
                     try {
                         makeUpdateRequest();
                     } catch (JSONException e) {
@@ -406,7 +406,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
                     // Log.i("onResume_company_name", String.valueOf(company));
 
 //                    Toast.makeText(getActivity(), "Back press", Toast.LENGTH_SHORT).show();
-                    if (!txt_amounts.equals("") || (!company.equals("Select Company") && company != null)) {
+                    if (!txt_amounts.equals("") || (!company.equals(getResources().getString(R.string.select_company)) && company != null)) {
                         showDiscardDialog();
                         return true;
                     } else {
@@ -435,7 +435,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard_txt.setText("Are you sure, you want to leave this page? Your changes will be discarded.");
+        tv_discard_txt.setText(getResources().getString(R.string.discard_text));
         alertDialog.setView(view_popup);
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
@@ -471,7 +471,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             View view_popup = inflater.inflate(R.layout.discard_changes, null);
             TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-            tv_discard_txt.setText("Are you sure, you want to leave this page? Your changes will be discarded.");
+            tv_discard_txt.setText(getResources().getString(R.string.discard_text));
             alertDialog.setView(view_popup);
             alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
             WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
@@ -524,13 +524,13 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
     }
 
     private void showDiscardDialogForJazzCash() {
-        if (!String.valueOf(btn_update.getText()).equals("Back")) {
+        if (!String.valueOf(btn_update.getText()).equals(getResources().getString(R.string.back))) {
             final FragmentManager fm = getActivity().getSupportFragmentManager();
             final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             View view_popup = inflater.inflate(R.layout.discard_changes, null);
             TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-            tv_discard_txt.setText("Are you sure, you want to leave this page? Your changes will be discarded.");
+            tv_discard_txt.setText(getResources().getString(R.string.discard_text));
             alertDialog.setView(view_popup);
             alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
             WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
@@ -593,7 +593,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
         if ((!txt_amounts.equals(Amount)) || (!company.equals(CompanyName))
 
         ) {
-            btn_update.setText("Update");
+            btn_update.setText(getResources().getString(R.string.btn_update));
 //        } else if ((txt_amounts.equals(Amount)) && (company.equals(CompanyName))) {
 //            if(!String.valueOf(btn_update.getText()).equals("Back")) {
 //                btn_update.setEnabled(false);
@@ -602,14 +602,14 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
         }
 
 
-        if ((!txt_amounts.equals("")) && (!company.equals("Select Company"))) {
+        if ((!txt_amounts.equals("")) && (!company.equals(getResources().getString(R.string.select_company)))) {
 //            btn_update.setText("Update");
             btn_update.setEnabled(true);
             btn_update.setBackground(getResources().getDrawable(R.drawable.button_background));
 
         } else {
 //            btn_update.setText("Back");
-            if (!String.valueOf(btn_update.getText()).equals("Back")) {
+            if (!String.valueOf(btn_update.getText()).equals(getResources().getString(R.string.back))) {
                 btn_update.setEnabled(false);
                 btn_update.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
             }
@@ -717,10 +717,10 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
                         DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                 Volley.newRequestQueue(getContext()).add(sr);
             } else {
-                new CustomToast().showToast(getActivity(), "Amount cannot be less than Rs. 500.");
+                new CustomToast().showToast(getActivity(), getResources().getString(R.string.alert_500_payment));
             }
         } else {
-            new CustomToast().showToast(getActivity(), "Amount cannot be less than Rs. 500.");
+            new CustomToast().showToast(getActivity(), getResources().getString(R.string.alert_500_payment));
         }
     }
 
@@ -758,7 +758,7 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
                     spinner_companyName.setSelection(CompanyNames.indexOf(CompanyName));
                     company_names = CompanyName;
 
-                    btn_update.setText("Back");
+                    btn_update.setText(getResources().getString(R.string.back));
                     if (MenuItem.equals("View")) {
                         txt_amount.setEnabled(false);
                         spinner_companyName.setEnabled(false);
@@ -814,9 +814,9 @@ public class PaymentScreen3Fragment_Retailer extends Fragment {
         txt_header1 = fbDialogue.findViewById(R.id.txt_header1);
         tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
         tv_pr1.setText("");
-        txt_header1.setText("Payment Updated");
-        String steps1 = "Payment ID ";
-        String steps2 = " has been updated successfully.";
+        txt_header1.setText(getResources().getString(R.string.payment_updated));
+        String steps1 = getResources().getString(R.string.paymentid_sp);
+        String steps2 = getResources().getString(R.string.payment_updated_msg);
         String title = paymentID;
         SpannableString ss1 = new SpannableString(title);
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);

@@ -41,6 +41,7 @@ import com.haball.Distributor.ui.payments.InputStreamVolleyRequest;
 import com.haball.HaballError;
 import com.haball.Loader;
 import com.haball.ProcessingError;
+import com.haball.R;
 import com.haball.SSL_HandShake;
 
 import org.json.JSONArray;
@@ -117,7 +118,7 @@ public class ViewInvoiceVoucher {
                         fPdf.flush();
                         fPdf.close();
                         // Log.i("Download Complete", "Download complete.");
-                        Toast.makeText(mContext, "File saved in Downloads", Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext, context.getResources().getString(R.string.file_save_msg), Toast.LENGTH_LONG).show();
 
                         File file = new File(name); // Here you declare your pdf path
                         if (Build.VERSION.SDK_INT >= 24) {
@@ -145,7 +146,7 @@ public class ViewInvoiceVoucher {
                     // TODO Auto-generated catch block
                     loader.hideLoader();
                     // Log.d("KEY_ERROR", "UNABLE TO DOWNLOAD FILE");
-                    Toast.makeText(context, "UNABLE TO DOWNLOAD FILE", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.unable_download_msg), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
             }

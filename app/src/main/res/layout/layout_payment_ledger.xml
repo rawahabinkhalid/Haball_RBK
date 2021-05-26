@@ -44,7 +44,7 @@
         android:layout_marginTop="15dp"
         android:fontFamily="@font/open_sans"
         android:paddingBottom="5dp"
-        android:text="Ledger ID:"
+        android:text="@string/payment_ledger_id"
         android:textColor="@color/rv_box_color"
         android:textSize="@dimen/rv_box_text_size" />
 
@@ -68,7 +68,7 @@
         android:layout_below="@+id/ledger_id"
         android:fontFamily="@font/open_sans"
         android:paddingBottom="5dp"
-        android:text="Document Type: "
+        android:text="@string/document_type"
         android:textColor="@color/rv_box_color"
         android:textSize="@dimen/rv_box_text_size" />
 
@@ -91,7 +91,7 @@
         android:layout_below="@+id/document_type"
         android:fontFamily="@font/open_sans"
         android:paddingBottom="5dp"
-        android:text="Date: "
+        android:text="@string/date_item"
         android:textColor="@color/rv_box_color"
         android:textSize="@dimen/rv_box_text_size" />
 
@@ -115,7 +115,7 @@
         android:layout_below="@+id/date_ledger"
         android:fontFamily="@font/open_sans"
         android:paddingBottom="5dp"
-        android:text="Debit Amount: "
+        android:text="@string/debit_amount"
         android:textColor="@color/rv_box_color"
         android:textSize="@dimen/rv_box_text_size" />
 
@@ -141,7 +141,7 @@
         android:layout_below="@+id/transaction"
         android:fontFamily="@font/open_sans"
         android:paddingBottom="5dp"
-        android:text="Balance:"
+        android:text="@string/balance_item"
         android:textColor="@color/rv_box_color"
         android:textSize="@dimen/rv_box_text_size" />
 

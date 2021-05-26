@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Proof of Payment"
+                android:text="@string/proof_of_payment"
                 android:paddingTop="5dp"
                 android:paddingBottom="10dp"
                 android:layout_weight="1"
@@ -54,7 +54,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:hint="POP ID"
+                android:hint="@string/pop_id"
                 android:theme="@style/TextLabel"
                 app:boxStrokeColor="@color/box_stroke"
                 app:boxStrokeWidth="1.75dp">
@@ -79,7 +79,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:hint="Distributor Name"
+                android:hint="@string/distributor_name"
                 android:theme="@style/TextLabel"
                 app:boxStrokeColor="@color/box_stroke"
                 app:boxStrokeWidth="1.75dp">
@@ -103,7 +103,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:hint="Created Date"
+                android:hint="@string/created_date"
                 android:theme="@style/TextLabel"
                 app:boxStrokeColor="@color/box_stroke"
                 app:boxStrokeWidth="1.75dp">
@@ -127,7 +127,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:hint="Mode of Payment"
+                android:hint="@string/payment_mode_POP"
                 android:theme="@style/TextLabel"
                 app:boxStrokeColor="@color/box_stroke"
                 app:boxStrokeWidth="1.75dp">
@@ -151,7 +151,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:hint="Bank"
+                android:hint="@string/bank"
                 android:theme="@style/TextLabel"
                 app:boxStrokeColor="@color/box_stroke"
                 app:boxStrokeWidth="1.75dp">
@@ -175,7 +175,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:hint="Branch Code"
+                android:hint="@string/branch_code_POP"
                 android:theme="@style/TextLabel"
                 app:boxStrokeColor="@color/box_stroke"
                 app:boxStrokeWidth="1.75dp">
@@ -199,7 +199,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:hint="Transaction No"
+                android:hint="@string/transaction_no_POP"
                 android:theme="@style/TextLabel"
                 app:boxStrokeColor="@color/box_stroke"
                 app:boxStrokeWidth="1.75dp">
@@ -224,7 +224,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:hint="Payment ID"
+                android:hint="@string/paymentid_pop"
                 android:theme="@style/TextLabel"
                 app:boxStrokeColor="@color/box_stroke"
                 app:boxStrokeWidth="1.75dp">
@@ -248,7 +248,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:hint="Status"
+                android:hint="@string/status"
                 android:theme="@style/TextLabel"
                 app:boxStrokeColor="@color/box_stroke"
                 app:boxStrokeWidth="1.75dp">
@@ -278,7 +278,7 @@
                 android:layout_marginEnd="40dp"
                 android:background="@drawable/border_set"
                 android:padding="10dp"
-                android:text="Proof of Payment Details"
+                android:text="@string/proof_of_payment_heading"
                 android:textColor="#96bb3c"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -299,7 +299,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/rv_proof_of_payments_view"
             android:layout_marginBottom="10dp"
-            android:text="© Haball | All rights reserved"
+            android:text="@string/all_rights_reserved"
             android:gravity="center"/>
     </RelativeLayout>
 

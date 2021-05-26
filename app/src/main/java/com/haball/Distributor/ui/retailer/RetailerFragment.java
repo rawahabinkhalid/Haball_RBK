@@ -201,11 +201,11 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
         conso_edittext.setVisibility(View.GONE);
         date_filter_rl.setVisibility(View.GONE);
         amount_filter_rl.setVisibility(View.GONE);
-        consolidate_felter.add("Select Criteria");
-        consolidate_felter.add("Retailer Code");
-        consolidate_felter.add("Company");
-        consolidate_felter.add("Date");
-        consolidate_felter.add("Status");
+        consolidate_felter.add(getResources().getString(R.string.select_criteria));
+        consolidate_felter.add(getResources().getString(R.string.retailer_code));
+        consolidate_felter.add(getResources().getString(R.string.company));
+        consolidate_felter.add(getResources().getString(R.string.date));
+        consolidate_felter.add(getResources().getString(R.string.status));
 
         arrayAdapterPayments = new ArrayAdapter<String>(root.getContext(),
                 android.R.layout.simple_spinner_dropdown_item, consolidate_felter) {
@@ -281,17 +281,17 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
                     spinner2.setSelection(0);
                     conso_edittext.setText("");
 
-                    if (Filter_selected.equals("Retailer Code")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    if (Filter_selected.equals(getResources().getString(R.string.retailer_code))) {
+                        search_bar.setHint((getResources().getString(R.string.search_by)) + Filter_selected);
                         Filter_selected = "RetailerCode";
                         conso_edittext.setVisibility(View.VISIBLE);
                         search_rl.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Company")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    } else if (Filter_selected.equals(getResources().getString(R.string.company))) {
+                        search_bar.setHint(getResources().getString(R.string.search_by)+ Filter_selected);
                         Filter_selected = "CompanyName";
                         conso_edittext.setVisibility(View.VISIBLE);
                         search_rl.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Date")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.date))) {
 //                        Toast.makeText(getContext(), "Delivery Date selected", Toast.LENGTH_LONG).show();
                         date_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "date";
@@ -309,8 +309,8 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
                                 openCalenderPopup("second date");
                             }
                         });
-                    } else if (Filter_selected.equals("Status")) {
-                        Filter_selected = "Status";
+                    } else if (Filter_selected.equals(getResources().getString(R.string.status))) {
+                        Filter_selected = getResources().getString(R.string.status);
                         spinner_container1.setVisibility(View.VISIBLE);
                     }
 //                    try {
@@ -332,9 +332,9 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
         spinner_consolidate.setAdapter(arrayAdapterPayments);
 
         filters = new ArrayList<>();
-        filters.add("Status");
-        filters.add("Disconnected");
-        filters.add("Connected");
+        filters.add(getResources().getString(R.string.status));
+        filters.add(getResources().getString(R.string.disconnected));
+        filters.add(getResources().getString(R.string.connected));
 //        filters.add("Pending");
 
 
@@ -396,9 +396,9 @@ public class RetailerFragment extends Fragment implements DatePickerDialog.OnDat
                     }
 
 //                    Filter_selected_value = String.valueOf(i - 1);
-                    if (filters.get(i).equals("Disconnected"))
+                    if (filters.get(i).equals(getResources().getString(R.string.disconnected)))
                         Filter_selected_value = "2";
-                    else if (filters.get(i).equals("Connected"))
+                    else if (filters.get(i).equals(getResources().getString(R.string.connected)))
                         Filter_selected_value = "1";
                     else {
                         Filter_selected_value = "";

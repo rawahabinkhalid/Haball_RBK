@@ -18,7 +18,7 @@ package com.haball.Distributor.ui.shipments.main.Adapters;
 public class SectionsPagerAdapter_WithoutPayment extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_7_0,R.string.tab_text_7, R.string.tab_text_5_0, R.string.tab_text_5};
+    private static final int[] TAB_TITLES = new int[]{R.string.shipment,R.string.tab_text_7, R.string.order, R.string.tab_text_5};
     private final Context mContext;
 
     public SectionsPagerAdapter_WithoutPayment(Context context, FragmentManager fm) {

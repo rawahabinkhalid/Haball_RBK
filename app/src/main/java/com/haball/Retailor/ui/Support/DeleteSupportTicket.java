@@ -82,8 +82,8 @@ public class DeleteSupportTicket {
                 TextView tv_pr1, txt_header1;
                 txt_header1 = delete_success_alert.findViewById(R.id.txt_header1);
                 tv_pr1 = delete_success_alert.findViewById(R.id.txt_details);
-                txt_header1.setText("Ticket Deleted");
-                tv_pr1.setText("Your Support Ticket has been deleted successfully.");
+                txt_header1.setText(context.getResources().getString(R.string.deleted_ticket));
+                tv_pr1.setText(context.getResources().getString(R.string.deleted_ticket_msg));
 
                 ImageButton img_delete = (ImageButton) delete_success_alert.findViewById(R.id.image_button);
                 img_delete.setOnClickListener(new View.OnClickListener() {

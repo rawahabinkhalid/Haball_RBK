@@ -146,7 +146,7 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
                 ViewModelProviders.of(this).get(PaymentsViewModel.class);
         View root = inflater.inflate(R.layout.activity_payment_ledger, container, false);
         mcontext = getContext();
-        company_names.add("Company ");
+        company_names.add(getResources().getString(R.string.company));
         myFont = ResourcesCompat.getFont(getContext(), R.font.open_sans);
         //   btn_load_more = root.findViewById(R.id.btn_load_more);
 
@@ -216,13 +216,13 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
         amount_filter_rl.setVisibility(View.GONE);
         spinner_consolidate.setVisibility(View.GONE);
         conso_edittext.setVisibility(View.GONE);
-        consolidate_felter.add("Select Criteria");
-        consolidate_felter.add("Ledger ID");
-        consolidate_felter.add("Document Type");
-        consolidate_felter.add("Date");
-        consolidate_felter.add("Credit");
-        consolidate_felter.add("Debit");
-        consolidate_felter.add("Balance");
+        consolidate_felter.add(getResources().getString(R.string.select_criteria));
+        consolidate_felter.add(getResources().getString(R.string.ledger_id_sp));
+        consolidate_felter.add(getResources().getString(R.string.document_type));
+        consolidate_felter.add(getResources().getString(R.string.date));
+        consolidate_felter.add(getResources().getString(R.string.credit));
+        consolidate_felter.add(getResources().getString(R.string.debit));
+        consolidate_felter.add(getResources().getString(R.string.balance));
 
         arrayAdapterPaymentsFilter = new ArrayAdapter<>(root.getContext(),
                 android.R.layout.simple_dropdown_item_1line, consolidate_felter);
@@ -257,17 +257,17 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
                     spinner2.setSelection(0);
                     conso_edittext.setText("");
 
-                    if (Filter_selected.equals("Ledger ID")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    if (Filter_selected.equals(getResources().getString(R.string.ledger_id_sp))) {
+                        search_bar.setHint(getResources().getString(R.string.search_by) + Filter_selected);
                         Filter_selected = "DocumentNumber";
                         conso_edittext.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Document Type")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.document_type))) {
                         Filter_selected = "DocumentType";
                         spinner_container1.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Date")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.date))) {
 //                        Toast.makeText(mcontext, "Date selected", Toast.LENGTH_LONG).show();
                         date_filter_rl.setVisibility(View.VISIBLE);
-                        Filter_selected = "date";
+                        Filter_selected = getResources().getString(R.string.date);
                         Filter_selected1 = "DateFrom";
                         Filter_selected2 = "DateTo";
                         first_date_btn.setOnClickListener(new View.OnClickListener() {
@@ -282,21 +282,21 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
                                 openCalenderPopup("second date");
                             }
                         });
-                    } else if (Filter_selected.equals("Credit")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.credit))) {
 //                        Toast.makeText(mcontext, "Credit selected", Toast.LENGTH_LONG).show();
                         amount_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "amount";
                         Filter_selected1 = "CreditAmountMin";
                         Filter_selected2 = "CreditAmountMax";
                         checkAmountChanged();
-                    } else if (Filter_selected.equals("Debit")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.debit))) {
 //                        Toast.makeText(mcontext, "Debit selected", Toast.LENGTH_LONG).show();
                         amount_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "amount";
                         Filter_selected1 = "DebitAmountMin";
                         Filter_selected2 = "DebitAmountMax";
                         checkAmountChanged();
-                    } else if (Filter_selected.equals("Balance")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.balance))) {
 //                        Toast.makeText(mcontext, "Balance selected", Toast.LENGTH_LONG).show();
                         amount_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "amount";
@@ -316,10 +316,10 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
         arrayAdapterPaymentsFilter.notifyDataSetChanged();
         spinner_consolidate.setAdapter(arrayAdapterPaymentsFilter);
 
-        filters.add("Document Type");
-        filters.add("Invoice");
-        filters.add("Prepaid ");
-        filters.add("Shipment");
+        filters.add(getResources().getString(R.string.document_type));
+        filters.add(getResources().getString(R.string.invoice));
+        filters.add(getResources().getString(R.string.prepaid));
+        filters.add(getResources().getString(R.string.shipment));
         arrayAdapterFeltter = new ArrayAdapter<String>(root.getContext(),
                 android.R.layout.simple_dropdown_item_1line, filters) {
             @Override
@@ -827,7 +827,7 @@ public class Payments_Fragment extends Fragment implements DatePickerDialog.OnDa
         map.put("CompanyId", companyId);
         map.put("TotalRecords", 10);
         map.put("PageNumber", 0.1);
-        if (Filter_selected.equals("date")) {
+        if (Filter_selected.equals(getResources().getString(R.string.date))) {
             map.put(Filter_selected1, fromDate);
             map.put(Filter_selected2, toDate);
         } else if (Filter_selected.equals("amount")) {

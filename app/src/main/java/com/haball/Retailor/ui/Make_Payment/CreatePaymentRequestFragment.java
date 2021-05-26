@@ -98,7 +98,7 @@ public class CreatePaymentRequestFragment extends Fragment {
         spinner_company = root.findViewById(R.id.spinner_company);
         txt_amount = root.findViewById(R.id.txt_amount);
         layout_txt_amount = root.findViewById(R.id.layout_txt_amount);
-        CompanyNames.add("Select Company");
+        CompanyNames.add(getResources().getString(R.string.select_company));
         company_names = "";
         loader = new Loader(getContext());
 
@@ -226,7 +226,7 @@ public class CreatePaymentRequestFragment extends Fragment {
                     // Log.i("onResume_txt_amount", String.valueOf(txt_amounts));
                     // Log.i("onResume_company_name", String.valueOf(company));
 
-                    if ((!txt_amounts.equals("") || (!company.equals("Select Company") && company != null))) {
+                    if ((!txt_amounts.equals("") || (!company.equals(getResources().getString(R.string.select_company)) && company != null))) {
                         showDiscardDialog();
                         return true;
 
@@ -261,7 +261,7 @@ public class CreatePaymentRequestFragment extends Fragment {
                     // Log.i("onResume_txt_amount", String.valueOf(txt_amounts));
                     // Log.i("onResume_company_name", String.valueOf(company));
 
-                    if (!txt_amounts.equals("") || (!company.equals("Select Company") && company != null)) {
+                    if (!txt_amounts.equals("") || (!company.equals(getResources().getString(R.string.select_company)) && company != null)) {
 
                         showDiscardDialog();
                         return true;
@@ -295,7 +295,7 @@ public class CreatePaymentRequestFragment extends Fragment {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard_txt.setText("Are you sure, you want to leave this page? Your changes will be discarded.");
+        tv_discard_txt.setText(R.string.discard_text);
         alertDialog.setView(view_popup);
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
@@ -339,7 +339,7 @@ public class CreatePaymentRequestFragment extends Fragment {
         String company = (String) spinner_company.getItemAtPosition(spinner_company.getSelectedItemPosition()).toString();
         if (txt_amounts.equals("")
 //                || Double.parseDouble(txt_amounts) < 500
-                || company.equals("Select Company")
+                || company.equals(getResources().getString(R.string.select_company))
 
         ) {
             btn_create.setEnabled(false);
@@ -432,7 +432,7 @@ public class CreatePaymentRequestFragment extends Fragment {
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             Volley.newRequestQueue(getContext()).add(sr);
         } else {
-            new CustomToast().showToast(getActivity(), "Amount cannot be less than Rs. 500.");
+            new CustomToast().showToast(getActivity(), getResources().getString(R.string.alert_500_payment));
         }
     }
 
@@ -445,9 +445,9 @@ public class CreatePaymentRequestFragment extends Fragment {
         txt_header1 = fbDialogue.findViewById(R.id.txt_header1);
         tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
         tv_pr1.setText("");
-        txt_header1.setText("Payment Created");
-        String steps1 = "Payment ID ";
-        String steps2 = " has been created successfully.";
+        txt_header1.setText(getResources().getString(R.string.payment_creadted));
+        String steps1 = getResources().getString(R.string.paymentid_sp);
+        String steps2 = getResources().getString(R.string.created_payment_message);
         String title = paymentID;
         SpannableString ss1 = new SpannableString(title);
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);

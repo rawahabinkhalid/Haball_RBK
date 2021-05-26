@@ -31,7 +31,6 @@
                 android:id="@+id/recieved_no_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/my_network_fragment_status"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/my_network_fragment_no"
                 android:text="123456789"

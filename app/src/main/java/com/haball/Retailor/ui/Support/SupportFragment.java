@@ -203,11 +203,11 @@ public class SupportFragment extends Fragment implements DatePickerDialog.OnDate
         spinner_container1.setVisibility(View.GONE);
         date_filter_rl.setVisibility(View.GONE);
         conso_edittext.setVisibility(View.GONE);
-        consolidate_felter.add("Select Criteria");
-        consolidate_felter.add("Ticket ID");
-        consolidate_felter.add("Status");
-        consolidate_felter.add("Created Date");
-        consolidate_felter.add("Issue Type");
+        consolidate_felter.add(getResources().getString(R.string.select_criteria));
+        consolidate_felter.add(getResources().getString(R.string.ticket_id));
+        consolidate_felter.add(getResources().getString(R.string.status));
+        consolidate_felter.add(getResources().getString(R.string.created_date));
+        consolidate_felter.add(getResources().getString(R.string.issue_type));
 //
 //        arrayAdapterPaymentsFilter = new ArrayAdapter<>(root.getContext(),
 //                android.R.layout.simple_dropdown_item_1line, consolidate_felter);
@@ -280,24 +280,24 @@ public class SupportFragment extends Fragment implements DatePickerDialog.OnDate
                     Filter_selected = consolidate_felter.get(i);
                     spinner2.setSelection(0);
                     conso_edittext.setText("");
-                    if (Filter_selected.equals("Ticket ID")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    if (Filter_selected.equals(getResources().getString(R.string.ticket_id))) {
+                        search_bar.setHint(getResources().getString(R.string.search_by) + Filter_selected);
                         Filter_selected = "TicketNumber";
                         conso_edittext.setInputType(InputType.TYPE_CLASS_NUMBER);
                         conso_edittext.setVisibility(View.VISIBLE);
                         search_rl.setVisibility(View.VISIBLE);
 
-                    } else if (Filter_selected.equals("Issue Type")) {
-                        Filter_selected = "IssueType";
+                    } else if (Filter_selected.equals(getResources().getString(R.string.issue_type))) {
+                        Filter_selected = getResources().getString(R.string.issue_type);
                         spinner_container1.setVisibility(View.VISIBLE);
 
                         filters = new ArrayList<>();
 
-                        filters.add("Issue Type");
-                        filters.add("Make Payment");
-                        filters.add("Profile");
-                        filters.add("Account & Wallet");
-                        filters.add("Change Password");
+                        filters.add(getResources().getString(R.string.issue_type));
+                        filters.add(getResources().getString(R.string.make_payment));
+                        filters.add(getResources().getString(R.string.profile));
+                        filters.add(getResources().getString(R.string.account_wallet));
+                        filters.add(getResources().getString(R.string.change_password));
 
 //                        arrayAdapterFeltter = new ArrayAdapter<>(getContext(),
 //                                android.R.layout.simple_dropdown_item_1line, filters);
@@ -332,7 +332,7 @@ public class SupportFragment extends Fragment implements DatePickerDialog.OnDate
                         arrayAdapterFeltter.notifyDataSetChanged();
                         spinner2.setAdapter(arrayAdapterFeltter);
 
-                    } else if (Filter_selected.equals("Created Date")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.created_date))) {
                         date_filter_rl.setVisibility(View.VISIBLE);
 //                        Toast.makeText(getContext(), "Created Date selected", Toast.LENGTH_LONG).show();
                         Filter_selected = "date";
@@ -350,16 +350,16 @@ public class SupportFragment extends Fragment implements DatePickerDialog.OnDate
                                 openCalenderPopup("second date");
                             }
                         });
-                    } else if (Filter_selected.equals("Status")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.status))) {
 
-                        Filter_selected = "Status";
+                        Filter_selected = getResources().getString(R.string.status);
                         tv_shipment_no_ticket.setVisibility(View.VISIBLE);
                         spinner_container1.setVisibility(View.VISIBLE);
 
                         filters = new ArrayList<>();
-                        filters.add("Status");
-                        filters.add("Pending");
-                        filters.add("Resolved");
+                        filters.add(getResources().getString(R.string.status));
+                        filters.add(getResources().getString(R.string.pending));
+                        filters.add(getResources().getString(R.string.resolved));
 //                        filters.add("Inactive");
 //
 //                        arrayAdapterFeltter = new ArrayAdapter<>(getContext(),
@@ -438,9 +438,9 @@ public class SupportFragment extends Fragment implements DatePickerDialog.OnDate
                     } catch (NullPointerException ex) {
                         ex.printStackTrace();
                     }
-                    if (Filter_selected.equals("Status"))
+                    if (Filter_selected.equals(getResources().getString(R.string.status)))
                         Filter_selected_value = String.valueOf(i - 1);
-                    else if (Filter_selected.equals("IssueType"))
+                    else if (Filter_selected.equals(getResources().getString(R.string.issue_type)))
                         Filter_selected_value = String.valueOf(i);
 
                     if (!Filter_selected_value.equals("")) {

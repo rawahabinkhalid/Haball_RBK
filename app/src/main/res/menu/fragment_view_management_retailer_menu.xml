@@ -3,7 +3,7 @@
     <!-- menu group -->
     <group android:id="@+id/group_delete">
         <item android:id="@+id/view_retailer"
-            android:title="View" />
+            android:title="@string/view" />
 <!--        <item android:id="@+id/view_disconnect"-->
 <!--            android:title="Disconnect" />-->
 

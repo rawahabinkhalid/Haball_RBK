@@ -171,13 +171,13 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
         conso_edittext.setVisibility(View.GONE);
         date_filter_rl.setVisibility(View.GONE);
         amount_filter_rl.setVisibility(View.GONE);
-        consolidate_felter.add("Select Criteria");
-        consolidate_felter.add("Shipment No");
-        consolidate_felter.add("Company");
-        consolidate_felter.add("Shipment Date");
-        consolidate_felter.add("Receiving Date");
+        consolidate_felter.add(getResources().getString(R.string.select_criteria));
+        consolidate_felter.add(getResources().getString(R.string.shipment_no));
+        consolidate_felter.add(getResources().getString(R.string.company));
+        consolidate_felter.add(getResources().getString(R.string.shipment_date));
+        consolidate_felter.add(getResources().getString(R.string.receiving_date));
 //        consolidate_felter.add("Quantity");
-        consolidate_felter.add("Status");
+        consolidate_felter.add(getResources().getString(R.string.status));
         arrayAdapterPayments = new ArrayAdapter<String>(root.getContext(),
                 android.R.layout.simple_spinner_dropdown_item, consolidate_felter) {
             @Override
@@ -250,17 +250,17 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
                     spinner2.setSelection(0);
                     conso_edittext.setText("");
 
-                    if (Filter_selected.equals("Shipment No")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    if (Filter_selected.equals(getResources().getString(R.string.shipment_no))) {
+                        search_bar.setHint(getResources().getString(R.string.search_by) + Filter_selected);
                         Filter_selected = "DeliveryNumber";
                         conso_edittext.setVisibility(View.VISIBLE);
                         search_rl.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Company")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    } else if (Filter_selected.equals(getResources().getString(R.string.company))) {
+                        search_bar.setHint(getResources().getString(R.string.search_by) + Filter_selected);
                         Filter_selected = "CompanyName";
                         conso_edittext.setVisibility(View.VISIBLE);
                         search_rl.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Shipment Date")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.shipment_date))) {
 //                        Toast.makeText(getContext(), "Delivery Date selected", Toast.LENGTH_LONG).show();
                         date_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "date";
@@ -278,7 +278,7 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
                                 openCalenderPopup("second date");
                             }
                         });
-                    } else if (Filter_selected.equals("Receiving Date")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.receiving_date))) {
 //                        Toast.makeText(getContext(), "Receiving Date selected", Toast.LENGTH_LONG).show();
                         date_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "date";
@@ -296,7 +296,7 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
                                 openCalenderPopup("second date");
                             }
                         });
-                    } else if (Filter_selected.equals("Quantity")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.quantity))) {
 //                        Toast.makeText(getContext(), "Quantity selected", Toast.LENGTH_LONG).show();
                         amount_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "amount";
@@ -326,10 +326,10 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
         spinner_consolidate.setAdapter(arrayAdapterPayments);
 
         filters = new ArrayList<>();
-        filters.add("Status");
+        filters.add(getResources().getString(R.string.status));
 //        filters.add("Pending");
-        filters.add("In Transit");
-        filters.add("Received");
+        filters.add(getResources().getString(R.string.in_transit));
+        filters.add(getResources().getString(R.string.received));
 //        filters.add("Returned");
 //        filters.add("Revised");
 
@@ -391,9 +391,9 @@ public class Shipments_Fragments extends Fragment implements DatePickerDialog.On
                         ex.printStackTrace();
                     }
 
-                    if (filters.get(i).equals("In Transit")) {
+                    if (filters.get(i).equals(getResources().getString(R.string.in_transit))) {
                         Filter_selected_value = "1";
-                    } else if (filters.get(i).equals("Received")) {
+                    } else if (filters.get(i).equals(getResources().getString(R.string.received))) {
                         Filter_selected_value = "2";
 
                     }

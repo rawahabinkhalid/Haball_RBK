@@ -187,14 +187,14 @@ public class ParentList_Adapter_DistOrder extends ExpandableRecyclerAdapter<Orde
 //        OrderChildList_VH_DistOrder.list_discount_value.setText(OrderChildlist_Model_DistOrder.getPackSize());
 
 
-        OrderChildList_VH_DistOrder.product_code.setText("Product Code:\u00A0");
+        OrderChildList_VH_DistOrder.product_code.setText(R.string.product_code_for_adapter);
         SpannableString ss1 = new SpannableString(OrderChildlist_Model_DistOrder.getCode());
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
         OrderChildList_VH_DistOrder.product_code.append(ss1);
 
         OrderChildList_VH_DistOrder.product_code.append("\n");
 
-        OrderChildList_VH_DistOrder.product_code.append("Price:\u00A0");
+        OrderChildList_VH_DistOrder.product_code.append(context.getResources().getString(R.string.price_adapter));
 
         DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
         String yourFormattedString1 = formatter1.format(Double.parseDouble(OrderChildlist_Model_DistOrder.getUnitPrice()));
@@ -207,7 +207,7 @@ public class ParentList_Adapter_DistOrder extends ExpandableRecyclerAdapter<Orde
         if (OrderChildlist_Model_DistOrder.getDiscountValue() != null && !OrderChildlist_Model_DistOrder.getDiscountValue().equals("0") && !OrderChildlist_Model_DistOrder.getDiscountValue().equals("") && !OrderChildlist_Model_DistOrder.getDiscountValue().equals("null")) {
             OrderChildList_VH_DistOrder.product_code.append("\u00A0| ");
 
-            OrderChildList_VH_DistOrder.product_code.append("Disc:\u00A0");
+            OrderChildList_VH_DistOrder.product_code.append(context.getResources().getString(R.string.disc_adpter));
 
             formatter1 = new DecimalFormat("#,###,##0.00");
             yourFormattedString1 = formatter1.format(Double.parseDouble(OrderChildlist_Model_DistOrder.getDiscountValue()));
@@ -220,7 +220,7 @@ public class ParentList_Adapter_DistOrder extends ExpandableRecyclerAdapter<Orde
         if (OrderChildlist_Model_DistOrder.getUOMTitle() != null && !OrderChildlist_Model_DistOrder.getUOMTitle().equals("null")) {
             OrderChildList_VH_DistOrder.product_code.append("\u00A0| ");
 
-            OrderChildList_VH_DistOrder.product_code.append("UOM:\u00A0");
+            OrderChildList_VH_DistOrder.product_code.append(context.getResources().getString(R.string.UOM_adapter));
             String temp_uom = OrderChildlist_Model_DistOrder.getUOMTitle().replaceAll(" ", "\u00A0");
             ss1 = new SpannableString(temp_uom);
             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -230,7 +230,7 @@ public class ParentList_Adapter_DistOrder extends ExpandableRecyclerAdapter<Orde
         if (OrderChildlist_Model_DistOrder.getPackSize() != null && !OrderChildlist_Model_DistOrder.getPackSize().equals("null")) {
             OrderChildList_VH_DistOrder.product_code.append("\u00A0| ");
 
-            OrderChildList_VH_DistOrder.product_code.append("Pack Size:\u00A0");
+            OrderChildList_VH_DistOrder.product_code.append(context.getResources().getString(R.string.pack_size_adapter));
             String temp_uom = OrderChildlist_Model_DistOrder.getPackSize().replaceAll(" ", "\u00A0");
             ss1 = new SpannableString(temp_uom);
             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -407,7 +407,7 @@ public class ParentList_Adapter_DistOrder extends ExpandableRecyclerAdapter<Orde
         LayoutInflater inflater = LayoutInflater.from(context);
         final View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard_txt.setText("Are you sure, you want to leave this page? Your changes will be discarded.");
+        tv_discard_txt.setText(R.string.discard_text);
         alertDialog.setView(view_popup);
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();

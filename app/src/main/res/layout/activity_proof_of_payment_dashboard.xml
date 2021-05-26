@@ -1,60 +1,345 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#fff" tools:context=".Payment.ProofOfPaymentDashboard">
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginStart="27dp" android:layout_marginEnd="27dp">
-        <RelativeLayout android:id="@+id/ln_login" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:background="@drawable/underline">
-            <TextView android:id="@+id/tv_proof_payment" android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="@font/open_sans" android:paddingTop="10dp" android:paddingBottom="10dp" android:text="Proof Of Payment" android:textColor="@color/textcolor" android:textSize="17sp"/>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".Payment.ProofOfPaymentDashboard">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="27dp"
+        android:layout_marginEnd="27dp">
+
+        <RelativeLayout
+            android:id="@+id/ln_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/underline">
+
+            <TextView
+                android:id="@+id/tv_proof_payment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/proof_of_payment"
+                android:textColor="@color/textcolor"
+                android:textSize="17sp" />
         </RelativeLayout>
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent" android:layout_below="@+id/ln_login">
-            <RelativeLayout android:id="@+id/spinner_container_main" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <RelativeLayout android:id="@+id/spinner_container_main_inner" android:layout_width="match_parent" android:layout_height="wrap_content">
-                    <Button android:id="@+id/btn_create_proof_of_payment" android:layout_width="match_parent" android:layout_height="45dp" android:layout_marginTop="15dp" android:background="@drawable/button_background" android:stateListAnimator="@null" android:text="Create Proof of Payment" android:textAllCaps="false" android:fontFamily="@font/open_sans" android:textSize="@dimen/button_text_size" android:textColor="@android:color/white"/>
-                    <RelativeLayout android:id="@+id/spinner_container" android:layout_width="match_parent" android:layout_height="50dp" android:layout_below="@+id/btn_create_proof_of_payment" android:layout_marginTop="20dp" android:background="@drawable/spinner_round">
-                        <Spinner android:id="@+id/spinner_conso" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@null" android:dropDownWidth="match_parent" android:popupBackground="@drawable/spinner_round"/>
-                        <ImageView android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_alignTop="@id/spinner_conso" android:layout_alignEnd="@+id/spinner_conso" android:layout_alignRight="@+id/spinner_conso" android:layout_alignBottom="@+id/spinner_conso" android:src="@drawable/ic_arrow_drop_down_black_24dp" android:theme="@style/Spinner"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ln_login">
+
+            <RelativeLayout
+                android:id="@+id/spinner_container_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/spinner_container_main_inner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/btn_create_proof_of_payment"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/button_background"
+                        android:fontFamily="@font/open_sans"
+                        android:stateListAnimator="@null"
+                        android:text="@string/btn_proof_of_payment_create"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/button_text_size" />
+
+                    <RelativeLayout
+                        android:id="@+id/spinner_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/btn_create_proof_of_payment"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/spinner_round">
+
+                        <Spinner
+                            android:id="@+id/spinner_conso"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:dropDownWidth="match_parent"
+                            android:popupBackground="@drawable/spinner_round" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignTop="@id/spinner_conso"
+                            android:layout_alignEnd="@+id/spinner_conso"
+                            android:layout_alignRight="@+id/spinner_conso"
+                            android:layout_alignBottom="@+id/spinner_conso"
+                            android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                            android:theme="@style/Spinner" />
                     </RelativeLayout>
-                    <RelativeLayout android:id="@+id/spinner_container1" android:layout_width="match_parent" android:layout_height="50dp" android:layout_below="@+id/spinner_container" android:layout_marginTop="20dp" android:background="@drawable/edit_text_squared">
-                        <Spinner android:id="@+id/conso_spinner2" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@null" android:dropDownWidth="match_parent" android:popupBackground="@drawable/spinner_round"/>
-                        <ImageView android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_alignTop="@id/conso_spinner2" android:layout_alignEnd="@+id/conso_spinner2" android:layout_alignRight="@+id/conso_spinner2" android:src="@drawable/ic_arrow_drop_down_black_24dp" android:theme="@style/Spinner"/>
+
+                    <RelativeLayout
+                        android:id="@+id/spinner_container1"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/spinner_container"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/edit_text_squared">
+
+                        <Spinner
+                            android:id="@+id/conso_spinner2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:dropDownWidth="match_parent"
+                            android:popupBackground="@drawable/spinner_round" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignTop="@id/conso_spinner2"
+                            android:layout_alignEnd="@+id/conso_spinner2"
+                            android:layout_alignRight="@+id/conso_spinner2"
+                            android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                            android:theme="@style/Spinner" />
                     </RelativeLayout>
-                    <RelativeLayout android:id="@+id/search_rl" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@+id/spinner_container" android:visibility="gone">
-                        <com.google.android.material.textfield.TextInputLayout android:id="@+id/search_bar" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Search by Item" android:textColorHint="#676a6c" android:theme="@style/TextLabelSearchBox">
-                            <com.google.android.material.textfield.TextInputEditText android:id="@+id/conso_edittext" android:layout_width="match_parent" android:layout_height="match_parent" android:drawableRight="@drawable/ic_search_black_24dp" android:theme="@style/TextLabelEditeText"/>
+
+                    <RelativeLayout
+                        android:id="@+id/search_rl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/spinner_container"
+                        android:visibility="gone">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/search_bar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/search_by_item"
+                            android:textColorHint="#676a6c"
+                            android:theme="@style/TextLabelSearchBox">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/conso_edittext"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:drawableRight="@drawable/ic_search_black_24dp"
+                                android:theme="@style/TextLabelEditeText" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </RelativeLayout>
-                    <LinearLayout android:id="@+id/date_filter_rl" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@+id/spinner_container" android:layout_marginTop="20dp" android:orientation="horizontal" android:visibility="gone" android:weightSum="4">
-                        <LinearLayout android:id="@+id/date_filter" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1.125" android:background="@drawable/line_bottom" android:orientation="horizontal" android:paddingLeft="10dp" android:paddingTop="10dp" android:paddingRight="5dp" android:paddingBottom="10dp" android:weightSum="2">
-                            <TextView android:id="@+id/first_date" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="0.25" android:text="DD/MM/YYYY"/>
-                            <ImageButton android:id="@+id/first_date_btn" android:layout_width="match_parent" android:layout_height="20dp" android:layout_weight="1.75" android:background="@android:color/transparent" android:src="@drawable/ic_date_range_black_24dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/date_filter_rl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/spinner_container"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:weightSum="4">
+
+                        <LinearLayout
+                            android:id="@+id/date_filter"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.125"
+                            android:background="@drawable/line_bottom"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="10dp"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:id="@+id/first_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.25"
+                                android:text="DD/MM/YYYY" />
+
+                            <ImageButton
+                                android:id="@+id/first_date_btn"
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:layout_weight="1.75"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_date_range_black_24dp" />
                         </LinearLayout>
-                        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1.75" android:paddingTop="10dp" android:paddingBottom="10dp">
-                            <RelativeLayout android:layout_width="2dp" android:layout_height="match_parent" android:layout_centerInParent="true" android:background="#676A6C"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.75"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <RelativeLayout
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                android:background="#676A6C" />
                         </RelativeLayout>
-                        <LinearLayout android:id="@+id/date1_filter" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1.125" android:background="@drawable/line_bottom" android:orientation="horizontal" android:paddingLeft="10dp" android:paddingTop="10dp" android:paddingRight="5dp" android:paddingBottom="10dp" android:weightSum="2">
-                            <TextView android:id="@+id/second_date" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="0.25" android:text="DD/MM/YYYY"/>
-                            <ImageButton android:id="@+id/second_date_btn" android:layout_width="match_parent" android:layout_height="20dp" android:layout_weight="1.75" android:background="@android:color/transparent" android:src="@drawable/ic_date_range_black_24dp"/>
+
+                        <LinearLayout
+                            android:id="@+id/date1_filter"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.125"
+                            android:background="@drawable/line_bottom"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="10dp"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:id="@+id/second_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.25"
+                                android:text="DD/MM/YYYY" />
+
+                            <ImageButton
+                                android:id="@+id/second_date_btn"
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:layout_weight="1.75"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_date_range_black_24dp" />
                         </LinearLayout>
                     </LinearLayout>
                     <!-- date filter layout -->
                     <!-- amount filter layout -->
-                    <LinearLayout android:id="@+id/amount_filter_rl" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@+id/spinner_container" android:layout_marginTop="15dp" android:orientation="horizontal" android:visibility="gone" android:weightSum="4">
-                        <LinearLayout android:id="@+id/amount_filter1" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1.125" android:background="@drawable/line_bottom" android:orientation="horizontal" android:paddingLeft="10dp" android:paddingTop="10dp" android:paddingRight="5dp" android:paddingBottom="10dp" android:weightSum="2">
-                            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1.5" android:text="Rs. " android:textColor="#676A6C"/>
-                            <EditText android:id="@+id/et_amount1" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0.5" android:background="@android:color/transparent" android:inputType="number" android:maxLength="9" android:textColor="#676A6C" android:textColorHint="#676A6C" android:textSize="14sp"/>
+                    <LinearLayout
+                        android:id="@+id/amount_filter_rl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/spinner_container"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:weightSum="4">
+
+                        <LinearLayout
+                            android:id="@+id/amount_filter1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.125"
+                            android:background="@drawable/line_bottom"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="10dp"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"
+                                android:text="Rs. "
+                                android:textColor="#676A6C" />
+
+                            <EditText
+                                android:id="@+id/et_amount1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.5"
+                                android:background="@android:color/transparent"
+                                android:inputType="number"
+                                android:maxLength="9"
+                                android:textColor="#676A6C"
+                                android:textColorHint="#676A6C"
+                                android:textSize="14sp" />
                         </LinearLayout>
-                        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1.75" android:paddingTop="10dp" android:paddingBottom="10dp">
-                            <RelativeLayout android:layout_width="2dp" android:layout_height="match_parent" android:layout_centerInParent="true" android:background="#676A6C"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.75"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
+
+                            <RelativeLayout
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                android:background="#676A6C" />
                         </RelativeLayout>
-                        <LinearLayout android:id="@+id/amount_filter2" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1.125" android:background="@drawable/line_bottom" android:orientation="horizontal" android:paddingLeft="10dp" android:paddingTop="10dp" android:paddingRight="5dp" android:paddingBottom="10dp" android:weightSum="2">
-                            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1.5" android:text="Rs. " android:textColor="#676A6C"/>
-                            <EditText android:id="@+id/et_amount2" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0.5" android:background="@android:color/transparent" android:inputType="number" android:maxLength="9" android:textColor="#676A6C" android:textColorHint="#676A6C" android:textSize="14sp"/>
+
+                        <LinearLayout
+                            android:id="@+id/amount_filter2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.125"
+                            android:background="@drawable/line_bottom"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="10dp"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"
+                                android:text="Rs. "
+                                android:textColor="#676A6C" />
+
+                            <EditText
+                                android:id="@+id/et_amount2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.5"
+                                android:background="@android:color/transparent"
+                                android:inputType="number"
+                                android:maxLength="9"
+                                android:textColor="#676A6C"
+                                android:textColorHint="#676A6C"
+                                android:textSize="14sp" />
                         </LinearLayout>
                     </LinearLayout>
                 </RelativeLayout>
-                <RelativeLayout android:id="@+id/line_bottom" android:layout_width="match_parent" android:layout_height="1dp" android:layout_below="@+id/spinner_container_main_inner"/>
+
+                <RelativeLayout
+                    android:id="@+id/line_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/spinner_container_main_inner" />
             </RelativeLayout>
-            <RelativeLayout android:id="@+id/rl_recycler" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_below="@+id/spinner_container_main" android:layout_marginBottom="10dp" android:layout_marginTop="5dp">
-                <androidx.recyclerview.widget.RecyclerView android:id="@+id/rv_proof_of_payments" android:layout_width="match_parent" android:layout_height="match_parent"/>
-                <TextView android:id="@+id/tv_shipment_no_data" android:layout_width="match_parent" android:layout_height="match_parent" android:fontFamily="@font/open_sans" android:gravity="center" android:text="No Data Available" android:textSize="@dimen/no_data_available_size"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/spinner_container_main"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_proof_of_payments"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_shipment_no_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="@string/no_data_avaible"
+                    android:textSize="@dimen/no_data_available_size" />
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>

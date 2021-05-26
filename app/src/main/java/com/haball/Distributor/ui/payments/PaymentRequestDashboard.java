@@ -98,13 +98,13 @@ public class PaymentRequestDashboard extends Fragment {
         conso_edittext = (EditText) root.findViewById(R.id.conso_edittext);
         spinner2.setVisibility(View.GONE);
         conso_edittext.setVisibility(View.GONE);
-        consolidate_felter.add("Select Criteria");
-        consolidate_felter.add("Payment ID");
-        consolidate_felter.add("Company");
-        consolidate_felter.add("Transaction Date");
-        consolidate_felter.add("Created Date");
-        consolidate_felter.add("Amount");
-        consolidate_felter.add("Status");
+        consolidate_felter.add(getResources().getString(R.string.select_criteria));
+        consolidate_felter.add(getResources().getString(R.string.paymentid_sp));
+        consolidate_felter.add(getResources().getString(R.string.select_company));
+        consolidate_felter.add(getResources().getString(R.string.transaction_date));
+        consolidate_felter.add(getResources().getString(R.string.created_date));
+        consolidate_felter.add(getResources().getString(R.string.amount));
+        consolidate_felter.add(getResources().getString(R.string.status));
 
         arrayAdapterPayments = new ArrayAdapter<String>(root.getContext(),
                 android.R.layout.simple_spinner_dropdown_item, consolidate_felter) {
@@ -152,25 +152,25 @@ public class PaymentRequestDashboard extends Fragment {
 
                     Filter_selected = consolidate_felter.get(i);
 
-                    if (!Filter_selected.equals("Status"))
+                    if (!Filter_selected.equals(getResources().getString(R.string.status)))
                         spinner2.setSelection(0);
                     if (!conso_edittext.getText().equals(""))
                         conso_edittext.setText("");
 
-                    if (Filter_selected.equals("Payment ID")) {
+                    if (Filter_selected.equals(getResources().getString(R.string.paymentid_sp))) {
                         Filter_selected = "PrePaidNumber";
                         conso_edittext.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Company")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.company))) {
                         Filter_selected = "CompanyName";
                         conso_edittext.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Transaction Date")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.transaction_date))) {
                         // Toast.makeText(getContext(),"Transaction Date selected",Toast.LENGTH_LONG).show();
-                    } else if (Filter_selected.equals("Created Date")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.created_date))) {
                         // Toast.makeText(getContext(),"Created Date selected",Toast.LENGTH_LONG).show();
-                    } else if (Filter_selected.equals("Amount")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.amount))) {
                         // Toast.makeText(getContext(),"Amount selected",Toast.LENGTH_LONG).show();
-                    } else if (Filter_selected.equals("Status")) {
-                        Filter_selected = "Status";
+                    } else if (Filter_selected.equals(getResources().getString(R.string.status))) {
+                        Filter_selected = getResources().getString(R.string.status);
                         spinner2.setVisibility(View.VISIBLE);
                     }
 //                    try {
@@ -190,10 +190,10 @@ public class PaymentRequestDashboard extends Fragment {
         arrayAdapterPayments.notifyDataSetChanged();
         spinner_consolidate.setAdapter(arrayAdapterPayments);
 
-        filters.add("Status");
-        filters.add("Processing Payment");
-        filters.add("Unpaid ");
-        filters.add("Paid");
+        filters.add(getResources().getString(R.string.status));
+        filters.add(getResources().getString(R.string.processing_payment));
+        filters.add(getResources().getString(R.string.un_paid));
+        filters.add(getResources().getString(R.string.paid));
         arrayAdapterFeltter = new ArrayAdapter<String>(root.getContext(),
                 android.R.layout.simple_spinner_dropdown_item, filters){
 
@@ -278,7 +278,7 @@ public class PaymentRequestDashboard extends Fragment {
             }
         });
 
-//        spinner_consolidate("Select Criteria","Invoice No", "Company", "Created Date", "Total Price", "Paid Amount" ,"Status","Created By");
+//        spinner_consolidate("Select Criteria","Invoice No", "Company", "Created Date", "Total Price", "Paid Amount" ,getResources().getString(R.string.status),"Created By");
 //        spinner_consolidate.setOnItemSelectedListener(new Spinner().OnItemSelectedListener<String>() {
 //            @Override public void onItemSelected(Spinner view, int position, long id, String item) {
 //                if (position!=6){

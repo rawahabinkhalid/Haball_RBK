@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans_semibold"
-                android:text="Please use the following tips to set a new password"
+                android:text="@string/password_instructions"
                 android:textSize="@dimen/paragraph_size" />
 
             <TextView
@@ -34,7 +34,7 @@
                 android:layout_below="@id/txt_change1"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:text="* Password must have at-least 6 characters."
+                android:text="@string/password_instruction_one"
                 android:textSize="@dimen/paragraph_size" />
 
             <TextView
@@ -44,7 +44,7 @@
                 android:layout_below="@id/txt_change2"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:text="* Password must have at-least 1 lowercase, uppercase, numeric or special character."
+                android:text="@string/password_instruction_two"
                 android:textSize="@dimen/paragraph_size" />
 
             <LinearLayout
@@ -62,7 +62,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:fontFamily="@font/open_sans"
-                    android:hint="Old Password"
+                    android:hint="@string/old_password"
                     android:theme="@style/TextLabel"
                     app:boxBackgroundColor="#fff"
                     app:boxStrokeColor="@color/box_stroke"
@@ -92,7 +92,7 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/open_sans"
-                    android:hint="New Password"
+                    android:hint="@string/new_password"
                     android:theme="@style/TextLabel"
                     app:boxBackgroundColor="#fff"
                     app:boxStrokeColor="@color/box_stroke"
@@ -142,7 +142,7 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/open_sans"
-                    android:hint="Confirm Password"
+                    android:hint="@string/confirm_password"
                     android:theme="@style/TextLabel"
                     app:boxBackgroundColor="#fff"
                     app:boxStrokeColor="@color/box_stroke"
@@ -173,7 +173,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/open_sans_semibold"
-                    android:text="* On changing the password, you would be logged out of the account"
+                    android:text="@string/password_instruction_three"
                     android:textColor="#ff0000"
                     android:textSize="13sp" />
 
@@ -196,7 +196,7 @@
                     android:background="@drawable/button_round"
                     android:enabled="false"
                     android:fontFamily="@font/open_sans"
-                    android:text="Set Password"
+                    android:text="@string/btn_set_password"
                     android:textAllCaps="false"
                     android:textColor="#fff"
                     android:textSize="@dimen/button_text_size" />
@@ -209,7 +209,7 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/button_background"
                     android:fontFamily="@font/open_sans"
-                    android:text="Back"
+                    android:text="@string/back"
                     android:layout_marginBottom="15dp"
                     android:textAllCaps="false"
                     android:textColor="#fff"

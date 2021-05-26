@@ -31,7 +31,7 @@
             android:fontFamily="@font/open_sans_semibold"
             android:paddingTop="5dp"
             android:paddingBottom="10dp"
-            android:text="My Network"
+            android:text="@string/my_network"
             android:textSize="@dimen/fragemnt_heading_size" />
     </LinearLayout>
 

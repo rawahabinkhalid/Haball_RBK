@@ -771,7 +771,6 @@ public class PlaceholderFragment extends Fragment {
 //                    edt_dist_mobile.clearFocus();
 //                    R_Address.clearFocus();
                     if (changed) {
-                        Toast.makeText(getContext(),"changed mobile", Toast.LENGTH_SHORT).show();
                         showDiscardDialog();
                         return true;
                     } else {
@@ -865,7 +864,7 @@ public class PlaceholderFragment extends Fragment {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard_txt.setText("Are you sure, you want to leave this page? Your changes will be discarded.");
+        tv_discard_txt.setText(getResources().getString(R.string.discard_text));
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
         layoutParams.y = 200;
@@ -1160,7 +1159,7 @@ public class PlaceholderFragment extends Fragment {
 
                                 tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
 //                            tv_pr1.setText("User Profile ID " + ID + " password has been changed successfully.");
-                                tv_pr1.setText("Your password has been updated. You can login with the new credentials.");
+                                tv_pr1.setText(getResources().getString(R.string.password_updated));
                                 fbDialogue.setCancelable(true);
                                 fbDialogue.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
                                 WindowManager.LayoutParams layoutParams = fbDialogue.getWindow().getAttributes();
@@ -1220,7 +1219,7 @@ public class PlaceholderFragment extends Fragment {
 //                    error.printStackTrace();
 //                    new HaballError().printErrorMessage(error);
                         error.printStackTrace();
-                        new CustomToast().showToast(getActivity(), "Password mismatch");
+                        new CustomToast().showToast(getActivity(), getResources().getString(R.string.password_mismatch));
 
                         layout_password.setBoxStrokeColor(getResources().getColor(R.color.error_stroke_color));
                         layout_password.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.error_stroke_color)));
@@ -1261,10 +1260,10 @@ public class PlaceholderFragment extends Fragment {
                 });
                 Volley.newRequestQueue(getActivity()).add(sr);
             } else {
-                new CustomToast().showToast(getActivity(), "New password cannot be old password.");
+                new CustomToast().showToast(getActivity(), getResources().getString(R.string.old_password_not_match));
             }
         } else {
-            new CustomToast().showToast(getActivity(), "Password mismatch");
+            new CustomToast().showToast(getActivity(), getResources().getString(R.string.password_mismatch));
             layout_password1.setBoxStrokeColor(getResources().getColor(R.color.error_stroke_color));
             layout_password1.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.error_stroke_color)));
             layout_password1.setPasswordVisibilityToggleTintList(ColorStateList.valueOf(getResources().getColor(R.color.error_stroke_color)));
@@ -1588,8 +1587,8 @@ public class PlaceholderFragment extends Fragment {
                             TextView tv_pr1, txt_header1;
                             txt_header1 = fbDialogue.findViewById(R.id.txt_header1);
                             tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
-                            tv_pr1.setText("Your profile has been updated successfully.");
-                            txt_header1.setText("Profile Updated");
+                            tv_pr1.setText(getResources().getString(R.string.profile_updated_msg));
+                            txt_header1.setText(getResources().getString(R.string.profile_updated));
                             fbDialogue.setCancelable(true);
                             fbDialogue.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
                             WindowManager.LayoutParams layoutParams = fbDialogue.getWindow().getAttributes();
@@ -1646,8 +1645,8 @@ public class PlaceholderFragment extends Fragment {
                     TextView tv_pr1, txt_header1;
                     txt_header1 = fbDialogue.findViewById(R.id.txt_header1);
                     tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
-                    tv_pr1.setText("Your profile has been updated successfully.");
-                    txt_header1.setText("Profile Updated");
+                    tv_pr1.setText(getResources().getString(R.string.profile_updated_msg));
+                    txt_header1.setText(getResources().getString(R.string.profile_updated));
                     fbDialogue.setCancelable(true);
                     fbDialogue.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
                     WindowManager.LayoutParams layoutParams = fbDialogue.getWindow().getAttributes();

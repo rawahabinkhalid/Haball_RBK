@@ -19,7 +19,7 @@ public class SectionsPagerAdapter_Only_Orders extends FragmentPagerAdapter {
 
     @StringRes
 //    private static final int[] TAB_TITLES = new int[]{R.string.tab_retailer_payment};
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_3};
+    private static final int[] TAB_TITLES = new int[]{R.string.order};
     private final Context mContext;
 
     public SectionsPagerAdapter_Only_Orders(Context context, FragmentManager fm) {

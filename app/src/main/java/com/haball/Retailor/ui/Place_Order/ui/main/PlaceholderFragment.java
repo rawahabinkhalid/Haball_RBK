@@ -152,7 +152,7 @@ public class PlaceholderFragment extends Fragment {
             case 1: {
                 myFont = ResourcesCompat.getFont(getContext(), R.font.open_sans);
                 rootView = inflater.inflate(R.layout.fragment_retailer_place_order_select_distributor, container, false);
-                company_names.add("Select Company");
+                company_names.add(getResources().getString(R.string.select_company));
                 spinner_conso = rootView.findViewById(R.id.spinner_conso);
                 spinner_retailer_details = rootView.findViewById(R.id.spinner_retailer_details);
                 retailer_heading = rootView.findViewById(R.id.retailer_heading);

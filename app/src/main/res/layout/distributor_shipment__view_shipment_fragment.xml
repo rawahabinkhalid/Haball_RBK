@@ -39,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:fontFamily="@font/open_sans_semibold"
-                    android:hint="Company"
+                    android:hint="@string/company"
                     android:textColorHint="#96bb3c"
                     android:theme="@style/TextLabel">
 
@@ -60,7 +60,7 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/open_sans_semibold"
-                    android:hint="Shipment ID"
+                    android:hint="@string/shipment_id"
                     android:textColorHint="#96bb3c"
                     android:theme="@style/TextLabel">
 
@@ -81,7 +81,7 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/open_sans"
-                    android:hint="Created Date"
+                    android:hint="@string/created_date"
                     android:textColorHint="#96bb3c"
                     android:theme="@style/TextLabel">
 
@@ -147,7 +147,7 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/open_sans"
-                    android:hint="Status"
+                    android:hint="@string/status"
                     android:textColorHint="#96bb3c"
                     android:theme="@style/TextLabel">
 
@@ -222,7 +222,7 @@
                     android:fontFamily="@font/open_sans"
                     android:gravity="center"
                     android:stateListAnimator="@null"
-                    android:text="Back"
+                    android:text="@string/back"
                     android:textAllCaps="false"
                     android:textColor="#fff"
                     android:textSize="@dimen/button_text_size"

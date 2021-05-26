@@ -24,6 +24,7 @@ import com.haball.Distributor.DistributorDashboard;
 import com.haball.Distributor.Distributor_TermsAndConditionsFragment;
 import com.haball.Distributor.StatusKVP;
 import com.haball.Distributor.ui.terms_and_conditions.TermsAndConditionsFragment;
+import com.haball.Language_Selection.Language_Selection;
 import com.haball.R;
 import com.haball.Distribution_Login.Distribution_Login;
 import com.haball.Retailer_Login.RetailerLogin;
@@ -156,16 +157,16 @@ public class SplashScreen extends AppCompatActivity {
 //                    }
 //                } else {
                 if (sharedPreferences.getString("User_Type", "").equals("Distributor")) {
-                    Intent intent = new Intent(SplashScreen.this, Distribution_Login.class);
+                    Intent intent = new Intent(SplashScreen.this, Language_Selection.class);
                     startActivity(intent);
                     finish();
                 } else if (sharedPreferences.getString("User_Type", "").equals("Retailer")) {
-                    Intent intent = new Intent(SplashScreen.this, RetailerLogin.class);
+                    Intent intent = new Intent(SplashScreen.this, Language_Selection.class);
 //                    Intent intent = new Intent(SplashScreen.this, RetailorDashboard.class);
                     startActivity(intent);
                     finish();
                 } else {
-                    Intent intent = new Intent(SplashScreen.this, Register_Activity.class);
+                    Intent intent = new Intent(SplashScreen.this, Language_Selection.class);
                     startActivity(intent);
                     finish();
                 }

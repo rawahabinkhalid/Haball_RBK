@@ -46,7 +46,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/open_sans"
-        android:text="Payment ID:"
+        android:text="@string/paymentid"
         android:textColor="@color/rv_box_color"
         android:textSize="@dimen/rv_box_text_size" />
 
@@ -59,7 +59,7 @@
         android:layout_marginTop="15dp"
         android:layout_toRightOf="@+id/payment_id"
         android:fontFamily="@font/open_sans"
-        android:text="51247895354254780369"
+        android:text=""
         android:textColor="@color/rv_box_color"
         android:textSize="@dimen/rv_box_text_size" />
 
@@ -70,7 +70,7 @@
         android:layout_below="@+id/payment_id"
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/open_sans"
-        android:text="Amount: "
+        android:text="@string/amount_items"
         android:textColor="@color/rv_box_color"
         android:textSize="@dimen/rv_box_text_size" />
 
@@ -82,7 +82,7 @@
         android:layout_marginLeft="5dp"
         android:layout_toRightOf="@+id/tv_amount"
         android:fontFamily="@font/open_sans"
-        android:text="Rs. 600,000.00"
+        android:text="Rs. "
         android:textColor="@color/rv_box_color"
         android:textSize="@dimen/rv_box_text_size" />
 
@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_amount"
         android:fontFamily="@font/open_sans"
-        android:text="Status: "
+        android:text="@string/status_items"
         android:textColor="@color/rv_box_color"
         android:textSize="@dimen/rv_box_text_size" />
 
@@ -104,7 +104,7 @@
         android:layout_marginLeft="5dp"
         android:layout_toRightOf="@+id/status"
         android:fontFamily="@font/open_sans"
-        android:text="Paid"
+        android:text=""
         android:textColor="@color/rv_box_color"
         android:textSize="@dimen/rv_box_text_size" />
 

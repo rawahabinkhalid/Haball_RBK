@@ -43,6 +43,7 @@ import com.haball.Distributor.DistributorDashboard;
 import com.haball.Distributor.Distributor_TermsAndConditionsFragment;
 import com.haball.Distributor.ui.terms_and_conditions.TermsAndConditionsFragment;
 import com.haball.HaballError;
+import com.haball.LanguageClasses.ChangeLanguage;
 import com.haball.Loader;
 import com.haball.ProcessingError;
 import com.haball.R;
@@ -72,10 +73,11 @@ import com.haball.Forgot_Password.Forgot_Pass_Distributor;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 
 public class Distribution_Login extends AppCompatActivity {
 
-    private Button btn_login;
+    private Button btn_login ,btn_support,  btn_password;
     private Button btn_reset;
     public ImageButton btn_back;
     private TextInputEditText et_username, et_password, txt_email;
@@ -86,6 +88,7 @@ public class Distribution_Login extends AppCompatActivity {
     ProgressDialog progressDialog;
     private TextInputLayout layout_password, layout_username;
     private Loader loader;
+    private  String language = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +99,10 @@ public class Distribution_Login extends AppCompatActivity {
         background_drawable.setAlpha(80);
         RelativeLayout rl_main_background = findViewById(R.id.rl_main_background);
         rl_main_background.setBackground(background_drawable);
-
+        // selected language
+        SharedPreferences languageType = getSharedPreferences("changeLanguage",
+                Context.MODE_PRIVATE);
+        language = languageType.getString("language", "");
         et_username = findViewById(R.id.txt_username);
         et_password = findViewById(R.id.txt_password);
         layout_username = findViewById(R.id.layout_username);
@@ -173,8 +179,8 @@ public class Distribution_Login extends AppCompatActivity {
         btn_login.setEnabled(false);
         btn_login.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
 
-        Button btn_support = findViewById(R.id.btn_support);
-        Button btn_password = findViewById(R.id.btn_password);
+         btn_support = findViewById(R.id.btn_support);
+         btn_password = findViewById(R.id.btn_password);
 
         progressDialog = new ProgressDialog(this);
 
@@ -238,10 +244,10 @@ public class Distribution_Login extends AppCompatActivity {
         });
 
 
-//        et_username.setText("Shahid1149");
-//        et_password.setText("@dmin1234");
+        et_username.setText("kashif4169");
+        et_password.setText("@dmin123");
         checkFieldsForEmptyValues();
-
+        changeLanguage();
     }
 
     private void nullifySharedPreference() {
@@ -583,6 +589,17 @@ public class Distribution_Login extends AppCompatActivity {
 //            }
 //        }
 //    }
+     void changeLanguage() {
+        ChangeLanguage changeLanguage = new ChangeLanguage();
+        changeLanguage.changeLanguage(this, language);
+        if (language.equals("ur")) {
+            btn_login.setText(R.string.login);
+//        layout_username.setHint(getResources().getString(R.string.user_name));
+          layout_password.setHint(getResources().getString(R.string.password));
+            btn_password.setText(R.string.Forgot_Password);
+            btn_support.setText(R.string.need_support);
+   }
+    }
 }
 
 

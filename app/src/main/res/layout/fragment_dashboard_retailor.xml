@@ -301,7 +301,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:text="No Data Available"
+            android:text="@string/no_data_avaible"
             android:textSize="@dimen/no_data_available_size" />
 
         <androidx.recyclerview.widget.RecyclerView

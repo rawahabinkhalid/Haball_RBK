@@ -28,7 +28,7 @@
                 android:fontFamily="@font/open_sans"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="Shipment"
+                android:text="@string/shipment"
                 android:textColor="@color/textcolor"
                 android:textSize="17sp" />
         </RelativeLayout>
@@ -114,7 +114,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:hint="Search by Item"
+                            android:hint="@string/search_by_item"
                             android:textColorHint="#676a6c"
                             android:theme="@style/TextLabelSearchBox">
 
@@ -319,7 +319,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/open_sans"
                     android:gravity="center"
-                    android:text="No Data Available"
+                    android:text="@string/no_data_avaible"
                     android:textSize="@dimen/no_data_available_size" />
             </RelativeLayout>
         </RelativeLayout>

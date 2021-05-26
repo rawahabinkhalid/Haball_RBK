@@ -193,11 +193,11 @@ public class Retailer_Support_Ticket_View extends Fragment {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard = view_popup.findViewById(R.id.tv_discard);
-        tv_discard.setText("Delete Ticket");
+        tv_discard.setText(getResources().getString(R.string.delete_ticket));
         Button btn_discard = view_popup.findViewById(R.id.btn_discard);
-        btn_discard.setText("Delete");
+        btn_discard.setText(getResources().getString(R.string.delete));
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard_txt.setText("Are you sure, you want to delete this ticket?");
+        tv_discard_txt.setText(getResources().getString(R.string.ticket_delete_msg));
         alertDialog.setView(view_popup);
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
@@ -287,11 +287,11 @@ public class Retailer_Support_Ticket_View extends Fragment {
                     for (Map.Entry<String, String> entry : RetailerIssueTypePrivateKVP.entrySet()) {
                         // Log.i("statuskvp3", String.valueOf(entry));
                         // Log.i("statuskvp3", String.valueOf(response.get("IssueType")));
-                        if (entry.getKey().equals(String.valueOf(response.get("IssueType"))))
+                        if (entry.getKey().equals(String.valueOf(response.get(getResources().getString(R.string.issue_type)))))
                             issue_type = entry.getValue();
                     }
                     for (Map.Entry<String, String> entry : RetailerCriticalityPrivateKVP.entrySet()) {
-                        if (entry.getKey().equals(String.valueOf(response.get("Criticality"))))
+                        if (entry.getKey().equals(String.valueOf(response.get(getResources().getString(R.string.criticality)))))
                             criticality = entry.getValue();
                     }
                     for (Map.Entry<String, String> entry : RetailerContactingMethodKVP.entrySet()) {

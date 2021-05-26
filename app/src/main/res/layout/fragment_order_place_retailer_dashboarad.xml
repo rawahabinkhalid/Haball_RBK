@@ -56,7 +56,7 @@
                     android:layout_height="60dp"
                     android:layout_below="@id/spinner_container"
                     android:layout_marginTop="5dp"
-                    android:hint="Search by Item"
+                    android:hint="@string/search_by_item"
                     android:textColorHint="#676a6c"
                     android:theme="@style/TextLabelSearchBox">
 
@@ -119,7 +119,7 @@
             android:paddingLeft="27dp"
             android:paddingTop="9.5dp"
             android:paddingRight="27dp"
-            android:text="Prices listed here are subject to change based on Order approval."
+            android:text="@string/order_approval_msg"
             android:textColor="@color/error_stroke_color"
             android:textSize="13sp" />
 
@@ -144,7 +144,7 @@
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
                 android:stateListAnimator="@null"
-                android:text="Back"
+                android:text="@string/back"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="11.6sp" />
@@ -161,7 +161,7 @@
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
                 android:stateListAnimator="@null"
-                android:text="Checkout"
+                android:text="@string/checkout"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="11.6sp" />

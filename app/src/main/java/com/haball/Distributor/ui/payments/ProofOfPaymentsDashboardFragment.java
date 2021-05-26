@@ -224,12 +224,12 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
         conso_edittext.setVisibility(View.GONE);
         date_filter_rl.setVisibility(View.GONE);
         amount_filter_rl.setVisibility(View.GONE);
-        consolidate_felter.add("Select Criteria");
-        consolidate_felter.add("POP ID");
-        consolidate_felter.add("Created Date");
-        consolidate_felter.add("Payment Mode");
-        consolidate_felter.add("Payment ID");
-        consolidate_felter.add("Status");
+        consolidate_felter.add(getResources().getString(R.string.select_criteria));
+        consolidate_felter.add(getResources().getString(R.string.pop_id));
+        consolidate_felter.add(getResources().getString(R.string.created_date));
+        consolidate_felter.add(getResources().getString(R.string.payment_mode_POP));
+        consolidate_felter.add(getResources().getString(R.string.paymentid_pop));
+        consolidate_felter.add(getResources().getString(R.string.status));
 
         arrayAdapterPayments = new ArrayAdapter<String>(root.getContext(),
                 android.R.layout.simple_spinner_dropdown_item, consolidate_felter){
@@ -283,15 +283,15 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
                     spinner2.setSelection(0);
                     conso_edittext.setText("");
 
-                    if (Filter_selected.equals("POP ID")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    if (Filter_selected.equals(getResources().getString(R.string.pop_id))) {
+                        search_bar.setHint((getResources().getString(R.string.search_by)) + Filter_selected);
                         Filter_selected = "POPNumber";
                         conso_edittext.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Payment ID")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    } else if (Filter_selected.equals(getResources().getString(R.string.paymentid_pop))) {
+                        search_bar.setHint((getResources().getString(R.string.search_by)) + Filter_selected);
                         Filter_selected = "PaymentID";
                         conso_edittext.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Created Date")) {
+                    } else if (Filter_selected.equals((getResources().getString(R.string.created_date)))) {
 //                        Toast.makeText(getContext(), "Created Date selected", Toast.LENGTH_LONG).show();
                         date_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "date";
@@ -309,14 +309,14 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
                                 openCalenderPopup("second date");
                             }
                         });
-                    } else if (Filter_selected.equals("Payment Mode")) {
+                    } else if (Filter_selected.equals((getResources().getString(R.string.payment_mode)))) {
                         Filter_selected = "PaymentMode";
                         filters = new ArrayList<>();
-                        filters.add("Select Mode");
-                        filters.add("ATM");
-                        filters.add("Internet Banking");
-                        filters.add("Mobile Banking");
-                        filters.add("OTC");
+                        filters.add((getResources().getString(R.string.select_mode)));
+                        filters.add(getResources().getString(R.string.ATM));
+                        filters.add(getResources().getString(R.string.internet_banking));
+                        filters.add(getResources().getString(R.string.mobile_banking));
+                        filters.add(getResources().getString(R.string.OTC));
                         arrayAdapterFeltter = new ArrayAdapter<String>(root.getContext(),
                                 android.R.layout.simple_dropdown_item_1line, filters){
                             @Override
@@ -351,12 +351,12 @@ public class ProofOfPaymentsDashboardFragment extends Fragment implements DatePi
                     } else if (Filter_selected.equals("Status")) {
                         Filter_selected = "Status";
                         filters = new ArrayList<>();
-                        filters.add("Status");
-                        filters.add("Pending");
-                        filters.add("Amended");
-                        filters.add("Rejected");
-                        filters.add("Returned");
-                        filters.add("Approved");
+                        filters.add(getResources().getString(R.string.status));
+                        filters.add(getResources().getString(R.string.pending));
+                        filters.add(getResources().getString(R.string.amended));
+                        filters.add(getResources().getString(R.string.rejected));
+                        filters.add(getResources().getString(R.string.returned));
+                        filters.add(getResources().getString(R.string.approved));
                         arrayAdapterFeltter = new ArrayAdapter<String>(root.getContext(),
                                 android.R.layout.simple_spinner_dropdown_item, filters){
                             @Override

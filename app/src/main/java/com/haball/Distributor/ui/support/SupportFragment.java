@@ -185,12 +185,12 @@ public class SupportFragment extends Fragment implements DatePickerDialog.OnDate
         spinner_container1.setVisibility(View.GONE);
         date_filter_rl.setVisibility(View.GONE);
         conso_edittext.setVisibility(View.GONE);
-        consolidate_felter.add("Select Criteria");
+        consolidate_felter.add(getResources().getString(R.string.select_criteria));
 //        consolidate_felter.add("Contact Name");
-        consolidate_felter.add("Ticket ID");
-        consolidate_felter.add("Issue Type");
-        consolidate_felter.add("Status");
-        consolidate_felter.add("Date");
+        consolidate_felter.add(getResources().getString(R.string.ticket_id));
+        consolidate_felter.add(getResources().getString(R.string.issue_type));
+        consolidate_felter.add(getResources().getString(R.string.status));
+        consolidate_felter.add(getResources().getString(R.string.date));
 
         arrayAdapterPaymentsFilter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_dropdown_item, consolidate_felter) {
@@ -257,28 +257,28 @@ public class SupportFragment extends Fragment implements DatePickerDialog.OnDate
 
                     spinner2.setSelection(0);
                     conso_edittext.setText("");
-                    if (Filter_selected.equals("Ticket ID")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    if (Filter_selected.equals(getResources().getString(R.string.ticket_id))) {
+                        search_bar.setHint(getResources().getString(R.string.search_by)+ Filter_selected);
                         Filter_selected = "TicketNumber";
                         conso_edittext.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Contact Name")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    } else if (Filter_selected.equals(getResources().getString(R.string.contact_name))) {
+                        search_bar.setHint(getResources().getString(R.string.search_by) + Filter_selected);
                         Filter_selected = "CompanyName";
                         conso_edittext.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Issue Type")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.issue_type))) {
                         Filter_selected = "IssueType";
                         spinner_container1.setVisibility(View.VISIBLE);
                         filters = new ArrayList<>();
-                        filters.add("Issue Type");
-                        filters.add("Main Dashboard");
-                        filters.add("Connecting with Businesses");
-                        filters.add("Contracting");
-                        filters.add("Order");
-                        filters.add("Invoice");
-                        filters.add("Shipment");
-                        filters.add("My Prepaid Account");
-                        filters.add("My Profile");
-                        filters.add("Reports");
+                        filters.add(getResources().getString(R.string.issue_type));
+                        filters.add(getResources().getString(R.string.main_dashboard));
+                        filters.add(getResources().getString(R.string.connecting_with_business));
+                        filters.add(getResources().getString(R.string.contract));
+                        filters.add(getResources().getString(R.string.order));
+                        filters.add(getResources().getString(R.string.invoice));
+                        filters.add(getResources().getString(R.string.shipment));
+                        filters.add(getResources().getString(R.string.my_prepared_acc));
+                        filters.add(getResources().getString(R.string.my_profile));
+                        filters.add(getResources().getString(R.string.reports));
 
                         arrayAdapterFeltter = new ArrayAdapter<String>(getContext(),
                                 android.R.layout.simple_spinner_dropdown_item, filters) {
@@ -334,9 +334,9 @@ public class SupportFragment extends Fragment implements DatePickerDialog.OnDate
                         spinner_container1.setVisibility(View.VISIBLE);
                         filters = new ArrayList<>();
 
-                        filters.add("Status");
-                        filters.add("Pending");
-                        filters.add("Resolved");
+                        filters.add(getResources().getString(R.string.status));
+                        filters.add(getResources().getString(R.string.pending));
+                        filters.add(getResources().getString(R.string.resolved));
 
                         arrayAdapterFeltter = new ArrayAdapter<String>(getContext(),
                                 android.R.layout.simple_spinner_dropdown_item, filters) {
@@ -390,7 +390,7 @@ public class SupportFragment extends Fragment implements DatePickerDialog.OnDate
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                if (Filter_selected.equals("Status")) {
+                if (Filter_selected.equals(getResources().getString(R.string.status))) {
                     if (i == 0) {
                         try {
                             ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.textcolor));

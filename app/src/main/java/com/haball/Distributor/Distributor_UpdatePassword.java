@@ -70,6 +70,7 @@ public class Distributor_UpdatePassword extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
     private String URL_Skip_Password = "https://175.107.203.97:4013/api/users/update";
     private Loader loader;
+    private String language ="";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -97,8 +98,17 @@ public class Distributor_UpdatePassword extends AppCompatActivity {
         SharedPreferences sharedPreferences1 = getSharedPreferences("SendData",
                 Context.MODE_PRIVATE);
         Name = sharedPreferences1.getString("first_name", "");
+        // selected Language Value
+        SharedPreferences languageType = getSharedPreferences("changeLanguage",
+                Context.MODE_PRIVATE);
+        language = languageType.getString("language", "");
 
-        txt_change1.setText("Welcome " + Name + " to Haball's App. It is recommended to change the default password.");
+        if (language.equals("ur")){
+
+            txt_change1.setText(Name+"\n"+getResources().getString(R.string.recommended_text));
+
+        }else
+            txt_change1.setText("Welcome " + Name + " to Haball's App. It is recommended to change the default password.");
 
         update_password.setEnabled(false);
         update_password.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
@@ -161,19 +171,19 @@ public class Distributor_UpdatePassword extends AppCompatActivity {
         alertDialog.setCancelable(true);
         TextView tv_discard = view_popup.findViewById(R.id.tv_discard);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard.setText("Alert");
+        tv_discard.setText(R.string.alert);
         if (className.equals("DistributorDashboard")) {
-            String steps = "It is recommended to change the default generated password.";
-            String title = "Are you sure, you want to skip?";
+            String steps = getResources().getString(R.string.recommended_change_pass);
+            String title = getResources().getString(R.string.skip_password);
             SpannableString ss1 = new SpannableString(title);
             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
             tv_discard_txt.append(steps);
             tv_discard_txt.append(" ");
             tv_discard_txt.append(ss1);
-            btn_discard.setText("Skip");
+            btn_discard.setText(R.string.skip);
         } else {
-            tv_discard_txt.setText("Are you sure, you want to exit this page?");
-            btn_discard.setText("Yes");
+            tv_discard_txt.setText(R.string.alert_text);
+            btn_discard.setText(R.string.yes);
         }
 
 
@@ -228,10 +238,10 @@ public class Distributor_UpdatePassword extends AppCompatActivity {
         alertDialog.setCancelable(true);
         TextView tv_discard = view_popup.findViewById(R.id.tv_discard);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard.setText("Alert");
+        tv_discard.setText(R.string.alert);
 
-        tv_discard_txt.setText("Are you sure, you want to exit this page?");
-        btn_discard.setText("Yes");
+        tv_discard_txt.setText(R.string.alert_text);
+        btn_discard.setText(R.string.yes);
 
 
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
@@ -421,7 +431,7 @@ public class Distributor_UpdatePassword extends AppCompatActivity {
                         fbDialogue.setContentView(R.layout.password_updatepopup);
 
                         tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
-                        tv_pr1.setText("Your password has been updated. You can login with the new credentials.");
+                    tv_pr1.setText(R.string.success_update_pass);
                         fbDialogue.setCancelable(true);
                         fbDialogue.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
                         WindowManager.LayoutParams layoutParams = fbDialogue.getWindow().getAttributes();

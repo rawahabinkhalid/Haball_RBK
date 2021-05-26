@@ -28,7 +28,7 @@
                 android:fontFamily="@font/open_sans"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="Payment Ledger"
+                android:text="@string/payment_ledger_frag"
                 android:textColor="@color/textcolor"
                 android:textSize="17sp" />
         </RelativeLayout>
@@ -367,7 +367,7 @@
                     android:fontFamily="@font/open_sans"
                     android:gravity="center"
                     android:visibility="visible"
-                    android:text="Please Select Company"
+                    android:text="@string/select_company_msg"
                     android:textSize="@dimen/no_data_available_size" />
                 <TextView
                     android:id="@+id/tv_shipment_no_data"
@@ -376,7 +376,7 @@
                     android:fontFamily="@font/open_sans"
                     android:gravity="center"
                     android:visibility="gone"
-                    android:text="No Data Available"
+                    android:text="@string/no_data_avaible"
                     android:textSize="@dimen/no_data_available_size" />
 
             </RelativeLayout>

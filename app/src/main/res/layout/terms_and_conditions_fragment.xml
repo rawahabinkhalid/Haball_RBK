@@ -33,14 +33,14 @@
 
                 <TextView
                     android:id="@+id/login_heading"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans_semibold"
                     android:paddingLeft="20dp"
                     android:paddingTop="5dp"
                     android:paddingRight="20dp"
                     android:paddingBottom="5dp"
-                    android:text="Terms &amp; Conditions"
+                    android:text="@string/terms_amp_conditions"
                     android:textColor="#96bb3c"
                     android:textSize="25sp" />
             </LinearLayout>
@@ -91,7 +91,7 @@
                         android:background="@drawable/button_round"
                         android:fontFamily="@font/open_sans"
                         android:stateListAnimator="@null"
-                        android:text="Agree"
+                        android:text="@string/agree"
                         android:textAllCaps="false"
                         android:textColor="#fff"
                         android:textSize="@dimen/button_text_size" />
@@ -114,7 +114,7 @@
                         android:background="@drawable/button_round"
                         android:fontFamily="@font/open_sans"
                         android:stateListAnimator="@null"
-                        android:text="Disagree"
+                        android:text="@string/disagree"
                         android:textAllCaps="false"
                         android:textColor="#fff"
                         android:textSize="@dimen/button_text_size" />
@@ -128,9 +128,8 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/open_sans"
                     android:gravity="center"
-                    android:text="© Haball | All rights reserved" />
+                    android:text="@string/all_rights_reserved" />
             </RelativeLayout>
         </RelativeLayout>
-
     </RelativeLayout>
 </RelativeLayout>

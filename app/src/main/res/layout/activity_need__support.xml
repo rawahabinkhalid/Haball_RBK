@@ -39,15 +39,15 @@
                     android:background="@drawable/border_set">
 
                     <TextView
-                        android:id="@+id/login_heading"
-                        android:layout_width="match_parent"
+                        android:id="@+id/support_heading"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_semibold"
                         android:paddingLeft="20dp"
                         android:paddingTop="5dp"
                         android:paddingRight="20dp"
                         android:paddingBottom="5dp"
-                        android:text="Haball Support Center"
+                        android:text="@string/support_heading"
                         android:textColor="#96bb3c"
                         android:textSize="@dimen/heading_size_retailer" />
                 </LinearLayout>
@@ -87,7 +87,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="20dp"
-                        android:hint="Business Name"
+                        android:hint="@string/business_name"
                         android:theme="@style/TextLabel"
                         app:boxBackgroundColor="#fff"
                         app:boxStrokeColor="@color/box_stroke"
@@ -111,7 +111,7 @@
                         android:layout_height="55dp"
                         android:layout_below="@+id/layout_BName"
                         android:layout_marginTop="20dp"
-                        android:hint="Email"
+                        android:hint="@string/email"
                         android:theme="@style/TextLabel"
                         app:boxBackgroundColor="#fff"
                         app:boxStrokeColor="@color/box_stroke"
@@ -134,7 +134,7 @@
                         android:layout_height="55dp"
                         android:layout_below="@+id/layout_Email"
                         android:layout_marginTop="20dp"
-                        android:hint="Mobile No"
+                        android:hint="@string/mobile_no"
                         android:theme="@style/TextLabel"
                         app:boxBackgroundColor="#fff"
                         app:boxStrokeColor="@color/box_stroke"
@@ -239,7 +239,7 @@
                         android:layout_height="90dp"
                         android:layout_below="@+id/relative_Preffered_Contact"
                         android:layout_marginTop="20dp"
-                        android:hint="Please describe the problem you are facing."
+                        android:hint="@string/describe_problem"
                         android:theme="@style/TextLabel"
                         app:boxBackgroundColor="#fff"
                         app:boxStrokeColor="@color/box_stroke">
@@ -249,7 +249,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:fontFamily="@font/open_sans"
-                            android:gravity="top|left"
+                            android:gravity="top"
                             android:inputType="textMultiLine|textCapSentences"
                             android:theme="@style/TextLabelEditeText" />
 
@@ -265,7 +265,7 @@
                         android:background="@drawable/button_round"
                         android:fontFamily="@font/open_sans"
                         android:stateListAnimator="@null"
-                        android:text="Submit"
+                        android:text="@string/submit"
                         android:textAllCaps="false"
                         android:textColor="#fff"
                         android:textSize="@dimen/button_text_size" />
@@ -279,7 +279,7 @@
                         android:background="@drawable/button_round"
                         android:fontFamily="@font/open_sans"
                         android:stateListAnimator="@null"
-                        android:text="Back"
+                        android:text="@string/back"
                         android:textAllCaps="false"
                         android:textColor="#fff"
                         android:textSize="@dimen/button_text_size" />
@@ -293,7 +293,7 @@
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/open_sans"
                         android:gravity="center"
-                        android:text="© Haball | All rights reserved"
+                        android:text="@string/all_rights_reserved"
                         android:textSize="12sp" />
 
                 </RelativeLayout>

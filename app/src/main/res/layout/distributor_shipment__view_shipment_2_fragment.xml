@@ -36,7 +36,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/layout_order_company_name"
-                        android:hint="Company"
+                        android:hint="@string/company"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:fontFamily="@font/open_sans"
@@ -58,7 +58,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/layout_order_id"
-                        android:hint="Order ID"
+                        android:hint="@string/order_id"
                         android:layout_width="match_parent"
                         android:layout_marginTop="20dp"
                         android:layout_height="55dp"
@@ -122,7 +122,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/layout_order_tv_cdate"
-                        android:hint="Created Date"
+                        android:hint="@string/created_date"
                         android:layout_width="match_parent"
                         android:layout_marginTop="20dp"
                         android:layout_height="55dp"
@@ -144,7 +144,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/layout_order_tv_status"
-                        android:hint="Status"
+                        android:hint="@string/status"
                         android:layout_width="match_parent"
                         android:layout_marginTop="20dp"
                         android:layout_height="55dp"
@@ -211,18 +211,18 @@
                         android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:hint="Comments"
+                        android:hint="@string/comments"
                         android:fontFamily="@font/open_sans"
                         android:textColorHint="#96bb3c"
                         android:theme="@style/TextLabel"
-                        android:gravity="top|left"
+                        android:gravity="top"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/order_tv_shaddress"
                             android:theme="@style/TextLabelEditeText"
                             android:layout_width="match_parent"
-                            android:gravity="top|left"
+                            android:gravity="top"
                             android:enabled="false"
                             android:layout_height="match_parent"
                             />
@@ -252,7 +252,7 @@
                         android:layout_marginRight="27dp"
                         android:gravity="center"
                         android:stateListAnimator="@null"
-                        android:text="Back"
+                        android:text="@string/back"
                         android:textAllCaps="false"
                         android:textColor="#fff"
                         android:textSize="@dimen/button_text_size"

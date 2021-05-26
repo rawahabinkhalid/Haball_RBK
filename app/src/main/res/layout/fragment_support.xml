@@ -29,7 +29,7 @@
                 android:fontFamily="@font/open_sans"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="Support"
+                android:text="@string/support"
                 android:textColor="@color/textcolor"
                 android:textSize="17sp" />
 
@@ -54,7 +54,7 @@
                     android:layout_toRightOf="@+id/image_plus"
                     android:fontFamily="@font/open_sans"
                     android:paddingTop="2dp"
-                    android:text="Create Ticket"
+                    android:text="@string/create_ticket"
                     android:textColor="@color/textcolor"
                     android:textSize="13sp" />
             </RelativeLayout>
@@ -261,7 +261,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/open_sans"
                     android:gravity="center"
-                    android:text="No Support Tickets Created"
+                    android:text="@string/no_support_created"
                     android:textSize="@dimen/no_data_available_size" />
 
                 <TextView
@@ -271,7 +271,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/open_sans"
                     android:gravity="center"
-                    android:text="No Data Available"
+                    android:text="@string/no_data_avaible"
                     android:textSize="@dimen/no_data_available_size"
                     android:visibility="gone" />
             </RelativeLayout>

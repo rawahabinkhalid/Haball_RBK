@@ -144,14 +144,14 @@ public class ProductOrderDetailsAdapter extends RecyclerView.Adapter<ProductOrde
 //        holder.totalAmount_value.setText(yourFormattedString3);
 
 
-        holder.product_code.setText("Product Code:\u00A0");
+        holder.product_code.setText(context.getResources().getString(R.string.product_code_for_adapter));
         SpannableString ss1 = new SpannableString(product_list.get(position).getProductCode());
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
         holder.product_code.append(ss1);
 
         holder.product_code.append("\n");
 
-        holder.product_code.append("Price:\u00A0");
+        holder.product_code.append(context.getResources().getString(R.string.price_adapter));
 
         DecimalFormat formatter1 = new DecimalFormat("#,###,##0.00");
         String yourFormattedString1 = formatter1.format(Double.parseDouble(product_list.get(position).getUnitPrice()));
@@ -165,7 +165,7 @@ public class ProductOrderDetailsAdapter extends RecyclerView.Adapter<ProductOrde
         if (product_list.get(position).getUOMTitle() != null && !product_list.get(position).getUOMTitle().equals("null")) {
             holder.product_code.append("\u00A0| ");
 
-            holder.product_code.append("UOM:\u00A0");
+            holder.product_code.append(context.getResources().getString(R.string.UOM_adapter));
             String temp_uom = product_list.get(position).getUOMTitle().replaceAll(" ", "\u00A0");
             ss1 = new SpannableString(temp_uom);
             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -175,7 +175,7 @@ public class ProductOrderDetailsAdapter extends RecyclerView.Adapter<ProductOrde
         if (product_list.get(position).getDiscount() != null && !product_list.get(position).getDiscount().equals("0") && !product_list.get(position).getDiscount().equals("") && !product_list.get(position).getDiscount().equals("null")) {
             holder.product_code.append("\u00A0| ");
 
-            holder.product_code.append("Disc:\u00A0");
+            holder.product_code.append(context.getResources().getString(R.string.disc_adpter));
 
             yourFormattedString1 = formatter1.format(Double.parseDouble(product_list.get(position).getDiscount()));
 
@@ -188,7 +188,7 @@ public class ProductOrderDetailsAdapter extends RecyclerView.Adapter<ProductOrde
         if (product_list.get(position).getDeliveredQty() != null && !product_list.get(position).getDeliveredQty().equals("0") && !product_list.get(position).getDeliveredQty().equals("") && !product_list.get(position).getDeliveredQty().equals("null")) {
             holder.product_code.append("\u00A0| ");
 
-            holder.product_code.append("Qty:\u00A0");
+            holder.product_code.append(context.getResources().getString(R.string.qty_adapter));
 
             ss1 = new SpannableString(product_list.get(position).getDeliveredQty());
             ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
@@ -200,7 +200,7 @@ public class ProductOrderDetailsAdapter extends RecyclerView.Adapter<ProductOrde
         yourFormattedString1 = formatter1.format(Double.parseDouble(product_list.get(position).getTotalPrice()));
         holder.product_code.append("\u00A0| ");
 
-        holder.product_code.append("Amount:\u00A0");
+        holder.product_code.append(context.getResources().getString(R.string.amount_adapter));
         ss1 = new SpannableString(yourFormattedString1);
         ss1.setSpan(new StyleSpan(Typeface.BOLD), 0, ss1.length(), 0);
         holder.product_code.append(ss1);

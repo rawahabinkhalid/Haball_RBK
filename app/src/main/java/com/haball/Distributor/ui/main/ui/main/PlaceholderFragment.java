@@ -432,7 +432,7 @@ public class PlaceholderFragment extends Fragment {
                     });
 
                     fetchCompanyData();
-                    CompanyNames.add("Select Company");
+                    CompanyNames.add(getResources().getString(R.string.select_company));
                     company_names = "";
 
                     txt_amount.setEnabled(false);

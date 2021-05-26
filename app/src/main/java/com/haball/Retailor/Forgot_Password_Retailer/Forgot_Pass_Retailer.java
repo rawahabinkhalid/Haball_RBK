@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 //import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -41,6 +43,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.haball.CustomToast;
 import com.haball.HaballError;
+import com.haball.LanguageClasses.ChangeLanguage;
 import com.haball.Loader;
 import com.haball.ProcessingError;
 import com.haball.R;
@@ -77,6 +80,7 @@ public class Forgot_Pass_Retailer extends AppCompatActivity {
     //    ProgressDialog progressDialog;
     private TextInputLayout layout_email;
     private Loader loader;
+    private String language ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +92,10 @@ public class Forgot_Pass_Retailer extends AppCompatActivity {
         RelativeLayout rl_main_background = findViewById(R.id.rl_main_background);
         rl_main_background.setBackground(background_drawable);
         loader = new Loader(Forgot_Pass_Retailer.this);
+        // selected Language Value
+        SharedPreferences languageType = getSharedPreferences("changeLanguage",
+                Context.MODE_PRIVATE);
+        language = languageType.getString("language", "");
 
 //        ActionBar bar = getSupportActionBar();
 //        assert bar != null;
@@ -179,7 +187,7 @@ public class Forgot_Pass_Retailer extends AppCompatActivity {
 
         txt_email.addTextChangedListener(textWatcher);
 
-
+        changeLanguage();
     }
 
     private void checkFieldsForEmptyValues() {
@@ -267,8 +275,8 @@ public class Forgot_Pass_Retailer extends AppCompatActivity {
                     TextView tv_pr1, txt_header1;
                     txt_header1 = fbDialogue.findViewById(R.id.txt_header1);
                     tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
-                    txt_header1.setText("Email Sent");
-                    tv_pr1.setText("Password reset instructions have been sent to the email address provided.");
+                    txt_header1.setText(R.string.email_sent);
+                    tv_pr1.setText(R.string.email_sent_text);
                     fbDialogue.setCancelable(true);
                     fbDialogue.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
                     WindowManager.LayoutParams layoutParams = fbDialogue.getWindow().getAttributes();
@@ -369,8 +377,8 @@ public class Forgot_Pass_Retailer extends AppCompatActivity {
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard = view_popup.findViewById(R.id.tv_discard);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard.setText("Alert");
-        tv_discard_txt.setText("Are you sure, you want to exit this page?");
+        tv_discard.setText(R.string.alert);
+        tv_discard_txt.setText(R.string.alert_text);
         alertDialog.setView(view_popup);
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
@@ -378,7 +386,7 @@ public class Forgot_Pass_Retailer extends AppCompatActivity {
         layoutParams.x = -70;// top margin
         alertDialog.getWindow().setAttributes(layoutParams);
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
-        btn_discard.setText("Exit");
+        btn_discard.setText(R.string.exit);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Log.i("CreatePayment", "Button Clicked");
@@ -438,5 +446,12 @@ public class Forgot_Pass_Retailer extends AppCompatActivity {
     //     }
     // }
 
-
+    void changeLanguage() {
+        ChangeLanguage changeLanguage = new ChangeLanguage();
+        changeLanguage.changeLanguage(this, language);
+        if (language.equals("ur")) {
+            btn_reset.setText(R.string.reset);
+            btn_lgn.setText(R.string.login);
+        }
+    }
 }

@@ -23,7 +23,7 @@
             android:fontFamily="@font/open_sans_semibold"
             android:paddingTop="5dp"
             android:paddingBottom="10dp"
-            android:text="Payment"
+            android:text="@string/payment"
             android:textSize="@dimen/fragemnt_heading_size"
             />
 

@@ -164,12 +164,12 @@ public class RetailerPaymentDashboard extends Fragment implements DatePickerDial
         spinner_container1.setVisibility(View.GONE);
         conso_edittext.setVisibility(View.GONE);
         consolidate_felter = new ArrayList<>();
-        consolidate_felter.add("Select Criteria");
-        consolidate_felter.add("Payment ID");
-        consolidate_felter.add("Company");
-        consolidate_felter.add("Date");
-        consolidate_felter.add("Status");
-        consolidate_felter.add("Amount");
+        consolidate_felter.add(getResources().getString(R.string.select_criteria));
+        consolidate_felter.add(getResources().getString(R.string.paymentid_sp));
+        consolidate_felter.add(getResources().getString(R.string.company));
+        consolidate_felter.add(getResources().getString(R.string.date));
+        consolidate_felter.add(getResources().getString(R.string.status));
+        consolidate_felter.add(getResources().getString(R.string.amount));
 
         arrayAdapterPayments = new ArrayAdapter<String>(rootView.getContext(),
                 android.R.layout.simple_spinner_dropdown_item, consolidate_felter) {
@@ -239,22 +239,22 @@ public class RetailerPaymentDashboard extends Fragment implements DatePickerDial
 
                     Filter_selected = consolidate_felter.get(i);
 
-                    if (!Filter_selected.equals("Status"))
+                    if (!Filter_selected.equals(getResources().getString(R.string.status)))
                         spinner2.setSelection(0);
                     if (!conso_edittext.getText().equals(""))
                         conso_edittext.setText("");
 
-                    if (Filter_selected.equals("Payment ID")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    if (Filter_selected.equals(getResources().getString(R.string.paymentid_sp))) {
+                        search_bar.setHint(getResources().getString(R.string.search_by) + Filter_selected);
                         Filter_selected = "InvoiceNumber";
                         conso_edittext.setVisibility(View.VISIBLE);
                         search_rl.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Company")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    } else if (Filter_selected.equals(getResources().getString(R.string.company))) {
+                        search_bar.setHint(getResources().getString(R.string.search_by) + Filter_selected);
                         Filter_selected = "CompanyName";
                         conso_edittext.setVisibility(View.VISIBLE);
                         search_rl.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Date")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.date))) {
                         date_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "date";
                         Filter_selected1 = "DateFrom";
@@ -271,14 +271,14 @@ public class RetailerPaymentDashboard extends Fragment implements DatePickerDial
                                 openCalenderPopup("second date");
                             }
                         });
-                    } else if (Filter_selected.equals("Amount")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.amount))) {
                         amount_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "amount";
                         Filter_selected1 = "PaymentAmountMin";
                         Filter_selected2 = "PaymentAmountMax";
                         checkAmountChanged();
-                    } else if (Filter_selected.equals("Status")) {
-                        Filter_selected = "Status";
+                    } else if (Filter_selected.equals(getResources().getString(R.string.status))) {
+                        Filter_selected = getResources().getString(R.string.status);
                         spinner_container1.setVisibility(View.VISIBLE);
                     }
                 }
@@ -294,13 +294,13 @@ public class RetailerPaymentDashboard extends Fragment implements DatePickerDial
         spinner_consolidate.setAdapter(arrayAdapterPayments);
 
         filters = new ArrayList<>();
-        filters.add("Status");
-        filters.add("Pending");
-        filters.add("Invoiced");
+        filters.add(getResources().getString(R.string.status));
+        filters.add(getResources().getString(R.string.pending));
+        filters.add(getResources().getString(R.string.invoiced));
 //        filters.add("Partially Paid");
-        filters.add("Paid");
+        filters.add(getResources().getString(R.string.paid));
 //        filters.add("Payment Processing");
-        filters.add("Cancelled");
+        filters.add(getResources().getString(R.string.cancelled));
         arrayAdapterFeltter = new ArrayAdapter<String>(rootView.getContext(),
                 android.R.layout.simple_spinner_dropdown_item, filters) {
             @Override

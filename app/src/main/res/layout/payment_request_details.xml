@@ -83,9 +83,10 @@
                     android:layout_below="@+id/rl_payment_information_txt2"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
+                    android:gravity="center"
                     android:background="@drawable/button_round"
                     android:fontFamily="@font/open_sans"
-                    android:text="View Voucher"
+                    android:text="@string/view_voucher"
                     android:textAllCaps="false"
                     android:textColor="#fff"
                     android:textSize="@dimen/button_text_size" />
@@ -105,14 +106,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="40dp"
-                    android:layout_marginRight="40dp"
                     android:background="@drawable/border_set"
                     android:fontFamily="@font/open_sans_semibold"
                     android:padding="10dp"
-                    android:text="Internet &amp; Mobile Banking"
+                    android:text="@string/mobile_bank_heading"
                     android:textColor="#96bb3c"
                     android:textSize="14sp" />
 
@@ -208,7 +207,7 @@
                     android:background="@drawable/border_set"
                     android:fontFamily="@font/open_sans_semibold"
                     android:padding="10dp"
-                    android:text="Over the Counter"
+                    android:text="@string/over_the_counter"
                     android:textColor="#96bb3c"
                     android:textSize="14sp" />
 

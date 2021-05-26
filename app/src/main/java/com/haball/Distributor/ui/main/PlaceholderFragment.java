@@ -240,7 +240,7 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
     }
 
     private View setPaymentFragmentTask(LayoutInflater inflater, ViewGroup container) {
-        tabName = "Payment";
+        tabName = getResources().getString(R.string.payment);
         View rootView = inflater.inflate(R.layout.fragment_payments, container, false);
         paymentFragmentTask(rootView);
         context = getContext();
@@ -357,7 +357,7 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
 
 
     private View setOrderFragmentTask(LayoutInflater inflater, ViewGroup container) {
-        tabName = "Order";
+        tabName = getResources().getString(R.string.order);
         View rootView = inflater.inflate(R.layout.fragment_orders, container, false);
         orderFragmentTask(rootView);
         context = getContext();
@@ -473,7 +473,7 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
     }
 
     private View setDashboardFragmentTask(LayoutInflater inflater, ViewGroup container) {
-        tabName = "Dashboard";
+        tabName = getResources().getString(R.string.dashboard);
         context = getContext();
         loader = new Loader(context);
         View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
@@ -484,7 +484,7 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
         value_paid_amount = rootView.findViewById(R.id.value_paid_amount);
         current_balance = rootView.findViewById(R.id.current_balance);
         rl_balances = rootView.findViewById(R.id.rl_balances);
-        company_names.add("Select Company");
+        company_names.add(getResources().getString(R.string.select_company));
         //company_names = "";
         arrayAdapterPayments = new ArrayAdapter<String>(rootView.getContext(),
                 android.R.layout.simple_spinner_dropdown_item, company_names) {
@@ -792,14 +792,14 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
         amount_filter_rl.setVisibility(View.GONE);
 
         consolidate_felter = new ArrayList<>();
-        consolidate_felter.add("Select Criteria");
-        consolidate_felter.add("Payment ID");
-        consolidate_felter.add("Company");
+        consolidate_felter.add(getResources().getString(R.string.select_criteria));
+        consolidate_felter.add(getResources().getString(R.string.paymentid_sp));
+        consolidate_felter.add(getResources().getString(R.string.company));
 //        consolidate_felter.add("Transaction Date");
 //        consolidate_felter.add("Created Date");
-        consolidate_felter.add("Date");
-        consolidate_felter.add("Status");
-        consolidate_felter.add("Amount");
+        consolidate_felter.add(getResources().getString(R.string.date));
+        consolidate_felter.add(getResources().getString(R.string.status));
+        consolidate_felter.add(getResources().getString(R.string.amount));
 
         arrayAdapterPayments = new ArrayAdapter<String>(rootView.getContext(),
                 android.R.layout.simple_spinner_dropdown_item, consolidate_felter) {
@@ -873,20 +873,20 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
                     Filter_selected = consolidate_felter.get(i);
 
 
-                    if (Filter_selected.equals("Payment ID")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    if (Filter_selected.equals(getResources().getString(R.string.paymentid_sp))) {
+                        search_bar.setHint((getResources().getString(R.string.search_by)) + Filter_selected);
                         Filter_selected = "PrePaidNumber";
                         conso_edittext.setVisibility(View.VISIBLE);
                         search_rl.setVisibility(View.VISIBLE);
                         conso_edittext.setInputType(InputType.TYPE_CLASS_NUMBER);
 
-                    } else if (Filter_selected.equals("Company")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    } else if (Filter_selected.equals(getResources().getString(R.string.company))) {
+                        search_bar.setHint((getResources().getString(R.string.search_by) + Filter_selected));
                         Filter_selected = "CompanyName";
                         conso_edittext.setVisibility(View.VISIBLE);
                         search_rl.setVisibility(View.VISIBLE);
                         conso_edittext.setInputType(InputType.TYPE_CLASS_TEXT);
-                    } else if (Filter_selected.equals("Date")) {
+                    } else if (Filter_selected.equals((getResources().getString(R.string.date)))) {
                         date_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "date";
                         Filter_selected1 = "PrepaidDateFrom";
@@ -903,7 +903,7 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
                                 openCalenderPopup("second date");
                             }
                         });
-                    } else if (Filter_selected.equals("Created Date")) {
+                    } else if (Filter_selected.equals((getResources().getString(R.string.created_date)))) {
                         date_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "date";
                         Filter_selected1 = "CreateDateFrom";
@@ -920,14 +920,14 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
                                 openCalenderPopup("second date");
                             }
                         });
-                    } else if (Filter_selected.equals("Amount")) {
+                    } else if (Filter_selected.equals((getResources().getString(R.string.amount)))) {
                         amount_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "amount";
                         Filter_selected1 = "AmountMin";
                         Filter_selected2 = "AmountMax";
                         checkAmountChanged();
-                    } else if (Filter_selected.equals("Status")) {
-                        Filter_selected = "Status";
+                    } else if (Filter_selected.equals((getResources().getString(R.string.status)))) {
+                        Filter_selected = (getResources().getString(R.string.status));
                         spinner_container1.setVisibility(View.VISIBLE);
                     }
                 }
@@ -943,10 +943,10 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
         spinner_consolidate.setAdapter(arrayAdapterPayments);
 
         filters = new ArrayList<>();
-        filters.add("Status");
-        filters.add("Processing Payment");
-        filters.add("Unpaid ");
-        filters.add("Paid");
+        filters.add((getResources().getString(R.string.status)));
+        filters.add(getResources().getString(R.string.processing_payment));
+        filters.add(getResources().getString(R.string.un_paid));
+        filters.add(getResources().getString(R.string.paid));
         arrayAdapterFeltter = new ArrayAdapter<String>(rootView.getContext(),
                 android.R.layout.simple_spinner_dropdown_item, filters) {
 
@@ -1101,13 +1101,13 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     fromAmount = String.valueOf(et_amount1.getText());
-                    if (tabName.equals("Payment")) {
+                    if (tabName.equals(getResources().getString(R.string.payment))) {
                         try {
                             fetchFilteredPaymentRequests();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                    } else if (tabName.equals("Order")) {
+                    } else if (tabName.equals(getResources().getString(R.string.order))) {
                         try {
                             fetchFilteredOrderData();
                         } catch (JSONException e) {
@@ -1123,13 +1123,13 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     toAmount = String.valueOf(et_amount2.getText());
-                    if (tabName.equals("Payment")) {
+                    if (tabName.equals(getResources().getString(R.string.payment))) {
                         try {
                             fetchFilteredPaymentRequests();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                    } else if (tabName.equals("Order")) {
+                    } else if (tabName.equals(getResources().getString(R.string.order))) {
                         try {
                             fetchFilteredOrderData();
                         } catch (JSONException e) {
@@ -1166,13 +1166,13 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
 ////                                        //your code
 //                fromAmount = String.valueOf(et_amount1.getText());
 //                if (fromAmount_main.equals(fromAmount)) {
-//                    if (tabName.equals("Payment")) {
+//                    if (tabName.equals(getResources().getString(R.string.payment))) {
 //                        try {
 //                            fetchFilteredRetailerPayments();
 //                        } catch (JSONException e) {
 //                            e.printStackTrace();
 //                        }
-//                    } else if (tabName.equals("Order")) {
+//                    } else if (tabName.equals(getResources().getString(R.string.order))) {
 //                        try {
 //                            fetchFilteredOrderData();
 //                        } catch (JSONException e) {
@@ -1216,13 +1216,13 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
 ////                                        //your code
 //                toAmount = String.valueOf(et_amount2.getText());
 //                if (toAmount_main.equals(toAmount)) {
-//                    if (tabName.equals("Payment")) {
+//                    if (tabName.equals(getResources().getString(R.string.payment))) {
 //                        try {
 //                            fetchFilteredRetailerPayments();
 //                        } catch (JSONException e) {
 //                            e.printStackTrace();
 //                        }
-//                    } else if (tabName.equals("Order")) {
+//                    } else if (tabName.equals(getResources().getString(R.string.order))) {
 //                        try {
 //                            fetchFilteredOrderData();
 //                        } catch (JSONException e) {
@@ -1281,13 +1281,13 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
         date_filter_rl.setVisibility(View.GONE);
         amount_filter_rl.setVisibility(View.GONE);
         consolidate_felter = new ArrayList<>();
-        consolidate_felter.add("Select Criteria");
-        consolidate_felter.add("Order No");
-        consolidate_felter.add("Company");
+        consolidate_felter.add(getResources().getString(R.string.select_criteria));
+        consolidate_felter.add(getResources().getString(R.string.order_no));
+        consolidate_felter.add(getResources().getString(R.string.company));
 //        consolidate_felter.add("Payment Term");
-        consolidate_felter.add("Date");
-        consolidate_felter.add("Status");
-        consolidate_felter.add("Amount");
+        consolidate_felter.add(getResources().getString(R.string.date));
+        consolidate_felter.add(getResources().getString(R.string.status));
+        consolidate_felter.add(getResources().getString(R.string.amount));
 
         arrayAdapterPayments = new ArrayAdapter<String>(rootView.getContext(),
                 android.R.layout.simple_spinner_dropdown_item, consolidate_felter) {
@@ -1366,21 +1366,21 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
                     spinner2.setSelection(0);
                     conso_edittext.setText("");
 
-                    if (Filter_selected.equals("Order No")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    if (Filter_selected.equals(getResources().getString(R.string.order_no))) {
+                        search_bar.setHint((getResources().getString(R.string.search_by)) + Filter_selected);
                         Filter_selected = "OrderNumber";
                         conso_edittext.setVisibility(View.VISIBLE);
                         search_rl.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Company")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    } else if (Filter_selected.equals(getResources().getString(R.string.company))) {
+                        search_bar.setHint((getResources().getString(R.string.search_by))+ Filter_selected);
                         Filter_selected = "CompanyName";
                         conso_edittext.setVisibility(View.VISIBLE);
                         search_rl.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Payment Term")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.payment_terms))) {
                         Filter_selected = "PaymentType";
                         filters = new ArrayList<>();
-                        filters.add("Select All");
-                        filters.add("Pre Payment");
+                        filters.add(getResources().getString(R.string.select_all));
+                        filters.add(getResources().getString(R.string.pre_payment));
                         arrayAdapterFeltter = new ArrayAdapter<String>(rootView.getContext(),
                                 android.R.layout.simple_spinner_dropdown_item, filters) {
                             @Override
@@ -1409,7 +1409,7 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
 
                         spinner2.setAdapter(arrayAdapterFeltter);
                         spinner_container1.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Date")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.date))) {
                         date_filter_rl.setVisibility(View.VISIBLE);
 //                        Toast.makeText(getContext(), "Created Date selected", Toast.LENGTH_LONG).show();
                         Filter_selected = "date";
@@ -1427,23 +1427,23 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
                                 openCalenderPopup("second date");
                             }
                         });
-                    } else if (Filter_selected.equals("Amount")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.amount))) {
 //                        Toast.makeText(getContext(), "Amount selected", Toast.LENGTH_LONG).show();
                         amount_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "amount";
                         Filter_selected1 = "AmountMin";
                         Filter_selected2 = "AmountMax";
                         checkAmountChanged();
-                    } else if (Filter_selected.equals("Status")) {
-                        Filter_selected = "Status";
+                    } else if (Filter_selected.equals(getResources().getString(R.string.status))) {
+                        Filter_selected = getResources().getString(R.string.status);
                         filters = new ArrayList<>();
 
-                        filters.add("Status");
-                        filters.add("Pending");
-                        filters.add("Approved");
-                        filters.add("Rejected");
-                        filters.add("Draft");
-                        filters.add("Cancelled");
+                        filters.add(getResources().getString(R.string.status));
+                        filters.add(getResources().getString(R.string.pending));
+                        filters.add(getResources().getString(R.string.approved));
+                        filters.add(getResources().getString(R.string.rejected));
+                        filters.add(getResources().getString(R.string.draft));
+                        filters.add(getResources().getString(R.string.cancelled));
                         arrayAdapterFeltter = new ArrayAdapter<String>(rootView.getContext(),
                                 android.R.layout.simple_spinner_dropdown_item, filters) {
                             @Override
@@ -1535,7 +1535,7 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
                 } else {
                     byDefaultStatus = false;
                 }
-                if (Filter_selected.equals("Status") || Filter_selected.equals("PaymentType")) {
+                if (Filter_selected.equals(getResources().getString(R.string.status)) || Filter_selected.equals("PaymentType")) {
 
                     if (i == 0) {
                         try {
@@ -2191,13 +2191,13 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
             second_date.setText(new StringBuilder()
                     .append(String.format("%02d", date2)).append("/").append(String.format("%02d", (month2 + 1))).append("/").append(year2));
         }
-        if (tabName.equals("Payment")) {
+        if (tabName.equals(getResources().getString(R.string.payment))) {
             try {
                 fetchFilteredPaymentRequests();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if (tabName.equals("Order")) {
+        } else if (tabName.equals(getResources().getString(R.string.order))) {
             try {
                 fetchFilteredOrderData();
             } catch (JSONException e) {
@@ -2305,9 +2305,9 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard = view_popup.findViewById(R.id.tv_discard);
-        tv_discard.setText("Logout");
+        tv_discard.setText(getResources().getString(R.string.logout));
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard_txt.setText("Are you sure, you want to logout?");
+        tv_discard_txt.setText(getResources().getString(R.string.logout_msg));
         alertDialog.setView(view_popup);
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
@@ -2315,7 +2315,7 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
         layoutParams.x = -70;// top margin
         alertDialog.getWindow().setAttributes(layoutParams);
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
-        btn_discard.setText("Logout");
+        btn_discard.setText(getResources().getString(R.string.logout));
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 alertDialog.dismiss();

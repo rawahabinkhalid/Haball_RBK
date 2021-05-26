@@ -358,12 +358,12 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
         amount_filter_rl.setVisibility(View.GONE);
 
         consolidate_felter = new ArrayList<>();
-        consolidate_felter.add("Select Criteria");
-        consolidate_felter.add("Payment ID");
-        consolidate_felter.add("Company");
-        consolidate_felter.add("Status");
-        consolidate_felter.add("Paid Date");
-        consolidate_felter.add("Amount");
+        consolidate_felter.add(getResources().getString(R.string.select_criteria));
+        consolidate_felter.add(getResources().getString(R.string.paymentid_sp));
+        consolidate_felter.add(getResources().getString(R.string.company));
+        consolidate_felter.add(getResources().getString(R.string.status));
+        consolidate_felter.add(getResources().getString(R.string.paid_date));
+        consolidate_felter.add(getResources().getString(R.string.amount));
 
 //        arrayAdapterPayments = new ArrayAdapter<>(root.getContext(),
 //                android.R.layout.simple_spinner_dropdown_item, consolidate_felter);
@@ -447,19 +447,20 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
                     spinner2.setSelection(0);
                     conso_edittext.setText("");
 
-                    if (Filter_selected.equals("Payment ID")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    if (Filter_selected.equals(getResources().getText(R.string.paymentid_sp))) {
+
+                        search_bar.setHint(getResources().getText(R.string.search_by) + Filter_selected);
                         Filter_selected = "InvoiceNumber";
                         conso_edittext.setInputType(InputType.TYPE_CLASS_NUMBER);
                         conso_edittext.setVisibility(View.VISIBLE);
                         search_rl.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Company")) {
-                        search_bar.setHint("Search by " + Filter_selected);
+                    } else if (Filter_selected.equals(getResources().getText(R.string.company))) {
+                        search_bar.setHint(getResources().getText(R.string.search_by) + Filter_selected);
                         Filter_selected = "CompanyName";
                         conso_edittext.setInputType(InputType.TYPE_CLASS_TEXT);
                         conso_edittext.setVisibility(View.VISIBLE);
                         search_rl.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Paid Date")) {
+                    } else if (Filter_selected.equals(getResources().getText(R.string.paid_date))) {
                         date_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "date";
                         Filter_selected1 = "DateFrom";
@@ -476,13 +477,13 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
                                 openCalenderPopup("second date");
                             }
                         });
-                    } else if (Filter_selected.equals("Amount")) {
+                    } else if (Filter_selected.equals(getResources().getText(R.string.amount))) {
                         amount_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "amount";
                         Filter_selected1 = "PaymentAmountMin";
                         Filter_selected2 = "PaymentAmountMax";
                         checkAmountChanged();
-                    } else if (Filter_selected.equals("Status")) {
+                    } else if (Filter_selected.equals(getResources().getText(R.string.status))) {
                         Filter_selected = "Status";
                         spinner_container1.setVisibility(View.VISIBLE);
                     }
@@ -501,10 +502,10 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
         spinner_consolidate.setAdapter(arrayAdapterPayments);
 
         filters = new ArrayList<>();
-        filters.add("Status");
-        filters.add("Un-Paid");
-        filters.add("Cancelled");
-        filters.add("Paid");
+        filters.add(getResources().getString(R.string.status));
+        filters.add(getResources().getString(R.string.un_paid));
+        filters.add(getResources().getString(R.string.cancelled));
+        filters.add(getResources().getString(R.string.paid));
 //        filters.add("Delete");
 //        filters.add("Pending");
 //        filters.add("Partially Paid");
@@ -1065,7 +1066,7 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
                 map.put(Filter_selected1, fromDate);
             if (!toDate.equals(""))
                 map.put(Filter_selected2, toDate);
-        } else if (Filter_selected.equals("amount")) {
+        } else if (Filter_selected.equals(getResources().getText(R.string.amount))) {
 //            loader = null;
             loader.showLoader();
             if (!fromAmount.equals(""))
@@ -1422,12 +1423,12 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
         amount_filter_rl.setVisibility(View.GONE);
 
         consolidate_felter = new ArrayList<>();
-        consolidate_felter.add("Select Criteria");
-        consolidate_felter.add("Order ID");
-        consolidate_felter.add("Company");
-        consolidate_felter.add("Status");
-        consolidate_felter.add("Created Date");
-        consolidate_felter.add("Amount");
+        consolidate_felter.add(getResources().getString(R.string.select_criteria));
+        consolidate_felter.add(getResources().getString(R.string.order_id));
+        consolidate_felter.add(getResources().getString(R.string.company));
+        consolidate_felter.add(getResources().getString(R.string.status));
+        consolidate_felter.add(getResources().getString(R.string.created_date));
+        consolidate_felter.add(getResources().getString(R.string.amount));
 
 //        arrayAdapterPayments = new ArrayAdapter<>(root.getContext(),
 //                android.R.layout.simple_spinner_dropdown_item, consolidate_felter);
@@ -1502,13 +1503,13 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
                     spinner2.setSelection(0);
                     conso_edittext.setText("");
 
-                    if (Filter_selected.equals("Order ID")) {
+                    if (Filter_selected.equals(getResources().getText(R.string.order_id))) {
                         search_bar.setHint("Search by " + Filter_selected);
                         Filter_selected = "OrderNumber";
                         conso_edittext.setInputType(InputType.TYPE_CLASS_NUMBER);
                         conso_edittext.setVisibility(View.VISIBLE);
                         search_rl.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Company")) {
+                    } else if (Filter_selected.equals(getResources().getText(R.string.company))) {
                         search_bar.setHint("Search by " + Filter_selected);
                         Filter_selected = "CompanyName";
                         conso_edittext.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -1531,7 +1532,7 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
                                 openCalenderPopup("second date");
                             }
                         });
-                    } else if (Filter_selected.equals("Created Date")) {
+                    } else if (Filter_selected.equals(getResources().getText(R.string.created_date))) {
                         date_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "date";
                         Filter_selected1 = "DateFrom";
@@ -1548,13 +1549,13 @@ public class PlaceholderFragment extends Fragment implements DatePickerDialog.On
                                 openCalenderPopup("second date");
                             }
                         });
-                    } else if (Filter_selected.equals("Amount")) {
+                    } else if (Filter_selected.equals(getResources().getText(R.string.amount))) {
                         amount_filter_rl.setVisibility(View.VISIBLE);
                         Filter_selected = "amount";
                         Filter_selected1 = "AmountMin";
                         Filter_selected2 = "AmountMax";
                         checkAmountChanged();
-                    } else if (Filter_selected.equals("Status")) {
+                    } else if (Filter_selected.equals(getResources().getText(R.string.status))) {
                         Filter_selected = "Status";
                         spinner_container1.setVisibility(View.VISIBLE);
                     }

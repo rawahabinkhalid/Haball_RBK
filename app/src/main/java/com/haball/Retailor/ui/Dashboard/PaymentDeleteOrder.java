@@ -84,7 +84,7 @@ public class PaymentDeleteOrder {
                 txt_header1 = fbDialogue.findViewById(R.id.txt_header1);
                 tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
                 tv_pr1.setText("Your Payment ID " + invoiceNumber + " has been deleted successfully.");
-                txt_header1.setText("Payment Deleted");
+                txt_header1.setText(R.string.payment_deleted);
                 fbDialogue.setCancelable(true);
                 fbDialogue.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
                 WindowManager.LayoutParams layoutParams = fbDialogue.getWindow().getAttributes();

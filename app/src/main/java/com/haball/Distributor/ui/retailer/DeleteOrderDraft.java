@@ -91,8 +91,8 @@ public class DeleteOrderDraft {
                 TextView tv_pr1, txt_header1;
                 txt_header1 = fbDialogue.findViewById(R.id.txt_header1);
                 tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
-                tv_pr1.setText("Your Order ID " + orderNumber + " has been deleted successfully.");
-                txt_header1.setText("Order Deleted");
+                tv_pr1.setText((context.getResources().getString(R.string.your_order_id)) + orderNumber + (context.getResources().getString(R.string.order_deleted_msg)));
+                txt_header1.setText(context.getResources().getString(R.string.order_deleted));
                 fbDialogue.setCancelable(true);
                 fbDialogue.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
                 WindowManager.LayoutParams layoutParams = fbDialogue.getWindow().getAttributes();

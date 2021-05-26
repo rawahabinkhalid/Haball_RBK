@@ -27,7 +27,7 @@
                     android:fontFamily="@font/open_sans"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:text="Payment"
+                    android:text="@string/payment"
                     android:textColor="@color/textcolor"
                     android:textSize="17sp" />
             </RelativeLayout>
@@ -45,7 +45,7 @@
             android:layout_height="45dp"
             android:background="@drawable/button_round"
             android:gravity="center"
-            android:text="Next"
+            android:text="@string/btn_next"
             android:textAllCaps="false"
             android:textColor="#fff"
             android:textSize="@dimen/button_text_size" />
@@ -101,7 +101,7 @@
             android:layout_height="55dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/open_sans"
-            android:hint="Amount"
+            android:hint="@string/amount"
             app:boxStrokeWidth="0.5dp"
             android:theme="@style/TextLabel"
             app:boxStrokeColor="@color/box_stroke"

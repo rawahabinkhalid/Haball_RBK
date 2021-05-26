@@ -264,12 +264,12 @@ public class Support_Ticket_Form_Fragment extends Fragment {
         MobileNo.setTextColor(getResources().getColor(R.color.textcolor));
         Email.setTextColor(getResources().getColor(R.color.textcolor));
 
-        issue_type.add("Issue Type");
-        issueType = "Issue Type";
-        criticality.add("Criticality");
-        Criticality = "Criticality";
-        preffered_contact.add("Preferred Method of Contacting");
-        PrefferedContacts = "Preferred Method of Contacting";
+        issue_type.add(getResources().getString(R.string.issue_type));
+        issueType = getResources().getString(R.string.issue_type);
+        criticality.add(getResources().getString(R.string.criticality));
+        Criticality = getResources().getString(R.string.criticality);
+        preffered_contact.add(getResources().getString(R.string.preferred_method_of_contacting));
+        PrefferedContacts = getResources().getString(R.string.preferred_method_of_contacting);
 
 
 //        arrayAdapterIssueType = new ArrayAdapter<>(this,
@@ -360,7 +360,7 @@ public class Support_Ticket_Form_Fragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) {
-                    issueType = "Issue Type";
+                    issueType = getResources().getString(R.string.issue_type);
                     try {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.grey_color));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
@@ -394,7 +394,7 @@ public class Support_Ticket_Form_Fragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) {
-                    Criticality = "Criticality";
+                    Criticality = getResources().getString(R.string.criticality);
                     try {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.grey_color));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
@@ -428,7 +428,7 @@ public class Support_Ticket_Form_Fragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) {
-                    PrefferedContacts = "Preferred Method of Contacting";
+                    PrefferedContacts = getResources().getString(R.string.preferred_method_of_contacting);
                     try {
                         ((TextView) adapterView.getChildAt(0)).setTextColor(getResources().getColor(R.color.grey_color));
                         ((TextView) adapterView.getChildAt(0)).setTextSize((float) 13.6);
@@ -622,9 +622,9 @@ public class Support_Ticket_Form_Fragment extends Fragment {
                 || mobile.equals("")
                 || mobile.length() != 12
 //                || comment.equals("")
-                || contact.equals("Preferred Method of Contacting")
-                || issue_type.equals("Issue Type")
-                || critical.equals("Criticality")
+                || contact.equals(getResources().getString(R.string.preferred_method_of_contacting))
+                || issue_type.equals(getResources().getString(R.string.issue_type))
+                || critical.equals(getResources().getString(R.string.criticality))
         ) {
             ticket_btn.setEnabled(false);
             ticket_btn.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
@@ -642,7 +642,7 @@ public class Support_Ticket_Form_Fragment extends Fragment {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard_txt.setText("Are you sure, you want to leave this page? Your changes will be discarded.");
+        tv_discard_txt.setText(getResources().getString(R.string.discard_text));
         alertDialog.setView(view_popup);
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
@@ -977,6 +977,7 @@ public class Support_Ticket_Form_Fragment extends Fragment {
 //        final HurlStack hurlStack = new SSL_HandShake().handleSSLHandshake(getContext());
 
         JsonObjectRequest sr = new JsonObjectRequest(Request.Method.POST, URL_TICkET, map, new Response.Listener<JSONObject>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(JSONObject result) {
                 loader.hideLoader();
@@ -993,9 +994,9 @@ public class Support_Ticket_Form_Fragment extends Fragment {
                 TextView tv_pr1, txt_header1;
                 txt_header1 = fbDialogue.findViewById(R.id.txt_header1);
                 tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
-                txt_header1.setText("Ticket Created");
+                txt_header1.setText(getResources().getString(R.string.created_ticket));
                 try {
-                    tv_pr1.setText("Your Ticket ID " + result.get("TicketNumber") + " has been created successfully.");
+                    tv_pr1.setText((getResources().getString(R.string.your_ticket_id)) + result.get("TicketNumber") + (getResources().getString(R.string.ticket_created_msg)));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

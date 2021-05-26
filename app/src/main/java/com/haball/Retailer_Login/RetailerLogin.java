@@ -1,6 +1,5 @@
 package com.haball.Retailer_Login;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,33 +11,32 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkError;
-import com.android.volley.NoConnectionError;
-import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.ServerError;
-import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.haball.CustomToast;
 import com.haball.Distributor.StatusKVP;
-import com.haball.Distributor.ui.terms_and_conditions.TermsAndConditionsFragment;
 import com.haball.HaballError;
+import com.haball.LanguageClasses.ChangeLanguage;
 import com.haball.Loader;
 import com.haball.ProcessingError;
 import com.haball.R;
@@ -46,50 +44,17 @@ import com.haball.Retailor.Forgot_Password_Retailer.Forgot_Pass_Retailer;
 import com.haball.Retailor.Retailer_TermsAndConditionsFragment;
 import com.haball.Retailor.Retailer_UpdatePassword;
 import com.haball.Retailor.RetailorDashboard;
-import com.haball.Retailor.Retailor_SignUp.SignUp;
 import com.haball.SSL_HandShake;
 import com.haball.Select_User.Register_Activity;
 import com.haball.Support.Support_Retailer.Support_Ticket_Form;
 import com.haball.TextField;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.URL;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.Certificate;
-import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
 
 public class RetailerLogin extends AppCompatActivity {
 
@@ -106,7 +71,7 @@ public class RetailerLogin extends AppCompatActivity {
     private HttpURLConnection urlConnection = null;
     private java.net.URL url;
     private String token;
-    private String success_text = "";
+    private String success_text = "", language = "";
     //    private ProgressDialog progressDialog;
     private Loader loader;
     private String URL_Profile = "http://175.107.203.97:4014/api/retailer/";
@@ -121,7 +86,10 @@ public class RetailerLogin extends AppCompatActivity {
         background_drawable.setAlpha(80);
         RelativeLayout rl_main_background = findViewById(R.id.rl_main_background);
         rl_main_background.setBackground(background_drawable);
-
+        // selected Language Value
+        SharedPreferences languageType = getSharedPreferences("changeLanguage",
+                Context.MODE_PRIVATE);
+        language = languageType.getString("language", "");
 
         SharedPreferences selectedProducts = getSharedPreferences("selectedProducts_retailer",
                 Context.MODE_PRIVATE);
@@ -303,7 +271,7 @@ public class RetailerLogin extends AppCompatActivity {
 //        et_username.setText("kamran.khan@mailinator.com");
 //        et_password.setText("@dmin123");
         checkFieldsForEmptyValues();
-
+        changeLanguage();
     }
 
     private void nullifySharedPreference() {
@@ -458,8 +426,8 @@ public class RetailerLogin extends AppCompatActivity {
                             public void onErrorResponse(VolleyError error) {
                                 loader.hideLoader();
                                 error.printStackTrace();
-                                Toast.makeText(RetailerLogin.this, "error"+error, Toast.LENGTH_SHORT).show();
-                               
+                                Toast.makeText(RetailerLogin.this, "error" + error, Toast.LENGTH_SHORT).show();
+
                                 new HaballError().printErrorMessage(RetailerLogin.this, error);
                                 new ProcessingError().showError(RetailerLogin.this);
                                 //Toast.makeText(RetailerLogin.this,error.toString(),Toast.LENGTH_LONG).show();
@@ -524,45 +492,15 @@ public class RetailerLogin extends AppCompatActivity {
 
     }
 
-
-//     private void printErrorMessage(VolleyError error) {
-//         if (error instanceof NetworkError) {
-//             Toast.makeText(RetailerLogin.this, "Network Error !", Toast.LENGTH_LONG).show();
-//         } else if (error instanceof ServerError) {
-//             Toast.makeText(RetailerLogin.this, "Server Error !", Toast.LENGTH_LONG).show();
-//         } else if (error instanceof AuthFailureError) {
-//             Toast.makeText(RetailerLogin.this, "Auth Failure Error !", Toast.LENGTH_LONG).show();
-//         } else if (error instanceof ParseError) {
-//             Toast.makeText(RetailerLogin.this, "Parse Error !", Toast.LENGTH_LONG).show();
-//         } else if (error instanceof NoConnectionError) {
-//             Toast.makeText(RetailerLogin.this, "No Connection Error !", Toast.LENGTH_LONG).show();
-//         } else if (error instanceof TimeoutError) {
-//             Toast.makeText(RetailerLogin.this, "Timeout Error !", Toast.LENGTH_LONG).show();
-//         }
-
-//         if (error.networkResponse != null && error.networkResponse.data != null) {
-//             try {
-//                 String message = "";
-//                 String responseBody = new String(error.networkResponse.data, "utf-8");
-//                 JSONObject data = new JSONObject(responseBody);
-//                 Iterator<String> keys = data.keys();
-//                 while (keys.hasNext()) {
-//                     String key = keys.next();
-// //                if (data.get(key) instanceof JSONObject) {
-//                     message = message + data.get(key) + "\n";
-// //                }
-//                 }
-// //                    if(data.has("message"))
-// //                        message = data.getString("message");
-// //                    else if(data. has("Error"))
-//                 Toast.makeText(RetailerLogin.this, message, Toast.LENGTH_LONG).show();
-//             } catch (UnsupportedEncodingException e) {
-//                 e.printStackTrace();
-//             } catch (JSONException e) {
-//                 e.printStackTrace();
-//             }
-//         }
-
-//     }
-
+    void changeLanguage() {
+        ChangeLanguage changeLanguage = new ChangeLanguage();
+        changeLanguage.changeLanguage(this, language);
+        if (language.equals("ur")) {
+            btn_login.setText(R.string.login);
+//        layout_username.setHint(getResources().getString(R.string.user_name));
+//        layout_password.setHint(getResources().getString(R.string.password));
+            btn_password.setText(R.string.Forgot_Password);
+            btn_support.setText(R.string.need_support);
+        }
+    }
 }

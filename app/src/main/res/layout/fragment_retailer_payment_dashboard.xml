@@ -25,7 +25,7 @@
                 android:fontFamily="@font/open_sans"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="Payment"
+                android:text="@string/payment"
                 android:textColor="@color/textcolor"
                 android:textSize="17sp" />
         </RelativeLayout>
@@ -341,7 +341,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/open_sans"
                     android:gravity="center"
-                    android:text="No Data Available"
+                    android:text="@string/no_data_avaible"
                     android:textSize="@dimen/no_data_available_size" />
             </RelativeLayout>
         </RelativeLayout>

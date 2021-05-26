@@ -23,22 +23,23 @@
         app:headerLayout="@layout/nav_header_retailor_dashboard"
         app:menu="@menu/activity_retailor_dashboard_drawer">
         <ScrollView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
             android:layout_marginTop="100dp">
 
             <com.techatmosphere.expandablenavigation.view.ExpandableNavigationListView
                 android:id="@+id/expandable_navigation"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:dividerHeight="1dp"
                 android:theme="@style/DrawerItemText"
                 android:groupIndicator="@drawable/group_indicator"
-                android:scrollbars="vertical">
+                android:scrollbars="vertical"
+                >
             </com.techatmosphere.expandablenavigation.view.ExpandableNavigationListView>
 
         </ScrollView>
@@ -58,7 +59,7 @@
                 android:textSize="13sp"
                 android:fontFamily="@font/open_sans"
                 android:textColor="#8A8B8E"
-                android:text="Terms And Conditions" />
+                android:text="@string/term_and_condition" />
         </LinearLayout>
 
     </com.google.android.material.navigation.NavigationView>

@@ -39,14 +39,14 @@
 
                     <TextView
                         android:id="@+id/login_heading"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_semibold"
                         android:paddingLeft="20dp"
                         android:paddingTop="5dp"
                         android:paddingRight="20dp"
                         android:paddingBottom="5dp"
-                        android:text="Login"
+                        android:text="@string/login"
                         android:textColor="@color/green_color"
                         android:textSize="@dimen/heading_size_retailer" />
                 </LinearLayout>
@@ -63,7 +63,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
-                        android:hint="Username Or Mobile No"
+                        android:hint="@string/user_name"
                         android:theme="@style/TextLabel"
                         app:boxBackgroundColor="#fff">
 
@@ -84,7 +84,7 @@
                         android:layout_height="55dp"
                         android:layout_below="@+id/layout_username"
                         android:layout_marginTop="16dp"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         android:theme="@style/TextLabel"
                         app:boxBackgroundColor="#fff"
                         app:passwordToggleEnabled="true"
@@ -169,7 +169,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/open_sans"
                     android:gravity="center"
-                    android:text="© Haball | All rights reserved"
+                    android:text="@string/all_rights_reserved"
                     android:textSize="12sp" />
             </RelativeLayout>
         </ScrollView>

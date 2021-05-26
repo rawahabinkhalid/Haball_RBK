@@ -2,8 +2,10 @@ package com.haball.Support.Support_Retailer;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -44,6 +46,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.haball.HaballError;
+import com.haball.LanguageClasses.ChangeLanguage;
 import com.haball.Loader;
 import com.haball.ProcessingError;
 import com.haball.R;
@@ -108,6 +111,7 @@ public class Support_Ticket_Form extends AppCompatActivity {
     private String DistributorId;
     //    private TextView tv_main_heading, tv_sub_heading;
     private int keyDel;
+    private String language ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,23 +121,11 @@ public class Support_Ticket_Form extends AppCompatActivity {
         background_drawable.setAlpha(80);
         RelativeLayout rl_main_background = findViewById(R.id.rl_main_background);
         rl_main_background.setBackground(background_drawable);
-//        loader = findViewById(R.id.loader);
-
-//                getWindow().setBackgroundDrawableResource(R.drawable.background_logo);
-
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayShowHomeEnabled(false);
-//        actionBar.setDisplayShowTitleEnabled(false);
-//        loader.setVisibility(View.VISIBLE);
+        // selected Language Value
+        SharedPreferences languageType = getSharedPreferences("changeLanguage",
+                Context.MODE_PRIVATE);
+        language = languageType.getString("language", "");
         loader = new Loader(Support_Ticket_Form.this);
-//        loader.showLoader();
-
-//        LayoutInflater inflater = LayoutInflater.from(this);
-//        View customView = inflater.inflate(R.layout.action_bar_main_without_back, null);
-
-//        actionBar.setCustomView(customView);
-//        actionBar.setDisplayShowCustomEnabled(true);
-
         myFont = ResourcesCompat.getFont(this, R.font.open_sans);
 
         BName = findViewById(R.id.BName);
@@ -173,9 +165,9 @@ public class Support_Ticket_Form extends AppCompatActivity {
         login_btn = findViewById(R.id.login_btn);
 //        btn_back = (ImageButton) customView.findViewById(R.id.btn_back);
 
-        issue_type.add("Issue Type");
-        criticality.add("Criticality");
-        preffered_contact.add("Preferred Method of Contacting");
+        issue_type.add(getResources().getString(R.string.issue_type));
+        criticality.add(getResources().getString(R.string.criticality));
+        preffered_contact.add(getResources().getString(R.string.preferred_method_of_contacting));
 
 //        arrayAdapterIssueType = new ArrayAdapter<>(this,
 //                android.R.layout.simple_dropdown_item_1line, issue_type);
@@ -509,7 +501,7 @@ public class Support_Ticket_Form extends AppCompatActivity {
                 // TODO Auto-generated method stub
             }
         });
-
+        changeLanguage();
 
     }
 
@@ -572,13 +564,13 @@ public class Support_Ticket_Form extends AppCompatActivity {
         String txt_BName = BName.getText().toString();
         String txt_Email = Email.getText().toString();
         String txt_MobileNo = MobileNo.getText().toString();
-        String txt_Preffered_Contact = "Preferred Method of Contacting";
+        String txt_Preffered_Contact = getResources().getString(R.string.preferred_method_of_contacting);
         if (Preffered_Contact.getItemAtPosition(Preffered_Contact.getSelectedItemPosition()) != null)
             txt_Preffered_Contact = Preffered_Contact.getItemAtPosition(Preffered_Contact.getSelectedItemPosition()).toString();
-        String txt_IssueType = "Issue Type";
+        String txt_IssueType =getResources().getString(R.string.issue_type);
         if (IssueType.getItemAtPosition(IssueType.getSelectedItemPosition()) != null)
             txt_IssueType = IssueType.getItemAtPosition(IssueType.getSelectedItemPosition()).toString();
-        String txt_critcicality = "Criticality";
+        String txt_critcicality = getResources().getString(R.string.criticality);
         if (critcicality.getItemAtPosition(critcicality.getSelectedItemPosition()) != null)
             txt_critcicality = critcicality.getItemAtPosition(critcicality.getSelectedItemPosition()).toString();
         String txt_Comment = Comment.getText().toString();
@@ -601,7 +593,7 @@ public class Support_Ticket_Form extends AppCompatActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard_txt.setText("Are you sure, you want to leave this page? Your changes will be discarded.");
+        tv_discard_txt.setText(R.string.discard_text);
         alertDialog.setView(view_popup);
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
@@ -609,7 +601,7 @@ public class Support_Ticket_Form extends AppCompatActivity {
         layoutParams.x = -70;// top margin
         alertDialog.getWindow().setAttributes(layoutParams);
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
-        btn_discard.setText("Yes");
+        btn_discard.setText(R.string.yes);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Log.i("CreatePayment", "Button Clicked");
@@ -639,13 +631,13 @@ public class Support_Ticket_Form extends AppCompatActivity {
         String bname = BName.getText().toString();
         String email = Email.getText().toString();
         String mobile = MobileNo.getText().toString();
-        String contact = "Preferred Method of Contacting";
+        String contact = getResources().getString(R.string.preferred_method_of_contacting);
         if (Preffered_Contact.getItemAtPosition(Preffered_Contact.getSelectedItemPosition()) != null)
             contact = Preffered_Contact.getItemAtPosition(Preffered_Contact.getSelectedItemPosition()).toString();
-        String issue_type = "Issue Type";
+        String issue_type =getResources().getString(R.string.issue_type);
         if (IssueType.getItemAtPosition(IssueType.getSelectedItemPosition()) != null)
             issue_type = IssueType.getItemAtPosition(IssueType.getSelectedItemPosition()).toString();
-        String critical = "Criticality";
+        String critical = getResources().getString(R.string.criticality);
         if (critcicality.getItemAtPosition(critcicality.getSelectedItemPosition()) != null)
             critical = critcicality.getItemAtPosition(critcicality.getSelectedItemPosition()).toString();
 
@@ -656,9 +648,9 @@ public class Support_Ticket_Form extends AppCompatActivity {
                 || mobile.equals("")
                 || mobile.length() != 12
 //                || comment.equals("")
-                || contact.equals("Preferred Method of Contacting")
-                || issue_type.equals("Issue Type")
-                || critical.equals("Criticality")
+                || contact.equals(getResources().getString(R.string.preferred_method_of_contacting))
+                || issue_type.equals(getResources().getString(R.string.issue_type))
+                || critical.equals(getResources().getString(R.string.criticality))
         ) {
             login_submit.setEnabled(false);
             login_submit.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
@@ -701,9 +693,9 @@ public class Support_Ticket_Form extends AppCompatActivity {
                 TextView tv_pr1, txt_header1;
                 txt_header1 = fbDialogue.findViewById(R.id.txt_header1);
                 tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
-                txt_header1.setText("Ticket Created");
+                txt_header1.setText(R.string.tickted_created);
                 try {
-                    tv_pr1.setText("Your Ticket ID " + result.get("TicketNumber") + " has been created successfully. Our customer support officer will contact you shortly.");
+                    tv_pr1.setText((getResources().getString(R.string.your_ticket_id)) + result.get("TicketNumber") + (getResources().getString(R.string.ticket_created_msg_logout)));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -1017,6 +1009,14 @@ public class Support_Ticket_Form extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+    }
+    void changeLanguage() {
+        ChangeLanguage changeLanguage = new ChangeLanguage();
+        changeLanguage.changeLanguage(this, language);
+        if (language.equals("ur")) {
+           // login_submit.setText(R.string.reset);
+            //login_btn.setText(R.string.login);
         }
     }
 }

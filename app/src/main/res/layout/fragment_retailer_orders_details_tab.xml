@@ -22,7 +22,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:text="No Data Available"
+            android:text="@string/no_data_avaible"
             android:textSize="@dimen/no_data_available_size" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans"
-                android:text="Total Disc:"
+                android:text="@string/total_disc"
                 android:textColor="@color/rv_box_color"
                 android:textSize="13sp" />
 
@@ -138,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/discount"
                 android:fontFamily="@font/open_sans"
-                android:text="Total Amount:"
+                android:text="@string/total_amount"
                 android:textColor="@color/rv_box_color"
                 android:textSize="13sp" />
 
@@ -184,7 +184,7 @@
             android:layout_marginTop="9.5dp"
             android:layout_marginEnd="27dp"
             android:fontFamily="@font/open_sans_semibold"
-            android:text="Total price is subject to change based on approval, tax and discount calculation, if any."
+            android:text="@string/order_summary_approval_msg"
             android:textColor="@color/error_stroke_color"
             android:textSize="13sp" />
 
@@ -201,7 +201,7 @@
             android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:stateListAnimator="@null"
-            android:text="Back"
+            android:text="@string/back"
             android:textAllCaps="false"
             android:textColor="#fff"
             android:textSize="@dimen/button_text_size" />

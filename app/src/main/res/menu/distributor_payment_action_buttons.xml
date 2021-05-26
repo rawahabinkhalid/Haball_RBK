@@ -4,15 +4,15 @@
     <group android:id="@+id/group_delete">
         <item
             android:id="@+id/view_retailer_payment"
-            android:title="View" />
+            android:title="@string/view" />
         <item
             android:id="@+id/edit_retailer_payment"
-            android:title="Edit" />
+            android:title="@string/edit" />
         <item
             android:id="@+id/delete_retailer_payment"
-            android:title="Delete" />
+            android:title="@string/delete" />
         <item
             android:id="@+id/pay_by_retailer"
-            android:title="Pay By PSID"/>
+            android:title="@string/PSID"/>
     </group>
 </menu>

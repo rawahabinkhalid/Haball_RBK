@@ -264,9 +264,9 @@ public class DistributorOrdersAdapter extends RecyclerView.Adapter<DistributorOr
         LayoutInflater inflater = LayoutInflater.from(mContxt);
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard = view_popup.findViewById(R.id.tv_discard);
-        tv_discard.setText("Cancel Order");
+        tv_discard.setText(R.string.cancel_order);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard_txt.setText("Are you sure, you want to cancel this order?");
+        tv_discard_txt.setText(R.string.cancel_order_text);
         alertDialog.setView(view_popup);
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
@@ -274,7 +274,7 @@ public class DistributorOrdersAdapter extends RecyclerView.Adapter<DistributorOr
         layoutParams.x = -70;// top margin
         alertDialog.getWindow().setAttributes(layoutParams);
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
-        btn_discard.setText("Cancel Order");
+        btn_discard.setText(R.string.cancel_order);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 alertDialog.dismiss();
@@ -318,9 +318,9 @@ public class DistributorOrdersAdapter extends RecyclerView.Adapter<DistributorOr
         LayoutInflater inflater = LayoutInflater.from(mContxt);
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard = view_popup.findViewById(R.id.tv_discard);
-        tv_discard.setText("Delete Order");
+        tv_discard.setText(R.string.delete_order);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard_txt.setText("Are you sure, you want to delete this order?");
+        tv_discard_txt.setText(R.string.delete_order_text);
         alertDialog.setView(view_popup);
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
@@ -328,7 +328,7 @@ public class DistributorOrdersAdapter extends RecyclerView.Adapter<DistributorOr
         layoutParams.x = -70;// top margin
         alertDialog.getWindow().setAttributes(layoutParams);
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
-        btn_discard.setText("Delete");
+        btn_discard.setText(R.string.delete);
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 alertDialog.dismiss();

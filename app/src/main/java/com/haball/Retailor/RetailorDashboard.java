@@ -48,6 +48,7 @@ import com.haball.Distributor.DistributorDashboard;
 import com.haball.Distributor.ui.expandablelist.CustomExpandableListModel;
 import com.haball.Distributor.ui.retailer.Retailor_Management.Retailer_Dashboard;
 import com.haball.Distributor.ui.terms_and_conditions.TermsAndConditionsFragment;
+import com.haball.LanguageClasses.ChangeLanguage;
 import com.haball.Loader;
 import com.haball.ProcessingError;
 import com.haball.R;
@@ -125,12 +126,17 @@ public class RetailorDashboard extends AppCompatActivity {
     private String URL_Logout = "http://175.107.203.97:4014/api/users/logout";
     private int UnReadNotifications = 0;
     private List<Retailer_Notification_Model> NotificationList = new ArrayList<>();
+    private  String language = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retailor_dashboard);
-
+        // selected language
+        SharedPreferences languageType = getSharedPreferences("changeLanguage",
+                Context.MODE_PRIVATE);
+        language = languageType.getString("language", "");
+        changeLanguage();
         SharedPreferences sharedPreferences = this.getSharedPreferences("LoginToken",
                 Context.MODE_PRIVATE);
         username = sharedPreferences.getString("Name", "");
@@ -372,22 +378,23 @@ public class RetailorDashboard extends AppCompatActivity {
             fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.add(R.id.main_container_ret, new Dashboard_Tabs());
             fragmentTransaction.commit();
-            NavList.add("Dashboard");
+            NavList.add(getResources().getString(R.string.dashboard));
         } else {
             fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.add(R.id.main_container_ret, new SupportFragment());
             fragmentTransaction.commit();
         }
+
         if (Kyc_add_update)
-            NavList.add("My Network");
+            NavList.add(getResources().getString(R.string.my_network));
         if (Order_Add_Update)
-            NavList.add("Place Order");
+            NavList.add(getResources().getString(R.string.place_order));
         if (Payment_Add_Update)
-            NavList.add("Make Payment");
+            NavList.add(getResources().getString(R.string.make_payment));
         if (Retailer_Profile)
-            NavList.add("Profile");
-        NavList.add("Support");
-        NavList.add("Logout");
+            NavList.add(getResources().getString(R.string.profile));
+        NavList.add(getResources().getString(R.string.support));
+        NavList.add(getResources().getString(R.string.logout));
 
         notification_icon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -423,29 +430,29 @@ public class RetailorDashboard extends AppCompatActivity {
         if (Payment_View || Order_View)
             navigationExpandableListView.addHeaderModel(new
 
-                    HeaderModel("Dashboard"));
+                    HeaderModel(getResources().getString(R.string.dashboard)));
         if (Kyc_add_update)
             navigationExpandableListView.addHeaderModel(new
 
-                    HeaderModel("My Network"));
+                    HeaderModel(getResources().getString(R.string.my_network)));
         if (Order_Add_Update)
             navigationExpandableListView.addHeaderModel(new
 
-                    HeaderModel("Place Order"));
+                    HeaderModel(getResources().getString(R.string.place_order)));
         if (Payment_Add_Update)
             navigationExpandableListView.addHeaderModel(new
 
-                    HeaderModel("Make Payment"));
+                    HeaderModel(getResources().getString(R.string.make_payment)));
         if (Retailer_Profile)
             navigationExpandableListView.addHeaderModel(new
 
-                    HeaderModel("Profile"));
+                    HeaderModel(getResources().getString(R.string.profile)));
         navigationExpandableListView.addHeaderModel(new
 
-                HeaderModel("Support"));
+                HeaderModel(getResources().getString(R.string.support)));
         navigationExpandableListView.addHeaderModel(new
 
-                HeaderModel("Logout"));
+                HeaderModel(getResources().getString(R.string.logout)));
 //                .addHeaderModel(new HeaderModel("\n\n\n\nTerms And Conditions"))
         navigationExpandableListView.build()
                 .
@@ -464,15 +471,15 @@ public class RetailorDashboard extends AppCompatActivity {
                                 retailerInfo_editor.apply();
 
 
-                                if (NavList.contains("Dashboard") && NavList.indexOf("Dashboard") == id) {
+                                if (NavList.contains(getResources().getString(R.string.dashboard)) && NavList.indexOf(getResources().getString(R.string.dashboard)) == id) {
 //                        if (id == 0) {
-                                    // Log.i("Dashboard", "Dashboard Activity");
+                                    // Log.i(getResources().getString(R.string.dashboard), "Dashboard Activity");
                                     fragmentTransaction = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction.add(R.id.main_container_ret, new Dashboard_Tabs());
                                     fragmentTransaction.commit();
 
                                     drawer.closeDrawer(GravityCompat.START);
-                                } else if (NavList.contains("My Network") && NavList.indexOf("My Network") == id) {
+                                } else if (NavList.contains(getResources().getString(R.string.my_network)) && NavList.indexOf(getResources().getString(R.string.my_network)) == id) {
 //                        } else if (id == 1) {
 
                                     fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -480,10 +487,10 @@ public class RetailorDashboard extends AppCompatActivity {
                                     fragmentTransaction.add(R.id.main_container_ret, new My_Network_Fragment()).addToBackStack("tag");
                                     fragmentTransaction.commit();
                                     drawer.closeDrawer(GravityCompat.START);
-                                    // Log.i("My Network", "My Network Activity");
+                                    // Log.i(getResources().getString(R.string.my_network), "My Network Activity");
 
                                     drawer.closeDrawer(GravityCompat.START);
-                                } else if (NavList.contains("Place Order") && NavList.indexOf("Place Order") == id) {
+                                } else if (NavList.contains(getResources().getString(R.string.place_order)) && NavList.indexOf(getResources().getString(R.string.place_order)) == id) {
                                     SharedPreferences selectedProducts = getSharedPreferences("selectedProducts_retailer_own",
                                             Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editor = selectedProducts.edit();
@@ -497,7 +504,7 @@ public class RetailorDashboard extends AppCompatActivity {
                                     editorDraft.apply();
 
 //                        } else if (id == 2) {
-//                            // Log.i("Place Order", "Place Order Activity");
+//                            // Log.i(getResources().getString(R.string.place_order), "Place Order Activity");
 //                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
 //                            fragmentTransaction.add(R.id.main_container_ret, new PlaceOrderFragment());
 //                            fragmentTransaction.commit();
@@ -507,29 +514,29 @@ public class RetailorDashboard extends AppCompatActivity {
                                     fragmentTransaction.commit();
                                     drawer.closeDrawer(GravityCompat.START);
 
-                                } else if (NavList.contains("Make Payment") && NavList.indexOf("Make Payment") == id) {
+                                } else if (NavList.contains(getResources().getString(R.string.make_payment)) && NavList.indexOf(getResources().getString(R.string.make_payment)) == id) {
 //                        } else if (id == 3) {
-                                    // Log.i("Make Payment", "Make Payment Activity");
+                                    // Log.i(getResources().getString(R.string.make_payment), "Make Payment Activity");
                                     fragmentTransaction = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction.add(R.id.main_container_ret, new CreatePaymentRequestFragment()).addToBackStack("tag1");
                                     fragmentTransaction.commit();
                                     drawer.closeDrawer(GravityCompat.START);
 
-                                } else if (NavList.contains("Profile") && NavList.indexOf("Profile") == id) {
+                                } else if (NavList.contains(getResources().getString(R.string.profile)) && NavList.indexOf(getResources().getString(R.string.profile)) == id) {
 //                        } else if (id == 4) {
-                                    // Log.i("Profile", "Profile Activity");
+                                    // Log.i(getResources().getString(R.string.profile), "Profile Activity");
                                     fragmentTransaction = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction.add(R.id.main_container_ret, new Profile_Tabs()).addToBackStack("tag");
                                     fragmentTransaction.commit();
                                     drawer.closeDrawer(GravityCompat.START);
-                                } else if (NavList.contains("Support") && NavList.indexOf("Support") == id) {
+                                } else if (NavList.contains(getResources().getString(R.string.support)) && NavList.indexOf(getResources().getString(R.string.support)) == id) {
 //                        } else if (id == 5) {
-                                    // Log.i("Support", "Support Activity");
+                                    // Log.i(getResources().getString(R.string.support), "Support Activity");
                                     fragmentTransaction = getSupportFragmentManager().beginTransaction();
                                     fragmentTransaction.add(R.id.main_container_ret, new SupportFragment()).addToBackStack("tag");
                                     fragmentTransaction.commit();
                                     drawer.closeDrawer(GravityCompat.START);
-                                } else if (NavList.contains("Logout") && NavList.indexOf("Logout") == id) {
+                                } else if (NavList.contains(getResources().getString(R.string.logout)) && NavList.indexOf(getResources().getString(R.string.logout)) == id) {
                                     logoutUser();
                                     drawer.closeDrawer(GravityCompat.START);
                                 }
@@ -549,9 +556,9 @@ public class RetailorDashboard extends AppCompatActivity {
         LayoutInflater inflater = LayoutInflater.from(RetailorDashboard.this);
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard = view_popup.findViewById(R.id.tv_discard);
-        tv_discard.setText("Logout");
+        tv_discard.setText(getResources().getString(R.string.logout));
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard_txt.setText("Are you sure, you want to logout?");
+        tv_discard_txt.setText(getResources().getString(R.string.logout_msg));
         alertDialog.setView(view_popup);
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();
@@ -559,7 +566,7 @@ public class RetailorDashboard extends AppCompatActivity {
         layoutParams.x = -70;// top margin
         alertDialog.getWindow().setAttributes(layoutParams);
         Button btn_discard = (Button) view_popup.findViewById(R.id.btn_discard);
-        btn_discard.setText("Logout");
+        btn_discard.setText(getResources().getString(R.string.logout));
         btn_discard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 alertDialog.dismiss();
@@ -574,7 +581,7 @@ public class RetailorDashboard extends AppCompatActivity {
                     public void onResponse(Boolean result) {
                         loader.hideLoader();
 
-                        // Log.i("Logout", "Logout Activity");
+                        // Log.i(getResources().getString(R.string.logout), "Logout Activity");
                         SharedPreferences login_token = getSharedPreferences("LoginToken",
                                 Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = login_token.edit();
@@ -718,7 +725,7 @@ public class RetailorDashboard extends AppCompatActivity {
 ////                loader.hideLoader();
 //                // Log.i("Destroyed12", "destroyed");
 //
-//                // Log.i("Logout", "Logout Activity");
+//                // Log.i(getResources().getString(R.string.logout), "Logout Activity");
 //                SharedPreferences login_token = getSharedPreferences("LoginToken",
 //                        Context.MODE_PRIVATE);
 //                SharedPreferences.Editor editor = login_token.edit();
@@ -939,4 +946,15 @@ public class RetailorDashboard extends AppCompatActivity {
 //        }
 //
 //    }
+      void changeLanguage() {
+        ChangeLanguage changeLanguage = new ChangeLanguage();
+        changeLanguage.changeLanguage(this, language);
+        if (language.equals("ur")) {
+           // btn_login.setText(R.string.login);
+//        layout_username.setHint(getResources().getString(R.string.user_name));
+//        layout_password.setHint(getResources().getString(R.string.password));
+            //btn_password.setText(R.string.Forgot_Password);
+            //btn_support.setText(R.string.need_support);
+        }
+    }
 }

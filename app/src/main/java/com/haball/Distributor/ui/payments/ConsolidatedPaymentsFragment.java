@@ -130,14 +130,14 @@ public class ConsolidatedPaymentsFragment extends Fragment {
         conso_edittext = (EditText) root.findViewById(R.id.conso_edittext);
         spinner2.setVisibility(View.GONE);
         conso_edittext.setVisibility(View.GONE);
-        consolidate_felter.add("Select Criteria");
-        consolidate_felter.add("Invoice No");
-        consolidate_felter.add("Company");
-        consolidate_felter.add("Created Date");
-        consolidate_felter.add("Total Price");
-        consolidate_felter.add("Paid Amount");
-        consolidate_felter.add("Status");
-        consolidate_felter.add("Created By");
+        consolidate_felter.add(getResources().getString(R.string.select_criteria));
+        consolidate_felter.add(getResources().getString(R.string.invoice_no));
+        consolidate_felter.add(getResources().getString(R.string.company));
+        consolidate_felter.add(getResources().getString(R.string.created_date));
+        consolidate_felter.add(getResources().getString(R.string.total_price));
+        consolidate_felter.add(getResources().getString(R.string.paid_amount));
+        consolidate_felter.add(getResources().getString(R.string.status));
+        consolidate_felter.add(getResources().getString(R.string.created_by));
 
 //        btn_load_more.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -199,36 +199,36 @@ public class ConsolidatedPaymentsFragment extends Fragment {
 
                     Filter_selected = consolidate_felter.get(i);
 
-                    if (!Filter_selected.equals("Status"))
+                    if (!Filter_selected.equals(getResources().getString(R.string.status)))
                         spinner2.setSelection(0);
                     if (!conso_edittext.getText().equals(""))
                         conso_edittext.setText("");
 
-                    if (Filter_selected.equals("Invoice No")) {
+                    if (Filter_selected.equals(getResources().getString(R.string.invoice_no))) {
                         Filter_selected = "ConsolidatedInvoiceNumber";
                         spinner2.setVisibility(View.GONE);
                         conso_edittext.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Company")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.company))) {
                         Filter_selected = "CompanyName";
                         spinner2.setVisibility(View.GONE);
                         conso_edittext.setVisibility(View.VISIBLE);
-                    } else if (Filter_selected.equals("Created Date")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.created_date))) {
                         spinner2.setVisibility(View.GONE);
                         conso_edittext.setVisibility(View.GONE);
                         // Toast.makeText(getContext(), "Created Date selected", Toast.LENGTH_LONG).show();
-                    } else if (Filter_selected.equals("Total Price")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.total_price))) {
                         spinner2.setVisibility(View.GONE);
                         conso_edittext.setVisibility(View.GONE);
                         // Toast.makeText(getContext(), "Total Price selected", Toast.LENGTH_LONG).show();
-                    } else if (Filter_selected.equals("Paid Amount")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.paid_amount))) {
                         spinner2.setVisibility(View.GONE);
                         conso_edittext.setVisibility(View.GONE);
                         // Toast.makeText(getContext(), "Paid Amount selected", Toast.LENGTH_LONG).show();
-                    } else if (Filter_selected.equals("Status")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.status))) {
                         Filter_selected = "Status";
                         spinner2.setVisibility(View.VISIBLE);
                         conso_edittext.setVisibility(View.GONE);
-                    } else if (Filter_selected.equals("Created By")) {
+                    } else if (Filter_selected.equals(getResources().getString(R.string.created_by))) {
                         Filter_selected = "CreatedBy";
                         spinner2.setVisibility(View.GONE);
                         conso_edittext.setVisibility(View.VISIBLE);
@@ -254,12 +254,12 @@ public class ConsolidatedPaymentsFragment extends Fragment {
         arrayAdapterPayments.notifyDataSetChanged();
         spinner_consolidate.setAdapter(arrayAdapterPayments);
 
-        filters.add("Status");
-        filters.add("Pending");
-        filters.add("Unpaid ");
-        filters.add("Partially Paid");
-        filters.add("Paid");
-        filters.add("Payment Processing");
+        filters.add(getResources().getString(R.string.status));
+        filters.add(getResources().getString(R.string.pending));
+        filters.add(getResources().getString(R.string.unpaid_sp));
+        filters.add(getResources().getString(R.string.partially_paid));
+        filters.add(getResources().getString(R.string.paid));
+        filters.add(getResources().getString(R.string.payment_processing));
         arrayAdapterFeltter = new ArrayAdapter<String>(root.getContext(),
                 android.R.layout.simple_spinner_dropdown_item, filters){
             @Override
@@ -353,7 +353,7 @@ public class ConsolidatedPaymentsFragment extends Fragment {
             }
         });
 
-//        spinner_consolidate("Select Criteria","Invoice No", "Company", "Created Date", "Total Price", "Paid Amount" ,"Status","Created By");
+//        spinner_consolidate("Select Criteria",getResources().getString(R.string.invoice_no), "Company", "Created Date", "Total Price", "Paid Amount" ,"Status","Created By");
 //        spinner_consolidate.setOnItemSelectedListener(new Spinner().OnItemSelectedListener<String>() {
 //            @Override public void onItemSelected(Spinner view, int position, long id, String item) {
 //                if (position!=6){

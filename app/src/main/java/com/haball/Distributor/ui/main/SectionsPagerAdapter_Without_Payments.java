@@ -18,7 +18,7 @@ public class SectionsPagerAdapter_Without_Payments extends FragmentPagerAdapter 
 
     @StringRes
 //    private static final int[] TAB_TITLES = new int[]{R.string.tab_retailer_order};
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_3, R.string.tab_text_1};
+    private static final int[] TAB_TITLES = new int[]{R.string.order, R.string.tab_text_1};
     private final Context mContext;
 
     public SectionsPagerAdapter_Without_Payments(Context context, FragmentManager fm) {

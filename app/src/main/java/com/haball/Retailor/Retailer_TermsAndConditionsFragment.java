@@ -27,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.Volley;
+import com.haball.LanguageClasses.ChangeLanguage;
 import com.haball.Loader;
 import com.haball.ProcessingError;
 import com.haball.R;
@@ -47,6 +48,7 @@ public class Retailer_TermsAndConditionsFragment extends AppCompatActivity {
     private String Token;
     boolean doubleBackToExitPressedOnce = false;
     private Loader loader;
+    private String language ="";
 
     public static Retailer_TermsAndConditionsFragment newInstance() {
         return new Retailer_TermsAndConditionsFragment();
@@ -60,7 +62,10 @@ public class Retailer_TermsAndConditionsFragment extends AppCompatActivity {
         background_drawable.setAlpha(80);
         RelativeLayout rl_main_background = findViewById(R.id.rl_main_background);
         rl_main_background.setBackground(background_drawable);
-
+        // language changes
+        SharedPreferences languageType = getSharedPreferences("changeLanguage",
+                Context.MODE_PRIVATE);
+        language = languageType.getString("language", "");
         WebView webView = (WebView) findViewById(R.id.txt_change3);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -584,7 +589,7 @@ public class Retailer_TermsAndConditionsFragment extends AppCompatActivity {
                 finish();
             }
         });
-
+        changeLanguage();
     }
 
     @Override
@@ -651,5 +656,12 @@ public class Retailer_TermsAndConditionsFragment extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(this).add(sr);
     }
-
+    void changeLanguage() {
+        ChangeLanguage changeLanguage = new ChangeLanguage();
+        changeLanguage.changeLanguage(this, language);
+        if (language.equals("ur")) {
+            agree_button.setText(R.string.agree);
+            disagree_button.setText(R.string.disagree);
+        }
+    }
 }

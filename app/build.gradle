@@ -68,5 +68,6 @@ dependencies {
     implementation 'commons-codec:commons-codec:1.9'
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation 'com.android.support:multidex:1.0.3'
-
+//paper db
+    implementation 'io.paperdb:paperdb:2.7.1'
 }

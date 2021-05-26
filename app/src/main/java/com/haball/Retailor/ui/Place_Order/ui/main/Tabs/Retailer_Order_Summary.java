@@ -566,8 +566,8 @@ public class Retailer_Order_Summary extends Fragment {
                     TextView tv_pr1, txt_header1;
                     txt_header1 = fbDialogue.findViewById(R.id.txt_header1);
                     tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
-                    txt_header1.setText("Order Saved");
-                    tv_pr1.setText("Your Order ID " + result.getString("OrderNumber") + " has been saved successfully.");
+                    txt_header1.setText(getResources().getString(R.string.order_saved));
+                    tv_pr1.setText((getResources().getString(R.string.your_order_id)) + result.getString("OrderNumber") + (getResources().getString(R.string.order_saved_msg)));
                     fbDialogue.setCancelable(true);
                     fbDialogue.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
                     WindowManager.LayoutParams layoutParams = fbDialogue.getWindow().getAttributes();
@@ -674,9 +674,9 @@ public class Retailer_Order_Summary extends Fragment {
                 TextView tv_pr1, txt_header1;
                 txt_header1 = fbDialogue.findViewById(R.id.txt_header1);
                 tv_pr1 = fbDialogue.findViewById(R.id.txt_details);
-                txt_header1.setText("Order Created");
+                txt_header1.setText(getResources().getString(R.string.order_created));
                 try {
-                    tv_pr1.setText("Your Order ID " + result.getString("OrderNumber") + " has been created successfully.");
+                    tv_pr1.setText((getResources().getString(R.string.your_order_id)) + result.getString("OrderNumber") + (getResources().getString(R.string.order_created_msg)));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -855,7 +855,7 @@ public class Retailer_Order_Summary extends Fragment {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view_popup = inflater.inflate(R.layout.discard_changes, null);
         TextView tv_discard_txt = view_popup.findViewById(R.id.tv_discard_txt);
-        tv_discard_txt.setText("Are you sure, you want to leave this page? Your changes will be discarded.");
+        tv_discard_txt.setText(getResources().getString(R.string.discard_text));
         alertDialog.setView(view_popup);
         alertDialog.getWindow().setGravity(Gravity.TOP | Gravity.START | Gravity.END);
         WindowManager.LayoutParams layoutParams = alertDialog.getWindow().getAttributes();

@@ -34,15 +34,15 @@
                 android:background="@drawable/border_set">
 
                 <TextView
-                    android:id="@+id/login_heading"
-                    android:layout_width="match_parent"
+                    android:id="@+id/forgot_heading"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans_semibold"
                     android:paddingLeft="20dp"
                     android:paddingTop="5dp"
                     android:paddingRight="20dp"
                     android:paddingBottom="5dp"
-                    android:text="Forgot Password"
+                    android:text="@string/Forgot_Password"
                     android:textColor="#96bb3c"
                     android:textSize="@dimen/heading_size_retailer" />
             </LinearLayout>
@@ -57,8 +57,8 @@
 
                 <TextView
                     android:id="@+id/heading"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/open_sans"
                     android:maxLines="2"
@@ -123,7 +123,7 @@
                     android:fontFamily="@font/open_sans"
                     android:gravity="center"
                     android:stateListAnimator="@null"
-                    android:text="Reset"
+                    android:text="@string/reset"
                     android:textAllCaps="false"
                     android:textColor="#fff"
                     android:textSize="@dimen/button_text_size"
@@ -139,7 +139,7 @@
                     android:fontFamily="@font/open_sans"
                     android:gravity="center"
                     android:stateListAnimator="@null"
-                    android:text="Login"
+                    android:text="@string/login"
                     android:textAllCaps="false"
                     android:textColor="#fff"
                     android:textSize="@dimen/button_text_size"
@@ -156,7 +156,7 @@
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="© Haball | All rights reserved"
+                android:text="@string/all_rights_reserved"
                 android:textSize="12sp" />
 
         </RelativeLayout>

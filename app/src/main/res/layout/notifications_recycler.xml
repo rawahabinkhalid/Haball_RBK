@@ -23,8 +23,6 @@
                 android:id="@+id/subject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/consolidate_invoice_no_view"
-                android:layout_toRightOf="@+id/tv_Rs._amount_view"
                 android:text=" Payment"
                 android:textSize="@dimen/rv_box_heading_size"
                 android:fontFamily="@font/open_sans_semibold"

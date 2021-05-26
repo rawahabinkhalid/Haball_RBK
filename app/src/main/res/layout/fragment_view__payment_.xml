@@ -29,7 +29,7 @@
                 android:fontFamily="@font/open_sans"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="Payment"
+                android:text="@string/payment"
                 android:textColor="@color/textcolor"
                 android:textSize="17sp" />
 
@@ -55,7 +55,7 @@
                     android:layout_toRightOf="@+id/image_plus"
                     android:paddingTop="2dp"
                     android:fontFamily="@font/open_sans"
-                    android:text="Create Payment"
+                    android:text="@string/create_payment"
                     android:textColor="@color/textcolor"
                     android:textSize="13sp" />
             </RelativeLayout>
@@ -101,7 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:fontFamily="@font/open_sans"
-                android:hint="Company"
+                android:hint="@string/company"
                 android:theme="@style/TextLabel">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -122,7 +122,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:hint="Payment ID"
+                android:hint="@string/paymentid_sp"
                 android:theme="@style/TextLabel">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -142,7 +142,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:hint="Created Date"
+                android:hint="@string/created_date"
                 android:theme="@style/TextLabel">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -162,7 +162,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:hint="Transaction Date"
+                android:hint="@string/transaction_date"
                 android:theme="@style/TextLabel">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -182,7 +182,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:hint="Bank"
+                android:hint="@string/bank"
                 android:theme="@style/TextLabel">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -202,7 +202,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:hint="Authorization ID"
+                android:hint="@string/auth_id"
                 android:theme="@style/TextLabel">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -222,7 +222,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:hint="Settlement ID"
+                android:hint="@string/seltment_id"
                 android:theme="@style/TextLabel">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -243,7 +243,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:hint="Status"
+                android:hint="@string/status"
                 android:theme="@style/TextLabel">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -263,7 +263,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:hint="Amount"
+                android:hint="@string/amount"
                 android:theme="@style/TextLabel">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -283,7 +283,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:hint="Transaction Charges"
+                android:hint="@string/trans_charges"
                 android:theme="@style/TextLabel">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -303,7 +303,7 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/open_sans"
-                android:hint="Total Amount"
+                android:hint="@string/total_amount"
                 app:boxBackgroundColor="#EBEBEB"
                 android:theme="@style/TextLabel">
 
@@ -339,7 +339,7 @@
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
                 android:stateListAnimator="@null"
-                android:text="View Receipt"
+                android:text="@string/view_receipt"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="@dimen/button_text_size" />
@@ -356,7 +356,7 @@
                 android:background="@drawable/button_background"
                 android:gravity="center"
                 android:stateListAnimator="@null"
-                android:text="Back"
+                android:text="@string/back"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="@dimen/button_text_size" />

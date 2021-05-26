@@ -18,7 +18,7 @@ public class SectionsPagerAdapter_Only_Payments extends FragmentPagerAdapter {
 
     @StringRes
 //    private static final int[] TAB_TITLES = new int[]{R.string.tab_retailer_order};
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_2};
+    private static final int[] TAB_TITLES = new int[]{R.string.payment};
     private final Context mContext;
 
     public SectionsPagerAdapter_Only_Payments(Context context, FragmentManager fm) {

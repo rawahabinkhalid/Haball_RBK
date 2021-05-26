@@ -69,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans_semibold"
-                    android:text="Total Unpaid Amount"
+                    android:text="@string/total_unpaid_amount"
                     android:textColor="@color/rv_box_color"
                     android:textSize="@dimen/rv_box_heading_size" />
 
@@ -99,7 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans_semibold"
-                    android:text="Total Paid Amount"
+                    android:text="@string/total_paid_amount"
                     android:textColor="@color/rv_box_color"
                     android:textSize="@dimen/rv_box_heading_size" />
 
@@ -129,7 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans_semibold"
-                    android:text="Ledger Balance"
+                    android:text="@string/ledger_balance"
                     android:textColor="@color/rv_box_color"
                     android:textSize="@dimen/rv_box_heading_size" />
 

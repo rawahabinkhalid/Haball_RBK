@@ -144,7 +144,7 @@ public class PlaceholderFragment extends Fragment {
 //                break;
                 rootView = inflater.inflate(R.layout.fragment_place_order_company, container, false);
                 loader = new Loader(getContext());
-                company_names.add(" Select Company ");
+                company_names.add(getResources().getString(R.string.select_company));
                 myFont = ResourcesCompat.getFont(getContext(), R.font.open_sans);
                 layout_name = rootView.findViewById(R.id.layout_name);
                 layout_mobile_no = rootView.findViewById(R.id.layout_mobile_no);

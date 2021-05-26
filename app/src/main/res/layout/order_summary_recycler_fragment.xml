@@ -51,7 +51,7 @@
         android:layout_marginBottom="5dp"
         android:textColor="@color/rv_box_color"
         android:fontFamily="@font/open_sans"
-        android:text="Product Code:"
+        android:text="@string/product_code"
         android:textSize="@dimen/rv_box_text_size" />
 
 <!--    <TextView-->

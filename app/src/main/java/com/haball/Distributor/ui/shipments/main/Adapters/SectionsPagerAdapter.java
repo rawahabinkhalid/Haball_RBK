@@ -18,7 +18,7 @@ import com.haball.R;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_7_0,R.string.tab_text_7, R.string.tab_text_5_0, R.string.tab_text_5, R.string.tab_text_5_1};
+    private static final int[] TAB_TITLES = new int[]{R.string.shipment,R.string.tab_text_7, R.string.order, R.string.tab_text_5, R.string.payment};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {

@@ -33,7 +33,7 @@
             <com.techatmosphere.expandablenavigation.view.ExpandableNavigationListView
                 android:id="@+id/expandable_navigation"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -48,14 +48,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:clickable="true"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:focusable="true">
 
             <TextView
                 android:id="@+id/footer_item_1"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:gravity="center"
-                android:text="Terms And Conditions" />
+                android:text="@string/term_and_condition" />
         </LinearLayout>
 
     </com.google.android.material.navigation.NavigationView>
